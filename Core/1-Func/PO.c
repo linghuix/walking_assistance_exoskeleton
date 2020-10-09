@@ -25,7 +25,7 @@
 
 extern float abs(float x);
 
-#define D_area 10.0
+#define D_area 5.0
 #define W_area 1.0
 //阈值防抖动算法
 void th_algori(float ang, float w, float * k)
@@ -47,8 +47,14 @@ float PO(float d, float w,uint8_t node)
 	float k;
 
 	th_algori(d,w,&k);
-
+	if(node == 2){
+		k = k*0.25;
+	}
+		
 	float assistive_torque = sin_fai*k;
 	//printf("\r\n%.2f.&&&%.2f\r\n",sin_fai,k);
+//	if(node == 2){
+//		assistive_torque = 0.5;
+//	}
 	return assistive_torque;
 }

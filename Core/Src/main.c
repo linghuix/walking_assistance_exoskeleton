@@ -28,7 +28,7 @@ int main(void)
 
 	//test_AO();
 
-	int8_t assive_mode;
+//	int8_t assive_mode;
 	while (1){
 
 		/*左髋关节*/
@@ -54,8 +54,8 @@ int main(void)
 //			printf("acc1 d %.2f\tw %.2f\t",hip1_d,hip1_w);
 //			printf("acc2 d %.2f\tw %.2f\t",hip2_d,hip2_w);
 			//printf("%d\t",inc);
-			printf("%.2f\t%.2f\t",hip1_d,hip1_w);
-			printf("%.2f\t%.2f\t",hip2_d,hip2_w);
+//			printf("%.2f\t%.2f\t",hip1_d,hip1_w);
+//			printf("%.2f\t%.2f\t",hip2_d,hip2_w);
 //			AO(hip1_d,1);
 //			AO(hip2_d,2);
 //			index ++;
@@ -69,7 +69,7 @@ int main(void)
 //			}
 			set_I_direction(1,I1);
 //			printf("I1 %.2f\t",I1);
-			printf("%.2f\t",I1);
+//			printf("%.2f\t",I1);
 			
 			/**/
 //			assive_mode = switch_task( &hip2, hip2_d, hip2_w,2);
@@ -82,7 +82,7 @@ int main(void)
 			set_I_direction(2,I2);
 			
 //			printf("I2 %.2f\r\n",I2);
-			printf("%.2f\r\n",I2);
+//			printf("%.2f\r\n",I2);
 		}
   }
 
