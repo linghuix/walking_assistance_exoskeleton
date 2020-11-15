@@ -51,9 +51,9 @@ int main(void)
 		
 		/*无线传输显示实时数据*/
 		if(inc % 30 == 0){
-//			printf("acc1 d %.2f\tw %.2f\t",hip1_d,hip1_w);
-//			printf("acc2 d %.2f\tw %.2f\t",hip2_d,hip2_w);
-			//printf("%d\t",inc);
+			printf("acc1d %.2f\tw %.2f\t",hip1_d,hip1_w);
+			printf("acc2d %.2f\tw %.2f\t",hip2_d,hip2_w);
+//			printf("%d\t",inc);
 //			printf("%.2f\t%.2f\t",hip1_d,hip1_w);
 //			printf("%.2f\t%.2f\t",hip2_d,hip2_w);
 //			AO(hip1_d,1);
@@ -68,7 +68,7 @@ int main(void)
 //				I1 = assive_torque(&hip1, hip1_d);
 //			}
 			set_I_direction(1,I1);
-//			printf("I1 %.2f\t",I1);
+			printf("I1 %.2f\t",I1);
 //			printf("%.2f\t",I1);
 			
 			/**/
@@ -81,7 +81,7 @@ int main(void)
 //			}
 			set_I_direction(2,I2);
 			
-//			printf("I2 %.2f\r\n",I2);
+			printf("I2 %.2f\r\n",I2);
 //			printf("%.2f\r\n",I2);
 		}
   }

@@ -25,17 +25,21 @@
 
 extern float abs(float x);
 
-#define D_area 5.0
+#define AssisTor 0.2
+#define RightToleftTorRatio 3
+
+#define D_area 2.0
 #define W_area 1.0
+#define MAX_D_area 50.0
 //阈值防抖动算法
 void th_algori(float ang, float w, float * k)
 {
 	/* 设定阈值，防止在关节角度较小的时候，助力系数k随着关节角速度的正负变化而产生抖动。 */
-	if(abs(ang) < D_area || abs(w) < W_area){
+	if(abs(ang) < D_area || abs(w) < W_area || abs(ang) > MAX_D_area){
 		*k = 0.0;
 	}
 	else{
-		*k = 1;
+		*k = AssisTor;
 	}
 	//printf("\r\nw=%.2f.&&&*k=%.2f\r\n",w,*k);
 }
@@ -47,8 +51,8 @@ float PO(float d, float w,uint8_t node)
 	float k;
 
 	th_algori(d,w,&k);
-	if(node == 2){
-		k = k*0.25;
+	if(node == 2){						// Right Torque assive
+		k = k*RightToleftTorRatio;
 	}
 		
 	float assistive_torque = sin_fai*k;
