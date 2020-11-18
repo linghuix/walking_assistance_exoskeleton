@@ -1,7 +1,7 @@
 #include "AO.h"
 
 
-float abs(float x)
+float floatabs(float x)
 {
 	return x>0 ? x:-x;
 }
@@ -253,7 +253,7 @@ void test_AO(void)
 
 uint8_t Isequal(float i, float j)
 {
-	if(abs(i-j)<5){
+	if(floatabs(i-j)<5){
 		return 1;
 	}
 	return 0;
@@ -262,7 +262,7 @@ uint8_t Isequal(float i, float j)
 
 
 uint8_t predict_step = 5;
-uint64_t index = 0;
+uint64_t Aoindex = 0;
 struct Adaptive_Oscillators hip1,hip2;
 void AO_Init(void)
 {
@@ -285,18 +285,18 @@ void AO_Init(void)
 	//show(&hip);
 	
     //predict_step = 5;
-	//index = 0;
+	//Aoindex = 0;
 }
 
 void AO(float d,uint8_t node)
 {
 	if(node == 1){
-		input(&hip1,d,index,predict_step,0,0);
+		input(&hip1,d,Aoindex,predict_step,0,0);
 		//show(&hip);
 		printf("%.2f\t%.2f\t%.2f\t",d, hip1.output,hip1.predict);
 	}
 	else if(node == 2){
-		input(&hip2,d,index,predict_step,0,0);
+		input(&hip2,d,Aoindex,predict_step,0,0);
 		//show(&hip);
 		//printf("%.1f\t%.1f\t%.1f\t",d, hip2.output,hip2.predict);
 	}
@@ -362,7 +362,7 @@ float switch_task(struct Adaptive_Oscillators * AO, float d, float w,uint8_t nod
 float assive_torque(struct Adaptive_Oscillators * AO, float d)
 {
 	float assistive_torque;
-	if(abs(AO->predict - d)<3)
+	if(floatabs(AO->predict - d)<3)
 		assistive_torque = 0;
 	else{
 		assistive_torque = (AO->predict - d)*0.05;

@@ -10,12 +10,12 @@
 
 
 #include "FUNC.h"
-#include <stdio.h>
-#include <math.h>
+#include "stdio.h"
+#include "math.h"
 
 
 extern struct Adaptive_Oscillators hip1,hip2;
-extern uint64_t index;
+extern uint64_t Aoindex;
 
 void AO_Init(void);
 void AO(float d,uint8_t node);

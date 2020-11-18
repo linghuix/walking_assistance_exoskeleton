@@ -23,19 +23,19 @@
 
 #include "PO.h"
 
-extern float abs(float x);
+extern float floatabs(float x);
 
-#define AssisTor 0.2
+#define AssisTor 0.3
 #define RightToleftTorRatio 3
 
-#define D_area 2.0
-#define W_area 1.0
+#define D_area 0.0		//2.0
+#define W_area 0.0		//1.0
 #define MAX_D_area 50.0
 //阈值防抖动算法
 void th_algori(float ang, float w, float * k)
 {
 	/* 设定阈值，防止在关节角度较小的时候，助力系数k随着关节角速度的正负变化而产生抖动。 */
-	if(abs(ang) < D_area || abs(w) < W_area || abs(ang) > MAX_D_area){
+	if(floatabs(ang) < D_area || floatabs(w) < W_area || floatabs(ang) > MAX_D_area){
 		*k = 0.0;
 	}
 	else{
