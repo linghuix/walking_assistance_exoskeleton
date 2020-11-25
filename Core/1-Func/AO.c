@@ -31,6 +31,7 @@ struct Adaptive_Oscillators{
     int8_t index;		//指向要填充的下一个空间
 };
 
+
 void show(struct Adaptive_Oscillators* AO)
 {
     printf("\r\nva - %.2f\r\n",AO->va);
@@ -181,6 +182,53 @@ void input(struct Adaptive_Oscillators* AO, float y_now, float t_now, int predic
 		}
 }
 
+
+uint8_t predict_step = 5;
+uint64_t Aoindex = 0;
+struct Adaptive_Oscillators hip1,hip2;
+extern int CONTROL_PERIOD;
+void AO_Init(void)
+{
+    float va,vw,vph,dt,aa[2] = {0.0, 15.0},pphh[2] = {0,0};
+    int step;
+    float pi = 3.1415926;
+
+	dt = (float)CONTROL_PERIOD/1000.0;//   1/100 = 0   1.0/100 = 0.01 先按int类型计算，然后强制转化为float
+	
+	float w0 = 30*dt;
+    va = 2*pi/w0 * 1;
+    vw = va;
+	vph = sqrt(24.2*vw);
+    step = 2;
+    
+    //set(&hip1,vw,va,vph,1,dt,2,aa,pphh,step);
+	//set(&hip2,vw,va,vph,1,dt,2,aa,pphh,step);
+	set(&hip1,vw,va,vph,1,dt,1,aa,pphh,step);
+	set(&hip2,vw,va,vph,1,dt,1,aa,pphh,step);
+	//show(&hip);
+	
+    //predict_step = 5;
+	//Aoindex = 0;
+}
+
+void AO(float d,uint8_t node)
+{
+	if(node == 1){
+		input(&hip1,d,Aoindex,predict_step,0,0);
+		//show(&hip);
+		printf("%.2f\t%.2f\t%.2f\t",d, hip1.output,hip1.predict);
+	}
+	else if(node == 2){
+		input(&hip2,d,Aoindex,predict_step,0,0);
+		//show(&hip);
+		//printf("%.1f\t%.1f\t%.1f\t",d, hip2.output,hip2.predict);
+	}
+}
+
+
+// -------------------*---------------------------*-------------------*----------------------*-----------------
+// -------------------*---------------------------*-------------------*----------------------*-----------------
+
 void test_Osc(void)
 {
     struct Adaptive_Oscillators hip;
@@ -227,6 +275,8 @@ void test_AO(void)
     float va,vw,dt,aa[2] = {0.0, 15.0},pphh[2] = {0,0};
     int step;
     float pi = 3.1415926;
+	
+	printf("AO test for sine wave\r\n");
 
 	dt = 0.02;
     va = 2*pi/(23*dt) * 2;
@@ -237,12 +287,12 @@ void test_AO(void)
     //show(&hip);
 
     float y;
-    uint8_t predict_step = 1;
+    uint8_t predict_step = step;
     uint64_t j=0;
     while(j++ < 5000000000){
         y = 30*sin(23*j*dt+56)+20;
         input(&hip,y,j,predict_step,0,0);
-        printf("%.2f\t%.2f\r\n",y, hip.predict);
+        printf("y\t%.2f\tpredict\t%.2f\r\n",y, hip.predict);
         //show(&hip);
 		HAL_Delay(20);
     }
@@ -251,59 +301,23 @@ void test_AO(void)
 
 
 
+// -------------------*---------------------------*-------------------*----------------------*-----------------
+// -------------------*---------------------------*-------------------*----------------------*-----------------
+// -------------------*---------------------------*-------------------*----------------------*-----------------
+// -------------------*---------------------------*-------------------*----------------------*-----------------
+
+
 uint8_t Isequal(float i, float j)
 {
-	if(floatabs(i-j)<5){
+	if(floatabs(i-j)<2){
 		return 1;
 	}
 	return 0;
 }
 
 
-
-uint8_t predict_step = 5;
-uint64_t Aoindex = 0;
-struct Adaptive_Oscillators hip1,hip2;
-void AO_Init(void)
-{
-    float va,vw,vph,dt,aa[2] = {0.0, 15.0},pphh[2] = {0,0};
-    int step;
-    float pi = 3.1415926;
-
-	dt = 20.0/1000;//   1/100 = 0   1.0/100 = 0.01 先按int类型计算，然后强制转化为float
-	
-	float w0 = 30*dt;
-    va = 2*pi/w0 * 1;
-    vw = va;
-	vph = sqrt(24.2*vw);
-    step = 2;
-    
-    //set(&hip1,vw,va,vph,1,dt,2,aa,pphh,step);
-	//set(&hip2,vw,va,vph,1,dt,2,aa,pphh,step);
-	set(&hip1,vw,va,vph,1,dt,1,aa,pphh,step);
-	set(&hip2,vw,va,vph,1,dt,1,aa,pphh,step);
-	//show(&hip);
-	
-    //predict_step = 5;
-	//Aoindex = 0;
-}
-
-void AO(float d,uint8_t node)
-{
-	if(node == 1){
-		input(&hip1,d,Aoindex,predict_step,0,0);
-		//show(&hip);
-		printf("%.2f\t%.2f\t%.2f\t",d, hip1.output,hip1.predict);
-	}
-	else if(node == 2){
-		input(&hip2,d,Aoindex,predict_step,0,0);
-		//show(&hip);
-		//printf("%.1f\t%.1f\t%.1f\t",d, hip2.output,hip2.predict);
-	}
-}
-
-
 #include "PO.h"
+
 int16_t PO_time = 0;
 int16_t AO_flag=0;
 int8_t assive = -20;
@@ -315,35 +329,34 @@ float switch_task(struct Adaptive_Oscillators * AO, float d, float w,uint8_t nod
 	//m = i-1 < 0 ? i-1+MaxSize : i-1;
 	
 	if(Isequal(d ,AO->predict_10steps_save[j])){
-		if(assive == 20){
-			assive = 20; // 20 * (AO->predict - d);
+		if(assive == AOMODE){
+			assive = AOMODE; // 20 * (AO->predict - d);
 			PO_time = PO_time-10;
 			AO_flag = 0;
-			//printf("a");
 		}
-		else if(assive == -20){
+		else if(assive == POMODE){
 			AO_flag++;
+			
 			if(AO_flag > 10){
 				AO_flag = 0;
-				assive = 20;
+				assive = AOMODE;
 			}
 			else{
-				assive = -20;
+				assive = POMODE;
 			}
-			//printf("b");
 			PO_time++;
 		}
 		
 	}
 	else{
-		assive = -20; //O(d, w, node);
+		assive = POMODE; //O(d, w, node);
 		PO_time++;
 		AO_flag = 0;
 		//printf("c");
 	}
 	
 	if(PO_time > 100){
-		AO_Init();
+		AO_Init();					//AO reset
 		PO_time = 0;
 	}
 	else if(PO_time < 0){
@@ -370,3 +383,5 @@ float assive_torque(struct Adaptive_Oscillators * AO, float d)
 	return assistive_torque;
 
 }
+
+

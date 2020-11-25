@@ -8,6 +8,8 @@
 #ifndef _FUNC_AO_H_
 #define _FUNC_AO_H_
 
+#define AOMODE +20
+
 
 #include "FUNC.h"
 #include "stdio.h"
