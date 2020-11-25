@@ -50,3 +50,5 @@
 .\objects\main.o: ..\Core\1-Func\PO.h
 .\objects\main.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\math.h
 .\objects\main.o: ..\Core\1-Func\AO.h
+.\objects\main.o: ..\Core\1-Func\win.h
+.\objects\main.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\stdlib.h

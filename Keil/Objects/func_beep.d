@@ -51,3 +51,5 @@
 .\objects\func_beep.o: ..\Core\1-Func\PO.h
 .\objects\func_beep.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\math.h
 .\objects\func_beep.o: ..\Core\1-Func\AO.h
+.\objects\func_beep.o: ..\Core\1-Func\win.h
+.\objects\func_beep.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\stdlib.h
