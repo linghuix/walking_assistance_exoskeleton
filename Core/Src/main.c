@@ -56,9 +56,9 @@ int main(void)
 //			printf("%d\t",inc);
 //			printf("%.2f\t%.2f\t",hip1_d,hip1_w);
 //			printf("%.2f\t%.2f\t",hip2_d,hip2_w);
-//			AO(hip1_d,1);
-//			AO(hip2_d,2);
-//			index ++;
+			AO(hip1_d,1);
+			AO(hip2_d,2);
+			index++;
 
 //			assive_mode = switch_task( &hip1, hip1_d, hip1_w,1);
 //			if(assive_mode == -20){
