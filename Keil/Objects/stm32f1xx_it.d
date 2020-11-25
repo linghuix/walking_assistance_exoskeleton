@@ -50,4 +50,6 @@
 .\objects\stm32f1xx_it.o: ..\Core\1-Func\PO.h
 .\objects\stm32f1xx_it.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\math.h
 .\objects\stm32f1xx_it.o: ..\Core\1-Func\AO.h
+.\objects\stm32f1xx_it.o: ..\Core\1-Func\win.h
+.\objects\stm32f1xx_it.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\stm32f1xx_it.o: ..\Core\Inc\stm32f1xx_it.h

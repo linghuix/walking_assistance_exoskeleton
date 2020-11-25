@@ -9,6 +9,9 @@
 #define _FUNC_PO_H_
 
 
+#define POMODE -20
+
+
 #include "FUNC.h"
 #include "math.h"
 

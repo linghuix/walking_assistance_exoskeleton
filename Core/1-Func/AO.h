@@ -8,10 +8,13 @@
 #ifndef _FUNC_AO_H_
 #define _FUNC_AO_H_
 
+#define AOMODE +20
+
 
 #include "FUNC.h"
 #include "stdio.h"
 #include "math.h"
+
 
 
 extern struct Adaptive_Oscillators hip1,hip2;
