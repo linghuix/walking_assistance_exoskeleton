@@ -9,13 +9,24 @@ int CONTROL_PERIOD = 50;			//ms
 #define AssisMonitor(...) printf(__VA_ARGS__)
 
 
+WIN d1minwin_w, d2minwin_w;				//极小值检测窗口
+ElementType d1Win[3] = {0};
+ElementType d2Win[3] = {0};
+
+uint32_t inc=0;
+
 #define Buffsize 2
-WIN acc1win_w, acc2win_w, acc1win_d, acc2win_d;
+WIN acc1win_w, acc2win_w, acc1win_d, acc2win_d;			//滤波窗口
 ElementType acc1WinArray_d[Buffsize] = {0};
 ElementType acc2WinArray_d[Buffsize] = {0};
 ElementType acc1WinArray_w[Buffsize] = {0};
 ElementType acc2WinArray_w[Buffsize] = {0};
 float weights[Buffsize] = {0.04,0.96};
+
+
+uint32_t peaktimestamp1 = 0, peaktimestamp2 = 0;
+uint16_t period = 30;
+float dt = 0.05;										//控制周期和采样周期
 
 int main(void)
 {
@@ -31,8 +42,12 @@ int main(void)
 	WinBuffer(&acc1win_w, acc1WinArray_w, Buffsize);
 	WinBuffer(&acc2win_w, acc2WinArray_w, Buffsize);
 	
+	/*峰值检测*/
+	WinBuffer(&d1minwin_w, d1Win, 3);
+	WinBuffer(&d2minwin_w, d2Win, 3);
+	
 	HC05_Init();
-	AO_Init();
+	AO_Init(21*dt);
 	ECON_I_init();
 
 
@@ -47,6 +62,8 @@ int main(void)
 	float hip2_w, hip2_d, I2;
 	float hip1_raww, hip1_rawd;
 	float hip2_raww, hip2_rawd;
+	
+	float offset;
 
 	printf("ABOUT ANGLE AND SPEED couterclock is postive from outside. 从外部看向电机侧");
 	printf("the acc1 of left hip - d w | the acc2 of right hip - d w | I1 ,I2\r\n");
@@ -95,32 +112,47 @@ int main(void)
 			printf("%lld\t",Aoindex);
 //			printf("%.2f\t%.2f\t",hip1_d,hip1_w);
 //			printf("%.2f\t%.2f\t",hip2_d,hip2_w);
+			
+			addToBuff(&d2minwin_w ,hip2_d);
+			addToBuff(&d1minwin_w ,hip1_d);
+			
 			AO(hip1_d,1);
 			AO(hip2_d,2);
 			Aoindex++;
 
+			/* 左 */
 			assive_mode = switch_task( &hip1, hip1_d, hip1_w,1);
 			if(assive_mode == POMODE){
-				I1 = PO(hip1_d,hip1_w, 1);
+				I1 = PO(hip1_d, hip1_w, 1);
 			}
 			else if(assive_mode == AOMODE){
+				if(findpeak(d1minwin_w)){
+					period = inc - peaktimestamp1;		// gait period get
+					peaktimestamp1 = inc;
+				}
 				I1 = assive_torque(&hip1, hip1_d);
 			}
 			else{
 				while(1){ printf("assive_mode error\r\n"); }
 			}
-			
 			set_I_direction(1,I1);
-			printf("I1 %.2f\t",I1);
-
-			I1 = PO(hip1_d,hip1_w, 1);
-			set_I_direction(1,I1);
-
-			I2 = PO(hip2_d,hip2_w, 2);
-			set_I_direction(2,I2);
+			AssisMonitor("I1 %.2f\t",I1);
 			
-			AssisMonitor("I1\t%.2f\tI2\t%.2f",I1, I2);
-//			printf("%.2f\t%.2f\r\n",I1, I2);
+			
+			/* 右 */
+			assive_mode = switch_task( &hip2, hip2_d, hip2_w,2);
+			if(assive_mode == POMODE){
+				I2 = PO(hip2_d,hip2_w, 2);
+			}
+			else if(assive_mode == AOMODE){
+				findpeak(d2minwin_w);
+				I2 = assive_torque(&hip2, hip2_d);
+			}
+			else{
+				while(1){ printf("assive_mode error\r\n"); }
+			}
+			set_I_direction(1,I2);
+			AssisMonitor("I2 %.2f\t",I2);
 			
 			printf("\r\n");
 		}

@@ -1,3 +1,8 @@
+
+#ifndef __WIN_H_
+#define __WIN_H_
+
+
 #include <stdio.h> 
 #include <stdlib.h>//malloc
 #include "BSP.h"
@@ -12,6 +17,7 @@ typedef float ElementType;
 //线性表类型定义 
 typedef struct WinBuffer *WINp;
 typedef struct WinBuffer WIN;
+
 struct WinBuffer{
     
     ElementType *data;     	// 数组data用于存放表结点，结点中的元素的类型设定为int 
@@ -26,6 +32,11 @@ void addToBuff(WINp winbuffer, ElementType data);
 uint16_t getPreIndex(uint16_t index, uint16_t length);
 void ChangeLastestValue(WINp winbuffer, ElementType data);
 float AvergeWin(WINp winbuffer, float *weight, int size);
+ElementType GetValue(WINp winbuffer, uint8_t index);
+
 
 #define getLastestValue(buff) buff.data[getPreIndex(buff.in,buff.length)]
 
+
+
+#endif /* 1_FUNC_AO_H_ */

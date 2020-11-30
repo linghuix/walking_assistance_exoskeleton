@@ -1,7 +1,8 @@
 #include <win.h> 
 
 //创建
-void WinBuffer(WINp winbuffer, ElementType *data,int size){
+void WinBuffer(WINp winbuffer, ElementType *data,int size)
+	{
     
     winbuffer->data = data;
     winbuffer->length = size;
@@ -39,7 +40,8 @@ uint16_t getNexIndex(uint16_t index, uint16_t length)
 }
 
 
-void addToBuff(WINp winbuffer, ElementType data){
+void addToBuff(WINp winbuffer, ElementType data)
+{
     
 	winbuffer->data[winbuffer->in] = data;
 	winbuffer->in = getNexIndex(winbuffer->in, winbuffer->length);
@@ -47,7 +49,9 @@ void addToBuff(WINp winbuffer, ElementType data){
 
 
 //输出线性表内容  o(n)
-void print(WINp winbuffer){
+void print(WINp winbuffer)
+{
+	
     uint16_t index = winbuffer->in;
     for(uint16_t i=0; i<winbuffer->length; i++){
 		index = getPreIndex(index,winbuffer->length);
@@ -56,7 +60,8 @@ void print(WINp winbuffer){
     printf("\r\n");
 }
 
-float AvergeWin(WINp winbuffer, float *weight, int size){
+float AvergeWin(WINp winbuffer, float *weight, int size)
+	{
 	
 	float sum = 0;
 	int pre = winbuffer->in;
@@ -72,23 +77,37 @@ float AvergeWin(WINp winbuffer, float *weight, int size){
 
 
 void ChangeValue(WINp winbuffer, int index, ElementType data)
-{
-	int changeIndex;
+	{
+	int changeIndex = winbuffer->in;
 	for(int i=0; i<index; i++){
-		changeIndex = getPreIndex(winbuffer->in,winbuffer->length);
+		changeIndex = getPreIndex(changeIndex, winbuffer->length);
 	}
 	winbuffer->data[changeIndex] = data;
 }
 
 void ChangeLastestValue(WINp winbuffer, ElementType data)
-{
+	{
+		
 	ChangeValue(winbuffer, 1, data);
 }
 
+/*
+ * index: 1 代表最新放入的数据  2 代表次新放入的数据 
+ */
+ElementType GetValue(WINp winbuffer, uint8_t index)
+	{
+		
+	int changeIndex = winbuffer->in;
+	for(int i=0; i<index; i++){
+		changeIndex = getPreIndex(changeIndex, winbuffer->length);
+	}
+	return winbuffer->data[changeIndex];
+}
 
 ///*  测试代码 */
 void test_win_buff(void)
-{
+	{
+		
     WIN winbuffer;
 	ElementType data[2] = {0};
 	int size = 2;
