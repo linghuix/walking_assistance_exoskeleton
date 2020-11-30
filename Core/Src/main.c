@@ -13,7 +13,7 @@ WIN d1minwin_w, d2minwin_w;				//极小值检测窗口
 ElementType d1Win[3] = {0};
 ElementType d2Win[3] = {0};
 
-uint32_t inc=0;
+uint32_t inc=0;							//控制周期计时器
 
 #define Buffsize 2
 WIN acc1win_w, acc2win_w, acc1win_d, acc2win_d;			//滤波窗口
@@ -24,9 +24,10 @@ ElementType acc2WinArray_w[Buffsize] = {0};
 float weights[Buffsize] = {0.04,0.96};
 
 
-uint32_t peaktimestamp1 = 0, peaktimestamp2 = 0;
+uint32_t peaktimestamp[2] = {0};
 uint16_t period = 30;
 float dt = 0.05;										//控制周期和采样周期
+float phase[2];	//0左，1右
 
 int main(void)
 {
@@ -63,7 +64,7 @@ int main(void)
 	float hip1_raww, hip1_rawd;
 	float hip2_raww, hip2_rawd;
 	
-	float offset;
+	float AOoffset[2] = {0};					//AO 相位补偿器
 
 	printf("ABOUT ANGLE AND SPEED couterclock is postive from outside. 从外部看向电机侧");
 	printf("the acc1 of left hip - d w | the acc2 of right hip - d w | I1 ,I2\r\n");
@@ -120,37 +121,46 @@ int main(void)
 			AO(hip2_d,2);
 			Aoindex++;
 
+			
 			/* 左 */
 			assive_mode = switch_task( &hip1, hip1_d, hip1_w,1);
 			if(assive_mode == POMODE){
-				I1 = PO(hip1_d, hip1_w, 1);
+				phase[0] = PO_phase(hip1_d, hip1_w);		//相位
 			}
 			else if(assive_mode == AOMODE){
 				if(findpeak(d1minwin_w)){
-					period = inc - peaktimestamp1;		// gait period get
-					peaktimestamp1 = inc;
+					period = inc - peaktimestamp[0];		// gait period get
+					peaktimestamp[0] = inc;
+					AOoffset[0] = hip1.phase[1];
 				}
-				I1 = assive_torque(&hip1, hip1_d);
+				phase[0] = hip1.phase[1] - AOoffset[0];
 			}
 			else{
 				while(1){ printf("assive_mode error\r\n"); }
 			}
+			I1 = 10*sin(phase[0]);
 			set_I_direction(1,I1);
 			AssisMonitor("I1 %.2f\t",I1);
+			
 			
 			
 			/* 右 */
 			assive_mode = switch_task( &hip2, hip2_d, hip2_w,2);
 			if(assive_mode == POMODE){
-				I2 = PO(hip2_d,hip2_w, 2);
+				phase[1] = PO_phase(hip2_d, hip2_w);
 			}
 			else if(assive_mode == AOMODE){
-				findpeak(d2minwin_w);
-				I2 = assive_torque(&hip2, hip2_d);
+				if(findpeak(d2minwin_w)){
+					period = inc - peaktimestamp[1];		// gait period get
+					peaktimestamp[1] = inc;
+					AOoffset[1] = hip2.phase[1];
+				}
+				phase[1] = hip2.phase[1] - AOoffset[1];
 			}
 			else{
 				while(1){ printf("assive_mode error\r\n"); }
 			}
+			I2 = 10*sin(phase[1]);
 			set_I_direction(1,I2);
 			AssisMonitor("I2 %.2f\t",I2);
 			

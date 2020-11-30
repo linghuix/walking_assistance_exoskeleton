@@ -1,5 +1,5 @@
 Dependencies for Project 'rct6', Target 'Target 1': (DO NOT MODIFY !)
-F (..\Core\Src\main.c)(0x5FC4FDE7)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -O0 --apcs=interwork --split_sections -I ..\Core\Inc -I ..\Drivers\STM32F1xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy -I ..\Core\0-Conf -I ..\Core\1-Func -I ..\Core\2-Task -I ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include-I D:\10-Chip_learning\0-硬件\3-motor\电机控制项目\助力外骨骼控制\code\assistive_exso\Keil\RTE-I G:\0-Embeded\KEIL\Keil_v5.1\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I G:\0-Embeded\KEIL\Keil_v5.1\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DSTM32F103xB-o .\objects\main.o --depend .\objects\main.d)
+F (..\Core\Src\main.c)(0x5FC507A9)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -O0 --apcs=interwork --split_sections -I ..\Core\Inc -I ..\Drivers\STM32F1xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy -I ..\Core\0-Conf -I ..\Core\1-Func -I ..\Core\2-Task -I ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include-I D:\10-Chip_learning\0-硬件\3-motor\电机控制项目\助力外骨骼控制\code\assistive_exso\Keil\RTE-I G:\0-Embeded\KEIL\Keil_v5.1\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I G:\0-Embeded\KEIL\Keil_v5.1\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DSTM32F103xB-o .\objects\main.o --depend .\objects\main.d)
 I (..\Core\Inc\main.h)(0x5FBF6406)
 I (..\Core\1-Func\FUNC.h)(0x5ECB707B)
 I (..\Core\0-Conf\BSP.h)(0x5ECB6755)
@@ -48,10 +48,10 @@ I (..\Core\0-Conf\conf_gpio.h)(0x5E5E5BB6)
 I (..\Core\1-Func\func_accelerate.h)(0x5ED21E5C)
 I (..\Core\1-Func\func_BLE_HC05.h)(0x5F191E67)
 I (..\Core\1-Func\debug.h)(0x5ECD3DDB)
-I (..\Core\1-Func\PO.h)(0x5FBDCD37)
+I (..\Core\1-Func\PO.h)(0x5FC502EF)
 I (G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\include\math.h)(0x569DEA3A)
-I (..\Core\1-Func\AO.h)(0x5FC4FD4A)
-I (..\Core\1-Func\win.h)(0x5FC4F28F)
+I (..\Core\1-Func\AO.h)(0x5FC505C2)
+I (..\Core\1-Func\win.h)(0x5FC50577)
 I (G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\include\stdlib.h)(0x569DEA3A)
 F (..\Core\Src\stm32f1xx_it.c)(0x5F19235C)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -O0 --apcs=interwork --split_sections -I ..\Core\Inc -I ..\Drivers\STM32F1xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy -I ..\Core\0-Conf -I ..\Core\1-Func -I ..\Core\2-Task -I ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include-I D:\10-Chip_learning\0-硬件\3-motor\电机控制项目\助力外骨骼控制\code\assistive_exso\Keil\RTE-I G:\0-Embeded\KEIL\Keil_v5.1\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I G:\0-Embeded\KEIL\Keil_v5.1\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DSTM32F103xB-o .\objects\stm32f1xx_it.o --depend .\objects\stm32f1xx_it.d)
 I (..\Core\Inc\main.h)(0x5FBF6406)
@@ -102,10 +102,10 @@ I (..\Core\0-Conf\conf_gpio.h)(0x5E5E5BB6)
 I (..\Core\1-Func\func_accelerate.h)(0x5ED21E5C)
 I (..\Core\1-Func\func_BLE_HC05.h)(0x5F191E67)
 I (..\Core\1-Func\debug.h)(0x5ECD3DDB)
-I (..\Core\1-Func\PO.h)(0x5FBDCD37)
+I (..\Core\1-Func\PO.h)(0x5FC502EF)
 I (G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\include\math.h)(0x569DEA3A)
-I (..\Core\1-Func\AO.h)(0x5FC4FD4A)
-I (..\Core\1-Func\win.h)(0x5FC4F28F)
+I (..\Core\1-Func\AO.h)(0x5FC505C2)
+I (..\Core\1-Func\win.h)(0x5FC50577)
 I (G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\include\stdlib.h)(0x569DEA3A)
 I (..\Core\Inc\stm32f1xx_it.h)(0x5E5CBB5B)
 F (..\Core\Src\system_stm32f1xx.c)(0x5E5CB1F6)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -O0 --apcs=interwork --split_sections -I ..\Core\Inc -I ..\Drivers\STM32F1xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy -I ..\Core\0-Conf -I ..\Core\1-Func -I ..\Core\2-Task -I ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include-I D:\10-Chip_learning\0-硬件\3-motor\电机控制项目\助力外骨骼控制\code\assistive_exso\Keil\RTE-I G:\0-Embeded\KEIL\Keil_v5.1\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I G:\0-Embeded\KEIL\Keil_v5.1\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DSTM32F103xB-o .\objects\system_stm32f1xx.o --depend .\objects\system_stm32f1xx.d)
@@ -1315,7 +1315,7 @@ I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h)(0x5ECA3600)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h)(0x5ECA3600)
 I (..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h)(0x5ECA3600)
 I (G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\include\stdio.h)(0x569DEA3A)
-F (..\Core\1-Func\func_BLE_HC05.c)(0x5FC4F7A1)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -O0 --apcs=interwork --split_sections -I ..\Core\Inc -I ..\Drivers\STM32F1xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy -I ..\Core\0-Conf -I ..\Core\1-Func -I ..\Core\2-Task -I ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include-I D:\10-Chip_learning\0-硬件\3-motor\电机控制项目\助力外骨骼控制\code\assistive_exso\Keil\RTE-I G:\0-Embeded\KEIL\Keil_v5.1\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I G:\0-Embeded\KEIL\Keil_v5.1\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DSTM32F103xB-o .\objects\func_ble_hc05.o --depend .\objects\func_ble_hc05.d)
+F (..\Core\1-Func\func_BLE_HC05.c)(0x5FC50579)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -O0 --apcs=interwork --split_sections -I ..\Core\Inc -I ..\Drivers\STM32F1xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy -I ..\Core\0-Conf -I ..\Core\1-Func -I ..\Core\2-Task -I ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include-I D:\10-Chip_learning\0-硬件\3-motor\电机控制项目\助力外骨骼控制\code\assistive_exso\Keil\RTE-I G:\0-Embeded\KEIL\Keil_v5.1\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I G:\0-Embeded\KEIL\Keil_v5.1\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DSTM32F103xB-o .\objects\func_ble_hc05.o --depend .\objects\func_ble_hc05.d)
 I (..\Core\1-Func\func_BLE_HC05.h)(0x5F191E67)
 I (..\Core\0-Conf\conf_usart.h)(0x5FBDB68C)
 I (..\Core\0-Conf\device_bsp.h)(0x5F192119)
@@ -1401,13 +1401,13 @@ I (..\Core\1-Func\ECON_controller_I.h)(0x5ED300FC)
 I (..\Core\0-Conf\conf_gpio.h)(0x5E5E5BB6)
 I (..\Core\1-Func\func_accelerate.h)(0x5ED21E5C)
 I (..\Core\1-Func\func_BLE_HC05.h)(0x5F191E67)
-I (..\Core\1-Func\PO.h)(0x5FBDCD37)
+I (..\Core\1-Func\PO.h)(0x5FC502EF)
 I (G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\include\math.h)(0x569DEA3A)
-I (..\Core\1-Func\AO.h)(0x5FC4FD4A)
-I (..\Core\1-Func\win.h)(0x5FC4F28F)
+I (..\Core\1-Func\AO.h)(0x5FC505C2)
+I (..\Core\1-Func\win.h)(0x5FC50577)
 I (G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\include\stdlib.h)(0x569DEA3A)
-F (..\Core\1-Func\AO.c)(0x5FC4FE49)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -O0 --apcs=interwork --split_sections -I ..\Core\Inc -I ..\Drivers\STM32F1xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy -I ..\Core\0-Conf -I ..\Core\1-Func -I ..\Core\2-Task -I ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include-I D:\10-Chip_learning\0-硬件\3-motor\电机控制项目\助力外骨骼控制\code\assistive_exso\Keil\RTE-I G:\0-Embeded\KEIL\Keil_v5.1\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I G:\0-Embeded\KEIL\Keil_v5.1\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DSTM32F103xB-o .\objects\ao.o --depend .\objects\ao.d)
-I (..\Core\1-Func\AO.h)(0x5FC4FD4A)
+F (..\Core\1-Func\AO.c)(0x5FC505BC)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -O0 --apcs=interwork --split_sections -I ..\Core\Inc -I ..\Drivers\STM32F1xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy -I ..\Core\0-Conf -I ..\Core\1-Func -I ..\Core\2-Task -I ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include-I D:\10-Chip_learning\0-硬件\3-motor\电机控制项目\助力外骨骼控制\code\assistive_exso\Keil\RTE-I G:\0-Embeded\KEIL\Keil_v5.1\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I G:\0-Embeded\KEIL\Keil_v5.1\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DSTM32F103xB-o .\objects\ao.o --depend .\objects\ao.d)
+I (..\Core\1-Func\AO.h)(0x5FC505C2)
 I (..\Core\1-Func\FUNC.h)(0x5ECB707B)
 I (..\Core\0-Conf\BSP.h)(0x5ECB6755)
 I (..\Core\0-Conf\conf_usart.h)(0x5FBDB68C)
@@ -1455,9 +1455,9 @@ I (..\Core\0-Conf\conf_gpio.h)(0x5E5E5BB6)
 I (..\Core\1-Func\func_accelerate.h)(0x5ED21E5C)
 I (..\Core\1-Func\func_BLE_HC05.h)(0x5F191E67)
 I (G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\include\math.h)(0x569DEA3A)
-I (..\Core\1-Func\win.h)(0x5FC4F28F)
+I (..\Core\1-Func\win.h)(0x5FC50577)
 I (G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\include\stdlib.h)(0x569DEA3A)
-I (..\Core\1-Func\PO.h)(0x5FBDCD37)
+I (..\Core\1-Func\PO.h)(0x5FC502EF)
 F (..\Core\1-Func\func_beep.c)(0x5ECCB4A0)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -O0 --apcs=interwork --split_sections -I ..\Core\Inc -I ..\Drivers\STM32F1xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy -I ..\Core\0-Conf -I ..\Core\1-Func -I ..\Core\2-Task -I ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include-I D:\10-Chip_learning\0-硬件\3-motor\电机控制项目\助力外骨骼控制\code\assistive_exso\Keil\RTE-I G:\0-Embeded\KEIL\Keil_v5.1\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I G:\0-Embeded\KEIL\Keil_v5.1\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DSTM32F103xB-o .\objects\func_beep.o --depend .\objects\func_beep.d)
 I (..\Core\1-Func\func_beep.h)(0x5E5CB551)
 I (..\Core\0-Conf\conf_tim.h)(0x5ECCB456)
@@ -1508,13 +1508,13 @@ I (..\Core\0-Conf\conf_gpio.h)(0x5E5E5BB6)
 I (..\Core\1-Func\func_accelerate.h)(0x5ED21E5C)
 I (..\Core\1-Func\func_BLE_HC05.h)(0x5F191E67)
 I (..\Core\1-Func\debug.h)(0x5ECD3DDB)
-I (..\Core\1-Func\PO.h)(0x5FBDCD37)
+I (..\Core\1-Func\PO.h)(0x5FC502EF)
 I (G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\include\math.h)(0x569DEA3A)
-I (..\Core\1-Func\AO.h)(0x5FC4FD4A)
-I (..\Core\1-Func\win.h)(0x5FC4F28F)
+I (..\Core\1-Func\AO.h)(0x5FC505C2)
+I (..\Core\1-Func\win.h)(0x5FC50577)
 I (G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\include\stdlib.h)(0x569DEA3A)
-F (..\Core\1-Func\PO.c)(0x5FC4F604)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -O0 --apcs=interwork --split_sections -I ..\Core\Inc -I ..\Drivers\STM32F1xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy -I ..\Core\0-Conf -I ..\Core\1-Func -I ..\Core\2-Task -I ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include-I D:\10-Chip_learning\0-硬件\3-motor\电机控制项目\助力外骨骼控制\code\assistive_exso\Keil\RTE-I G:\0-Embeded\KEIL\Keil_v5.1\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I G:\0-Embeded\KEIL\Keil_v5.1\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DSTM32F103xB-o .\objects\po.o --depend .\objects\po.d)
-I (..\Core\1-Func\PO.h)(0x5FBDCD37)
+F (..\Core\1-Func\PO.c)(0x5FC502C6)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -O0 --apcs=interwork --split_sections -I ..\Core\Inc -I ..\Drivers\STM32F1xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy -I ..\Core\0-Conf -I ..\Core\1-Func -I ..\Core\2-Task -I ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include-I D:\10-Chip_learning\0-硬件\3-motor\电机控制项目\助力外骨骼控制\code\assistive_exso\Keil\RTE-I G:\0-Embeded\KEIL\Keil_v5.1\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I G:\0-Embeded\KEIL\Keil_v5.1\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DSTM32F103xB-o .\objects\po.o --depend .\objects\po.d)
+I (..\Core\1-Func\PO.h)(0x5FC502EF)
 I (..\Core\1-Func\FUNC.h)(0x5ECB707B)
 I (..\Core\0-Conf\BSP.h)(0x5ECB6755)
 I (..\Core\0-Conf\conf_usart.h)(0x5FBDB68C)
@@ -1563,7 +1563,7 @@ I (..\Core\1-Func\func_accelerate.h)(0x5ED21E5C)
 I (..\Core\1-Func\func_BLE_HC05.h)(0x5F191E67)
 I (G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\include\math.h)(0x569DEA3A)
 F (..\Core\1-Func\win.c)(0x5FC4F52B)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -O0 --apcs=interwork --split_sections -I ..\Core\Inc -I ..\Drivers\STM32F1xx_HAL_Driver\Inc -I ..\Drivers\CMSIS\Include -I ..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy -I ..\Core\0-Conf -I ..\Core\1-Func -I ..\Core\2-Task -I ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include-I D:\10-Chip_learning\0-硬件\3-motor\电机控制项目\助力外骨骼控制\code\assistive_exso\Keil\RTE-I G:\0-Embeded\KEIL\Keil_v5.1\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I G:\0-Embeded\KEIL\Keil_v5.1\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DSTM32F103xB-o .\objects\win.o --depend .\objects\win.d)
-I (..\Core\1-Func\win.h)(0x5FC4F28F)
+I (..\Core\1-Func\win.h)(0x5FC50577)
 I (G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\include\stdio.h)(0x569DEA3A)
 I (G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\include\stdlib.h)(0x569DEA3A)
 I (..\Core\0-Conf\BSP.h)(0x5ECB6755)
