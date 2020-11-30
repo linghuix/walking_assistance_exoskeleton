@@ -1,5 +1,6 @@
 #include "AO.h"
 
+extern uint16_t period;
 
 float floatabs(float x)
 {
@@ -187,7 +188,7 @@ uint8_t predict_step = 5;
 uint64_t Aoindex = 0;
 struct Adaptive_Oscillators hip1,hip2;
 extern int CONTROL_PERIOD;
-void AO_Init(void)
+void AO_Init(float w0)
 {
     float va,vw,vph,dt,aa[2] = {0.0, 15.0},pphh[2] = {0,0};
     int step;
@@ -195,7 +196,6 @@ void AO_Init(void)
 
 	dt = (float)CONTROL_PERIOD/1000.0;               // 1/100 = 0   1.0/100 = 0.01 先按int类型计算，然后强制转化为float
 	
-	float w0 = 30*dt;								 // 21*dt
     va = 2/(10 * 2*pi/w0);
     vw = va;
 	vph = sqrt(24.2*vw);
@@ -210,6 +210,8 @@ void AO_Init(void)
     //predict_step = 5;
 	//Aoindex = 0;
 }
+
+
 
 void AO(float d,uint8_t node)
 {
@@ -300,12 +302,27 @@ void test_AO(void)
 }
 
 
+/* switching task */
+// -------------------*---------------------------*-------------------*----------------------*-----------------
+// -------------------*---------------------------*-------------------*----------------------*-----------------
+// -------------------*---------------------------*-------------------*----------------------*-----------------
+// -------------------*---------------------------*-------------------*----------------------*-----------------
+/* switching task */
 
-// -------------------*---------------------------*-------------------*----------------------*-----------------
-// -------------------*---------------------------*-------------------*----------------------*-----------------
-// -------------------*---------------------------*-------------------*----------------------*-----------------
-// -------------------*---------------------------*-------------------*----------------------*-----------------
-
+/* 	最低值查找程序
+	1-表示找到了最低值 
+ */
+uint8_t findpeak(WIN win)
+{
+	ElementType end1 = GetValue(&win,1);
+	ElementType end2 = GetValue(&win,3);
+	ElementType mid = GetValue(&win,2);
+	
+	if(mid < end1 && mid < end2){
+		return 1;
+	}
+	return 0;
+}
 
 uint8_t Isequal(float i, float j)
 {
@@ -319,11 +336,12 @@ uint8_t Isequal(float i, float j)
 #include "PO.h"
 #define SwitchMonitor printf
 
-
+#define DEALY_TIME 10
 int16_t PO_time = 0;
-int16_t AO_flag=0;
+int16_t AO_flag;
 int8_t assive = -20;
-float switch_task(struct Adaptive_Oscillators * AO, float d, float w,uint8_t node)
+extern float dt;
+float switch_task(struct Adaptive_Oscillators * AO, float d, float w, uint8_t node)
 {
 	int8_t i = AO->index;
 	int8_t j;
@@ -332,33 +350,48 @@ float switch_task(struct Adaptive_Oscillators * AO, float d, float w,uint8_t nod
 	
 	if(Isequal(d ,AO->predict_10steps_save[j])){
 		if(assive == AOMODE){
-			assive = AOMODE; // 20 * (AO->predict - d);
+			assive = AOMODE; 						// 20 * (AO->predict - d);
 			PO_time = PO_time-10;
-			AO_flag = 0;
+			AO_flag = DEALY_TIME;
 		}
 		else if(assive == POMODE){
-			AO_flag++;
+			AO_flag--;
 			
-			if(AO_flag > 10){
-				AO_flag = 0;
+			if(AO_flag <= 0){
 				assive = AOMODE;
 			}
 			else{
 				assive = POMODE;
 			}
-			PO_time++;
 		}
-		
 	}
 	else{
-		assive = POMODE; 			//O(d, w, node);
-		PO_time++;
+		if(assive == POMODE){
+			assive = POMODE; 			//O(d, w, node);
+			AO_flag = DEALY_TIME;
+		}
+		else if(assive == AOMODE){
+			AO_flag--;
+			if(AO_flag <= 0){
+				assive = POMODE;
+			}
+			else{
+				assive = AOMODE;
+			}
+		}
 		AO_flag = 0;
 	}
 	
+	if(assive == POMODE){
+		PO_time++;
+	}
+	else if(assive == AOMODE){
+		PO_time = PO_time-10;
+	}
+	
 	if(PO_time > 100){
-		AO_Init();					//AO reset
-		PO_time = 0;				//AO reset time
+		AO_Init(period*dt);					//AO reset 	float w0 = 21*dt;							 // 21*dt
+		PO_time = 0;						//AO reset time
 	}
 	else if(PO_time < 0){
 		PO_time = 0;
@@ -369,8 +402,8 @@ float switch_task(struct Adaptive_Oscillators * AO, float d, float w,uint8_t nod
 	
 	if(node == 1)
 		SwitchMonitor("preErr1\t%.1f\tassiveMode1\t%d\t",AO->predict_10steps_save[j]-d,assive);
-//	if(node == 2)
-//		SwitchMonitor("preErr2\t%.1f\tassiveMode2\t%d\t",AO->predict_10steps_save[j]-d,assive);
+	if(node == 2)
+		SwitchMonitor("preErr2\t%.1f\tassiveMode2\t%d\t",AO->predict_10steps_save[j]-d,assive);
 	
 	return assive;
 }
@@ -379,7 +412,7 @@ float switch_task(struct Adaptive_Oscillators * AO, float d, float w,uint8_t nod
 float assive_torque(struct Adaptive_Oscillators * AO, float d)
 {
 	float assistive_torque;
-	if(floatabs(AO->predict - d)<3)
+	if(floatabs(AO->predict - d) < 3)
 		assistive_torque = 0;
 	else{
 		assistive_torque = (AO->predict - d)*0.05;
