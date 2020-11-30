@@ -25,7 +25,7 @@
 
 extern float floatabs(float x);
 
-#define AssisTor 0.3
+#define AssisTor 0.1
 #define RightToleftTorRatio 3
 
 #define D_area 0.0		//2.0

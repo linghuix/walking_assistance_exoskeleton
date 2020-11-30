@@ -193,10 +193,10 @@ void AO_Init(void)
     int step;
     float pi = 3.1415926;
 
-	dt = (float)CONTROL_PERIOD/1000.0;//   1/100 = 0   1.0/100 = 0.01 先按int类型计算，然后强制转化为float
+	dt = (float)CONTROL_PERIOD/1000.0;               // 1/100 = 0   1.0/100 = 0.01 先按int类型计算，然后强制转化为float
 	
-	float w0 = 30*dt;
-    va = 2*pi/w0 * 1;
+	float w0 = 30*dt;								 // 21*dt
+    va = 2/(10 * 2*pi/w0);
     vw = va;
 	vph = sqrt(24.2*vw);
     step = 2;
@@ -216,7 +216,7 @@ void AO(float d,uint8_t node)
 	if(node == 1){
 		input(&hip1,d,Aoindex,predict_step,0,0);
 		//show(&hip);
-		printf("%.2f\t%.2f\t%.2f\t",d, hip1.output,hip1.predict);
+//		printf("%.2f\t%.2f\t%.2f\t",d, hip1.output,hip1.predict);
 	}
 	else if(node == 2){
 		input(&hip2,d,Aoindex,predict_step,0,0);
@@ -317,16 +317,18 @@ uint8_t Isequal(float i, float j)
 
 
 #include "PO.h"
+#define SwitchMonitor printf
+
 
 int16_t PO_time = 0;
 int16_t AO_flag=0;
 int8_t assive = -20;
 float switch_task(struct Adaptive_Oscillators * AO, float d, float w,uint8_t node)
 {
-	int8_t i = AO->index;int8_t j;
-	//int8_t m;
+	int8_t i = AO->index;
+	int8_t j;
+	
 	j = i-1-predict_step < 0 ? i-1-predict_step+MaxSize : i-1-predict_step;
-	//m = i-1 < 0 ? i-1+MaxSize : i-1;
 	
 	if(Isequal(d ,AO->predict_10steps_save[j])){
 		if(assive == AOMODE){
@@ -349,24 +351,26 @@ float switch_task(struct Adaptive_Oscillators * AO, float d, float w,uint8_t nod
 		
 	}
 	else{
-		assive = POMODE; //O(d, w, node);
+		assive = POMODE; 			//O(d, w, node);
 		PO_time++;
 		AO_flag = 0;
-		//printf("c");
 	}
 	
 	if(PO_time > 100){
 		AO_Init();					//AO reset
-		PO_time = 0;
+		PO_time = 0;				//AO reset time
 	}
 	else if(PO_time < 0){
 		PO_time = 0;
 	}
 	
+	SwitchMonitor("PO_time\t%d\t",PO_time);
+	SwitchMonitor("AO_flag\t%d\t",AO_flag);
 	
 	if(node == 1)
-	//printf("%.2f\r\n",AO->predict_10steps_save[m]);
-		printf("%.1f\t%d\t",AO->predict_10steps_save[j]-d,assive);
+		SwitchMonitor("preErr1\t%.1f\tassiveMode1\t%d\t",AO->predict_10steps_save[j]-d,assive);
+//	if(node == 2)
+//		SwitchMonitor("preErr2\t%.1f\tassiveMode2\t%d\t",AO->predict_10steps_save[j]-d,assive);
 	
 	return assive;
 }

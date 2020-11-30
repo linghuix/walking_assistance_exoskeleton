@@ -2300,6 +2300,8 @@ ALRH	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h	/^  __IO uint32_t A
 ALRL	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  __IO uint32_t ALRL;$/;"	m	struct:__anon25
 ALRL	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h	/^  __IO uint32_t ALRL;$/;"	m	struct:__anon57
 AO	Core/1-Func/AO.c	/^void AO(float d,uint8_t node)$/;"	f
+AOMODE	Core/1-Func/AO.h	11;"	d
+AOMonitor	Core/Src/main.c	7;"	d	file:
 AO_Init	Core/1-Func/AO.c	/^void AO_Init(void)$/;"	f
 AO_flag	Core/1-Func/AO.c	/^int16_t AO_flag=0;$/;"	v
 APB1CLKDivider	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h	/^  uint32_t APB1CLKDivider;        \/*!< The APB1 clock (PCLK1) divider. This clock is derived from the AHB clock (HCLK).$/;"	m	struct:__anon310
@@ -2558,6 +2560,9 @@ AddressingMode	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h	/^  uint32_t
 Alarm	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc.h	/^  uint32_t Alarm;                \/*!< Specifies the alarm ID (only 1 alarm ID for STM32F1).$/;"	m	struct:__anon316
 AlarmAEventCallback	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc.h	/^  void (* AlarmAEventCallback)(struct __RTC_HandleTypeDef *hrtc);           \/*!< RTC Alarm A Event callback         *\/$/;"	m	struct:__RTC_HandleTypeDef
 AlarmTime	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc.h	/^  RTC_TimeTypeDef AlarmTime;     \/*!< Specifies the RTC Alarm Time members *\/$/;"	m	struct:__anon316
+Aoindex	Core/1-Func/AO.c	/^uint64_t Aoindex = 0;$/;"	v
+AssisMonitor	Core/Src/main.c	9;"	d	file:
+AssisTor	Core/1-Func/PO.c	28;"	d	file:
 AsynchPrediv	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc.h	/^  uint32_t AsynchPrediv;    \/*!< Specifies the RTC Asynchronous Predivider value.$/;"	m	struct:__anon318
 AutoBusOff	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_can.h	/^  FunctionalState AutoBusOff;          \/*!< Enable or disable the automatic bus-off management.$/;"	m	struct:__anon281
 AutoInjectedConv	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h	/^  FunctionalState AutoInjectedConv;               \/*!< Enables or disables the selected ADC automatic injected group conversion after regular one$/;"	m	struct:__anon278
@@ -2565,6 +2570,7 @@ AutoReloadPreload	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h	/^  uint3
 AutoRetransmission	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_can.h	/^  FunctionalState AutoRetransmission;  \/*!< Enable or disable the non-automatic retransmission mode.$/;"	m	struct:__anon281
 AutoWakeUp	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_can.h	/^  FunctionalState AutoWakeUp;          \/*!< Enable or disable the automatic wake-up mode.$/;"	m	struct:__anon281
 AutomaticOutput	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h	/^  uint32_t AutomaticOutput;      \/*!< TIM Automatic Output Enable state$/;"	m	struct:__anon334
+AvergeWin	Core/1-Func/win.c	/^float AvergeWin(WINp winbuffer, float *weight, int size){$/;"	f
 BDCR	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  __IO uint32_t BDCR;$/;"	m	struct:__anon24
 BDCR	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h	/^  __IO uint32_t BDCR;$/;"	m	struct:__anon56
 BDCR_BDRST_BB	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	3176;"	d
@@ -2846,6 +2852,7 @@ BreakPolarity	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h	/^  uint32_t 
 BreakState	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h	/^  uint32_t BreakState;           \/*!< TIM Break State$/;"	m	struct:__anon334
 Buffer	Core/1-Func/debug.h	/^struct Buffer{$/;"	s
 BufferSize	Core/1-Func/debug.h	9;"	d
+Buffsize	Core/Src/main.c	12;"	d	file:
 BusFault_Handler	Core/Src/stm32f1xx_it.c	/^void BusFault_Handler(void)$/;"	f
 BusFault_IRQn	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  BusFault_IRQn               = -11,    \/*!< 5 Cortex-M3 Bus Fault Interrupt                      *\/$/;"	e	enum:__anon4
 BusFault_IRQn	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h	/^  BusFault_IRQn               = -11,    \/*!< 5 Cortex-M3 Bus Fault Interrupt                      *\/$/;"	e	enum:__anon31
@@ -10055,6 +10062,7 @@ CONTROL_FPCA_Pos	Drivers/CMSIS/Include/core_armv8mml.h	439;"	d
 CONTROL_FPCA_Pos	Drivers/CMSIS/Include/core_cm33.h	439;"	d
 CONTROL_FPCA_Pos	Drivers/CMSIS/Include/core_cm4.h	384;"	d
 CONTROL_FPCA_Pos	Drivers/CMSIS/Include/core_cm7.h	399;"	d
+CONTROL_PERIOD	Core/Src/main.c	/^int CONTROL_PERIOD = 50;			\/\/ms$/;"	v
 CONTROL_SFPA_Msk	Drivers/CMSIS/Include/core_armv8mml.h	437;"	d
 CONTROL_SFPA_Msk	Drivers/CMSIS/Include/core_cm33.h	437;"	d
 CONTROL_SFPA_Pos	Drivers/CMSIS/Include/core_armv8mml.h	436;"	d
@@ -10310,6 +10318,8 @@ CYCCNT	Drivers/CMSIS/Include/core_sc300.h	/^  __IOM uint32_t CYCCNT;            
 CanFilter_Init	Core/0-Conf/conf_can.c	/^void CanFilter_Init(CAN_HandleTypeDef* hcan, uint32_t FILTER_FIFO)$/;"	f
 CanRxMsg	Core/0-Conf/conf_can.h	/^} CanRxMsg;$/;"	t	typeref:struct:__anon2
 CanTxMsg	Core/0-Conf/conf_can.h	/^} CanTxMsg;$/;"	t	typeref:struct:__anon1
+ChangeLastestValue	Core/1-Func/win.c	/^void ChangeLastestValue(WINp winbuffer, ElementType data)$/;"	f
+ChangeValue	Core/1-Func/win.c	/^void ChangeValue(WINp winbuffer, int index, ElementType data)$/;"	f
 Channel	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h	/^  uint32_t Channel;                \/*!< Specifies the channel to configure into ADC regular group.$/;"	m	struct:__anon275
 Channel	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h	/^  uint32_t Channel;           \/*!< Selects which ADC channel to monitor by analog watchdog.$/;"	m	struct:__anon276
 Channel	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h	/^  HAL_TIM_ActiveChannel       Channel;       \/*!< Active channel                    *\/$/;"	m	struct:__TIM_HandleTypeDef
@@ -12315,7 +12325,7 @@ DWT_Type	Drivers/CMSIS/Include/core_cm33.h	/^} DWT_Type;$/;"	t	typeref:struct:__
 DWT_Type	Drivers/CMSIS/Include/core_cm4.h	/^} DWT_Type;$/;"	t	typeref:struct:__anon214
 DWT_Type	Drivers/CMSIS/Include/core_cm7.h	/^} DWT_Type;$/;"	t	typeref:struct:__anon233
 DWT_Type	Drivers/CMSIS/Include/core_sc300.h	/^} DWT_Type;$/;"	t	typeref:struct:__anon265
-D_area	Core/1-Func/PO.c	28;"	d	file:
+D_area	Core/1-Func/PO.c	31;"	d	file:
 Data	Core/0-Conf/conf_can.h	/^	uint8_t Data[8];$/;"	m	struct:__anon1
 Data	Core/0-Conf/conf_can.h	/^	uint8_t Data[8];$/;"	m	struct:__anon2
 Data	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h	/^  __IO uint64_t               Data;             \/*!< Internal variable to save data to be programmed *\/$/;"	m	struct:__anon297
@@ -13488,6 +13498,7 @@ EXTI_TRIGGER_RISING	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h	134;"	
 EXTI_TRIGGER_RISING_FALLING	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h	136;"	d
 EXTI_TypeDef	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^} EXTI_TypeDef;$/;"	t	typeref:struct:__anon16
 EXTI_TypeDef	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h	/^} EXTI_TypeDef;$/;"	t	typeref:struct:__anon44
+ElementType	Core/1-Func/win.h	/^typedef float ElementType;$/;"	t
 Enable	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h	/^  uint8_t                Enable;                \/*!< Specifies the status of the region. $/;"	m	struct:__anon286
 EncoderMode	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h	/^  uint32_t EncoderMode;   \/*!< Specifies the active edge of the input signal.$/;"	m	struct:__anon329
 Encoder_MspDeInitCallback	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h	/^  void (* Encoder_MspDeInitCallback)(struct __TIM_HandleTypeDef *htim);         \/*!< TIM Encoder Msp DeInit Callback                         *\/$/;"	m	struct:__TIM_HandleTypeDef
@@ -17631,6 +17642,7 @@ IMCR	Drivers/CMSIS/Include/core_cm7.h	/^  __IOM uint32_t IMCR;                  
 IMCR	Drivers/CMSIS/Include/core_sc300.h	/^  __IOM uint32_t IMCR;                   \/*!< Offset: 0xF00 (R\/W)  ITM Integration Mode Control Register *\/$/;"	m	struct:__anon263
 IMR	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  __IO uint32_t IMR;$/;"	m	struct:__anon16
 IMR	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h	/^  __IO uint32_t IMR;$/;"	m	struct:__anon44
+IMUMonitor	Core/Src/main.c	6;"	d	file:
 INAK_TIMEOUT	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	1207;"	d
 INJECTED_CHANNELS	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	69;"	d
 INJECTED_GROUP	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	59;"	d
@@ -18654,6 +18666,7 @@ La6M	Core/1-Func/func_beep.c	/^  La6M,     \/\/\/*880.00Hz*\/    1136us$/;"	e	en
 LevelOutOfWindowCallback	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h	/^  void (* LevelOutOfWindowCallback)(struct __ADC_HandleTypeDef *hadc);      \/*!< ADC analog watchdog 1 callback *\/$/;"	m	struct:__ADC_HandleTypeDef
 Line	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h	/^  uint32_t Line;                    \/*!<  Exti line number *\/$/;"	m	struct:__anon294
 Line	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h	/^  uint32_t Line;      \/*!< The Exti line to be configured. This parameter$/;"	m	struct:__anon295
+ListSize	Core/1-Func/win.h	6;"	d
 ListenCpltCallback	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h	/^  void (* ListenCpltCallback)(struct __I2C_HandleTypeDef *hi2c);             \/*!< I2C Listen Complete callback              *\/$/;"	m	struct:__I2C_HandleTypeDef
 Lock	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h	/^  HAL_LockTypeDef               Lock;                   \/*!< ADC locking object *\/$/;"	m	struct:__ADC_HandleTypeDef
 Lock	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_crc.h	/^  HAL_LockTypeDef             Lock;        \/*!< CRC Locking object           *\/$/;"	m	struct:__anon272
@@ -18711,6 +18724,7 @@ MASK3	Drivers/CMSIS/Include/core_cm3.h	/^  __IOM uint32_t MASK3;                
 MASK3	Drivers/CMSIS/Include/core_cm4.h	/^  __IOM uint32_t MASK3;                  \/*!< Offset: 0x054 (R\/W)  Mask Register 3 *\/$/;"	m	struct:__anon214
 MASK3	Drivers/CMSIS/Include/core_cm7.h	/^  __IOM uint32_t MASK3;                  \/*!< Offset: 0x054 (R\/W)  Mask Register 3 *\/$/;"	m	struct:__anon233
 MASK3	Drivers/CMSIS/Include/core_sc300.h	/^  __IOM uint32_t MASK3;                  \/*!< Offset: 0x054 (R\/W)  Mask Register 3 *\/$/;"	m	struct:__anon265
+MAX_D_area	Core/1-Func/PO.c	33;"	d	file:
 MAX_ETH_PAYLOAD	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	1223;"	d
 MCO1_CLK_ENABLE	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c	89;"	d	file:
 MCO1_GPIO_PORT	Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c	90;"	d	file:
@@ -19963,6 +19977,8 @@ PMEM4	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h	/^  __IO uint32_t 
 PMODE_BIT_NUMBER	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	1467;"	d
 PMODE_BitNumber	Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h	1472;"	d
 PO	Core/1-Func/PO.c	/^float PO(float d, float w,uint8_t node)$/;"	f
+POMODE	Core/1-Func/PO.h	12;"	d
+POMonitor	Core/Src/main.c	8;"	d	file:
 PORT	Core/1-Func/debug.h	10;"	d
 PORT	Drivers/CMSIS/Include/core_armv8mml.h	/^  }  PORT [32U];                         \/*!< Offset: 0x000 ( \/W)  ITM Stimulus Port Registers *\/$/;"	m	struct:__anon97	typeref:union:__anon97::__anon98
 PORT	Drivers/CMSIS/Include/core_cm3.h	/^  }  PORT [32U];                         \/*!< Offset: 0x000 ( \/W)  ITM Stimulus Port Registers *\/$/;"	m	struct:__anon172	typeref:union:__anon172::__anon173
@@ -22243,6 +22259,7 @@ Reload	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_iwdg.h	/^  uint32_t Reload
 RepetitionCounter	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h	/^  uint32_t RepetitionCounter;  \/*!< Specifies the repetition counter value. Each time the RCR downcounter$/;"	m	struct:__anon325
 Reset_Handler	Startup/startup_stm32f103r8tx.s	/^Reset_Handler:$/;"	l
 Reset_Handler	Startup/startup_stm32f103rctx.s	/^Reset_Handler   PROC$/;"	l
+RightToleftTorRatio	Core/1-Func/PO.c	29;"	d	file:
 RxCpltCallback	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h	/^  void (* RxCpltCallback)(struct __SPI_HandleTypeDef *hspi);             \/*!< SPI Rx Completed callback          *\/$/;"	m	struct:__SPI_HandleTypeDef
 RxCpltCallback	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h	/^  void (* RxCpltCallback)(struct __UART_HandleTypeDef *huart);            \/*!< UART Rx Complete Callback             *\/$/;"	m	struct:__UART_HandleTypeDef
 RxFifo0FullCallback	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_can.h	/^  void (* RxFifo0FullCallback)(struct __CAN_HandleTypeDef *hcan);       \/*!< CAN Rx FIFO 0 full callback           *\/$/;"	m	struct:__CAN_HandleTypeDef
@@ -25077,6 +25094,7 @@ StdId	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_can.h	/^  uint32_t StdId;  
 StdId	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_can.h	/^  uint32_t StdId;    \/*!< Specifies the standard identifier.$/;"	m	struct:__anon284
 StopBits	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h	/^  uint32_t StopBits;                  \/*!< Specifies the number of stop bits transmitted.$/;"	m	struct:__anon339
 SubRegionDisable	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h	/^  uint8_t                SubRegionDisable;      \/*!< Specifies the number of the subregion protection to disable. $/;"	m	struct:__anon286
+SwitchMonitor	Core/1-Func/AO.c	320;"	d	file:
 SyncJumpWidth	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_can.h	/^  uint32_t SyncJumpWidth;              \/*!< Specifies the maximum number of time quanta the CAN hardware$/;"	m	struct:__anon281
 SysTick	Drivers/CMSIS/Include/core_armv8mbl.h	1123;"	d
 SysTick	Drivers/CMSIS/Include/core_armv8mml.h	1984;"	d
@@ -29611,6 +29629,8 @@ VTOR	Drivers/CMSIS/Include/core_cm4.h	/^  __IOM uint32_t VTOR;                  
 VTOR	Drivers/CMSIS/Include/core_cm7.h	/^  __IOM uint32_t VTOR;                   \/*!< Offset: 0x008 (R\/W)  Vector Table Offset Register *\/$/;"	m	struct:__anon228
 VTOR	Drivers/CMSIS/Include/core_sc000.h	/^  __IOM uint32_t VTOR;                   \/*!< Offset: 0x008 (R\/W)  Vector Table Offset Register *\/$/;"	m	struct:__anon247
 VTOR	Drivers/CMSIS/Include/core_sc300.h	/^  __IOM uint32_t VTOR;                   \/*!< Offset: 0x008 (R\/W)  Vector Table Offset Register *\/$/;"	m	struct:__anon260
+WIN	Core/1-Func/win.h	/^typedef struct WinBuffer WIN;$/;"	t	typeref:struct:WinBuffer
+WINp	Core/1-Func/win.h	/^typedef struct WinBuffer *WINp;$/;"	t	typeref:struct:WinBuffer
 WRITE_REG	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h	186;"	d
 WRP0	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  __IO uint16_t WRP0;$/;"	m	struct:__anon18
 WRP0	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h	/^  __IO uint16_t WRP0;$/;"	m	struct:__anon46
@@ -29749,12 +29769,14 @@ WWDG_SR_EWIF_Pos	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	4511;"	
 WWDG_SR_EWIF_Pos	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h	5122;"	d
 WWDG_TypeDef	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^} WWDG_TypeDef;$/;"	t	typeref:struct:__anon30
 WWDG_TypeDef	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h	/^} WWDG_TypeDef;$/;"	t	typeref:struct:__anon63
-W_area	Core/1-Func/PO.c	29;"	d	file:
+W_area	Core/1-Func/PO.c	32;"	d	file:
 WakeUpFromRxMsgCallback	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_can.h	/^  void (* WakeUpFromRxMsgCallback)(struct __CAN_HandleTypeDef *hcan);   \/*!< CAN Wake Up from Rx msg callback      *\/$/;"	m	struct:__CAN_HandleTypeDef
 WakeupCallback	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h	/^  void (* WakeupCallback)(struct __UART_HandleTypeDef *huart);            \/*!< UART Wakeup Callback                  *\/$/;"	m	struct:__UART_HandleTypeDef
 WatchdogMode	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h	/^  uint32_t WatchdogMode;      \/*!< Configures the ADC analog watchdog mode: single\/all channels, regular\/injected group.$/;"	m	struct:__anon276
 WatchdogNumber	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h	/^  uint32_t WatchdogNumber;    \/*!< Reserved for future use, can be set to 0 *\/$/;"	m	struct:__anon276
 WeekDay	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc.h	/^  uint8_t WeekDay;  \/*!< Specifies the RTC Date WeekDay (not necessary for HAL_RTC_SetDate).$/;"	m	struct:__anon319
+WinBuffer	Core/1-Func/win.c	/^void WinBuffer(WINp winbuffer, ElementType *data,int size){$/;"	f
+WinBuffer	Core/1-Func/win.h	/^struct WinBuffer{$/;"	s
 Window	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_wwdg.h	/^  uint32_t Window;        \/*!< Specifies the WWDG window value to be compared to the downcounter.$/;"	m	struct:__anon342
 WordLength	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h	/^  uint32_t WordLength;                \/*!< Specifies the number of data bits transmitted or received in a frame.$/;"	m	struct:__anon339
 XferAbortCallback	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h	/^  void                  (* XferAbortCallback)( struct __DMA_HandleTypeDef * hdma);    \/*!< DMA transfer abort callback            *\/  $/;"	m	struct:__DMA_HandleTypeDef
@@ -33403,14 +33425,22 @@ _write	Core/2-Task/prinf_debug_ITM.c	/^int _write(int file, char *ptr, int len)$
 a1	Core/1-Func/func_accelerate.c	/^int16_t a1[3], w1[3], angle1[3];$/;"	v
 a2	Core/1-Func/func_accelerate.c	/^int16_t a2[3], w2[3], angle2[3];$/;"	v
 aa	Core/1-Func/AO.c	/^    float aa[20],pphh[20],ww;$/;"	m	struct:Adaptive_Oscillators	file:
-abs	Core/1-Func/AO.c	/^float abs(float x)$/;"	f
 acc1	Core/1-Func/func_accelerate.c	/^uint8_t acc1[11];$/;"	v
+acc1WinArray_d	Core/Src/main.c	/^ElementType acc1WinArray_d[Buffsize] = {0};$/;"	v
+acc1WinArray_w	Core/Src/main.c	/^ElementType acc1WinArray_w[Buffsize] = {0};$/;"	v
 acc1_huart	Core/1-Func/func_accelerate.h	14;"	d
 acc1_uart	Core/1-Func/func_accelerate.h	17;"	d
+acc1win_d	Core/Src/main.c	/^WIN acc1win_w, acc2win_w, acc1win_d, acc2win_d;$/;"	v
+acc1win_w	Core/Src/main.c	/^WIN acc1win_w, acc2win_w, acc1win_d, acc2win_d;$/;"	v
 acc2	Core/1-Func/func_accelerate.c	/^uint8_t acc2[11];$/;"	v
+acc2WinArray_d	Core/Src/main.c	/^ElementType acc2WinArray_d[Buffsize] = {0};$/;"	v
+acc2WinArray_w	Core/Src/main.c	/^ElementType acc2WinArray_w[Buffsize] = {0};$/;"	v
 acc2_huart	Core/1-Func/func_accelerate.h	15;"	d
 acc2_uart	Core/1-Func/func_accelerate.h	18;"	d
+acc2win_d	Core/Src/main.c	/^WIN acc1win_w, acc2win_w, acc1win_d, acc2win_d;$/;"	v
+acc2win_w	Core/Src/main.c	/^WIN acc1win_w, acc2win_w, acc1win_d, acc2win_d;$/;"	v
 addDebugBuffer	Core/1-Func/debug.c	/^uint8_t addDebugBuffer(char c)$/;"	f
+addToBuff	Core/1-Func/win.c	/^void addToBuff(WINp winbuffer, ElementType data){$/;"	f
 angle1	Core/1-Func/func_accelerate.c	/^int16_t a1[3], w1[3], angle1[3];$/;"	v
 angle2	Core/1-Func/func_accelerate.c	/^int16_t a2[3], w2[3], angle2[3];$/;"	v
 assert_param	Core/Inc/stm32f1xx_hal_conf.h	372;"	d
@@ -33472,6 +33502,7 @@ ch_scanf	Core/1-Func/debug.c	/^uint8_t ch_scanf;$/;"	v
 controller_HTIM	Core/1-Func/ECON_controller_I.c	3;"	d	file:
 controller_TIM	Core/1-Func/ECON_controller_I.c	2;"	d	file:
 data	Core/1-Func/debug.h	/^	char data[BufferSize];$/;"	m	struct:Buffer
+data	Core/1-Func/win.h	/^    ElementType *data;     	\/\/ Êý×édataÓÃÓÚ´æ·Å±í½áµã£¬½áµãÖÐµÄÔªËØµÄÀàÐÍÉè¶¨Îªint $/;"	m	struct:WinBuffer
 debugBuffer	Core/1-Func/debug.c	/^struct Buffer debugBuffer = {"inital",0,0};$/;"	v	typeref:struct:Buffer
 debug_IRQ	Core/1-Func/debug.c	/^void debug_IRQ(void)$/;"	f
 debug_init	Core/1-Func/debug.c	/^void debug_init(void)$/;"	f
@@ -33484,11 +33515,15 @@ flag_2	Core/1-Func/func_accelerate.c	/^uint8_t flag_1,flag_2,flag_3;$/;"	v
 flag_22	Core/1-Func/func_accelerate.c	/^uint8_t flag_11,flag_22,flag_33;$/;"	v
 flag_3	Core/1-Func/func_accelerate.c	/^uint8_t flag_1,flag_2,flag_3;$/;"	v
 flag_33	Core/1-Func/func_accelerate.c	/^uint8_t flag_11,flag_22,flag_33;$/;"	v
+floatabs	Core/1-Func/AO.c	/^float floatabs(float x)$/;"	f
 fputc	Core/1-Func/debug.c	/^int fputc(int ch, FILE * f)		\/\/ Keil$/;"	f
 gState	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h	/^  __IO HAL_UART_StateTypeDef    gState;           \/*!< UART state information related to global Handle management$/;"	m	struct:__UART_HandleTypeDef
 g_pfnVectors	Startup/startup_stm32f103r8tx.s	/^g_pfnVectors:$/;"	l
 getCaptureCount	Core/0-Conf/conf_tim.c	/^uint32_t getCaptureCount(TIM_TypeDef * TIMx, uint32_t Channel)$/;"	f
 getDebugBuffer	Core/1-Func/debug.c	/^char getDebugBuffer(void)$/;"	f
+getLastestValue	Core/1-Func/win.h	30;"	d
+getNexIndex	Core/1-Func/win.c	/^uint16_t getNexIndex(uint16_t index, uint16_t length)$/;"	f
+getPreIndex	Core/1-Func/win.c	/^uint16_t getPreIndex(uint16_t index, uint16_t length)$/;"	f
 getTimeCount	Core/0-Conf/conf_tim.c	/^uint32_t getTimeCount(TIM_TypeDef * TIMx)$/;"	f
 hcan1	Core/0-Conf/conf_can.c	/^CAN_HandleTypeDef hcan1;$/;"	v
 hdma	Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h	/^  DMA_HandleTypeDef           *hdma[7];      \/*!< DMA Handlers array$/;"	m	struct:__TIM_HandleTypeDef
@@ -33519,14 +33554,15 @@ huart2	Core/0-Conf/conf_usart.c	/^UART_HandleTypeDef huart2;$/;"	v
 huart3	Core/0-Conf/conf_usart.c	/^UART_HandleTypeDef huart3;$/;"	v
 imu_2_flag	Core/1-Func/func_accelerate.c	/^uint8_t imu_2_flag = 0;$/;"	v
 in	Core/1-Func/debug.h	/^	uint16_t in;$/;"	m	struct:Buffer
+in	Core/1-Func/win.h	/^	uint16_t in;					\/\/ in - Ö¸ÏòÏÂÒ»¸öÒª·ÅÈëµÄÎ»ÖÃ$/;"	m	struct:WinBuffer
 inc	Core/1-Func/func_BLE_HC05.c	/^uint32_t inc=0;$/;"	v
 index	Core/1-Func/AO.c	/^    int8_t index;		\/\/æŒ‡å‘è¦å¡«å……çš„ä¸‹ä¸€ä¸ªç©ºé—´$/;"	m	struct:Adaptive_Oscillators	file:
-index	Core/1-Func/AO.c	/^uint64_t index = 0;$/;"	v
 init_aa	Core/1-Func/AO.c	/^    float init_aa[20],init_ww,init_pphh[20];$/;"	m	struct:Adaptive_Oscillators	file:
 init_pphh	Core/1-Func/AO.c	/^    float init_aa[20],init_ww,init_pphh[20];$/;"	m	struct:Adaptive_Oscillators	file:
 init_ww	Core/1-Func/AO.c	/^    float init_aa[20],init_ww,init_pphh[20];$/;"	m	struct:Adaptive_Oscillators	file:
 input	Core/1-Func/AO.c	/^void input(struct Adaptive_Oscillators* AO, float y_now, float t_now, int predict_steps, int sync, float vw_sync)$/;"	f
 last_Start	Core/1-Func/func_beep.c	/^uint32_t tick_Start,last_Start, time, time_loop;$/;"	v
+length	Core/1-Func/win.h	/^    uint16_t length;            	\/\/ µ±Ç°µÄË³Ðò±íµÄ³¤¶È $/;"	m	struct:WinBuffer
 main	Core/Src/main.c	/^int main(void)$/;"	f
 nPRIV	Drivers/CMSIS/Include/core_armv8mbl.h	/^    uint32_t nPRIV:1;                    \/*!< bit:      0  Execution privilege in Thread mode *\/$/;"	m	struct:__anon73::__anon74
 nPRIV	Drivers/CMSIS/Include/core_armv8mml.h	/^    uint32_t nPRIV:1;                    \/*!< bit:      0  Execution privilege in Thread mode *\/$/;"	m	struct:__anon91::__anon92
@@ -33565,6 +33601,7 @@ predict	Core/1-Func/AO.c	/^    float predict;$/;"	m	struct:Adaptive_Oscillators	
 predict	Core/1-Func/AO.c	/^float predict(struct Adaptive_Oscillators* AO, float delta_t)$/;"	f
 predict_10steps_save	Core/1-Func/AO.c	/^    float predict_10steps_save[MaxSize];$/;"	m	struct:Adaptive_Oscillators	file:
 predict_step	Core/1-Func/AO.c	/^uint8_t predict_step = 5;$/;"	v
+print	Core/1-Func/win.c	/^void print(WINp winbuffer){$/;"	f
 sFIFOMailBox	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  CAN_FIFOMailBox_TypeDef sFIFOMailBox[2];$/;"	m	struct:__anon11
 sFIFOMailBox	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h	/^  CAN_FIFOMailBox_TypeDef sFIFOMailBox[2];$/;"	m	struct:__anon38
 sFilterRegister	Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h	/^  CAN_FilterRegister_TypeDef sFilterRegister[14];$/;"	m	struct:__anon11
@@ -33600,6 +33637,7 @@ test_time_interrupt	Core/1-Func/func_beep.c	/^void test_time_interrupt(void)$/;"
 test_time_interrupt_IRQ	Core/1-Func/func_beep.c	/^void test_time_interrupt_IRQ(void)$/;"	f
 test_warning_Block	Core/1-Func/func_beep.c	/^void test_warning_Block(void)$/;"	f
 test_warning_Loop	Core/1-Func/func_beep.c	/^void test_warning_Loop(void)$/;"	f
+test_win_buff	Core/1-Func/win.c	/^void test_win_buff(void)$/;"	f
 th_algori	Core/1-Func/PO.c	/^void th_algori(float ang, float w, float * k)$/;"	f
 tick_Start	Core/1-Func/func_beep.c	/^uint32_t tick_Start,last_Start, time, time_loop;$/;"	v
 tick_init	Core/0-Conf/conf_global.c	/^void tick_init(uint32_t period_us)\/\/1miu_s$/;"	f
@@ -33694,6 +33732,7 @@ warning_Loop	Core/1-Func/func_beep.c	/^void warning_Loop(uint8_t SingTimes, uint
 warning_music	Core/1-Func/func_beep.c	/^Sound_tone_e warning_music[warning_music_length] =$/;"	v
 warning_music_index	Core/1-Func/func_beep.c	/^uint32_t warning_music_index = 0;$/;"	v
 warning_music_length	Core/1-Func/func_beep.c	68;"	d	file:
+weights	Core/Src/main.c	/^float weights[Buffsize] = {0.04,0.96};$/;"	v
 ww	Core/1-Func/AO.c	/^    float aa[20],pphh[20],ww;$/;"	m	struct:Adaptive_Oscillators	file:
 xPSR_C_Msk	Drivers/CMSIS/Include/core_armv8mbl.h	305;"	d
 xPSR_C_Msk	Drivers/CMSIS/Include/core_armv8mml.h	398;"	d

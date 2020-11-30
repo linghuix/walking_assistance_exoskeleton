@@ -16,6 +16,7 @@
 #include "math.h"
 
 
+
 extern struct Adaptive_Oscillators hip1,hip2;
 extern uint64_t Aoindex;
 
