@@ -4,7 +4,7 @@
  *  Created on: May 25, 2020
  *      Author: test
  */
-#include "func_BLE_HC05.h"
+ #include "func_BLE_HC05.h"
 
 void HC05_Init(void)
 {
@@ -24,7 +24,7 @@ void HC05_send(uint8_t data[], uint8_t size)
 	HAL_UART_Transmit_IT(&HC05_huart, data, size);
 }
 
-uint32_t inc=0;
+
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	if(htim->Instance == TIM4){

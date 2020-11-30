@@ -47,4 +47,6 @@
 .\objects\ao.o: ..\Core\1-Func\func_accelerate.h
 .\objects\ao.o: ..\Core\1-Func\func_BLE_HC05.h
 .\objects\ao.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\math.h
+.\objects\ao.o: ..\Core\1-Func\win.h
+.\objects\ao.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\ao.o: ..\Core\1-Func\PO.h
