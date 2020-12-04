@@ -15,7 +15,7 @@ https://blog.csdn.net/cleverhorse/article/details/100732366
 
 place - 3D body
 
-<img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\image-20201028204158714.png" style="zoom:50%;" />             <img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\image-20201028204236846.png" alt="image-20201028204236846" style="zoom:70%;" />
+<img src="Altium Designer.assets\image-20201028204158714.png" style="zoom:20%;" />          <img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\image-20201028204236846.png" alt="image-20201028204236846" style="zoom:40%;" />
 
 导入时的坐标系和建模时的坐标系是一致的，所以最好在建模的时候在基准面上建模
 
@@ -23,7 +23,7 @@ place - 3D body
 
 
 
-​       <img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\image-20201028195917590.png" style="zoom: 70%;" />            <img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\image-20201028200044651.png" style="zoom:40%;" />
+​       <img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\image-20201028195917590.png" style="zoom: 33%;" />            <img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\image-20201028200044651.png" style="zoom: 25%;" />
 
 如果 standoff Height 为0，或者较小。则，在布置PCB元件的时候，会报错。
 
@@ -96,7 +96,7 @@ E+M+O
 
 > 隐藏 PCB 栅栏图案  PCB界面中右键，选择Option - Grid Manager   双击在 Display 界面选择 
 
-<img src="Altium Designer.assets/image-20200917001029692.png"  style="zoom:70%;" />
+<img src="Altium Designer.assets/image-20200917001029692.png"  style="zoom: 50%;" /> 
 
 
 
@@ -141,11 +141,11 @@ Design-layer stack manager
 
 通常电源线和地线可以宽一些,汇流
 
-<img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\image-20201029103033079.png" alt="image-20201029103033079" style="zoom: 67%;" />
+<img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\image-20201029103033079.png" alt="image-20201029103033079" style="zoom: 50%;" /> 
 
 
 
-<img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\image-20201029105821435.png" alt="image-20201029105821435" style="zoom:67%;" />
+<img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\image-20201029105821435.png" alt="image-20201029105821435" style="zoom: 50%;" /> 
 
 
 
@@ -163,27 +163,19 @@ View - Connection - Hide Component Net    然后对应的元器件，即可屏�
 
 自动布线前，必须配置的RULE参数为：
 
-<img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\image-20201029110638940.png" alt="image-20201029110638940" style="zoom:67%;" />
+<img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\image-20201029110638940.png" alt="image-20201029110638940" style="zoom:67%;" /> 
 
 RULE——规则的最小值和最大值必须设置为一样，否则无法进行自动布线
 
-<img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\图片1.png"  style="zoom: 67%;" />
+<img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\图片1.png"  style="zoom: 33%;" /> 
 
 
 
 **手动修改：手动布线，消去自动布线的一些不合理的地方**
 
-两个通孔可以合并的需要合并
+<img src="Altium Designer.assets\image-20201029110743963.png" alt="image-20201029110743963" style="zoom: 25%;" />  |    <img src="Altium Designer.assets\image-20201029110154924.png" alt="image-20201029110154924" style="zoom: 33%;" />
 
-<img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\image-20201029110743963.png" alt="image-20201029110743963" style="zoom:50%;" />
-
-
-
-重合的两根线需要删去一根
-
-<img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\image-20201029110154924.png" alt="image-20201029110154924" style="zoom:50%;" />
-
-
+图 两个通孔可以合并的需要合并 |  重合的两根线需要删去一根
 
 
 
@@ -199,7 +191,7 @@ RULE——规则的最小值和最大值必须设置为一样，否则无法进�
 
 •使用ctrl+左键点击引脚，光亮显示相同标号的引脚和连线，方便布线
 
-​     <img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\image-20201029110846283.png" style="zoom:80%;" />     <img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\image-20201029110904594.png" style="zoom:80%;" />
+​     <img src="Altium Designer.assets\image-20201029110846283.png" style="zoom:50%;" />     <img src="Altium Designer.assets\image-20201029110904594.png" style="zoom:50%;" />
 
 **designer** **找标号的芯片： e+j+c**
 
@@ -265,9 +257,43 @@ E-M-G 选择要修改的铺铜区域，然后单击锚点，放开拖动即可�
 
 https://blog.csdn.net/abc87891842/article/details/52538660?utm_medium=distribute.pc_relevant.none-task-blog-title-3&spm=1001.2101.3001.4242
 
-https://blog.csdn.net/jiangchao3392/article/details/79918772
+https://blog.csdn.net/jiangchao3392/article/details/79918772 
 
 
+
+**给每个元件标号**
+
+<img src="Altium Designer.assets/image-20201127213327719.png" alt="image-20201127213327719" style="zoom: 30%;" />  <img src="Altium Designer.assets/image-20201127213312229.png" style="zoom: 40%;" />  <img src="Altium Designer.assets/image-20201127213428963.png" style="zoom:30%;" />
+
+图 方法一: 快捷标号  |  方法二: 设定标号顺序 | 执行标号
+
+
+
+**如何批量修改属性** 
+
+<img src="Altium Designer.assets/image-20201127213605454.png" style="zoom:40%;" />    <img src="Altium Designer.assets/image-20201127213616053.png" style="zoom:30%;" />  <img src="Altium Designer.assets/image-20201127213701131.png" style="zoom:40%;" />
+
+图 1. 选择单一元件 | 2. 选择同属性的元件  |  3. SCH INspector中批量修改属性
+
+
+
+**序号（designator）去查找元件**
+
+按下jc，然后输入序号就可以了
+
+
+
+**查找错误** 
+
+新建工程然后添加入 .SchDoc 草图文件和PcbDoc封装文件才能进行编译！！！
+
+<img src="Altium Designer.assets/image-20201127213930786.png" style="zoom:50%;" />  <img src="Altium Designer.assets/image-20201127214059985.png" style="zoom:33%;" /> <img src="Altium Designer.assets/image-20201127214108546.png" style="zoom:23%;" /> <img src="Altium Designer.assets/image-20201127214122045.png" style="zoom:23%;" />
+
+图 编译原理图 |  net float at xxx，xxx。某个标签没有连接上，那串数字表示该标签的坐标 | 对应的悬浮的VCC标签 | 其次要注意这种连线
+
+ 
+
+ 
 
 ## 3. 快速上手
 
