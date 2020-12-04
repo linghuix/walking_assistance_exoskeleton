@@ -4,7 +4,7 @@ Abaqus理论检测
 
 
 
-### 仿真步骤[1]
+### 仿真步骤
 
 ​                      <img src="Abaqus.assets\model tree.png" style="zoom: 67%;" />                   <img src="Abaqus.assets\1.建模.png" style="zoom:67%;" />     <img src="Abaqus.assets\image-20201101160808886.png" style="zoom:67%;" />
 
@@ -131,7 +131,7 @@ Abaqus理论检测
 
 
 
-### 冲压仿真
+### 凹槽成型 [[1](Abaqus.assets\基于abaqus的有限元分析和应用-庄茁.pdf)] 
 
 1. 建立模型
 
