@@ -15,7 +15,7 @@ void ECON_I_init(void)
 {
 	MX_GPIO_output_Init();
 
-	MX_TIM_PWMOUT(controller_TIM, 50000, 100);
+	MX_TIM_PWMOUT(controller_TIM, 50000, 100);		// 1/500 s = 2 ms
 }
 
 

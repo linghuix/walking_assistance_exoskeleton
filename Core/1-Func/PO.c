@@ -8,6 +8,7 @@
 
 #include "PO.h"
 #define PI 3.1415
+#define poTest(...)
 /*
  * author lhx
  * Jun 3, 2020
@@ -41,7 +42,7 @@ void th_algori(float ang, float w, float * k)
 	else{
 		*k = AssisTor;
 	}
-	//printf("\r\nw=%.2f.&&&*k=%.2f\r\n",w,*k);
+	//poTest("\r\nw=%.2f.&&&*k=%.2f\r\n",w,*k);
 }
 
 /*
@@ -96,12 +97,7 @@ float PO(float d, float w,uint8_t node)
 	if(node == 2){						// Right Torque assive
 		k = k*RightToleftTorRatio;
 	}
-		
 	float assistive_torque = sin_fai*k;
-	//printf("\r\n%.2f.&&&%.2f\r\n",sin_fai,k);
-//	if(node == 2){
-//		assistive_torque = 0.5;
-//	}
 	return assistive_torque;
 }
 
