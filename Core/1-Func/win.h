@@ -7,6 +7,7 @@
 #include <stdlib.h>//malloc
 #include "BSP.h"
 
+#include "debug.h"
 
 #define ListSize 100 
 
@@ -33,7 +34,7 @@ uint16_t getPreIndex(uint16_t index, uint16_t length);
 void ChangeLastestValue(WINp winbuffer, ElementType data);
 float AvergeWin(WINp winbuffer, float *weight, int size);
 ElementType GetValue(WINp winbuffer, uint8_t index);
-
+void print(WINp winbuffer);
 
 #define getLastestValue(buff) buff.data[getPreIndex(buff.in,buff.length)]
 
