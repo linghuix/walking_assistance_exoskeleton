@@ -44,5 +44,5 @@
 ".\objects\func_beep.o"
 ".\objects\po.o"
 ".\objects\win.o"
---library_type=microlib --nodebug --strict --scatter ".\Objects\rct6.sct"
+--library_type=microlib --strict --scatter ".\Objects\rct6.sct"
 --summary_stderr --info summarysizes -o .\Objects\rct6.axf

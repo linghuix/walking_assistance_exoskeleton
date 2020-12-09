@@ -1,5 +1,5 @@
 #include <win.h> 
-
+#define winTest(...) //printf(__VA_ARGS__)
 //´´½¨
 void WinBuffer(WINp winbuffer, ElementType *data,int size)
 	{
@@ -55,7 +55,7 @@ void print(WINp winbuffer)
     uint16_t index = winbuffer->in;
     for(uint16_t i=0; i<winbuffer->length; i++){
 		index = getPreIndex(index,winbuffer->length);
-        printf("%d/%.2f\t",index , winbuffer->data[index]);
+        printf("\t%d/%.2f",index , winbuffer->data[index]);
     }
     printf("\r\n");
 }
@@ -71,7 +71,10 @@ float AvergeWin(WINp winbuffer, float *weight, int size)
 			sum += weight[i] * winbuffer->data[pre];
 		}
 	}
-//    printf("SUM %.2f\r\n", sum);
+	else{
+		ERROR(2,"size is not match");
+	}
+//    winTest("SUM %.2f\r\n", sum);
 	return sum;
 }
 
@@ -109,32 +112,45 @@ void test_win_buff(void)
 	{
 		
     WIN winbuffer;
-	ElementType data[2] = {0};
-	int size = 2;
+	ElementType data[3] = {0};
+	int size = 3;
 
     
     WinBuffer(&winbuffer, data, size);
     
-	printf("--- input data test ---\r\n");
+	winTest("\r\n--- input data test ---\r\n");
     for(int i=1;i<=10;i++){
-        addToBuff(&winbuffer ,i*2.0);
-		printf("%d - in %d - ", i, winbuffer.in);
+        addToBuff(&winbuffer ,i*3.0);
+		winTest("%d - in %d - ", i, winbuffer.in);
 		print(&winbuffer);
 	}
 	print(&winbuffer);
 	
 	
-	printf("--- average data test ---\r\n");
-	float weights[2] = {0.1, 0.1};
-	float avr = AvergeWin(&winbuffer, weights, 2);
-	printf("avrage : %.2f\r\n", avr);
+	winTest("\r\n--- average data test ---\r\n");
+	float weights[3] = {0.1, 0.1,0.1};
+	float avr = AvergeWin(&winbuffer, weights, 3);
+	winTest("avrage: %.2f\r\n", avr);
 	print(&winbuffer);
 		
 	
-	printf("--- change data test ---\r\n");
+	winTest("\r\n--- change data test ---\r\n");
 	ChangeLastestValue(&winbuffer, avr);
 	print(&winbuffer);
+	winTest("\r\n--- change Lastest one\r\n");
+	ChangeValue(&winbuffer, 1, 2.0);
+	print(&winbuffer);
+	winTest("\r\n--- change next Last one\r\n");
+	ChangeValue(&winbuffer, 2, 5.0);
+	print(&winbuffer);
+	winTest("\r\n--- change next next one\r\n");
+	ChangeValue(&winbuffer, 3, 10.0);
+	print(&winbuffer);
 
+	winTest("\r\n--- get data test ---\r\n");
+	winTest("2-%.2f\t", GetValue(&winbuffer, 2));
+	winTest("3-%.2f\t", GetValue(&winbuffer, 3));
+	winTest("1-%.2f", GetValue(&winbuffer, 1));
 	
 	while(1){}
 }
