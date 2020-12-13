@@ -13,4 +13,6 @@
 #include "func_accelerate.h"
 #include "func_BLE_HC05.h"
 
+#include "debug.h"
+
 #endif /* 1_FUNC_FUNC_H_ */

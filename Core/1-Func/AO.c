@@ -1,6 +1,6 @@
 #include "AO.h"
 
-extern uint16_t period;
+extern uint16_t period[2];
 
 /*
     va - 幅值学习参数
@@ -12,7 +12,7 @@ uint64_t Aoindex = 0;
 struct Adaptive_Oscillators hip1,hip2;
 extern int CONTROL_PERIOD;
 void set(struct Adaptive_Oscillators* AO, float vw,float va,float vph, int order,float dt,float ww,float aa[],float pphh[],int step);
-void AO_Init(float T)
+void AO_Init(float T, uint8_t node)
 {
     float va,vw,vph,dt;
     float aa[3] = {10.0, 50.0, 20.0}, pphh[3] = {0, PI/3, PI/6};
@@ -25,9 +25,12 @@ void AO_Init(float T)
     vw = va;
 	vph = sqrt(24.2*vw);
     step = 5;
-    
-	set(&hip1,vw,va,vph,2,dt,2*PI/T,aa,pphh,step);
-	set(&hip2,vw,va,vph,2,dt,2*PI/T,aa,pphh,step);
+    if(node == 1){
+		set(&hip1,vw,va,vph,2,dt,2*PI/T,aa,pphh,step);
+	}
+	if(node == 2){
+		set(&hip2,vw,va,vph,2,dt,2*PI/T,aa,pphh,step);
+	}
 	//show(&hip);
 }
 
@@ -99,10 +102,10 @@ void input(struct Adaptive_Oscillators* AO, float y_now, float t_now, int sync, 
     
 	for(int i=0;i < AO->order+1;i++){
 		AO->phase[i] = AO->pphh[i];
-		AO->phase[i] = fitIn(AO->phase[i], 2*3.1416, 0);
+		AO->phase[i] = fitIn(AO->phase[i], 2*PI, 0);
 	}
 	AO->predict = curvePredict(AO, AO->step*AO->dt);    // 10ms
-	phasePredict(AO, AO->step*AO->dt);
+	phasePredict(AO, 2*AO->dt);							// predict 100 ms 
 	AO->outputSave[AO->index] = AO->output;
 	AO->predictedSaveData[AO->index] = AO->predict;
 	if(++(AO->index) == MaxSize){
@@ -385,7 +388,7 @@ uint8_t findpeak(WINp win)
 	ElementType end2 = GetValue(win,3);
 	ElementType mid = GetValue(win,2);
 	
-	if(mid < end1 && mid < end2){
+	if(mid < 0 && mid < end1 && mid < end2){
 		return 1;
 	}
 	return 0;
@@ -396,7 +399,7 @@ float floatabs(float x);
 uint8_t Isequal(float i, float j)
 {
 	if(i==0) i = i+0.001;
-	if(floatabs(i-j) < 0.1){
+	if(floatabs(i-j) < 5){
 		return 1;
 	}
 	return 0;
@@ -410,83 +413,77 @@ float floatabs(float x)
 
 #include "PO.h"
 
-#define DEALY_TIME 40
-int32_t PO_time = 0, debug_preOffset, debug_preOffset2;		//PO 运行时间长度度量，决定AO初始化
-int16_t delaySwitch[2] = {DEALY_TIME, DEALY_TIME};			//切换延迟
-int8_t assive = -20;
+#define DELAY_TIME 20
+int32_t PO_time[2]={0}, debug_preOffset[2]={0};	//PO 运行时间长度度量，决定AO初始化
+int16_t delaySwitch[2] = {DELAY_TIME, DELAY_TIME};			//切换延迟
+int8_t assive[2] = {POMODE, POMODE};
 extern float dt;
-float switch_task(struct Adaptive_Oscillators * AO, float d, float w, uint8_t node)
+int8_t switch_task(struct Adaptive_Oscillators * AO, float d, float w, uint8_t node)
 {
 	int8_t i = AO->index;
 	int8_t j;
 	
 	j = i-1-AO->step < 0 ? i-1-AO->step+MaxSize : i-1-AO->step;
-	if(node==1){
-		debug_preOffset = AO->predictedSaveData[j];
-	}
-	else if(node==2){
-		debug_preOffset2 = AO->predictedSaveData[j];
-	}
 	
-	if(Isequal(d ,AO->predictedSaveData[j])){
-		delaySwitch[node-1]++;
-		if(delaySwitch[node-1]>DEALY_TIME)  delaySwitch[node-1] = DEALY_TIME;
-		
-		if(assive == AOMODE){
-			assive = AOMODE; 						// 20 * (AO->predict - d);
-		}
-		else if(assive == POMODE){
-			if(delaySwitch[node-1] == DEALY_TIME){
-				assive = AOMODE;
-			}
-			else{
-				assive = POMODE;
-			}
-		}
+	/* for debug */
+	debug_preOffset[node-1] = AO->predictedSaveData[j];
+
+	
+	/* Smith trigger  --  delaySwitch between 0 to DELAY_TIME */
+	if(Isequal(d ,AO->predictedSaveData[j]) && floatabs(w)>1){
+		delaySwitch[node-1] = delaySwitch[node-1]+1; 
 	}
 	else{
-		delaySwitch[node-1]--;
-		if(delaySwitch[node-1]<0)  delaySwitch[node-1] = 0;
-		
-		if(assive == POMODE){
-			assive = POMODE; 			//O(d, w, node);
-		}
-		else if(assive == AOMODE){
-			if(delaySwitch[node-1] == 0){
-				assive = POMODE;
-			}
-			else{
-				assive = AOMODE;
-			}
-		}
-//		delaySwitch = 0;
+		delaySwitch[node-1] = delaySwitch[node-1]-1; 
 	}
 	
-	if(assive == POMODE){
-		PO_time = PO_time+1;
+
+	if(assive[node-1] == POMODE && delaySwitch[node-1]>DELAY_TIME){
+		assive[node-1] = AOMODE;
 	}
-	else if(assive == AOMODE){
-		PO_time = PO_time-10;
+	else if(assive[node-1] == AOMODE && delaySwitch[node-1]<0){
+		assive[node-1] = POMODE;
 	}
 	
-	if(PO_time > 1000){
-		AO_Init(period*dt);					//AO reset 	float w0 = 21*dt;							 // 21*dt
-		PO_time = 0;						//AO reset time
+	
+	if(assive[node-1] == POMODE){
+		PO_time[node-1] = PO_time[node-1]+1;
 	}
-	else if(PO_time < 0){
-		PO_time = 0;
+	else if(assive[node-1] == AOMODE){
+		PO_time[node-1] = PO_time[node-1]-5;
 	}
+	
+	if(PO_time[node-1] > 500){
+		AO_Init( period[node-1] * dt, node);			//AO reset 	float w0 = 21*dt;							 // 21*dt
+		PO_time[node-1] = 0;							//AO reset time
+	}
+	else if(PO_time[node-1] < 0){
+		PO_time[node-1] = 0;
+	}
+	
+	
+	if(delaySwitch[node-1] > DELAY_TIME){
+		delaySwitch[node-1] = DELAY_TIME;
+	}
+	if(delaySwitch[node-1] < 0){
+		delaySwitch[node-1] = 0;
+	}
+
 	
 	SwitchMonitor("PO_time\t%d\t",PO_time);
 	SwitchMonitor("delaySwitch\t%d\t",delaySwitch);
 	
-	if(node == 1)
+	if(node == 1){
 		SwitchMonitor("preErr1\t%.1f\tassiveMode1\t%d\t",AO->predict_10steps_save[j]-d,assive);
-	if(node == 2)
+		printf("Switch task - %d, %d",delaySwitch[0],assive[0]);
+	}
+	if(node == 2){
 		SwitchMonitor("preErr2\t%.1f\tassiveMode2\t%d\t",AO->predict_10steps_save[j]-d,assive);
+	}
 	
-	return assive;
+	return assive[node-1];
 }
+
 
 
 float assive_torque(struct Adaptive_Oscillators * AO, float d)
@@ -500,5 +497,3 @@ float assive_torque(struct Adaptive_Oscillators * AO, float d)
 	return assistive_torque;
 
 }
-
-

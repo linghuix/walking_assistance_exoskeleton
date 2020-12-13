@@ -46,4 +46,5 @@
 .\objects\po.o: ..\Core\0-Conf\conf_gpio.h
 .\objects\po.o: ..\Core\1-Func\func_accelerate.h
 .\objects\po.o: ..\Core\1-Func\func_BLE_HC05.h
+.\objects\po.o: ..\Core\1-Func\debug.h
 .\objects\po.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\math.h
