@@ -47,11 +47,13 @@ struct Adaptive_Oscillators{
 extern struct Adaptive_Oscillators hip1,hip2;
 extern uint64_t Aoindex;
 
-void AO_Init(float w0);
+void AO_Init(float T, uint8_t node);
 void AO(float d,uint8_t node);
 
-float switch_task(struct Adaptive_Oscillators * AO, float d, float w,uint8_t node);
+int8_t switch_task(struct Adaptive_Oscillators * AO, float d, float w,uint8_t node);
 float assive_torque(struct Adaptive_Oscillators * AO, float d);
+float fitIn(float data, float up, float down);
+float floatabs(float x);
 
 
 
