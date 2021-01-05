@@ -134,8 +134,8 @@ void input(struct Adaptive_Oscillators* AO, float y_now, float t_now, int sync, 
 		AO->phase[i] = AO->pphh[i];
 		AO->phase[i] = fitIn(AO->phase[i], 2*PI, 0);
 	}
-	AO->predict = curvePredict(AO, AO->step*AO->dt);    // 10ms
-	phasePredict(AO, 4*AO->dt);							// predict 100 ms 
+	AO->predict = curvePredict(AO, AO->step*AO->dt);    // step*2*CONTROL_PERIOD ms
+	phasePredict(AO, 4*AO->dt);							// predict 200 ms 
 	AO->outputSave[AO->index] = AO->output;
 	AO->predictedSaveData[AO->index] = AO->predict;
 	if(++(AO->index) == MaxSize){
