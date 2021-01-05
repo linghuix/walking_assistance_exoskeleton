@@ -36,6 +36,7 @@
 ".\objects\conf_spi.o"
 ".\objects\conf_tim.o"
 ".\objects\conf_usart.o"
+".\objects\conf_adc.o"
 ".\objects\econ_controller_i.o"
 ".\objects\func_accelerate.o"
 ".\objects\func_ble_hc05.o"
@@ -44,5 +45,7 @@
 ".\objects\func_beep.o"
 ".\objects\po.o"
 ".\objects\win.o"
+".\objects\fsr.o"
+".\objects\func_adc.o"
 --library_type=microlib --strict --scatter ".\Objects\rct6.sct"
 --summary_stderr --info summarysizes -o .\Objects\rct6.axf

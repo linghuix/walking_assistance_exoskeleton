@@ -32,10 +32,11 @@
 #    define MSG_WAR(num, string, value)
 #endif
 
-#define IMUMonitor(...) 	MSG(__VA_ARGS__)
+#define IMUMonitor(...) 	//MSG(__VA_ARGS__)
 #define AOMonitor(...) 		//MSG(__VA_ARGS__)
 #define POMonitor(...) 		//MSG(__VA_ARGS__)
-#define AssisMonitor(...) 	MSG(__VA_ARGS__)
+#define INTERFORCE_Monitor(...) 		MSG(__VA_ARGS__)
+#define AssisMonitor(...) 	//MSG(__VA_ARGS__)
 #define ERROR(s,...)		printf("#ERROR %d# ",s);MSG(__VA_ARGS__);printf("\t--%s,%d\r\n",__FILE__, __LINE__)
 
 struct Buffer{

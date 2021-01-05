@@ -2,11 +2,15 @@
 
 extern uint16_t period[2];
 
-/*
-    va - 幅值学习参数
-    vw - 频率学习参数
-    vph - 相位学习参数
-    
+/**
+ * @parameter
+  T - 步态周期
+  node - 关节电机编号 1-left 2-right
+ * @constant
+  va - 幅值学习参数
+  vw - 频率学习参数
+  vph - 相位学习参数
+  gain - 最优学习参数增益，0.2~5
 */
 uint64_t Aoindex = 0;
 struct Adaptive_Oscillators hip1,hip2;
@@ -20,8 +24,8 @@ void AO_Init(float T, uint8_t node)
 
 	dt = (float)CONTROL_PERIOD*2.0/1000.0;
     // 1/100 = 0   1.0/100 = 0.01 先按 int 类型计算，然后强制转化为 float
-	
-    va = 2.0/(5.0* T);
+	float gain = 5.0;
+    va = 2.0/(gain* T);
     vw = va;
 	vph = sqrt(24.2*vw);
     step = 5;
@@ -31,11 +35,22 @@ void AO_Init(float T, uint8_t node)
 	if(node == 2){
 		set(&hip2,vw,va,vph,2,dt,2*PI/T,aa,pphh,step);
 	}
-	//show(&hip);
 }
 
 
-/*AO 参数配置*/
+/**
+ *@brief AO 参数设置/配置
+ *@parameter
+  va - 幅值学习参数
+  vw - 频率学习参数
+  vph - 相位学习参数
+  order - 振荡器池中的振荡器个数，除了没有频率的offset振荡器，因此总共 order+1 个振荡器
+  dt - 时间间隔/采样间隔
+  ww - 基频频率初值
+  aa[] - 幅值初值
+  pphh[] - 相位初值
+  step - 预测步长
+*/
 void set(struct Adaptive_Oscillators* AO, float vw,float va,float vph, int order,float dt,float ww,float aa[],float pphh[],int step)
 {
         AO->va = va;			    // learning parameter
@@ -68,13 +83,19 @@ void set(struct Adaptive_Oscillators* AO, float vw,float va,float vph, int order
         AO->index = 0;
 }
 
+/**
+ *@brief 实时输入关节角度，进行AO迭代
+ *@parameter
+  node - 关节电机编号 1-left 2-right
+  d - 关节角度
+*/
 void input(struct Adaptive_Oscillators* AO, float y_now, float t_now, int sync, float vw_sync);
 void AO(float d,uint8_t node)
 {
 	if(node == 1){
 		input(&hip1,d,Aoindex,0,0);
 		//show(&hip);
-//		printf("%.2f\t%.2f\t%.2f\t",d, hip1.output,hip1.predict);
+		//printf("%.2f\t%.2f\t%.2f\t",d, hip1.output,hip1.predict);
 	}
 	else if(node == 2){
 		input(&hip2,d,Aoindex,0,0);
@@ -83,12 +104,21 @@ void AO(float d,uint8_t node)
 	}
 }
 
-/*
+/**
+ * @parameter:
     order -     非零 w 的联级振荡器数量,不包含 w=0
     a_now -     振荡器当前幅值 order+1个阶数
     w_now -     振荡器当前频率
     ph_now -    振荡器当前相位 order+1 ,第一个 ph_now[0] 强制为 0
     e -         外部输入-估计值
+*/
+/**
+ * @brief: 迭代算法
+ * @parameter:
+    y_now -     关节角度
+    t_now -     关节角度对应采集时间
+    sync -      是否同步
+    vw_sync -   同步的学习参数
 */
 void Oscillators(struct Adaptive_Oscillators* AO, float e, int sync, float vw_sync);
 float curvePredict(struct Adaptive_Oscillators* AO, float delta_t);
@@ -105,7 +135,7 @@ void input(struct Adaptive_Oscillators* AO, float y_now, float t_now, int sync, 
 		AO->phase[i] = fitIn(AO->phase[i], 2*PI, 0);
 	}
 	AO->predict = curvePredict(AO, AO->step*AO->dt);    // 10ms
-	phasePredict(AO, 2*AO->dt);							// predict 100 ms 
+	phasePredict(AO, 4*AO->dt);							// predict 100 ms 
 	AO->outputSave[AO->index] = AO->output;
 	AO->predictedSaveData[AO->index] = AO->predict;
 	if(++(AO->index) == MaxSize){
@@ -113,12 +143,12 @@ void input(struct Adaptive_Oscillators* AO, float y_now, float t_now, int sync, 
 	}
 }
 
-/*
+/**
  * @brief fit data into some zone
  * @parameter:
  *      data            input data need to
  *      up            	up bound
- *      dowm         	down bound
+ *      down         	down bound
  * @note:
  *      fitIn(x,0,2pi)
  *      
@@ -138,7 +168,7 @@ float fitIn(float data, float up, float down)
 	 return data;
 }
 
-/*
+/**
  * @brief: Oscillators differential function
  * @parameter:
  *      e               外部输入-估计值
@@ -187,10 +217,10 @@ void Oscillators(struct Adaptive_Oscillators* AO, float e, int sync, float vw_sy
 }
 
 
-/*
+/**
  * @brief: AO curve value Predict using state.
  * @parameter:
- *      delta_t	-	Predict Time interval. It can maxmize independence of this function.
+ *      delta_t	-	degree Predict Time interval. It can maxmize independence of this function.
  *      AO 		-	Adaptive Oscillators
  * @note:
  *      it is called in input() function
@@ -210,10 +240,11 @@ float curvePredict(struct Adaptive_Oscillators* AO, float delta_t)
 	return y_pre;
 }
 
-/*
+
+/** 
  * @brief 单独调用获取相位预测 AO basic phase value (phase[1] which is corresponding to ww's phase) Predict using state
- * @parameter
- *      delta_t	-	Predict Time interval
+ * @paras
+ *      delta_t	-	Phase Predict Time interval
  *      AO 		-	Adaptive Oscillators
  */
 void phasePredict(struct Adaptive_Oscillators* AO, float delta_t)
@@ -223,10 +254,10 @@ void phasePredict(struct Adaptive_Oscillators* AO, float delta_t)
 	AO->predictedBasicPhase = fitIn(AO->predictedBasicPhase, 2*3.1416, 0);
 }
 
-/*
+
+/**
  * brief test
- * @parameter
- *      AO 		-	Adaptive Oscillators
+ * @para  AO 		-	Adaptive Oscillators
  */
 void show(struct Adaptive_Oscillators* AO)
 {
@@ -379,8 +410,10 @@ void test_AOs(void)
 
 #define SwitchMonitor(...) 		//printf
 
-/* 	最低值查找程序
-	1-表示找到了最低值 
+/**
+ * @brief 关节角度最低值查找程序
+ * @para  win 作用宽度
+ * @return 1-表示找到了最低值 
  */
 uint8_t findpeak(WINp win)
 {
@@ -393,29 +426,45 @@ uint8_t findpeak(WINp win)
 	}
 	return 0;
 }
-//
 
+
+/**
+ * @brief 判断是否两者是否相等
+ * @para  i/j 用于判断是否相等的数值，此处为AO预测的髋关节角度与实际的角度 
+ */
 float floatabs(float x);
 uint8_t Isequal(float i, float j)
 {
 	if(i==0) i = i+0.001;
-	if(floatabs(i-j) < 5){
+	if(floatabs(i-j) < 5){	//尝试绝对值，相对误差，最小二乘
 		return 1;
 	}
 	return 0;
 }
 
-
+/**
+ * @brief 取浮点数的绝对值，由于库中的abs只针对int类型，因此特别创建一个关于浮点数的
+ */
 float floatabs(float x)
 {
 	return x>0 ? x:-x;
 }
 
-#include "PO.h"
 
-#define DELAY_TIME 20
+#include "PO.h"
+/**
+ * @brief 不同助力模式的切换策略
+ * @para 	AO
+ * @para 	d			关节角度，用于输入到AO中进行迭代，PO助力模式时被PO用于计算相位
+ * @para 	w			关节角速度，PO助力模式时被PO用于计算相位
+ * @para 	node		电机的编号，左为0，右为1
+ * @factor  PO_time 	PO 运行时间长度度量，决定AO初始化
+ * @factor  DELAY_TIME 	斯密特触发器的宽度
+ * @factor  delaySwitch 斯密特触发器计数器，当值大于DELAY_TIME时为AO助力模式，小于0时为PO助力模式
+ */
+#define DELAY_TIME 15
 int32_t PO_time[2]={0}, debug_preOffset[2]={0};	//PO 运行时间长度度量，决定AO初始化
-int16_t delaySwitch[2] = {DELAY_TIME, DELAY_TIME};			//切换延迟
+int16_t delaySwitch[2] = {0, 0};				//切换延迟
 int8_t assive[2] = {POMODE, POMODE};
 extern float dt;
 int8_t switch_task(struct Adaptive_Oscillators * AO, float d, float w, uint8_t node)
@@ -430,7 +479,7 @@ int8_t switch_task(struct Adaptive_Oscillators * AO, float d, float w, uint8_t n
 
 	
 	/* Smith trigger  --  delaySwitch between 0 to DELAY_TIME */
-	if(Isequal(d ,AO->predictedSaveData[j]) && floatabs(w)>1){
+	if(Isequal(d ,AO->predictedSaveData[j]) ){//&& floatabs(w)>1){
 		delaySwitch[node-1] = delaySwitch[node-1]+1; 
 	}
 	else{
@@ -438,10 +487,10 @@ int8_t switch_task(struct Adaptive_Oscillators * AO, float d, float w, uint8_t n
 	}
 	
 
-	if(assive[node-1] == POMODE && delaySwitch[node-1]>DELAY_TIME){
+	if(assive[node-1] == POMODE && delaySwitch[node-1]>=DELAY_TIME){
 		assive[node-1] = AOMODE;
 	}
-	else if(assive[node-1] == AOMODE && delaySwitch[node-1]<0){
+	else if(assive[node-1] == AOMODE && delaySwitch[node-1]<=0){
 		assive[node-1] = POMODE;
 	}
 	
@@ -475,7 +524,6 @@ int8_t switch_task(struct Adaptive_Oscillators * AO, float d, float w, uint8_t n
 	
 	if(node == 1){
 		SwitchMonitor("preErr1\t%.1f\tassiveMode1\t%d\t",AO->predict_10steps_save[j]-d,assive);
-		printf("Switch task - %d, %d",delaySwitch[0],assive[0]);
 	}
 	if(node == 2){
 		SwitchMonitor("preErr2\t%.1f\tassiveMode2\t%d\t",AO->predict_10steps_save[j]-d,assive);
@@ -485,15 +533,19 @@ int8_t switch_task(struct Adaptive_Oscillators * AO, float d, float w, uint8_t n
 }
 
 
-
+/**
+ * @brief   利用PID的P控制提供助力将下肢关节角度拉向AO预测的未来角度
+ * @para 	AO
+ * @para 	d			IMU采集的关节真实角度 degree
+ */
 float assive_torque(struct Adaptive_Oscillators * AO, float d)
 {
 	float assistive_torque;
-	if(floatabs(AO->predict - d) < 3)
+	if(floatabs(AO->predict - d) < 3)				//当两者差距很小时，不提供助力
 		assistive_torque = 0;
 	else{
 		assistive_torque = (AO->predict - d)*0.05;
 	}
 	return assistive_torque;
-
 }
+
