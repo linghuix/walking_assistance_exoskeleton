@@ -502,7 +502,7 @@ int8_t switch_task(struct Adaptive_Oscillators * AO, float d, float w, uint8_t n
 		PO_time[node-1] = PO_time[node-1]-5;
 	}
 	
-	if(PO_time[node-1] > 500){
+	if(PO_time[node-1] > 400){
 		AO_Init( period[node-1] * dt, node);			//AO reset 	float w0 = 21*dt;							 // 21*dt
 		PO_time[node-1] = 0;							//AO reset time
 	}

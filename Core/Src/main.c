@@ -52,8 +52,8 @@ uint8_t debug_peak[2] = {0}, found_peak[2] = {0};
 int debug_AOphase1=0, debug_AOoutput1=0, debug_AOpre1=0, debug_AOphase_offset1=0, debug_AOw1, debug_AOphasePre1;
 int debug_AOphase2=0, debug_AOoutput2=0, debug_AOpre2=0, debug_AOphase_offset2=0, debug_AOw2, debug_AOphasePre2;
 int debug_AOIndex = 0;
-int debug_assisTorque = 0;								//临时查看变量
-float AOoffset[2] = {0};					//AO 相位补偿器
+int debug_assisTorque = 0;					// 临时查看变量
+float AOoffset[2] = {0};					// AO 相位补偿器
 
 
 extern int16_t delaySwitch[2];
@@ -61,7 +61,6 @@ int main(void)
 {
 	Core_Config();
 	Jlink_Init();
-	
 	
 	/*初始化*/
 	Acc1_Init();
@@ -92,9 +91,9 @@ int main(void)
 	printf("ABOUT ANGLE AND SPEED couterclock is postive from outside. 从外部看向电机侧");
 	printf("the acc1 of left hip - d w | the acc2 of right hip - d w | I1 ,I2\r\n");
 	
-//	test_win_buff();
-//	test_HC05_communication();
-//	test_AOs();
+	//	test_win_buff();
+	//	test_HC05_communication();
+	//	test_AOs();
 	
 	while (1){
 
@@ -124,8 +123,6 @@ int main(void)
 //			if(stopCounter[0] > 15){
 //				stopFlag[0] = 1;
 //			}
-			/*I1 = PO(hip1_d,hip1_d, 1);
-			set_I_direction(1,I1);*/
 		}
 
 		/* 右髋关节 加速度信号采集  采样周期约100Hz以上 */
@@ -155,8 +152,6 @@ int main(void)
 //			if(stopCounter[1] > 15){
 //				stopFlag[1] = 1;
 //			}
-			/*I2= PO(hip2_d,hip2_w, 2);
-			set_I_direction(2,I2);*/
 		}
 		
 		/* 控制周期 2ms x CONTROL_PERIOD  */
@@ -174,6 +169,8 @@ int main(void)
 			
 			// 左 
 			AO(hip1_d,1);
+			
+			/* summit detect and period predict*/
 			peak_delay_time[0]--;
 			if(found_peak[0] == 1){										// 检测峰值，估计人体步态周期并记录需要补偿的相位值
 				if( peak_delay_time[0] <= 0 ){
@@ -181,15 +178,17 @@ int main(void)
 					peaktimestamp[0] = Aoindex;
 					AOoffset[0] = hip1.phase[1];
 					found_peak[0] = 0;
-					peak_delay_time[0] = 10;							//峰值检测延迟时间
+					peak_delay_time[0] = 10;							// 峰值检测延迟时间
 				}
 			}
 			
-			assive_mode[0] = switch_task( &hip1, hip1_d, hip1_w, 1);	//模式切换
+			assive_mode[0] = switch_task( &hip1, hip1_d, hip1_w, 1);	// 模式切换
 			if(stopFlag[0] == 1){
 				assive_mode[0] = POMODE;
 				stopFlag[0]=0;
 			}
+			
+			/* get phase */
 			if(assive_mode[0] == POMODE){
 				phase[0] = PO_phase(hip1_d, hip1_w);
 				phase[0] = phase[0] + PI;
@@ -210,10 +209,12 @@ int main(void)
 			
 			// 右 
 			AO(hip2_d,2);
+			
+			/* summit detect */
 			peak_delay_time[1]--;
 			if(found_peak[1] == 1){							// 检测峰值，估计人体步态周期并记录需要补偿的相位值
 				if( peak_delay_time[1] <= 0 ){
-					period[1] = Aoindex - peaktimestamp[1];		// gait period get
+					period[1] = Aoindex - peaktimestamp[1];	// gait period get
 					peaktimestamp[1] = Aoindex;
 					AOoffset[1] = hip2.phase[1];
 					found_peak[1] = 0;
@@ -227,6 +228,7 @@ int main(void)
 				stopFlag[1]=0;
 			}
 			
+			/* get phase */
 			if(assive_mode[1] == POMODE){
 				phase[1] = PO_phase(hip2_d, hip2_w);
 				phase[1] = -phase[1] + PI;
@@ -242,11 +244,9 @@ int main(void)
 			I2 = 1.5*sin(phase[1]);
 			set_I_direction(2,I2);
 			AssisMonitor("I2 %.2f\t",I2);
-			
-//			printf("\t%d, %d",delaySwitch[0],assive_mode[0]);
 			printf("\r\n");
-			
 		}
+		
 			debug_assisTorque = 1000.0*I1;
 		
 			debug_hip1_d = (int)hip1_d;
