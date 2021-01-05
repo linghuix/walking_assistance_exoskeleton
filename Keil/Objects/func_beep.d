@@ -43,13 +43,16 @@
 .\objects\func_beep.o: ..\Core\0-Conf\conf_Jlink.h
 .\objects\func_beep.o: ..\Core\0-Conf\conf_can.h
 .\objects\func_beep.o: ..\Core\0-Conf\conf_global.h
+.\objects\func_beep.o: ..\Core\0-Conf\conf_adc.h
+.\objects\func_beep.o: ..\Core\1-Func\debug.h
 .\objects\func_beep.o: ..\Core\1-Func\ECON_controller_I.h
 .\objects\func_beep.o: ..\Core\0-Conf\conf_gpio.h
 .\objects\func_beep.o: ..\Core\1-Func\func_accelerate.h
 .\objects\func_beep.o: ..\Core\1-Func\func_BLE_HC05.h
-.\objects\func_beep.o: ..\Core\1-Func\debug.h
 .\objects\func_beep.o: ..\Core\1-Func\PO.h
 .\objects\func_beep.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\math.h
 .\objects\func_beep.o: ..\Core\1-Func\AO.h
 .\objects\func_beep.o: ..\Core\1-Func\win.h
 .\objects\func_beep.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\func_beep.o: ..\Core\1-Func\FSR.h
+.\objects\func_beep.o: ..\Core\1-Func\func_adc.h

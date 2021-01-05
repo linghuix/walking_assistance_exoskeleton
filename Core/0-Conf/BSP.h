@@ -8,7 +8,8 @@
 #include "conf_Jlink.h"
 #include "conf_can.h"
 #include "conf_global.h"
-
+#include "conf_adc.h"
+#include "debug.h"
 
 void SysTick_init(void);
 void BSP_Init(void);

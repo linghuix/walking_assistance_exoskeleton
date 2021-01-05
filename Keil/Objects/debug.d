@@ -43,6 +43,7 @@
 .\objects\debug.o: ..\Core\0-Conf\conf_Jlink.h
 .\objects\debug.o: ..\Core\0-Conf\conf_can.h
 .\objects\debug.o: ..\Core\0-Conf\conf_global.h
+.\objects\debug.o: ..\Core\0-Conf\conf_adc.h
 .\objects\debug.o: ..\Core\1-Func\ECON_controller_I.h
 .\objects\debug.o: ..\Core\0-Conf\conf_gpio.h
 .\objects\debug.o: ..\Core\1-Func\func_accelerate.h
@@ -52,3 +53,5 @@
 .\objects\debug.o: ..\Core\1-Func\AO.h
 .\objects\debug.o: ..\Core\1-Func\win.h
 .\objects\debug.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\debug.o: ..\Core\1-Func\FSR.h
+.\objects\debug.o: ..\Core\1-Func\func_adc.h

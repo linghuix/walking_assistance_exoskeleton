@@ -40,3 +40,5 @@
 .\objects\bsp.o: ..\Core\0-Conf\conf_Jlink.h
 .\objects\bsp.o: ..\Core\0-Conf\conf_can.h
 .\objects\bsp.o: ..\Core\0-Conf\conf_global.h
+.\objects\bsp.o: ..\Core\0-Conf\conf_adc.h
+.\objects\bsp.o: ..\Core\1-Func\debug.h

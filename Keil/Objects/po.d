@@ -42,9 +42,10 @@
 .\objects\po.o: ..\Core\0-Conf\conf_Jlink.h
 .\objects\po.o: ..\Core\0-Conf\conf_can.h
 .\objects\po.o: ..\Core\0-Conf\conf_global.h
+.\objects\po.o: ..\Core\0-Conf\conf_adc.h
+.\objects\po.o: ..\Core\1-Func\debug.h
 .\objects\po.o: ..\Core\1-Func\ECON_controller_I.h
 .\objects\po.o: ..\Core\0-Conf\conf_gpio.h
 .\objects\po.o: ..\Core\1-Func\func_accelerate.h
 .\objects\po.o: ..\Core\1-Func\func_BLE_HC05.h
-.\objects\po.o: ..\Core\1-Func\debug.h
 .\objects\po.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\math.h
