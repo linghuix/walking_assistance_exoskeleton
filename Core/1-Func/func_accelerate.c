@@ -33,7 +33,7 @@ uint8_t test_data[5] = {0x55,0x00,0x00,0x00,0x00};
 void Acc2_Start(void)
 {
 	//HAL_UART_Transmit_IT(&acc2_huart, test_data, 5);
-	HAL_UART_Receive_IT(&acc2_huart, acc2, 11);
+	HAL_UART_Receive_IT(&acc2_huart, acc2, 1);
 }
 
 
@@ -58,7 +58,11 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 		switch(state1){
 			case 0:
 				if(acc1[0]==0x55){state1 = 1;HAL_UART_Receive_IT(&acc1_huart, &acc1[1], 10);}
-				else HAL_UART_Receive_IT(&acc1_huart, acc1, 1);
+				else{
+					if(flag_1 !=1||flag_2 != 1||flag_3 != 1){
+					HAL_UART_Receive_IT(&acc1_huart, acc1, 1);
+					}
+				}
 				break;
 			case 1:
 				switch(acc1[1]){
@@ -92,7 +96,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 		switch(state2){
 			case 0:
 				if(acc2[0]==0x55){state2 = 1;HAL_UART_Receive_IT(&acc2_huart, &acc2[1], 10);}
-				else HAL_UART_Receive_IT(&acc2_huart, acc2, 1);
+				else if(flag_11 !=1||flag_22 != 1||flag_33 != 1){
+					HAL_UART_Receive_IT(&acc2_huart, acc2, 1);
+				}
 				break;
 			case 1:
 				switch(acc2[1]){

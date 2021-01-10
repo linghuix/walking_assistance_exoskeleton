@@ -75,8 +75,8 @@ int main(void)
 	WinBuffer(&d2minwin_w, d2Win, 3);
 	
 	HC05_Init();
-	AO_Init(period[0]*dt, 1);
-	AO_Init(period[1]*dt, 2);
+//	AO_Init(period[0]*dt, 1);
+//	AO_Init(period[1]*dt, 2);
 	ECON_I_init();
 
 
@@ -85,7 +85,7 @@ int main(void)
 	Acc2_Start();
 	ECON_action();
 	
-	FSR_Init();
+//	FSR_Init();
 	
 
 	printf("ABOUT ANGLE AND SPEED couterclock is postive from outside. 从外部看向电机侧");
@@ -99,6 +99,7 @@ int main(void)
 
 		/* 左髋关节 加速度信号采集  采样周期约100Hz以上 */
 		if(flag_1 ==1&&flag_2 == 1&&flag_3 == 1){
+//			__HAL_UART_DISABLE_IT(&acc1_huart, UART_IT_RXNE);
 			flag_1=0;flag_2=0;flag_3=0;
 			hip1_rawd = angle1[1]/32768.0*180;	hip1_raww = w1[2]/32768.0*2000;
 			addToBuff(&acc1win_d ,hip1_rawd);
@@ -109,10 +110,10 @@ int main(void)
 			hip1_w = getLastestValue(acc1win_w);
 			
 			addToBuff(&d1minwin_w ,hip1_d);
-			debug_peak[0] = findpeak(&d1minwin_w);		// 髋关节伸展角度极值检测
-			if(debug_peak[0] == 1){
-				found_peak[0] = 1;
-			}
+//			debug_peak[0] = findpeak(&d1minwin_w);		// 髋关节伸展角度极值检测
+//			if(debug_peak[0] == 1){
+//				found_peak[0] = 1;
+//			}
 			/* detect the stop state */
 //			if(floatabs(hip1_w) < 0.2){
 //				stopCounter[0]++;
@@ -123,10 +124,14 @@ int main(void)
 //			if(stopCounter[0] > 15){
 //				stopFlag[0] = 1;
 //			}
+//			__HAL_UART_ENABLE_IT(&acc2_huart, UART_IT_RXNE);
+			HAL_UART_Receive_IT(&acc2_huart, acc2, 1);
 		}
 
 		/* 右髋关节 加速度信号采集  采样周期约100Hz以上 */
 		if(flag_11 ==1&&flag_22 == 1&&flag_33 == 1){ 
+//			__HAL_UART_DISABLE_IT(&acc2_huart, UART_IT_RXNE);
+			
 			flag_11=0;flag_22=0;flag_33=0;
 			hip2_rawd = angle2[1]/32768.0*180;	hip2_raww = w2[1]/32768.0*2000;
 			addToBuff(&acc2win_d ,hip2_rawd);
@@ -137,11 +142,11 @@ int main(void)
 			hip2_w = getLastestValue(acc2win_w);
 
 			addToBuff(&d2minwin_w ,hip2_d);
-			debug_peak[1] = findpeak(&d2minwin_w);		// 髋关节伸展角度极值检测
-			if(debug_peak[1] == 1){
-				found_peak[1] = 1;
-			}
-			
+//			debug_peak[1] = findpeak(&d2minwin_w);		// 髋关节伸展角度极值检测
+//			if(debug_peak[1] == 1){
+//				found_peak[1] = 1;
+//			}
+
 			/* detect the stop state */
 //			if(floatabs(hip2_w) < 0.2){
 //				stopCounter[1]++;
@@ -152,12 +157,16 @@ int main(void)
 //			if(stopCounter[1] > 15){
 //				stopFlag[1] = 1;
 //			}
+//			__HAL_UART_ENABLE_IT(&acc1_huart, UART_IT_RXNE);
+			HAL_UART_Receive_IT(&acc1_huart, acc1, 1);
 		}
 		
 		/* 控制周期 2ms x CONTROL_PERIOD  */
 		if(inc % CONTROL_PERIOD == 0){
-			Interaction_force = GetFSRForce();
-			INTERFORCE_Monitor("F %d\t", Interaction_force);
+			printf("%f", hip1_rawd);
+			printf("\t%f", hip2_rawd);
+//			Interaction_force = GetFSRForce();
+//			INTERFORCE_Monitor("F %d\t", Interaction_force);
 			
 			IMUMonitor("acc1rawd\t%.2f\tw\t%.2f\t",hip1_rawd,hip1_raww);
 			IMUMonitor("acc2rawd\t%.2f\tw\t%.2f\t",hip2_rawd,hip2_raww);
@@ -168,7 +177,7 @@ int main(void)
 			debug_AOIndex++; if( debug_AOIndex > 100 ){ debug_AOIndex = 0;}
 			
 			// 左 
-			AO(hip1_d,1);
+//			AO(hip1_d,1);
 			
 			/* summit detect and period predict*/
 			peak_delay_time[0]--;
@@ -182,26 +191,27 @@ int main(void)
 				}
 			}
 			
-			assive_mode[0] = switch_task( &hip1, hip1_d, hip1_w, 1);	// 模式切换
-			if(stopFlag[0] == 1){
-				assive_mode[0] = POMODE;
-				stopFlag[0]=0;
-			}
-			
+//			assive_mode[0] = switch_task( &hip1, hip1_d, hip1_w, 1);	// 模式切换
+			assive_mode[0] = POMODE;
+//			if(stopFlag[0] == 1){
+//				assive_mode[0] = POMODE;
+//				stopFlag[0]=0;
+//			}
+//			
 			/* get phase */
-			if(assive_mode[0] == POMODE){
+//			if(assive_mode[0] == POMODE){
 				phase[0] = PO_phase(hip1_d, hip1_w);
 				phase[0] = phase[0] + PI;
-			}
-			else if(assive_mode[0] == AOMODE){
-				phase[0] = hip1.predictedBasicPhase - AOoffset[0];
-				phase[0] = fitIn(phase[0], 2*PI, 0);	
-			}
-			else{
-				while(1){ MSG_ERR(123, "assive_mode error\r\n", 123); }
-			}
+//			}
+//			else if(assive_mode[0] == AOMODE){
+//				phase[0] = hip1.predictedBasicPhase - AOoffset[0];
+//				phase[0] = fitIn(phase[0], 2*PI, 0);	
+//			}
+//			else{
+//				while(1){ MSG_ERR(123, "assive_mode error\r\n", 123); }
+//			}
 			
-			I1 = 0.4*sin(phase[0]);
+			I1 = 0.3*sin(phase[0]);
 			set_I_direction(1,I1);
 			AssisMonitor("I1 %.2f\t",I1);
 			
@@ -211,40 +221,40 @@ int main(void)
 			AO(hip2_d,2);
 			
 			/* summit detect */
-			peak_delay_time[1]--;
-			if(found_peak[1] == 1){							// 检测峰值，估计人体步态周期并记录需要补偿的相位值
-				if( peak_delay_time[1] <= 0 ){
-					period[1] = Aoindex - peaktimestamp[1];	// gait period get
-					peaktimestamp[1] = Aoindex;
-					AOoffset[1] = hip2.phase[1];
-					found_peak[1] = 0;
-				peak_delay_time[1] = 10;
-				}
-			}
-			
-			assive_mode[1] = switch_task( &hip2, hip2_d, hip2_w, 2);
-			if(stopFlag[1] == 1){
-				assive_mode[1] = POMODE;
-				stopFlag[1]=0;
-			}
-			
-			/* get phase */
-			if(assive_mode[1] == POMODE){
-				phase[1] = PO_phase(hip2_d, hip2_w);
-				phase[1] = -phase[1] + PI;
-			}
-			else if(assive_mode[1] == AOMODE){
-				phase[1] = hip2.predictedBasicPhase - AOoffset[1];
-				phase[1] = fitIn(phase[1], 2*PI, 0);				
-			}
-			else{
-				while(1){ MSG_ERR(123, "assive_mode error\r\n", 123); }
-			}
-			
-			I2 = 1.5*sin(phase[1]);
-			set_I_direction(2,I2);
-			AssisMonitor("I2 %.2f\t",I2);
-			printf("\r\n");
+//			peak_delay_time[1]--;
+//			if(found_peak[1] == 1){							// 检测峰值，估计人体步态周期并记录需要补偿的相位值
+//				if( peak_delay_time[1] <= 0 ){
+//					period[1] = Aoindex - peaktimestamp[1];	// gait period get
+//					peaktimestamp[1] = Aoindex;
+//					AOoffset[1] = hip2.phase[1];
+//					found_peak[1] = 0;
+//				peak_delay_time[1] = 10;
+//				}
+////			}
+//			
+//			assive_mode[1] = switch_task( &hip2, hip2_d, hip2_w, 2);
+//			if(stopFlag[1] == 1){
+//				assive_mode[1] = POMODE;
+//				stopFlag[1]=0;
+//			}
+//			
+//			/* get phase */
+//			if(assive_mode[1] == POMODE){
+//				phase[1] = PO_phase(hip2_d, hip2_w);
+//				phase[1] = -phase[1] + PI;
+//			}
+//			else if(assive_mode[1] == AOMODE){
+//				phase[1] = hip2.predictedBasicPhase - AOoffset[1];
+//				phase[1] = fitIn(phase[1], 2*PI, 0);				
+//			}
+//			else{
+//				while(1){ MSG_ERR(123, "assive_mode error\r\n", 123); }
+//			}
+//			
+//			I2 = 1.5*sin(phase[1]);
+////			set_I_direction(2,I2);
+////			AssisMonitor("I2 %.2f\t",I2);
+//			printf("\r\n");
 		}
 		
 			debug_assisTorque = 1000.0*I1;

@@ -24,10 +24,10 @@
  * Window > Preferences > C/C++ > Editor > Templates.
  */
 extern float floatabs(float x);
-#define AssisTor 0.1
+#define AssisTor 2
 #define RightTorRatio 3	// assist gain 
-#define D_area 0.0		// 2.0			// for eliminate chattering
-#define W_area 0.0		// 1.0
+#define D_area 2.0		// 2.0			// for eliminate chattering
+#define W_area 1.0		// 1.0
 #define MAX_D_area 50.0	// for safety
 //阈值防抖动算法
 void th_algori(float ang, float w, float * k)
@@ -88,7 +88,11 @@ float myatan2(float y, float x)
  */
 float PO_phase(float d, float w)
 {
-	return myatan2(w, d);
+	float phase = myatan2(w, d);
+	if(floatabs(d) < D_area || floatabs(w) < W_area || floatabs(d) > MAX_D_area){
+		phase = 0.0;
+	}
+	return phase;
 }
 
 
@@ -116,4 +120,5 @@ float PO(float d, float w,uint8_t node)
 	float assistive_torque = sin_fai*k;
 	return assistive_torque;
 }
+
 
