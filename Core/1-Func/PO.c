@@ -12,35 +12,6 @@
 #include "PO.h"
 
 
-/**
- * author lhx
- * Jun 3, 2020
- *
- * @brief : 助力系数非线性调节，以降低抖动和提高安全
- * @param ang - 人体关节角度
- * @param w - 人体关节角速度
- * @param @k - 助力系数 pointer
- * @return   助力力矩大小和方向
- * Window > Preferences > C/C++ > Editor > Templates.
- */
-extern float floatabs(float x);
-#define AssisTor 0.1
-#define RightTorRatio 3	// assist gain 
-#define D_area 0.0		// 2.0			// for eliminate chattering
-#define W_area 0.0		// 1.0
-#define MAX_D_area 50.0	// for safety
-//阈值防抖动算法
-void th_algori(float ang, float w, float * k)
-{
-	/* 设定阈值，防止在关节角度较小的时候，助力系数k随着关节角速度的正负变化而产生抖动。 */
-	if(floatabs(ang) < D_area || floatabs(w) < W_area || floatabs(ang) > MAX_D_area){
-		*k = 0.0;
-	}
-	else{
-		*k = AssisTor;
-	}
-	//poTest("\r\nw=%.2f.&&&*k=%.2f\r\n",w,*k);
-}
 
 /**
   * @brief  模仿math.atan2(y,x)的-pi-+pi的坐标角度算法
@@ -91,6 +62,39 @@ float PO_phase(float d, float w)
 	return myatan2(w, d);
 }
 
+
+
+
+
+/**
+ * author lhx
+ * Jun 3, 2020
+ *
+ * @brief : 助力系数非线性调节，以降低抖动和提高安全
+ * @param ang - 人体关节角度
+ * @param w - 人体关节角速度
+ * @param @k - 助力系数 pointer
+ * @return   助力力矩大小和方向
+ * Window > Preferences > C/C++ > Editor > Templates.
+ */
+extern float floatabs(float x);
+#define AssisTor 0.1
+#define RightTorRatio 3	// assist gain 
+#define D_area 0.0		// 2.0			// for eliminate chattering
+#define W_area 0.0		// 1.0
+#define MAX_D_area 50.0	// for safety
+//阈值防抖动算法
+void th_algori(float ang, float w, float * k)
+{
+	/* 设定阈值，防止在关节角度较小的时候，助力系数k随着关节角速度的正负变化而产生抖动。 */
+	if(floatabs(ang) < D_area || floatabs(w) < W_area || floatabs(ang) > MAX_D_area){
+		*k = 0.0;
+	}
+	else{
+		*k = AssisTor;
+	}
+	//poTest("\r\nw=%.2f.&&&*k=%.2f\r\n",w,*k);
+}
 
 /**
  * author lhx

@@ -21,7 +21,6 @@ ElementType acc1WinArray_w[Buffsize] = {0};
 ElementType acc2WinArray_w[Buffsize] = {0};
 float weights[Buffsize] = {0.05,0.95};
 
-
 /**
  * @para 用于检测人体是否静止
  */
@@ -52,11 +51,22 @@ uint8_t debug_peak[2] = {0}, found_peak[2] = {0};
 int debug_AOphase1=0, debug_AOoutput1=0, debug_AOpre1=0, debug_AOphase_offset1=0, debug_AOw1, debug_AOphasePre1;
 int debug_AOphase2=0, debug_AOoutput2=0, debug_AOpre2=0, debug_AOphase_offset2=0, debug_AOw2, debug_AOphasePre2;
 int debug_AOIndex = 0;
-int debug_assisTorque = 0;					// 临时查看变量
+int debug_assisTorque1 = 0, debug_assisTorque2 = 0;					// 临时查看变量
 float AOoffset[2] = {0};					// AO 相位补偿器
 
 
 extern int16_t delaySwitch[2];
+
+
+extern float floatabs(float x);
+#define AssisTor 0.1
+#define RightTorRatio 3	// assist gain 
+#define D_area 2.0		// 2.0			// for eliminate chattering
+#define W_area 2.0		// 1.0
+#define MAX_D_area 50.0	// for safety
+float k = 0.0;
+float K = 0.0;
+
 int main(void)
 {
 	Core_Config();
@@ -154,7 +164,7 @@ int main(void)
 //			}
 		}
 		
-		/* 控制周期 2ms x CONTROL_PERIOD  */
+		/* 控制周期 2ms x CONTROL_PERIOD */
 		if(inc % CONTROL_PERIOD == 0){
 			Interaction_force = GetFSRForce();
 			INTERFORCE_Monitor("F %d\t", Interaction_force);
@@ -189,9 +199,13 @@ int main(void)
 			}
 			
 			/* get phase */
+			k = AssisTor;
 			if(assive_mode[0] == POMODE){
 				phase[0] = PO_phase(hip1_d, hip1_w);
 				phase[0] = phase[0] + PI;
+				if(floatabs(hip1_d) < D_area || floatabs(hip1_w) < W_area || floatabs(hip1_d) > MAX_D_area){
+					k = 0.0;
+				}
 			}
 			else if(assive_mode[0] == AOMODE){
 				phase[0] = hip1.predictedBasicPhase - AOoffset[0];
@@ -201,7 +215,8 @@ int main(void)
 				while(1){ MSG_ERR(123, "assive_mode error\r\n", 123); }
 			}
 			
-			I1 = 0.4*sin(phase[0]);
+
+			I1 = k*sin(phase[0]);
 			set_I_direction(1,I1);
 			AssisMonitor("I1 %.2f\t",I1);
 			
@@ -229,9 +244,13 @@ int main(void)
 			}
 			
 			/* get phase */
+			K = 3*AssisTor;
 			if(assive_mode[1] == POMODE){
 				phase[1] = PO_phase(hip2_d, hip2_w);
 				phase[1] = -phase[1] + PI;
+				if(floatabs(hip2_d) < D_area || floatabs(hip2_w) < W_area || floatabs(hip2_d) > MAX_D_area){
+					K = 0.0;
+				}
 			}
 			else if(assive_mode[1] == AOMODE){
 				phase[1] = hip2.predictedBasicPhase - AOoffset[1];
@@ -241,13 +260,14 @@ int main(void)
 				while(1){ MSG_ERR(123, "assive_mode error\r\n", 123); }
 			}
 			
-			I2 = 1.5*sin(phase[1]);
+			I2 = K*sin(phase[1]);
 			set_I_direction(2,I2);
 			AssisMonitor("I2 %.2f\t",I2);
 			printf("\r\n");
 		}
 		
-			debug_assisTorque = 1000.0*I1;
+			debug_assisTorque1 = 1000.0*I1;
+			debug_assisTorque2 = 1000.0*I2;
 		
 			debug_hip1_d = (int)hip1_d;
 			debug_hip1_rawd = (int)hip1_rawd;

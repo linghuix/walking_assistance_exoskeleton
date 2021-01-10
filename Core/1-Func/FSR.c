@@ -37,7 +37,7 @@ void FSR_Init (void)
 
 
 /**
-  * @brief  Send force collect start command.
+  * @brief  Get raw force information. It is not calibrated and handled.
   */
 
 uint16_t GetFSRForce (void)
@@ -80,6 +80,5 @@ TEST FSRCollectExperiment(void)
 		HAL_Delay(20);
 	}
 }
-
 
 #endif
