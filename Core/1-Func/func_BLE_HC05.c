@@ -9,7 +9,7 @@
 void HC05_Init(void)
 {
 	MX_USART1_UART_Init();
-	printf("beginning...\r\n");
+	MSG("beginning...\r\n");
 }
 
 

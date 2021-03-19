@@ -5,21 +5,15 @@
   *****************************************************************************************************************
   * @file    FSR.c
   * @author  xlh 
-  * @data	 20201203
-  * @brief   FSR reader module. 
-  *			 https://detail.tmall.com/item.htm?spm=a230r.1.14.16.151511c5o5ST7Z&id=624056443324&ns=1&abbucket=1
+  * @data	 20210123
+  * @brief   FSR reader module through UART connector corresponding to self-made FSR detector.
+  *				
   *           + Initialization and de-initialization functions
-  *           + Analog read functions
-  *           + Digital read functions
+  *           + uart read functions
   */
 
 
 #define FSR_TEST
-
-#define FORCENUMMAX 1
-
-uint8_t FSRforce[FORCENUMMAX];						// force raw data(adc output) store 
-
 
 
 
@@ -30,8 +24,8 @@ uint8_t FSRforce[FORCENUMMAX];						// force raw data(adc output) store
 
 void FSR_Init (void)
 {
-	MX_ADC1_Init();
-	HAL_ADC_Start(&hadc1);                               //ADC
+	MX_USART1_UART_Init();
+	INF("fsr initing ... \r\n");
 	
 }
 
@@ -39,12 +33,17 @@ void FSR_Init (void)
 /**
   * @brief  Get raw force information. It is not calibrated and handled.
   */
-
+uint8_t cmd = 0x80;
+uint8_t rev[2] = {0};
 uint16_t GetFSRForce (void)
 {	
-    HAL_ADC_PollForConversion(&hadc1, 20);
- 
-	return (uint16_t)HAL_ADC_GetValue(&hadc1);
+	uint16_t force = 0;
+	HAL_UART_Transmit_IT(&huart1, &cmd, 1);
+	if(HAL_OK == HAL_UART_Receive(&huart1, rev, 2, 1)){
+		force = rev[1]<<8 |rev[0];
+	}
+	
+	return force;
 }
 
 
@@ -58,7 +57,7 @@ float GetFSROffset(void)
 {
 	
 	if(OffsetWindowsPosition){
-		printf("------------------ offset get --------------------\r\n");
+		TESTOUT("------------------ offset get --------------------\r\n");
 	}
 
 	return FSROffset;
@@ -76,7 +75,7 @@ TEST FSRCollectExperiment(void)
 	FSR_Init();
 	while(1){
 		FSR_force = GetFSRForce();
-		printf("%d\r\n", FSR_force);
+		TESTOUT("%d\r\n", FSR_force);
 		HAL_Delay(20);
 	}
 }

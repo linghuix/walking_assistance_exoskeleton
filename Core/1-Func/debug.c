@@ -125,7 +125,7 @@ int fgetc(FILE * F)		// Keil
 void debug_init(void)
 {
 	MX_USART1_UART_Init();
-	printf("debug initing ... \r\n");
+	MSG("debug initing ... \r\n");
 }
 
 /*
@@ -182,8 +182,8 @@ void debug_IRQ(void)
 		while(1){
 			i=50;
 			while(i--)
-				printf("%d , %d - send buffer test for skipping error possibility and speeding: in-%d-out-%d\r\n",i,HAL_GetTick(),debugBuffer.in,debugBuffer.out);
-			printf("delay 2000ms\r\n");
+				TESTOUT("%d , %d - send buffer test for skipping error possibility and speeding: in-%d-out-%d\r\n",i,HAL_GetTick(),debugBuffer.in,debugBuffer.out);
+			TESTOUT("delay 2000ms\r\n");
 			i = 100000000;
 			while(i--);
 		}
@@ -203,11 +203,11 @@ void debug_IRQ(void)
 		MSG_WAR(1,"send success", 54);
 	
 
-		/*scanf��printf*/
+		/*scanf printf*/
 		MSG("test scanf ... \r\nplease enter a num");
 		int x = 365;
 	  scanf("%d",&x);
-		printf("receive : %d\r\n",x);
+		MSG("receive : %d\r\n",x);
 
 		/*IT*/
 		MSG("please input one hex data\r\n");
