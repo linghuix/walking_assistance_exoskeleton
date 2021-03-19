@@ -9,6 +9,7 @@
 #define _FUNC_FUNC_BLE_HC05_H_
 
 #include "conf_usart.h"
+#include "debug.h"
 
 #define HC05_huart huart1
 

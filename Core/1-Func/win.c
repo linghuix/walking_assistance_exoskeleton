@@ -1,5 +1,5 @@
 #include <win.h> 
-#define winTest(...) //printf(__VA_ARGS__)
+#define winTest(...) //MSG(__VA_ARGS__)
 //´´½¨
 void WinBuffer(WINp winbuffer, ElementType *data,int size)
 	{
@@ -55,9 +55,9 @@ void print(WINp winbuffer)
     uint16_t index = winbuffer->in;
     for(uint16_t i=0; i<winbuffer->length; i++){
 		index = getPreIndex(index,winbuffer->length);
-        printf("\t%d/%.2f",index , winbuffer->data[index]);
+        TESTOUT("\t%d/%.2f",index , winbuffer->data[index]);
     }
-    printf("\r\n");
+    TESTOUT("\r\n");
 }
 
 float AvergeWin(WINp winbuffer, float *weight, int size)

@@ -80,7 +80,7 @@ void set_I_direction(uint8_t node, float I)
 		}
 		setPWM_2(dutyfactor);
 	}
-	//printf("f2 - %.2f, %.2f \r\n\r\n",dutyfactor,I);
+	//TESTOUT("f2 - %.2f, %.2f \r\n\r\n",dutyfactor,I);
 	
 }
 

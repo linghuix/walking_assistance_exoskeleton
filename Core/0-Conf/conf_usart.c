@@ -159,7 +159,7 @@ void MX_USART2_UART_Init(void)
   huart2.Init.OverSampling = UART_OVERSAMPLING_16;
   if (HAL_MultiProcessor_Init(&huart2, 0, UART_WAKEUPMETHOD_IDLELINE) != HAL_OK)
   {
-    Error_Handler();
+    Error_Handler()
   }
 
 }
@@ -178,10 +178,13 @@ void MX_USART3_UART_Init(void)
   huart3.Init.OverSampling = UART_OVERSAMPLING_16;
   if (HAL_MultiProcessor_Init(&huart3, 0, UART_WAKEUPMETHOD_IDLELINE) != HAL_OK)
   {
-    Error_Handler();
+    Error_Handler()
   }
 
 }
+
+
+
 
 /*
  * author lhx
