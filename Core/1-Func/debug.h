@@ -12,32 +12,27 @@
 
 /* Definition of error and warning macros */
 /* -------------------------------------- */
-#	define MSG(...) printf (__VA_ARGS__)
+#	define MSG(...) //printf (__VA_ARGS__)
 
 
 /* Definition of MSG_ERR */
 /* --------------------- */
-#ifdef DEBUG_ERR_CONSOLE_ON
-#    define MSG_ERR(num, string, value) MSG("\r\n%s,%d : 0X%x %s 0X%x\r\n",__FILE__, __LINE__,num, string, value);
-#else
-#    define MSG_ERR(num, string, value)
-#endif
 
+#    define MSG_ERR(num, string, value) MSG("\r\n%s,%d : 0X%x %s 0X%x\r\n",__FILE__, __LINE__,num, string, value);
 
 /* Definition of MSG_WAR */
 /* --------------------- */
-#ifdef DEBUG_WAR_CONSOLE_ON
-#    define MSG_WAR(num, string, value) MSG("\r\n%s,%d : 0X%x %s 0X%x \r\n",__FILE__, __LINE__,num, string, value);
-#else
-#    define MSG_WAR(num, string, value)
-#endif
 
+#    define MSG_WAR(num, string, value) MSG("\r\n%s,%d : 0X%x %s 0X%x \r\n",__FILE__, __LINE__,num, string, value);
+
+#define INF(...) 	//MSG(__VA_ARGS__)
 #define IMUMonitor(...) 	//MSG(__VA_ARGS__)
 #define AOMonitor(...) 		//MSG(__VA_ARGS__)
 #define POMonitor(...) 		//MSG(__VA_ARGS__)
 #define INTERFORCE_Monitor(...) 		MSG(__VA_ARGS__)
 #define AssisMonitor(...) 	//MSG(__VA_ARGS__)
-#define ERROR(s,...)		printf("#ERROR %d# ",s);MSG(__VA_ARGS__);printf("\t--%s,%d\r\n",__FILE__, __LINE__)
+#define ERROR(s,...)		MSG("#ERROR %d# ",s);MSG(__VA_ARGS__);MSG("\t--%s,%d\r\n",__FILE__, __LINE__)
+#define TESTOUT(...)		MSG(__VA_ARGS__)
 
 struct Buffer{
 	char data[BufferSize];
