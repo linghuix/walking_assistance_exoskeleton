@@ -44,8 +44,8 @@ void USART_Hardware_Init(UART_HandleTypeDef* uartHandle)
     if(uartHandle->Instance==USART1)
     {
 		/*
-		UART1 TX���� PA9
-		UART1 RX���� PA10
+		UART1 TX - PA9
+		UART1 RX - PA10
 		*/
 		__HAL_RCC_USART1_CLK_ENABLE();
 		__HAL_RCC_GPIOA_CLK_ENABLE();
@@ -58,12 +58,12 @@ void USART_Hardware_Init(UART_HandleTypeDef* uartHandle)
 
 		GPIO_InitStruct.Pin = GPIO_PIN_10;
 		GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
 		GPIO_InitStruct.Pull = GPIO_NOPULL;
 		HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
 		GPIO_InitStruct.Pin = GPIO_PIN_9;
 		GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
 		HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
     }

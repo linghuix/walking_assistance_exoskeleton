@@ -21,7 +21,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f1xx_it.h"
-
+#include "func_BLE_HC05.h"
 
 /******************************************************************************/
 /*           Cortex-M3 Processor Interruption and Exception Handlers          */ 
@@ -150,7 +150,9 @@ void SysTick_Handler(void)
 */
 void USART1_IRQHandler(void)
 {
-  HAL_UART_IRQHandler(&huart1);//HAL���ṩ���жϴ�����
+	
+	HAL_UART_IRQHandler(&huart1);
+	IDLE_UART_IRQHandler(&huart1);
 //	debug_IRQ();
 }
 
@@ -159,10 +161,12 @@ void USART2_IRQHandler(void)
   HAL_UART_IRQHandler(&huart2);//HAL���ṩ���жϴ�����
 }
 
+
 void USART3_IRQHandler(void)
 {
   HAL_UART_IRQHandler(&huart3);//HAL���ṩ���жϴ�����
 }
+
 
 void TIM4_IRQHandler(void)
 {

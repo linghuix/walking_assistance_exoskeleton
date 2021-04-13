@@ -56,21 +56,22 @@ float AOoffset[2] = {0};						// AO 相位补偿器
 /* 助力模式 */
 extern int16_t delaySwitch[2];
 int8_t assive_mode[2] = {0};					// 当前助力模式
-int state[2] = {0};									// 0-stop 1-walking
+int state[2] = {0};								// 0-stop 1-walking
 
 /* 助力值计算 */
-#define AssisTor 0.6
-#define RightTorRatio 3	// assist gain 
+float AssisTor = 0.6;
+#define RightTorRatio 5.5	// 右侧的 assist gain 更大一些
 #define D_area 2.0		// 2.0			// for eliminate chattering
 #define W_area 2.0		// 1.0
 #define MAX_D_area 50.0	// for safety
 float k = 0,K = 0;
-
+	
 
 // Jscope 调试
 int debug_hip1_d, debug_hip1_rawd, debug_hip2_d, debug_hip2_rawd;
 int debug_hip1_w, debug_hip1_raww, debug_hip2_w, debug_hip2_raww;
-uint8_t debug_peak[2] = {0}, found_peak[2] = {0};
+uint8_t debug_peak[2] = {0,0};
+uint8_t found_peak[2] = {0,0};
 int debug_AOphase1=0, debug_AOoutput1=0, debug_AOpre1=0, debug_AOphase_offset1=0, debug_AOw1, debug_AOphasePre1;
 int debug_AOphase2=0, debug_AOoutput2=0, debug_AOpre2=0, debug_AOphase_offset2=0, debug_AOw2, debug_AOphasePre2;
 int debug_AOIndex = 0;
@@ -78,12 +79,11 @@ int debug_assisTorque1 = 0, debug_assisTorque2 = 0;					// 临时查看变量
 
 
 extern float floatabs(float x);
-
-
 int main(void)
 {
 	Core_Config();
 	Jlink_Init();
+	debug_init();
 	
 	FSR_Init();
 	
@@ -99,7 +99,6 @@ int main(void)
 	WinBuffer(&d1minwin_w, d1Win, 3);
 	WinBuffer(&d2minwin_w, d2Win, 3);
 	
-//	HC05_Init();
 	AO_Init(period[0]*dt, 1);
 	AO_Init(period[1]*dt, 2);
 	ECON_I_init();
@@ -110,13 +109,17 @@ int main(void)
 	Acc2_Start();
 	ECON_action();
 
-
 	INF("ABOUT ANGLE AND SPEED couterclock is postive from outside. 从外部看向电机侧");
 	INF("the acc1 of left hip - d w | the acc2 of right hip - d w | I1 ,I2\r\n");
 	
+	HC05_RcvCmd();
+	
+	/******* test code *******/
+	//  test_USART1_communication();
 	//	test_win_buff();
 	//	test_HC05_communication();
 	//	test_AOs();
+	
 	
 	while(1){
 
@@ -136,6 +139,7 @@ int main(void)
 			if(debug_peak[0] == 1){
 				found_peak[0] = 1;
 			}
+			
 			/* detect the stop state */
 
 			if(floatabs(hip1_w) < TH_W && floatabs(hip1_d) < TH_D){
@@ -167,6 +171,7 @@ int main(void)
 			}
 			
 			/* detect the stop state */
+			
 			if(floatabs(hip2_w) < TH_W && floatabs(hip2_d) < TH_D){
 				stopCounter[1]++;
 			}
@@ -246,7 +251,7 @@ int main(void)
 			}
 
 			I1 = k*sin(phase[0]);
-			set_I_direction(1,0);
+			set_I_direction(1,I1);
 //			set_I_direction(1,0);
 			AssisMonitor("I1 %.2f\t",I1);
 			}
@@ -349,5 +354,14 @@ int main(void)
 		
 			debug_AOphase_offset1 = 1000*phase[0]; 
 			debug_AOphase_offset2 = 1000*phase[1]; 
+	}
+
+}
+
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+	if(htim->Instance == TIM4){
+		inc++;
 	}
 }
