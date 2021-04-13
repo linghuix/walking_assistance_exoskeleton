@@ -28,7 +28,7 @@ void Acc2_Init(void)
 	MX_USART2_UART_Init();
 }
 
-uint8_t test_data[5] = {0x55,0x00,0x00,0x00,0x00};
+//uint8_t test_data[5] = {0x55,0x00,0x00,0x00,0x00};
 
 void Acc2_Start(void)
 {
@@ -45,13 +45,15 @@ void Acc1_Start(void)
 }
 
 
-uint8_t state1 = 0;
-uint8_t state2 = 0;
+uint8_t state1 = 0,state2 = 0;
+extern uint8_t CommandReceive[20], receivebyte, length;
+extern uint8_t hardtest_CommandReceive[20], hardtest_receivebyte, hardtest_length;
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 	if(huart->Instance == USART1){
-		//HAL_UART_Receive_IT(&huart1, acc1, 6);
-		HAL_UART_Transmit_IT(&huart1, test_data, 5);
+		hardtest_CommandReceive[hardtest_length] = hardtest_receivebyte;
+		hardtest_length++;
+		HAL_UART_Receive_IT(&huart1, &hardtest_receivebyte, 1);
 	}
 	if(huart->Instance == acc1_uart){
 	    //imu_2_flag = 1;
@@ -123,7 +125,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 		}
 	}
 }
-
 
 
 

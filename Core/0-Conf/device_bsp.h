@@ -16,7 +16,7 @@
 #define TEST_ON
 
 
-#define MSG_deviceTest(...) printf (__VA_ARGS__)
+#define MSG_deviceTest(...) //printf (__VA_ARGS__)
 
 
 #define Error_Handler() while(1);

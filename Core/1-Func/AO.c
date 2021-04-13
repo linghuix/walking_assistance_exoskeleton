@@ -1,6 +1,6 @@
 #include "AO.h"
 
-#define PREDICT_TIME 4	// 4*50ms ahead
+int PREDICT_TIME = 4;	// 4*50ms ahead
 #define GAIN 5
 
 extern uint16_t period[2];

@@ -3,10 +3,11 @@
 */
 #include "debug.h"
 
+//#define DEBUG_TEST
 
 //G T R Vt
 
-//�������������.c�ļ������
+
 extern UART_HandleTypeDef huart1;
 uint8_t ch_print;
 uint8_t ch_scanf;
@@ -17,10 +18,9 @@ struct Buffer debugBuffer = {"inital",0,0};
  * author lhx
  * May 13, 2020
  *
- * @brief : 向buff中添加数据，buffer满了则返回0
+ * @brief : put data to buffer, buffer is FULL return 0.
  * Window > Preferences > C/C++ > Editor > Templates.
  */
-
 uint8_t addDebugBuffer(char c)
 {
 	if((debugBuffer.in+1)%BufferSize == debugBuffer.out)
@@ -40,7 +40,7 @@ char getDebugBuffer(void)
 {
 	char c;
 	if(debugBuffer.in == debugBuffer.out)
-			return 0;
+		return 0;
 	c = debugBuffer.data[debugBuffer.out++];
 	debugBuffer.out = (debugBuffer.out)%BufferSize;
 	return c;
@@ -70,7 +70,7 @@ int _write(int file, char *ptr, int len)
 #endif
 
 
-/*
+/**
  * author lhx
  * May 29, 2020
  *
@@ -78,14 +78,14 @@ int _write(int file, char *ptr, int len)
  * 	注意使用前需要开启microLib
  * Window > Preferences > C/C++ > Editor > Templates.
  */
-#define KEIL
-#define BUFF_Printf 
 #ifdef KEIL
 #ifdef BUFF_Printf
 int fputc(int ch, FILE * f)		// Keil
 {
 	addDebugBuffer(ch);
-	__HAL_UART_ENABLE_IT(&PORT, UART_IT_TXE);
+	if(huart1.Instance == USART1){		// waiting for usart1 initalization. so that printf can be used before usart really work.
+		__HAL_UART_ENABLE_IT(&PORT, UART_IT_TXE);
+	}
 	return ch;
 }
 
@@ -100,8 +100,8 @@ int fgetc(FILE * F)
 #ifdef NO_BUFF_Printf
 int fputc(int ch, FILE * f)		// Keil
 {
-	while((USART1->SR&0X40)==0);//循环发送,直到发送完毕
-		USART1->DR = (uint8_t) ch;
+	while((USART1->SR&0X40)==0){};//循环发送,直到发送完毕
+	USART1->DR = (uint8_t) ch;
 	return ch;
 }
 
@@ -113,7 +113,7 @@ int fgetc(FILE * F)		// Keil
 #endif
 
 #endif
-/*
+/**
  * author lhx
  * May 13, 2020
  *
@@ -124,16 +124,16 @@ int fgetc(FILE * F)		// Keil
 
 void debug_init(void)
 {
+
 	MX_USART1_UART_Init();
-	MSG("debug initing ... \r\n");
+
 }
 
-/*
+/**
  * author lhx
  * May 13, 2020
  *
- * @brief : 中断处理函数
- * Window > Preferences > C/C++ > Editor > Templates.
+ * @brief : interrupt service function
  */
 
 void debug_IRQ(void)
@@ -169,10 +169,11 @@ void debug_IRQ(void)
   ******************************************************************************
   */
 //@@@@@@@@@@@@@T@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ test
+#ifdef DEBUG_TEST
 
 	#include "main.h"
 
-	TEST test_SpeedOfBuffer_printf(void)
+	void test_SpeedOfBuffer_printf(void)
 	{
 		Core_Config();
 		tick_init(1000000);
@@ -182,36 +183,54 @@ void debug_IRQ(void)
 		while(1){
 			i=50;
 			while(i--)
-				TESTOUT("%d , %d - send buffer test for skipping error possibility and speeding: in-%d-out-%d\r\n",i,HAL_GetTick(),debugBuffer.in,debugBuffer.out);
-			TESTOUT("delay 2000ms\r\n");
+				printf("%d , %d - send buffer test for skipping error possibility and speeding: in-%d-out-%d\r\n",i,HAL_GetTick(),debugBuffer.in,debugBuffer.out);
+			printf("delay 2000ms\r\n");
 			i = 100000000;
 			while(i--);
 		}
 	}
 
-	uint8_t test_buffRX[10];
-	TEST test_printf(void)
+	/**
+      * @brief  Test the function of the uart receive and transmit.
+      * @note pay attention to that 
+	  *		  debug must define NO_BUFF_Printf in debug.h 
+	  *		  AND CANNOT USE MSG for it can only used in BUFF_Printf
+	  * 	  USART1 interrupt must be use HAL_UART_IRQHandler(&huart1);
+	  *       In theory, we can use scanf() but we haven't achieve this.
+	  *		  
+      */
+    
+	uint8_t test_buffRX[20];
+	uint8_t test_buffTX[100];
+	void test_printf(void)
 	{
-		Core_Config();
-		debug_init();
+//		Core_Config();
+//		debug_init();
 
 		uint8_t test_data[] = "hello word!\r\n";
 		HAL_UART_Transmit_IT(&huart1, test_data, sizeof(test_data));
-		HAL_Delay(2);
-		
-		/* */
-		MSG_WAR(1,"send success", 54);
-	
+		HAL_Delay(200);	//wait for transmit finish.
+			
 
 		/*scanf printf*/
-		MSG("test scanf ... \r\nplease enter a num");
+		uint8_t test_data1[] = "test scanf ... \r\nplease enter a num \r\n";
+		HAL_UART_Transmit_IT(&huart1, test_data1, sizeof(test_data1));
 		int x = 365;
-	  scanf("%d",&x);
-		MSG("receive : %d\r\n",x);
-
+		HAL_Delay(1000);	//wait for transmit finish.
+//		scanf("%d",&x);
+		
+		sprintf((char *)test_buffTX, "receive : %d\r\n",x);
+		HAL_UART_Transmit_IT(&huart1, test_buffTX, sizeof(test_buffTX));
+		HAL_Delay(200);	
+		
 		/*IT*/
-		MSG("please input one hex data\r\n");
-		MSG("it will return 0x0A, that is the last char when you input to scanf function\r\n");
+		sprintf((char *)test_buffTX,"please input one hex data\r\n");
+		HAL_UART_Transmit_IT(&huart1, test_buffTX, sizeof(test_buffTX));
+		HAL_Delay(200);	
+		sprintf((char *)test_buffTX,"it will return 0x0A, that is the last char when you input to scanf function\r\n");
+		HAL_UART_Transmit_IT(&huart1, test_buffTX, sizeof(test_buffTX));
+		HAL_Delay(200);	
+		
 		for(int i; i<10; i++){
 			test_buffRX[i] = i;
 		}
@@ -225,15 +244,15 @@ void debug_IRQ(void)
 		for(int i=0; i<2 ; i++){
 			msg[i] = test_buffRX[i];
 		}
-			HAL_UART_Transmit_IT(&huart1, msg, 2);
-			HAL_UART_Receive_IT(&huart1, test_buffRX, 2);
+		HAL_UART_Transmit_IT(&huart1, msg, 2);
+		HAL_UART_Receive_IT(&huart1, test_buffRX, 2);
 	}
 	
 	
-//	void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-//	{
-//		if(huart->Instance==USART1){
-//			test_RXTX_callback();
-//		}
-//	}
-
+	void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+	{
+		if(huart->Instance==USART1){
+			test_RXTX_callback();
+		}
+	}
+#endif
