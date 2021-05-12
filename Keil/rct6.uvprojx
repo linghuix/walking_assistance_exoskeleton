@@ -13,16 +13,16 @@
       <pCCUsed>5060061::V5.06 update 1 (build 61)::ARMCC</pCCUsed>
       <TargetOption>
         <TargetCommonOption>
-          <Device>STM32F103ZE</Device>
+          <Device>STM32F103RE</Device>
           <Vendor>STMicroelectronics</Vendor>
           <PackID>Keil.STM32F1xx_DFP.2.3.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IROM(0x08000000,0x00080000) IRAM(0x20000000,0x00010000) CPUTYPE("Cortex-M3") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
-          <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0STM32F10x_512 -FS08000000 -FL080000 -FP0($$Device:STM32F103ZE$Flash\STM32F10x_512.FLM))</FlashDriverDll>
+          <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0STM32F10x_512 -FS08000000 -FL080000 -FP0($$Device:STM32F103RE$Flash\STM32F10x_512.FLM))</FlashDriverDll>
           <DeviceId>0</DeviceId>
-          <RegisterFile>$$Device:STM32F103ZE$Device\Include\stm32f10x.h</RegisterFile>
+          <RegisterFile>$$Device:STM32F103RE$Device\Include\stm32f10x.h</RegisterFile>
           <MemoryEnv></MemoryEnv>
           <Cmp></Cmp>
           <Asm></Asm>
@@ -32,7 +32,7 @@
           <SLE66CMisc></SLE66CMisc>
           <SLE66AMisc></SLE66AMisc>
           <SLE66LinkerMisc></SLE66LinkerMisc>
-          <SFDFile>$$Device:STM32F103ZE$SVD\STM32F103xx.svd</SFDFile>
+          <SFDFile>$$Device:STM32F103RE$SVD\STM32F103xx.svd</SFDFile>
           <bCustSvd>0</bCustSvd>
           <UseEnv>0</UseEnv>
           <BinPath></BinPath>
@@ -137,7 +137,7 @@
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -639,6 +639,16 @@
               <FileName>func_adc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\1-Func\func_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>Odrive.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\1-Func\Odrive.c</FilePath>
+            </File>
+            <File>
+              <FileName>func_can.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\1-Func\func_can.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -112,7 +112,7 @@ int main(void)
 	INF("ABOUT ANGLE AND SPEED couterclock is postive from outside. 从外部看向电机侧");
 	INF("the acc1 of left hip - d w | the acc2 of right hip - d w | I1 ,I2\r\n");
 	
-	HC05_RcvCmd();
+//	HC05_RcvCmd();
 	
 	/******* test code *******/
 	//  test_USART1_communication();
@@ -141,7 +141,7 @@ int main(void)
 			}
 			
 			/* detect the stop state */
-
+			
 			if(floatabs(hip1_w) < TH_W && floatabs(hip1_d) < TH_D){
 				stopCounter[0]++;
 			}
@@ -152,7 +152,7 @@ int main(void)
 				stopFlag[0] = 1;
 			}
 		}
-
+		
 		/* 右髋关节 加速度信号采集  采样周期约100Hz以上 */
 		if(flag_11 ==1&&flag_22 == 1&&flag_33 == 1){
 			flag_11=0;flag_22=0;flag_33=0;

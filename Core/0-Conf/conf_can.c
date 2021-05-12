@@ -36,6 +36,59 @@ void CANHandle_Init(uint32_t mode)
 	}
 }
 
+/**
+  * @brief CAN Function Initialization. bps set and mode set
+  * @param mode: CAN_MODE_NORMAL/CAN_MODE_LOOPBACK
+  * @retval None
+  * @note  bps: 36M/(SyncJumpWidth+TimeSeg1+TimeSeg2)/Prescaler		36M/(3+8+1)/6 = 500 KHz
+  */
+void CANHandle_Init_500K(uint32_t mode)
+{
+	hcan1.Instance = CAN1;
+	hcan1.Init.Prescaler = 6;
+	hcan1.Init.Mode = mode;
+	hcan1.Init.SyncJumpWidth = CAN_SJW_1TQ;
+	hcan1.Init.TimeSeg1 = CAN_BS1_8TQ;
+	hcan1.Init.TimeSeg2 = CAN_BS2_3TQ;
+	hcan1.Init.TTCM = DISABLE;      //时间触发模式 - 时间戳
+	hcan1.Init.ABOM = DISABLE;      //自动总线关闭管理模式
+	hcan1.Init.AWUM = DISABLE;      //自动唤醒模式
+	hcan1.Init.NART = DISABLE;      //禁止自动重发模式
+	hcan1.Init.RFLM = DISABLE;      //接收FIFO锁定模式
+	hcan1.Init.TXFP = ENABLE;       //发送FIFO顺序优先级
+	if (HAL_CAN_Init(&hcan1) != HAL_OK)
+	{
+		Error_Handler()
+		;
+	}
+}
+/**
+  * @brief CAN Function Initialization. bps set and mode set
+  * @param mode: CAN_MODE_NORMAL/CAN_MODE_LOOPBACK
+  * @retval None
+  * @note  bps: 36M/(SyncJumpWidth+TimeSeg1+TimeSeg2)/Prescaler		36M/(3+8+1)/12 = 250 KHz
+  */
+void CANHandle_Init_250K(uint32_t mode)
+{
+	hcan1.Instance = CAN1;
+	hcan1.Init.Prescaler = 12;
+	hcan1.Init.Mode = mode;
+	hcan1.Init.SyncJumpWidth = CAN_SJW_1TQ;
+	hcan1.Init.TimeSeg1 = CAN_BS1_8TQ;
+	hcan1.Init.TimeSeg2 = CAN_BS2_3TQ;
+	hcan1.Init.TTCM = DISABLE;      //时间触发模式 - 时间戳
+	hcan1.Init.ABOM = DISABLE;      //自动总线关闭管理模式
+	hcan1.Init.AWUM = DISABLE;      //自动唤醒模式
+	hcan1.Init.NART = DISABLE;      //禁止自动重发模式
+	hcan1.Init.RFLM = DISABLE;      //接收FIFO锁定模式
+	hcan1.Init.TXFP = ENABLE;       //发送FIFO顺序优先级
+	if (HAL_CAN_Init(&hcan1) != HAL_OK)
+	{
+		Error_Handler()
+		;
+	}
+}
+
 void CAN_ITEnable()
 {
 	if (HAL_CAN_ActivateNotification(&hcan1,
@@ -74,7 +127,7 @@ void CAN_ITDISEnable()
 
 void MX_CAN1_Init(uint32_t mode)
 {
-	CANHandle_Init(mode);
+	CANHandle_Init_250K(mode);
 	CanFilter_Init(&hcan1, CAN_FILTER_FIFO0);
 	CAN_ITEnable();
 }

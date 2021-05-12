@@ -24,7 +24,11 @@
 
 void FSR_Init (void)
 {
-	MX_USART1_UART_Init();
+////	串口收取力矩信号
+////	MX_USART1_UART_Init();
+	MX_ADC1_Init();
+	HAL_ADC_Start(&hadc1);                               //ADC
+	
 	INF("fsr initing ... \r\n");
 	
 }
@@ -37,13 +41,21 @@ uint8_t cmd = 0x80;
 uint8_t rev[2] = {0};
 uint16_t GetFSRForce (void)
 {	
-	uint16_t force = 0;
-	HAL_UART_Transmit_IT(&huart1, &cmd, 1);
-	if(HAL_OK == HAL_UART_Receive(&huart1, rev, 2, 1)){
-		force = rev[1]<<8 |rev[0];
+////	uint16_t force = 0;
+////	HAL_UART_Transmit_IT(&huart1, &cmd, 1);
+////	if(HAL_OK == HAL_UART_Receive(&huart1, rev, 2, 1)){
+////		force = rev[1]<<8 |rev[0];
+////	}
+////	
+////	return force;
+	uint16_t data = 0;
+	for (int i=0;i<4;i++){
+		HAL_ADC_PollForConversion(&hadc1, 20);
+		data += (uint16_t)HAL_ADC_GetValue(&hadc1);
 	}
 	
-	return force;
+ 
+	return (uint16_t)data/4;
 }
 
 
