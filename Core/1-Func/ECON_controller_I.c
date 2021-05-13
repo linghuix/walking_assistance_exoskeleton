@@ -1,4 +1,5 @@
 #include "ECON_controller_I.h"
+
 #define controller_TIM TIM4
 #define controller_HTIM htim4
 
@@ -12,7 +13,7 @@ void ECON_action(void)
 }
 
 uint8_t ID_lefthip_odriver = 0x1;
-uint8_t ID_righthip_odriver = 0x1;
+uint8_t ID_righthip_odriver = 0x2;
 void ECON_I_init(void)
 {
 ////	MX_GPIO_output_Init();
@@ -22,6 +23,7 @@ void ECON_I_init(void)
 	
 	HAL_Delay(10);
 	Current_conf(ID_righthip_odriver);
+	
 	HAL_Delay(10);
 	Current_conf(ID_lefthip_odriver);
 }
@@ -50,7 +52,7 @@ void setPWM_2(float dutyfactor)
 
 void set_I_direction(uint8_t node, float I)
 {
-	float max_I = 3;
+	float max_I = 0.0;
 	float dutyfactor;
 	uint8_t isclk;
 	if(I > 0){

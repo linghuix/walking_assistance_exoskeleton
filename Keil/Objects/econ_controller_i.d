@@ -36,3 +36,14 @@
 .\objects\econ_controller_i.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h
 .\objects\econ_controller_i.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\econ_controller_i.o: ..\Core\0-Conf\conf_gpio.h
+.\objects\econ_controller_i.o: ..\Core\1-Func\Odrive.h
+.\objects\econ_controller_i.o: ..\Core\0-Conf\BSP.h
+.\objects\econ_controller_i.o: ..\Core\0-Conf\conf_usart.h
+.\objects\econ_controller_i.o: ..\Core\0-Conf\conf_rtc.h
+.\objects\econ_controller_i.o: ..\Core\0-Conf\conf_Jlink.h
+.\objects\econ_controller_i.o: ..\Core\0-Conf\conf_can.h
+.\objects\econ_controller_i.o: ..\Core\0-Conf\conf_global.h
+.\objects\econ_controller_i.o: ..\Core\0-Conf\conf_adc.h
+.\objects\econ_controller_i.o: ..\Core\1-Func\debug.h
+.\objects\econ_controller_i.o: ..\Core\1-Func\func_can.h
+.\objects\econ_controller_i.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\string.h

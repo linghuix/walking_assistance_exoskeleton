@@ -46,6 +46,9 @@
 .\objects\ao.o: ..\Core\1-Func\debug.h
 .\objects\ao.o: ..\Core\1-Func\ECON_controller_I.h
 .\objects\ao.o: ..\Core\0-Conf\conf_gpio.h
+.\objects\ao.o: ..\Core\1-Func\Odrive.h
+.\objects\ao.o: ..\Core\1-Func\func_can.h
+.\objects\ao.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\string.h
 .\objects\ao.o: ..\Core\1-Func\func_accelerate.h
 .\objects\ao.o: ..\Core\1-Func\func_BLE_HC05.h
 .\objects\ao.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\math.h

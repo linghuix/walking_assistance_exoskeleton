@@ -315,8 +315,8 @@ int main(void)
 			I2 = K * sin(phase[1]);
 //			set_I_direction(2,I2);
 //			set_I_direction(2,0.55);
-			if(-I2 < 0){  set_I_direction(2,-I2-0.30);}
-			else{	set_I_direction(2,-I2+0.55);}
+			if(-I2 < 0){  set_I_direction(2,I2);}
+			else{	set_I_direction(2,I2);}
 //			set_I_direction(2,0);
 
 			AssisMonitor("I2 %.2f\t",I2);

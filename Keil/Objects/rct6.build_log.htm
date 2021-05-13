@@ -22,15 +22,21 @@ Dialog DLL:      TCM.DLL V1.14.8.0
  
 <h2>Project:</h2>
 D:\10-Chip_learning\0-硬件\3-motor\电机控制项目\助力外骨骼控制\code\assistive_exso\Keil\rct6.uvprojx
-Project File Date:  04/15/2021
+Project File Date:  05/12/2021
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 1 (build 61)', folder: 'G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin'
 Build target 'Target 1'
-compiling func_can.c...
+compiling ECON_controller_I.c...
+..\Core\1-Func\ECON_controller_I.c(56): warning:  #177-D: variable "dutyfactor" was declared but never referenced
+  	float dutyfactor;
+..\Core\1-Func\ECON_controller_I.c(57): warning:  #550-D: variable "isclk" was set but never used
+  	uint8_t isclk;
+..\Core\1-Func\ECON_controller_I.c: 2 warnings, 0 errors
+compiling main.c...
 linking...
-Program Size: Code=23748 RO-data=1020 RW-data=472 ZI-data=3688  
-".\Objects\rct6.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=23452 RO-data=1020 RW-data=472 ZI-data=3688  
+".\Objects\rct6.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
 
