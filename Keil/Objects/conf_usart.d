@@ -34,3 +34,5 @@
 .\objects\conf_usart.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h
 .\objects\conf_usart.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h
 .\objects\conf_usart.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\conf_usart.o: ..\Core\1-Func\debug.h
+.\objects\conf_usart.o: ..\Core\0-Conf\conf_usart.h

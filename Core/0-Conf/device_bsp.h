@@ -11,7 +11,7 @@
 
 #include "stm32f1xx_hal.h"
 #include "stdio.h"
-
+#include "debug.h"
 #define TEST void
 #define TEST_ON
 
@@ -19,6 +19,6 @@
 #define MSG_deviceTest(...) //printf (__VA_ARGS__)
 
 
-#define Error_Handler() while(1);
+#define Error_Handler() ERROR(000,"");//while(1);
 
 #endif /* BSP_DEVICE_BSP_H_ */

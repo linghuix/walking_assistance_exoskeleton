@@ -36,4 +36,5 @@
 .\objects\func_ble_hc05.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h
 .\objects\func_ble_hc05.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\func_ble_hc05.o: ..\Core\1-Func\debug.h
+.\objects\func_ble_hc05.o: ..\Core\0-Conf\conf_usart.h
 .\objects\func_ble_hc05.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\stdlib.h

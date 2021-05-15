@@ -6,7 +6,7 @@
 
 /* 控制周期 */
 uint32_t inc=0;							// 2ms 周期计时器
-int CONTROL_PERIOD = 50/2;				// ms 实际控制周期 CONTROL_PERIOD*2 ms
+int CONTROL_PERIOD = 200/2;				// ms 实际控制周期 CONTROL_PERIOD*2 ms
 float dt = 0.050;						// 控制周期 50 ms
 
 
@@ -59,8 +59,8 @@ int8_t assive_mode[2] = {0};					// 当前助力模式
 int state[2] = {0};								// 0-stop 1-walking
 
 /* 助力值计算 */
-float AssisTor = 0.6;
-#define RightTorRatio 5.5	// 右侧的 assist gain 更大一些
+float AssisTor = 1;
+#define RightTorRatio 1	// 右侧的 assist gain 更大一些
 #define D_area 2.0		// 2.0			// for eliminate chattering
 #define W_area 2.0		// 1.0
 #define MAX_D_area 50.0	// for safety
@@ -85,9 +85,15 @@ int main(void)
 	Jlink_Init();
 	debug_init();
 	
+	current_control();
+	
+	printf("good luck!!!!\r\n");
+//	current_control();
+//	FSRCollectExperiment();
+	
 	FSR_Init();
 	
-	/*初始化*/
+	//初始化
 	Acc1_Init();
 	Acc2_Init();
 	WinBuffer(&acc1win_d, acc1WinArray_d, Buffsize);
@@ -95,26 +101,27 @@ int main(void)
 	WinBuffer(&acc1win_w, acc1WinArray_w, Buffsize);
 	WinBuffer(&acc2win_w, acc2WinArray_w, Buffsize);
 	
-	/*峰值检测*/
+	// 峰值检测
 	WinBuffer(&d1minwin_w, d1Win, 3);
 	WinBuffer(&d2minwin_w, d2Win, 3);
 	
 	AO_Init(period[0]*dt, 1);
 	AO_Init(period[1]*dt, 2);
+	MX_TIM_CounterInterrupt(TIM4, 50000, 100);
+	
 	ECON_I_init();
 
-
-	/*启动外设*/
+	// 启动外设
 	Acc1_Start();
 	Acc2_Start();
 	ECON_action();
 
-	INF("ABOUT ANGLE AND SPEED couterclock is postive from outside. 从外部看向电机侧");
+	INF("ABOUT ANGLE AND SPEED couterclock is postive from outside. 从外部看向电机侧\r\n");
 	INF("the acc1 of left hip - d w | the acc2 of right hip - d w | I1 ,I2\r\n");
 	
 //	HC05_RcvCmd();
 	
-	/******* test code *******/
+	//////////////////////////////////////////// test code 
 	//  test_USART1_communication();
 	//	test_win_buff();
 	//	test_HC05_communication();
@@ -123,7 +130,7 @@ int main(void)
 	
 	while(1){
 
-		/* 左髋关节 加速度信号采集  采样周期约100Hz以上 */
+		// 左髋关节 加速度信号采集  采样周期约100Hz以上 
 		if(flag_1 ==1&&flag_2 == 1&&flag_3 == 1){
 			flag_1=0;flag_2=0;flag_3=0;
 			hip1_rawd = -angle1[1]/32768.0*180;	hip1_raww = -w1[1]/32768.0*2000;
@@ -140,7 +147,7 @@ int main(void)
 				found_peak[0] = 1;
 			}
 			
-			/* detect the stop state */
+			// detect the stop state 
 			
 			if(floatabs(hip1_w) < TH_W && floatabs(hip1_d) < TH_D){
 				stopCounter[0]++;
@@ -153,7 +160,7 @@ int main(void)
 			}
 		}
 		
-		/* 右髋关节 加速度信号采集  采样周期约100Hz以上 */
+		// 右髋关节 加速度信号采集  采样周期约100Hz以上 
 		if(flag_11 ==1&&flag_22 == 1&&flag_33 == 1){
 			flag_11=0;flag_22=0;flag_33=0;
 			hip2_rawd = angle2[1]/32768.0*180;	hip2_raww = w2[2]/32768.0*2000;
@@ -170,7 +177,7 @@ int main(void)
 				found_peak[1] = 1;
 			}
 			
-			/* detect the stop state */
+			// detect the stop state 
 			
 			if(floatabs(hip2_w) < TH_W && floatabs(hip2_d) < TH_D){
 				stopCounter[1]++;
@@ -183,26 +190,26 @@ int main(void)
 			}
 		}
 		
-		/* 控制周期 2ms x CONTROL_PERIOD */
+		// 控制周期 2ms x CONTROL_PERIOD 
 		if(inc % CONTROL_PERIOD == 0){
 			Interaction_force = GetFSRForce();
 			INTERFORCE_Monitor("F %d\t", Interaction_force);
 			
-			IMUMonitor("acc1rawd\t%.2f\tw\t%.2f\t",hip1_rawd,hip1_raww);
-			IMUMonitor("acc2rawd\t%.2f\tw\t%.2f\t",hip2_rawd,hip2_raww);
+//			IMUMonitor("acc1rawd\t%.2f\tw\t%.2f\t",hip1_rawd,hip1_raww);
+//			IMUMonitor("acc2rawd\t%.2f\tw\t%.2f\t",hip2_rawd,hip2_raww);
 			IMUMonitor("%.2f\t%.2f\t",hip1_d,hip1_w);
 			IMUMonitor("%.2f\t%.2f\t",hip2_d,hip2_w);
 			
 			Aoindex++;	// 控制周期的序号
 			debug_AOIndex++; if( debug_AOIndex > 100 ){ debug_AOIndex = 0;}//FOR TEST
 			
-			/**
-				@name 左 
-			*/
+			
+			//	@name 左 
+			
 			{
 			AO(hip1_d,1);
 			
-			/* summit detect and period predict*/
+			// summit detect and period predict
 //			peak_delay_time[0]--;
 			if(found_peak[0] == 1){										// 检测峰值，估计人体步态周期并记录需要补偿的相位值
 //				if( peak_delay_time[0] <= 0 ){
@@ -221,7 +228,7 @@ int main(void)
 //				stopFlag[0]=0;
 //			}
 			
-			/* get phase */
+			// get phase 
 			k = AssisTor;
 			if(assive_mode[0] == POMODE){
 				phase[0] = PO_phase(hip1_d, hip1_w);
@@ -252,45 +259,36 @@ int main(void)
 
 			I1 = k*sin(phase[0]);
 			set_I_direction(1,I1);
-//			set_I_direction(1,0);
+
 			AssisMonitor("I1 %.2f\t",I1);
 			}
 			
-			/**
-				@name 右 
-			*/
+			
+			//	@name 右 
+			
 			{
 			AO(hip2_d,2);
 			
-			/* Summit Detect */
+			// Summit Detect 
 //			peak_delay_time[1]--;
 			if(found_peak[1] == 1){							// 检测峰值，估计人体步态周期并记录需要补偿的相位值
-//				if( peak_delay_time[1] <= 0 ){
+				
 					period[1] = Aoindex - peaktimestamp[1];	// gait period get
 					peaktimestamp[1] = Aoindex;
 					AOoffset[1] = hip2.phase[1];
 					found_peak[1] = 0;
-//				peak_delay_time[1] = 10;
-//				}
+
 			}
 			
 			assive_mode[1] = switch_task( &hip2, hip2_d, hip2_w, 2);
      		assive_mode[1]=POMODE;
-
-//			if(stopFlag[1] == 1){
-//				assive_mode[1] = POMODE;
-//				stopFlag[1]=0;
-//			}
+		
 			
-			
-			/* get phase */
-			K = 2.0*AssisTor;
+			// get phase 
+			K = 1.0*AssisTor;
 			if(assive_mode[1] == POMODE){
 				phase[1] = PO_phase(hip2_d, hip2_w);
 				phase[1] = -phase[1] + PI;
-//				if(floatabs(hip2_d) < D_area || floatabs(hip2_w) < W_area || floatabs(hip2_d) > MAX_D_area){
-//					K = 0.0;
-//				}
 			}
 			else if(assive_mode[1] == AOMODE){
 				phase[1] = hip2.predictedBasicPhase - AOoffset[1];
@@ -313,11 +311,10 @@ int main(void)
 //			}
 			
 			I2 = K * sin(phase[1]);
-//			set_I_direction(2,I2);
-//			set_I_direction(2,0.55);
+
 			if(-I2 < 0){  set_I_direction(2,I2);}
 			else{	set_I_direction(2,I2);}
-//			set_I_direction(2,0);
+
 
 			AssisMonitor("I2 %.2f\t",I2);
 			

@@ -40,7 +40,7 @@ char getDebugBuffer(void)
 {
 	char c;
 	if(debugBuffer.in == debugBuffer.out)
-		return 0;
+			return 0;
 	c = debugBuffer.data[debugBuffer.out++];
 	debugBuffer.out = (debugBuffer.out)%BufferSize;
 	return c;
@@ -124,9 +124,9 @@ int fgetc(FILE * F)		// Keil
 
 void debug_init(void)
 {
-
+	MSG_BSTART("DEBUG","init");
 	MX_USART1_UART_Init();
-
+	MSG_ASTART("DEBUG","init");
 }
 
 /**

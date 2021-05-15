@@ -85,6 +85,7 @@ ADC_HandleTypeDef hadc3;
 
 void MX_ADC1_Init(void)
 {
+	MSG_BSTART("adc1","conf");
 	RCC_PeriphCLKInitTypeDef ADC_CLKInit;
 
 	ADC_CLKInit.PeriphClockSelection=RCC_PERIPHCLK_ADC;			//ADC clk
@@ -119,6 +120,8 @@ void MX_ADC1_Init(void)
   {
     Error_Handler()
   }
+  
+   MSG_ASTART("adc1","conf");
   
 }
 

@@ -12,20 +12,24 @@ void ECON_action(void)
 ////	HAL_TIM_PWM_Start(&controller_HTIM, TIM_CHANNEL_2);
 }
 
-uint8_t ID_lefthip_odriver = 0x1;
-uint8_t ID_righthip_odriver = 0x2;
+
+extern uint8_t ID_lefthip_odriver;
+extern uint8_t ID_righthip_odriver;
 void ECON_I_init(void)
 {
-////	MX_GPIO_output_Init();
+	MSG_BSTART("odrive","init");
 
-////	MX_TIM_PWMOUT(controller_TIM, 50000, 100);		// 1/500 s = 2 ms
-	Odrive_Init();
 	
-	HAL_Delay(10);
+//	MX_TIM_PWMOUT(controller_TIM, 50000, 100);		// 1/500 s = 2 ms
+	Odrive_Init(ID_righthip_odriver);
+	Odrive_Init(ID_lefthip_odriver);
+	
+//	HAL_Delay(10);
 	Current_conf(ID_righthip_odriver);
 	
-	HAL_Delay(10);
+//	HAL_Delay(10);
 	Current_conf(ID_lefthip_odriver);
+	MSG_ASTART("odrive","init");
 }
 
 
@@ -52,7 +56,7 @@ void setPWM_2(float dutyfactor)
 
 void set_I_direction(uint8_t node, float I)
 {
-	float max_I = 0.0;
+	float max_I = 1;
 	float dutyfactor;
 	uint8_t isclk;
 	if(I > 0){
@@ -67,7 +71,9 @@ void set_I_direction(uint8_t node, float I)
 	}
 	
 	if(node == 1){
-		ODrive_Set_Input_Current(ID_lefthip_odriver, I);	
+//		ODrive_Set_Input_Current(ID_righthip_odriver, I);
+//		ODrive_Set_Input_Current(ID_lefthip_odriver, I);	
+		AssistF("node=1 - %f A", I);
 ////		dutyfactor = I/max_I*(0.9-0.1)+0.1;
 ////		if(isclk){
 ////			RESET1; 
@@ -80,7 +86,9 @@ void set_I_direction(uint8_t node, float I)
 ////		setPWM_1(dutyfactor);
 	}
 	else if(node == 2){
-		ODrive_Set_Input_Current(ID_righthip_odriver, I);	
+		ODrive_Set_Input_Current(ID_righthip_odriver, I);
+//		ODrive_Set_Input_Current(ID_lefthip_odriver, I);		
+		AssistF("node=2 - %f A", I);
 ////		dutyfactor = I/max_I*(0.9-0.1)+0.1;
 ////		if(isclk){
 ////			RESET2; 

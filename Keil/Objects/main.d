@@ -37,13 +37,14 @@
 .\objects\main.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h
 .\objects\main.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h
 .\objects\main.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\main.o: ..\Core\1-Func\debug.h
+.\objects\main.o: ..\Core\0-Conf\conf_usart.h
 .\objects\main.o: ..\Core\0-Conf\conf_tim.h
 .\objects\main.o: ..\Core\0-Conf\conf_rtc.h
 .\objects\main.o: ..\Core\0-Conf\conf_Jlink.h
 .\objects\main.o: ..\Core\0-Conf\conf_can.h
 .\objects\main.o: ..\Core\0-Conf\conf_global.h
 .\objects\main.o: ..\Core\0-Conf\conf_adc.h
-.\objects\main.o: ..\Core\1-Func\debug.h
 .\objects\main.o: ..\Core\1-Func\ECON_controller_I.h
 .\objects\main.o: ..\Core\0-Conf\conf_gpio.h
 .\objects\main.o: ..\Core\1-Func\Odrive.h

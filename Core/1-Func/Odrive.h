@@ -27,7 +27,7 @@ int ODrive_Clear_Errors(uint8_t ID);
 
 
 
-void Odrive_Init(void);
+void Odrive_Init(uint8_t ID);
 void Current_conf(uint8_t ID);
 TEST current_control(void);
 	
