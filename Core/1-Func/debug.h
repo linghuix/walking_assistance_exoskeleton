@@ -10,9 +10,15 @@
 #define PORT huart1
 
 
+#define BUFF_Printf				//使用缓冲区进行串口 printf 发送
+//#define NO_BUFF_Printf
+#define KEIL					//使用的环境是keil5
+
+
+
 /* Definition of error and warning macros */
 /* -------------------------------------- */
-#	define MSG(...) //printf (__VA_ARGS__)
+#	define MSG(...) printf (__VA_ARGS__)
 
 
 /* Definition of MSG_ERR */

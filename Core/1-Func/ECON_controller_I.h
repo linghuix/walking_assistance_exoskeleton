@@ -11,6 +11,7 @@
 
 #include "conf_tim.h"
 #include "conf_gpio.h"
+#include "Odrive.h"
 
 
 #define GPIO1_1 GPIOC,GPIO_PIN_10

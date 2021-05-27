@@ -21,6 +21,8 @@ int16_t stopCounter[2] = {0}, stopFlag[2] = {0};
 /*  交互力模块 */
 uint16_t Interaction_force=0;
 
+uint8_t CANID_righthip_odriver = 0x2;
+
 
 /* 外部IMU采集 */
 float hip1_w, hip1_d, I1;
@@ -59,12 +61,13 @@ int8_t assive_mode[2] = {0};					// 当前助力模式
 int state[2] = {0};								// 0-stop 1-walking
 
 /* 助力值计算 */
-float AssisTor = 0.6;
+float AssisTor = 1.0;
 #define RightTorRatio 5.5	// 右侧的 assist gain 更大一些
 #define D_area 2.0		// 2.0			// for eliminate chattering
 #define W_area 2.0		// 1.0
 #define MAX_D_area 50.0	// for safety
-float k = 0,K = 0;
+float left_k = 0,K = 0;
+float kkkk = 0;
 	
 
 // Jscope 调试
@@ -76,7 +79,7 @@ int debug_AOphase1=0, debug_AOoutput1=0, debug_AOpre1=0, debug_AOphase_offset1=0
 int debug_AOphase2=0, debug_AOoutput2=0, debug_AOpre2=0, debug_AOphase_offset2=0, debug_AOw2, debug_AOphasePre2;
 int debug_AOIndex = 0;
 int debug_assisTorque1 = 0, debug_assisTorque2 = 0;					// 临时查看变量
-
+int debug_tmp;
 
 extern float floatabs(float x);
 int main(void)
@@ -85,7 +88,9 @@ int main(void)
 	Jlink_Init();
 	debug_init();
 	
+//	current_control();
 	FSR_Init();
+	
 	
 	/*初始化*/
 	Acc1_Init();
@@ -95,14 +100,16 @@ int main(void)
 	WinBuffer(&acc1win_w, acc1WinArray_w, Buffsize);
 	WinBuffer(&acc2win_w, acc2WinArray_w, Buffsize);
 	
+	
 	/*峰值检测*/
 	WinBuffer(&d1minwin_w, d1Win, 3);
 	WinBuffer(&d2minwin_w, d2Win, 3);
-	
+
+	Odrive_Init(CANID_righthip_odriver);
 	AO_Init(period[0]*dt, 1);
 	AO_Init(period[1]*dt, 2);
 	ECON_I_init();
-
+	
 
 	/*启动外设*/
 	Acc1_Start();
@@ -112,7 +119,7 @@ int main(void)
 	INF("ABOUT ANGLE AND SPEED couterclock is postive from outside. 从外部看向电机侧");
 	INF("the acc1 of left hip - d w | the acc2 of right hip - d w | I1 ,I2\r\n");
 	
-	HC05_RcvCmd();
+//	HC05_RcvCmd();
 	
 	/******* test code *******/
 	//  test_USART1_communication();
@@ -215,19 +222,22 @@ int main(void)
 			}
 			
 			assive_mode[0] = switch_task( &hip1, hip1_d, hip1_w, 1);	// 模式切换
-
-//			if(stopFlag[0] == 1){
-//				assive_mode[0] = POMODE;
-//				stopFlag[0]=0;
-//			}
+			assive_mode[0] = POMODE;
+			
+			if(stopFlag[0] == 1){
+				assive_mode[0] = POMODE;
+				stopFlag[0]=0;
+			}
 			
 			/* get phase */
-			k = AssisTor;
+			left_k = AssisTor;
+			kkkk = 0.6;
+			
 			if(assive_mode[0] == POMODE){
 				phase[0] = PO_phase(hip1_d, hip1_w);
 				phase[0] = phase[0] + PI;
 //				if(floatabs(hip1_d) < D_area || floatabs(hip1_w) < W_area || floatabs(hip1_d) > MAX_D_area){
-//					k = 0.0;
+//					left_k = 0.0;
 //				}
 			}
 			else if(assive_mode[0] == AOMODE){
@@ -238,21 +248,21 @@ int main(void)
 				while(1){ MSG_ERR(123, "assive_mode error\r\n", 123); }
 			}
 			
-			if(period[0] < TH_PERIOD){
-				k = 0.0;
-			}
+//			if(period[0] < TH_PERIOD){
+//				left_k = 0.0;
+//			}
 
-			if(state[0] == 0){
-				k = 0.0;
-			}
-			
-			if(floatabs(hip1_rawd) > TH_BOUND){
-				k = 0.0;
-			}
+//			if(state[0] == 0){
+//				left_k = 0.0;
+//			}
 
-			I1 = k*sin(phase[0]);
+//			if(floatabs(hip1_rawd) > TH_BOUND){
+//				left_k = 0.0;
+//			}
+
+			I1 = kkkk*sin(phase[0]);
 			set_I_direction(1,I1);
-//			set_I_direction(1,0);
+
 			AssisMonitor("I1 %.2f\t",I1);
 			}
 			
@@ -277,14 +287,14 @@ int main(void)
 			assive_mode[1] = switch_task( &hip2, hip2_d, hip2_w, 2);
      		assive_mode[1]=POMODE;
 
-//			if(stopFlag[1] == 1){
-//				assive_mode[1] = POMODE;
-//				stopFlag[1]=0;
-//			}
+			if(stopFlag[1] == 1){
+				assive_mode[1] = POMODE;
+				stopFlag[1]=0;
+			}
 			
 			
 			/* get phase */
-			K = 2.0*AssisTor;
+			K = 0.6;
 			if(assive_mode[1] == POMODE){
 				phase[1] = PO_phase(hip2_d, hip2_w);
 				phase[1] = -phase[1] + PI;
@@ -300,24 +310,20 @@ int main(void)
 				while(1){ MSG_ERR(123, "assive_mode error\r\n", 123); }
 			}
 
-			if(period[1] < TH_PERIOD){
-				K = 0.0;
-			}
-			
-			if(state[1] == 0){
-				K = 0.0;
-			}
+//			if(period[1] < TH_PERIOD){
+//				K = 0.0;
+//			}
+//			
+//			if(state[1] == 0){
+//				K = 0.0;
+//			}
 			
 //			if(floatabs(hip2_rawd) > TH_BOUND){
 //				K = 0.0;
 //			}
 			
 			I2 = K * sin(phase[1]);
-//			set_I_direction(2,I2);
-//			set_I_direction(2,0.55);
-			if(-I2 < 0){  set_I_direction(2,-I2-0.30);}
-			else{	set_I_direction(2,-I2+0.55);}
-//			set_I_direction(2,0);
+			set_I_direction(2,I2);
 
 			AssisMonitor("I2 %.2f\t",I2);
 			
@@ -354,6 +360,7 @@ int main(void)
 		
 			debug_AOphase_offset1 = 1000*phase[0]; 
 			debug_AOphase_offset2 = 1000*phase[1]; 
+			debug_tmp = 1000.0*kkkk;
 	}
 
 }

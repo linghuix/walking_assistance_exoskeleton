@@ -47,5 +47,7 @@
 ".\objects\win.o"
 ".\objects\fsr.o"
 ".\objects\func_adc.o"
+".\objects\odrive.o"
+".\objects\func_can.o"
 --library_type=microlib --strict --scatter ".\Objects\rct6.sct"
 --summary_stderr --info summarysizes -o .\Objects\rct6.axf

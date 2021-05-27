@@ -35,10 +35,11 @@
 .\objects\bsp.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h
 .\objects\bsp.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h
 .\objects\bsp.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\bsp.o: ..\Core\1-Func\debug.h
+.\objects\bsp.o: ..\Core\0-Conf\conf_usart.h
 .\objects\bsp.o: ..\Core\0-Conf\conf_tim.h
 .\objects\bsp.o: ..\Core\0-Conf\conf_rtc.h
 .\objects\bsp.o: ..\Core\0-Conf\conf_Jlink.h
 .\objects\bsp.o: ..\Core\0-Conf\conf_can.h
 .\objects\bsp.o: ..\Core\0-Conf\conf_global.h
 .\objects\bsp.o: ..\Core\0-Conf\conf_adc.h
-.\objects\bsp.o: ..\Core\1-Func\debug.h

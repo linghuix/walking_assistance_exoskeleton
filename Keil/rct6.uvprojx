@@ -640,6 +640,16 @@
               <FileType>1</FileType>
               <FilePath>..\Core\1-Func\func_adc.c</FilePath>
             </File>
+            <File>
+              <FileName>Odrive.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\1-Func\Odrive.c</FilePath>
+            </File>
+            <File>
+              <FileName>func_can.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\1-Func\func_can.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
