@@ -85,7 +85,7 @@ int main(void)
 	Jlink_Init();
 	debug_init();
 	
-	current_control();
+//	current_control();
 	
 	printf("good luck!!!!\r\n");
 //	current_control();
@@ -107,7 +107,7 @@ int main(void)
 	
 	AO_Init(period[0]*dt, 1);
 	AO_Init(period[1]*dt, 2);
-	MX_TIM_CounterInterrupt(TIM4, 50000, 100);
+//	MX_TIM_CounterInterrupt(TIM4, 50000, 100);
 	
 	ECON_I_init();
 
@@ -133,7 +133,10 @@ int main(void)
 		// 左髋关节 加速度信号采集  采样周期约100Hz以上 
 		if(flag_1 ==1&&flag_2 == 1&&flag_3 == 1){
 			flag_1=0;flag_2=0;flag_3=0;
-			hip1_rawd = -angle1[1]/32768.0*180;	hip1_raww = -w1[1]/32768.0*2000;
+			hip1_rawd = -angle1[0]/32768.0*180;	hip1_raww = -w1[0]/32768.0*2000;
+			if(hip1_rawd > 90){
+				hip1_rawd = hip1_rawd -360;
+			}
 			addToBuff(&acc1win_d ,hip1_rawd);
 			addToBuff(&acc1win_w ,hip1_raww);
 			ChangeLastestValue(&acc1win_d, AvergeWin(&acc1win_d, weights, Buffsize));

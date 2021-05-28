@@ -20,7 +20,7 @@ void ECON_I_init(void)
 	MSG_BSTART("odrive","init");
 
 	
-//	MX_TIM_PWMOUT(controller_TIM, 50000, 100);		// 1/500 s = 2 ms
+	MX_TIM_PWMOUT(controller_TIM, 50000, 100);		// 1/500 s = 2 ms
 	Odrive_Init(ID_righthip_odriver);
 	Odrive_Init(ID_lefthip_odriver);
 	
@@ -56,7 +56,7 @@ void setPWM_2(float dutyfactor)
 
 void set_I_direction(uint8_t node, float I)
 {
-	float max_I = 1;
+	float max_I = 2;
 	float dutyfactor;
 	uint8_t isclk;
 	if(I > 0){
@@ -72,7 +72,7 @@ void set_I_direction(uint8_t node, float I)
 	
 	if(node == 1){
 //		ODrive_Set_Input_Current(ID_righthip_odriver, I);
-//		ODrive_Set_Input_Current(ID_lefthip_odriver, I);	
+		ODrive_Set_Input_Current(ID_lefthip_odriver, I);	
 		AssistF("node=1 - %f A", I);
 ////		dutyfactor = I/max_I*(0.9-0.1)+0.1;
 ////		if(isclk){
@@ -86,7 +86,7 @@ void set_I_direction(uint8_t node, float I)
 ////		setPWM_1(dutyfactor);
 	}
 	else if(node == 2){
-		ODrive_Set_Input_Current(ID_righthip_odriver, I);
+//		ODrive_Set_Input_Current(ID_righthip_odriver, I);
 //		ODrive_Set_Input_Current(ID_lefthip_odriver, I);		
 		AssistF("node=2 - %f A", I);
 ////		dutyfactor = I/max_I*(0.9-0.1)+0.1;
