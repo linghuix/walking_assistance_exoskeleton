@@ -10,7 +10,7 @@
             <DataFile Name="..\..\..\..\code\assistive_exso\freewalk\t12.csv" />
             <RawFile Name="..\..\20201207_2.csv" />
             <Scope>
-                <Options TimeResolutionUs="1000000" />
+                <Options TimeResolutionUs="2000000" />
             </Scope>
             <Trigger>
                 <Options Level="2400.000000" Symbol="state2" On="1" Auto="0" Rise="1" Fall="0" />
@@ -22,31 +22,34 @@
         </Windows>
         <SelectedSymbols>
             <Symbol>
-                <Options Name="debug_hip1_w" Address="0x200000EC" Type="int" TypeID="12" Size="4" GraphColorRed="205" GraphColorGreen="133" GraphColorBlue="63" YMinSampled="-55" YMaxSampled="93" YAvgSampled="0" Offset="4" ShowInGraph="0" ACCoupling="0" YOffset="200" IsAutoConfig="0" YResolution="20" MaxValue="1000" File="..\Core\Src\main.c" Scope="0" DrawStyle="0" />
+                <Options Name="debug_hip1_d" Address="0x200000DC" Type="int" TypeID="12" Size="4" GraphColorRed="255" GraphColorGreen="0" GraphColorBlue="0" YMinSampled="-15" YMaxSampled="34" YAvgSampled="-4" Offset="4" ShowInGraph="1" ACCoupling="0" YOffset="270" IsAutoConfig="0" YResolution="10" MaxValue="400000000" File="..\Core\Src\main.c" Scope="0" DrawStyle="0" />
             </Symbol>
             <Symbol>
-                <Options Name="debug_hip1_d" Address="0x200000DC" Type="int" TypeID="12" Size="4" GraphColorRed="255" GraphColorGreen="0" GraphColorBlue="0" YMinSampled="175" YMaxSampled="200" YAvgSampled="177" Offset="8" ShowInGraph="1" ACCoupling="0" YOffset="160" IsAutoConfig="0" YResolution="100" MaxValue="400000000" File="..\Core\Src\main.c" Scope="0" DrawStyle="0" />
+                <Options Name="debug_hip1_w" Address="0x200000EC" Type="int" TypeID="12" Size="4" GraphColorRed="205" GraphColorGreen="133" GraphColorBlue="63" YMinSampled="-111" YMaxSampled="72" YAvgSampled="0" Offset="8" ShowInGraph="0" ACCoupling="0" YOffset="200" IsAutoConfig="0" YResolution="20" MaxValue="1000" File="..\Core\Src\main.c" Scope="0" DrawStyle="0" />
             </Symbol>
             <Symbol>
-                <Options Name="Interaction_force" Address="0x20000014" Type="ushort" TypeID="7" Size="2" GraphColorRed="255" GraphColorGreen="215" GraphColorBlue="0" YMinSampled="609" YMaxSampled="2626" YAvgSampled="746" Offset="12" ShowInGraph="0" ACCoupling="0" YOffset="0" IsAutoConfig="0" YResolution="1000" MaxValue="142500" File="..\Core\Src\main.c" Scope="0" DrawStyle="0" />
+                <Options Name="Interaction_force" Address="0x20000014" Type="ushort" TypeID="7" Size="2" GraphColorRed="255" GraphColorGreen="215" GraphColorBlue="0" YMinSampled="982" YMaxSampled="4095" YAvgSampled="3260" Offset="12" ShowInGraph="0" ACCoupling="0" YOffset="20" IsAutoConfig="0" YResolution="2000" MaxValue="142500" File="..\Core\Src\main.c" Scope="0" DrawStyle="0" />
             </Symbol>
             <Symbol>
-                <Options Name="debug_hip2_w" Address="0x200000F4" Type="int" TypeID="12" Size="4" GraphColorRed="255" GraphColorGreen="0" GraphColorBlue="0" YMinSampled="0" YMaxSampled="0" YAvgSampled="0" Offset="14" ShowInGraph="0" ACCoupling="0" YOffset="200" IsAutoConfig="1" YResolution="1000000000" MaxValue="2000000000" File="..\Core\Src\main.c" Scope="0" DrawStyle="0" />
+                <Options Name="debug_hip2_w" Address="0x200000F4" Type="int" TypeID="12" Size="4" GraphColorRed="255" GraphColorGreen="0" GraphColorBlue="0" YMinSampled="-116" YMaxSampled="186" YAvgSampled="0" Offset="14" ShowInGraph="0" ACCoupling="0" YOffset="200" IsAutoConfig="1" YResolution="1000000000" MaxValue="2000000000" File="..\Core\Src\main.c" Scope="0" DrawStyle="0" />
             </Symbol>
             <Symbol>
-                <Options Name="debug_hip2_d" Address="0x200000E4" Type="int" TypeID="12" Size="4" GraphColorRed="128" GraphColorGreen="255" GraphColorBlue="255" YMinSampled="0" YMaxSampled="0" YAvgSampled="0" Offset="18" ShowInGraph="0" ACCoupling="0" YOffset="330" IsAutoConfig="0" YResolution="50" MaxValue="100" File="..\Core\Src\main.c" Scope="0" DrawStyle="0" />
+                <Options Name="debug_hip2_d" Address="0x200000E4" Type="int" TypeID="12" Size="4" GraphColorRed="128" GraphColorGreen="255" GraphColorBlue="255" YMinSampled="-30" YMaxSampled="24" YAvgSampled="3" Offset="18" ShowInGraph="0" ACCoupling="0" YOffset="290" IsAutoConfig="0" YResolution="50" MaxValue="100" File="..\Core\Src\main.c" Scope="0" DrawStyle="0" />
             </Symbol>
             <Symbol>
                 <Options Name="state1" Address="0x2000017C" Type="uchar" TypeID="6" Size="1" GraphColorRed="0" GraphColorGreen="191" GraphColorBlue="255" YMinSampled="0" YMaxSampled="1" YAvgSampled="0" Offset="22" ShowInGraph="0" ACCoupling="0" YOffset="200" IsAutoConfig="0" YResolution="2" MaxValue="285" File="..\Core\1-Func\func_accelerate.c" Scope="0" DrawStyle="0" />
             </Symbol>
             <Symbol>
-                <Options Name="state2" Address="0x2000017D" Type="uchar" TypeID="6" Size="1" GraphColorRed="255" GraphColorGreen="255" GraphColorBlue="0" YMinSampled="0" YMaxSampled="0" YAvgSampled="0" Offset="23" ShowInGraph="1" ACCoupling="0" YOffset="200" IsAutoConfig="0" YResolution="10" MaxValue="570" File="..\Core\1-Func\func_accelerate.c" Scope="0" DrawStyle="0" />
+                <Options Name="state2" Address="0x2000017D" Type="uchar" TypeID="6" Size="1" GraphColorRed="255" GraphColorGreen="255" GraphColorBlue="0" YMinSampled="0" YMaxSampled="1" YAvgSampled="0" Offset="23" ShowInGraph="0" ACCoupling="0" YOffset="200" IsAutoConfig="0" YResolution="10" MaxValue="570" File="..\Core\1-Func\func_accelerate.c" Scope="0" DrawStyle="0" />
             </Symbol>
             <Symbol>
-                <Options Name="debug_assisTorque1" Address="0x20000134" Type="int" TypeID="12" Size="4" GraphColorRed="205" GraphColorGreen="133" GraphColorBlue="63" YMinSampled="0" YMaxSampled="0" YAvgSampled="0" Offset="24" ShowInGraph="1" ACCoupling="0" YOffset="200" IsAutoConfig="0" YResolution="1000" MaxValue="2" File="..\Core\Src\main.c" Scope="0" DrawStyle="0" />
+                <Options Name="debug_assisTorque1" Address="0x20000134" Type="int" TypeID="12" Size="4" GraphColorRed="205" GraphColorGreen="133" GraphColorBlue="63" YMinSampled="-1000" YMaxSampled="1000" YAvgSampled="-323" Offset="24" ShowInGraph="1" ACCoupling="0" YOffset="200" IsAutoConfig="0" YResolution="1000" MaxValue="2" File="..\Core\Src\main.c" Scope="0" DrawStyle="0" />
             </Symbol>
             <Symbol>
-                <Options Name="inc" Address="0x20000000" Type="uint" TypeID="8" Size="4" GraphColorRed="255" GraphColorGreen="215" GraphColorBlue="0" YMinSampled="0" YMaxSampled="0" YAvgSampled="0" Offset="28" ShowInGraph="1" ACCoupling="0" YOffset="200" IsAutoConfig="1" YResolution="1" MaxValue="2" File="..\Core\Src\main.c" Scope="0" DrawStyle="0" />
+                <Options Name="inc" Address="0x20000000" Type="uint" TypeID="8" Size="4" GraphColorRed="255" GraphColorGreen="215" GraphColorBlue="0" YMinSampled="0" YMaxSampled="0" YAvgSampled="0" Offset="28" ShowInGraph="0" ACCoupling="0" YOffset="200" IsAutoConfig="1" YResolution="1" MaxValue="2" File="..\Core\Src\main.c" Scope="0" DrawStyle="0" />
+            </Symbol>
+            <Symbol>
+                <Options Name="k" Address="0x200000D4" Type="float" TypeID="1" Size="4" GraphColorRed="0" GraphColorGreen="255" GraphColorBlue="0" YMinSampled="0" YMaxSampled="1" YAvgSampled="0" Offset="32" ShowInGraph="1" ACCoupling="0" YOffset="200" IsAutoConfig="1" YResolution="2000000" MaxValue="4000000" File="..\Core\Src\main.c" Scope="0" DrawStyle="0" />
             </Symbol>
         </SelectedSymbols>
     </Project>

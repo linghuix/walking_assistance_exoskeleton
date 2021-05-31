@@ -665,8 +665,8 @@ void Odrive_Init(uint8_t ID){
 	MX_CAN1_Init(CAN_MODE_NORMAL);
 	CAN_Start(&hcan1);
 	
-	ODrive_Reboot(ID);
-	HAL_Delay(15000);
+//	ODrive_Reboot(ID);
+//	HAL_Delay(15000);
 	
 }
 

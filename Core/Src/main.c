@@ -85,7 +85,7 @@ int main(void)
 	Jlink_Init();
 	debug_init();
 	
-//	current_control();
+	//current_control();
 	
 	printf("good luck!!!!\r\n");
 //	current_control();
@@ -137,6 +137,7 @@ int main(void)
 			if(hip1_rawd > 90){
 				hip1_rawd = hip1_rawd -360;
 			}
+			hip1_rawd = hip1_rawd+180;
 			addToBuff(&acc1win_d ,hip1_rawd);
 			addToBuff(&acc1win_w ,hip1_raww);
 			ChangeLastestValue(&acc1win_d, AvergeWin(&acc1win_d, weights, Buffsize));
@@ -230,6 +231,7 @@ int main(void)
 //				assive_mode[0] = POMODE;
 //				stopFlag[0]=0;
 //			}
+//			assive_mode[0] = POMODE;
 			
 			// get phase 
 			k = AssisTor;
@@ -256,12 +258,12 @@ int main(void)
 				k = 0.0;
 			}
 			
-			if(floatabs(hip1_rawd) > TH_BOUND){
-				k = 0.0;
-			}
+//			if(floatabs(hip1_rawd) > TH_BOUND){
+//				k = 0.0;
+//			}
 
 			I1 = k*sin(phase[0]);
-			set_I_direction(1,I1);
+			set_I_direction(1,-I1);
 
 			AssisMonitor("I1 %.2f\t",I1);
 			}
