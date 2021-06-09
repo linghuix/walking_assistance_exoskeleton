@@ -25,11 +25,12 @@ int ODrive_Reboot(uint8_t ID);
 int ODrive_Get_Vbus_Voltage(uint8_t ID);
 int ODrive_Clear_Errors(uint8_t ID);
 
-
-
 void Odrive_Init(uint8_t ID);
 void Current_conf(uint8_t ID);
-TEST current_control(void);
+
+TEST right_current_control(void);
+TEST left_current_control(void);
+
 	
 
 

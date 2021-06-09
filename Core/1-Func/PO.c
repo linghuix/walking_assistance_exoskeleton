@@ -24,7 +24,7 @@ float myatan2(float y, float x)
 {
     float v=0;
     if( y==0 && x==0){
-        ERROR(2,"error y = 0, x = 0");
+//        ERROR(2,"error y = 0, x = 0");
         return 0.0;
 	}
     if( x > 0){

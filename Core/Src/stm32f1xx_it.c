@@ -151,9 +151,9 @@ void SysTick_Handler(void)
 void USART1_IRQHandler(void)
 {
 	
-	HAL_UART_IRQHandler(&huart1);
-	IDLE_UART_IRQHandler(&huart1);
-//	debug_IRQ();
+//	HAL_UART_IRQHandler(&huart1);
+//	IDLE_UART_IRQHandler(&huart1);
+	debug_IRQ();
 }
 
 void USART2_IRQHandler(void)

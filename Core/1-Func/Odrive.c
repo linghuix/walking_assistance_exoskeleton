@@ -11,7 +11,7 @@
 #include "Odrive.h"
 
 
-#define ODRIVE_TEST
+//#define ODRIVE_TEST
 
 
 CAN_TxHeaderTypeDef CAN1_TxHeader;
@@ -664,12 +664,16 @@ void Pos_conf(uint8_t ID){
 
 int j;
 void Odrive_Init(uint8_t ID){
-	
+	TESTOUT("can init\r\n");
 	MX_CAN1_Init(CAN_MODE_NORMAL);
 	CAN_Start(&hcan1);
 	
+	TESTOUT("can finish\r\n");
+	TESTOUT("odrive reboot\r\n");
 	ODrive_Reboot(ID);
 	HAL_Delay(10000);
+	TESTOUT("odrive reboot finish\r\n");
+	Current_conf(ID);
 }
 
 #ifdef ODRIVE_TEST
@@ -679,23 +683,33 @@ void Odrive_Init(uint8_t ID){
 uint8_t ID_lefthip_odriver = 0x1;
 uint8_t ID_righthip_odriver = 0x2;
 
-TEST current_control(void)
-{
 
-//	Odrive_Init(ID_lefthip_odriver);
+TEST right_current_control(void)
+{
 	Odrive_Init(ID_righthip_odriver);
-//	HAL_Delay(1000);
 	Current_conf(ID_righthip_odriver);
-//	ODrive_Set_Input_Current(ID_righthip_odriver, -0.5);
-	int j;
+
 	
 	for (int i=0;i<20000;i++){
 		
-		ODrive_Set_Input_Current(ID_righthip_odriver, 0.5*cos(i*0.5));		//left postive current value makes the leg move forward. 
-//		ODrive_Set_Input_Current(ID_lefthip_odriver, 0.4);
+		ODrive_Set_Input_Current(ID_righthip_odriver, 0.3*cos(i*0.5));		//left postive current value makes the leg move forward. 
 		HAL_Delay(100);
 	}										//right postive current value makes the leg move backward
-//	while(1);
+	while(1);
+}
+
+
+TEST left_current_control(void)
+{
+	Odrive_Init(ID_lefthip_odriver);
+	Current_conf(ID_lefthip_odriver);
+	
+	for (int i=0;i<20000;i++){
+		
+		ODrive_Set_Input_Current(ID_lefthip_odriver, 0.3*cos(i*0.5));		//left postive current value makes the leg move forward. 
+		HAL_Delay(100);
+	}										//right postive current value makes the leg move backward
+	while(1);
 }
 
 

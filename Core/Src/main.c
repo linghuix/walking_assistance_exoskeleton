@@ -3,11 +3,12 @@
 
 /* safe */
 #define TH_BOUND 40.0
+#define PERIOD 50
 
 /* 控制周期 */
-uint32_t inc=0;							// 2ms 周期计时器
-int CONTROL_PERIOD = 50/2;				// ms 实际控制周期 CONTROL_PERIOD*2 ms
-float dt = 0.050;						// 控制周期 50 ms
+uint32_t inc=0;								// 2ms 周期计时器
+int CONTROL_PERIOD = PERIOD/2;				// ms 实际控制周期 CONTROL_PERIOD*2 ms
+float dt = PERIOD/1000;						// 控制周期 50 ms
 
 
 /**
@@ -18,10 +19,12 @@ int16_t stopCounter[2] = {0}, stopFlag[2] = {0};
 #define TH_D 10.0
 
 
+uint8_t CANID_righthip_odriver = 0x2;		// driver ID
+uint8_t CANID_lefthip_odriver = 0x1;
+
+
 /*  交互力模块 */
 uint16_t Interaction_force=0;
-
-uint8_t CANID_righthip_odriver = 0x2;
 
 
 /* 外部IMU采集 */
@@ -29,6 +32,7 @@ float hip1_w, hip1_d, I1;
 float hip2_w, hip2_d, I2;
 float hip1_raww, hip1_rawd;
 float hip2_raww, hip2_rawd;
+
 
 #define Buffsize 2								// 原始数据滤波窗口
 WIN acc1win_w, acc2win_w, acc1win_d, acc2win_d;			
@@ -61,8 +65,8 @@ int8_t assive_mode[2] = {0};					// 当前助力模式
 int state[2] = {0};								// 0-stop 1-walking
 
 /* 助力值计算 */
-float AssisTor = 1.0;
-#define RightTorRatio 5.5	// 右侧的 assist gain 更大一些
+float AssisTor = 0.4;
+#define RightTorRatio 1	// 右侧的 assist gain 更大一些
 #define D_area 2.0		// 2.0			// for eliminate chattering
 #define W_area 2.0		// 1.0
 #define MAX_D_area 50.0	// for safety
@@ -88,7 +92,9 @@ int main(void)
 	Jlink_Init();
 	debug_init();
 	
-//	current_control();
+//	right_current_control();
+//	left_current_control();
+	
 	FSR_Init();
 	
 	
@@ -105,18 +111,22 @@ int main(void)
 	WinBuffer(&d1minwin_w, d1Win, 3);
 	WinBuffer(&d2minwin_w, d2Win, 3);
 
+	MX_TIM_PWMOUT(TIM4, 50000, 100);
+	HAL_TIM_Base_Start_IT(&htim4);
+	
+	
 	Odrive_Init(CANID_righthip_odriver);
+	Odrive_Init(CANID_lefthip_odriver);
 	AO_Init(period[0]*dt, 1);
 	AO_Init(period[1]*dt, 2);
-	ECON_I_init();
 	
 
 	/*启动外设*/
 	Acc1_Start();
 	Acc2_Start();
-	ECON_action();
 
-	INF("ABOUT ANGLE AND SPEED couterclock is postive from outside. 从外部看向电机侧");
+
+	INF("ABOUT ANGLE AND SPEED couterclock is postive from outside. \r\n");
 	INF("the acc1 of left hip - d w | the acc2 of right hip - d w | I1 ,I2\r\n");
 	
 //	HC05_RcvCmd();
@@ -132,8 +142,15 @@ int main(void)
 
 		/* 左髋关节 加速度信号采集  采样周期约100Hz以上 */
 		if(flag_1 ==1&&flag_2 == 1&&flag_3 == 1){
+			printf("Limu get\r\n");
 			flag_1=0;flag_2=0;flag_3=0;
-			hip1_rawd = -angle1[1]/32768.0*180;	hip1_raww = -w1[1]/32768.0*2000;
+			hip1_rawd = -angle1[0]/32768.0*180;	hip1_raww = -w1[0]/32768.0*2000;
+			
+			if(hip1_rawd > 0){
+				hip1_rawd = hip1_rawd-360;
+			}
+			hip1_rawd = hip1_rawd+180;
+			
 			addToBuff(&acc1win_d ,hip1_rawd);
 			addToBuff(&acc1win_w ,hip1_raww);
 			ChangeLastestValue(&acc1win_d, AvergeWin(&acc1win_d, weights, Buffsize));
@@ -155,15 +172,23 @@ int main(void)
 			else{
 				stopCounter[0] = 0;
 			}
-			if(stopCounter[0] > 10){
+			
+			if(stopCounter[0] > 10){					// 连续检测到10次，为 stop state 
 				stopFlag[0] = 1;
 			}
 		}
 
 		/* 右髋关节 加速度信号采集  采样周期约100Hz以上 */
 		if(flag_11 ==1&&flag_22 == 1&&flag_33 == 1){
+			printf("Rimu get\r\n");
 			flag_11=0;flag_22=0;flag_33=0;
-			hip2_rawd = angle2[1]/32768.0*180;	hip2_raww = w2[2]/32768.0*2000;
+			hip2_rawd = angle2[0]/32768.0*180;	hip2_raww = w2[0]/32768.0*2000;
+			
+			if(hip2_rawd > 0){
+				hip2_rawd = hip2_rawd-360;
+			}
+			hip2_rawd = hip2_rawd+180;
+			
 			addToBuff(&acc2win_d ,hip2_rawd);
 			addToBuff(&acc2win_w ,hip2_raww);
 			ChangeLastestValue(&acc2win_d, AvergeWin(&acc2win_d, weights, Buffsize));
@@ -192,8 +217,10 @@ int main(void)
 		
 		/* 控制周期 2ms x CONTROL_PERIOD */
 		if(inc % CONTROL_PERIOD == 0){
-			Interaction_force = GetFSRForce();
-			INTERFORCE_Monitor("F %d\t", Interaction_force);
+			INF("Controling\r\n");
+			
+//			Interaction_force = GetFSRForce();
+//			INTERFORCE_Monitor("F %d\t", Interaction_force);
 			
 			IMUMonitor("acc1rawd\t%.2f\tw\t%.2f\t",hip1_rawd,hip1_raww);
 			IMUMonitor("acc2rawd\t%.2f\tw\t%.2f\t",hip2_rawd,hip2_raww);
@@ -210,20 +237,18 @@ int main(void)
 			AO(hip1_d,1);
 			
 			/* summit detect and period predict*/
-//			peak_delay_time[0]--;
-			if(found_peak[0] == 1){										// 检测峰值，估计人体步态周期并记录需要补偿的相位值
-//				if( peak_delay_time[0] <= 0 ){
-					period[0] = Aoindex - peaktimestamp[0];				// gait period get
-					peaktimestamp[0] = Aoindex;
-					AOoffset[0] = hip1.phase[1];
-					found_peak[0] = 0;
-//					peak_delay_time[0] = 10;							// 峰值检测延迟时间
-//				}
+
+			if(found_peak[0] == 1){									// 检测峰值，估计人体步态周期并记录需要补偿的相位值
+				period[0] = Aoindex - peaktimestamp[0];				// gait period estimation
+				peaktimestamp[0] = Aoindex;							// peaktimestamp 记录上一个峰值对应的 Aoindex
+				AOoffset[0] = hip1.phase[1];
+				found_peak[0] = 0;
 			}
 			
 			assive_mode[0] = switch_task( &hip1, hip1_d, hip1_w, 1);	// 模式切换
 			assive_mode[0] = POMODE;
 			
+			// stop state use POMODE
 			if(stopFlag[0] == 1){
 				assive_mode[0] = POMODE;
 				stopFlag[0]=0;
@@ -231,14 +256,10 @@ int main(void)
 			
 			/* get phase */
 			left_k = AssisTor;
-			kkkk = 0.6;
 			
 			if(assive_mode[0] == POMODE){
 				phase[0] = PO_phase(hip1_d, hip1_w);
 				phase[0] = phase[0] + PI;
-//				if(floatabs(hip1_d) < D_area || floatabs(hip1_w) < W_area || floatabs(hip1_d) > MAX_D_area){
-//					left_k = 0.0;
-//				}
 			}
 			else if(assive_mode[0] == AOMODE){
 				phase[0] = hip1.predictedBasicPhase - AOoffset[0];
@@ -248,19 +269,22 @@ int main(void)
 				while(1){ MSG_ERR(123, "assive_mode error\r\n", 123); }
 			}
 			
+			// 防高频率抖动
 //			if(period[0] < TH_PERIOD){
 //				left_k = 0.0;
 //			}
 
+			// 战立时不助力
 //			if(state[0] == 0){
 //				left_k = 0.0;
 //			}
 
+			// 角度过大时的安全防护
 //			if(floatabs(hip1_rawd) > TH_BOUND){
 //				left_k = 0.0;
 //			}
 
-			I1 = kkkk*sin(phase[0]);
+			I1 = left_k*sin(phase[0]);
 			set_I_direction(1,I1);
 
 			AssisMonitor("I1 %.2f\t",I1);
@@ -273,15 +297,12 @@ int main(void)
 			AO(hip2_d,2);
 			
 			/* Summit Detect */
-//			peak_delay_time[1]--;
+
 			if(found_peak[1] == 1){							// 检测峰值，估计人体步态周期并记录需要补偿的相位值
-//				if( peak_delay_time[1] <= 0 ){
-					period[1] = Aoindex - peaktimestamp[1];	// gait period get
-					peaktimestamp[1] = Aoindex;
-					AOoffset[1] = hip2.phase[1];
-					found_peak[1] = 0;
-//				peak_delay_time[1] = 10;
-//				}
+				period[1] = Aoindex - peaktimestamp[1];	// gait period get
+				peaktimestamp[1] = Aoindex;
+				AOoffset[1] = hip2.phase[1];
+				found_peak[1] = 0;
 			}
 			
 			assive_mode[1] = switch_task( &hip2, hip2_d, hip2_w, 2);
@@ -294,13 +315,10 @@ int main(void)
 			
 			
 			/* get phase */
-			K = 0.6;
+			K = 0.4;
 			if(assive_mode[1] == POMODE){
 				phase[1] = PO_phase(hip2_d, hip2_w);
 				phase[1] = -phase[1] + PI;
-//				if(floatabs(hip2_d) < D_area || floatabs(hip2_w) < W_area || floatabs(hip2_d) > MAX_D_area){
-//					K = 0.0;
-//				}
 			}
 			else if(assive_mode[1] == AOMODE){
 				phase[1] = hip2.predictedBasicPhase - AOoffset[1];
@@ -332,35 +350,35 @@ int main(void)
 			
 		}
 		
-			debug_assisTorque1 = 1000.0*I1;
-			debug_assisTorque2 = 1000.0*I2;
-		
-			debug_hip1_d = -(int)hip1_d;
-			debug_hip1_rawd = (int)hip1_rawd;
-			debug_hip2_d = (int)hip2_d;
-			debug_hip2_rawd = (int)hip2_rawd;
-			debug_hip1_w = (int)hip1_w;
-			debug_hip1_raww = (int)hip1_raww;
-			debug_hip2_w = (int)hip2_w;
-			debug_hip2_raww = (int)hip2_raww;
-		
-			debug_AOphase1 = 1000.0*hip1.phase[1]; 
-			debug_AOpre1 = (int)hip1.predict;
-			debug_AOoutput1 = (int)hip1.output;
-		
-			debug_AOphase2 = 1000.0*hip2.phase[1]; 
-			debug_AOpre2 = (int)hip2.predict;
-			debug_AOoutput2 = (int)hip2.output;
-		
-			debug_AOw1 = 1000.0*hip1.ww;
-			debug_AOphasePre1 = 1000.0*hip1.predictedBasicPhase;
-		
-			debug_AOw2 = 1000.0*hip2.ww;
-			debug_AOphasePre2 = 1000.0*hip2.predictedBasicPhase;
-		
-			debug_AOphase_offset1 = 1000*phase[0]; 
-			debug_AOphase_offset2 = 1000*phase[1]; 
-			debug_tmp = 1000.0*kkkk;
+		debug_assisTorque1 = 1000.0*I1;
+		debug_assisTorque2 = 1000.0*I2;
+	
+		debug_hip1_d = -(int)hip1_d;
+		debug_hip1_rawd = (int)hip1_rawd;
+		debug_hip2_d = (int)hip2_d;
+		debug_hip2_rawd = (int)hip2_rawd;
+		debug_hip1_w = (int)hip1_w;
+		debug_hip1_raww = (int)hip1_raww;
+		debug_hip2_w = (int)hip2_w;
+		debug_hip2_raww = (int)hip2_raww;
+	
+		debug_AOphase1 = 1000.0*hip1.phase[1]; 
+		debug_AOpre1 = (int)hip1.predict;
+		debug_AOoutput1 = (int)hip1.output;
+	
+		debug_AOphase2 = 1000.0*hip2.phase[1]; 
+		debug_AOpre2 = (int)hip2.predict;
+		debug_AOoutput2 = (int)hip2.output;
+	
+		debug_AOw1 = 1000.0*hip1.ww;
+		debug_AOphasePre1 = 1000.0*hip1.predictedBasicPhase;
+	
+		debug_AOw2 = 1000.0*hip2.ww;
+		debug_AOphasePre2 = 1000.0*hip2.predictedBasicPhase;
+	
+		debug_AOphase_offset1 = 1000*phase[0]; 
+		debug_AOphase_offset2 = 1000*phase[1]; 
+		debug_tmp = 1000.0*kkkk;
 	}
 
 }

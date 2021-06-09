@@ -33,7 +33,7 @@ void Acc2_Init(void)
 void Acc2_Start(void)
 {
 	//HAL_UART_Transmit_IT(&acc2_huart, test_data, 5);
-	HAL_UART_Receive_IT(&acc2_huart, acc2, 11);
+	HAL_UART_Receive_IT(&acc2_huart, acc2, 1);
 }
 
 
@@ -51,12 +51,13 @@ extern uint8_t hardtest_CommandReceive[20], hardtest_receivebyte, hardtest_lengt
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 	if(huart->Instance == USART1){
+		INF("command arrive");
 		hardtest_CommandReceive[hardtest_length] = hardtest_receivebyte;
 		hardtest_length++;
 		HAL_UART_Receive_IT(&huart1, &hardtest_receivebyte, 1);
 	}
 	if(huart->Instance == acc1_uart){
-	    //imu_2_flag = 1;
+		INF("acc1,%d", state1);
 		switch(state1){
 			case 0:
 				if(acc1[0]==0x55){state1 = 1;HAL_UART_Receive_IT(&acc1_huart, &acc1[1], 10);}
@@ -91,6 +92,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 		}
 	}
 	if(huart->Instance == acc2_uart){
+		INF("acc2,%d ", state2);
 		switch(state2){
 			case 0:
 				if(acc2[0]==0x55){state2 = 1;HAL_UART_Receive_IT(&acc2_huart, &acc2[1], 10);}

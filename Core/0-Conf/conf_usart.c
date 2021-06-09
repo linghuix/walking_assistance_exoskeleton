@@ -134,13 +134,13 @@ void USART_NVIC_Init(UART_HandleTypeDef* uartHandle)
     }
     else if(uartHandle->Instance==USART2)
     {
-		HAL_NVIC_SetPriority(USART2_IRQn, 0, 1);
+		HAL_NVIC_SetPriority(USART2_IRQn, 0, 2);
 		HAL_NVIC_EnableIRQ(USART2_IRQn);
     }
     else if(uartHandle->Instance==USART3)
     {
 		/* Peripheral interrupt init */
-		HAL_NVIC_SetPriority(USART3_IRQn, 0, 2);
+		HAL_NVIC_SetPriority(USART3_IRQn, 0, 1);
 		HAL_NVIC_EnableIRQ(USART3_IRQn);
     }
 }
