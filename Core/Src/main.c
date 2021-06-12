@@ -307,7 +307,7 @@ int main(void)
 //				K = 0.0;
 //			}
 			
-			I2 = K * sin(phase[1]);
+			I2 = K * sin(Aoindex/20.0);
 //			set_I_direction(2,I2);
 //			set_I_direction(2,0.55);
 			if(-I2 < 0){  set_I_direction(2,-I2-0.30);}
