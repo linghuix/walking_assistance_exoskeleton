@@ -129,7 +129,7 @@ int main(void)
 	INF("ABOUT ANGLE AND SPEED couterclock is postive from outside. \r\n");
 	INF("the acc1 of left hip - d w | the acc2 of right hip - d w | I1 ,I2\r\n");
 	
-//	HC05_RcvCmd();
+	HC05_RcvCmd();
 	
 	/******* test code *******/
 	//  test_USART1_communication();

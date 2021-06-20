@@ -57,8 +57,10 @@ TEST USAR_UART1_IDLECallback(UART_HandleTypeDef *huart)
 {
 	if(huart->Instance == USART1)
 	{
-		HAL_UART_Transmit(&huart1, hardtest_CommandReceive, hardtest_length, 500);
+		INF("command get\r\n");
 		
+//		HAL_UART_Transmit(&huart1, hardtest_CommandReceive, hardtest_length, 500);
+//		INF("%s",hardtest_CommandReceive );
 		inputPara(&para, hardtest_CommandReceive, hardtest_length);
 		
 		int flag=0;							// 为零表明输入参数没有零的
@@ -68,9 +70,12 @@ TEST USAR_UART1_IDLECallback(UART_HandleTypeDef *huart)
 			}
 		}
 		if(flag == 0){
-			
+
 			PREDICT_TIME = para.para[0];
 			AssisTor = (float)para.para[1] / 10;
+			
+			INF("para change : PREDICT_TIME=%d", PREDICT_TIME);
+			INF("para change : AssisTor=%f", AssisTor);
 		}
 		hardtest_length = 0;
 	}
@@ -112,13 +117,13 @@ TEST inputPara(struct parasturct * parasturct, uint8_t * paradata, uint8_t lengt
 		}
 	}
 	
-	uint8_t output[2];						//串口输出
-	for(int i=0;i<parasturct->paranum;i++){
+//	uint8_t output[2];						//串口输出
+//	for(int i=0;i<parasturct->paranum;i++){
 
-		HAL_UART_Transmit(&huart1, (uint8_t *)&parasturct->para[i], sizeof(output), 500);
-		output[0] = 0xFF;
-		HAL_UART_Transmit(&huart1, output, 1, 500);
-	}
+//		HAL_UART_Transmit(&huart1, (uint8_t *)&parasturct->para[i], sizeof(output), 500);
+//		output[0] = 0xFF;
+//		HAL_UART_Transmit(&huart1, output, 1, 500);
+//	}
 }
 
 			/**

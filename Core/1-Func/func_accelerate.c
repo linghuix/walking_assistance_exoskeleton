@@ -57,7 +57,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 		HAL_UART_Receive_IT(&huart1, &hardtest_receivebyte, 1);
 	}
 	if(huart->Instance == acc1_uart){
-		INF("acc1,%d", state1);
+//		INF("acc1-%d-%d-%d-%d ", state1, flag_1, flag_2, flag_3);
 		switch(state1){
 			case 0:
 				if(acc1[0]==0x55){state1 = 1;HAL_UART_Receive_IT(&acc1_huart, &acc1[1], 10);}
@@ -92,7 +92,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 		}
 	}
 	if(huart->Instance == acc2_uart){
-		INF("acc2,%d ", state2);
+//		INF("acc2-%d-%d-%d-%d ", state2, flag_11, flag_22, flag_33);
 		switch(state2){
 			case 0:
 				if(acc2[0]==0x55){state2 = 1;HAL_UART_Receive_IT(&acc2_huart, &acc2[1], 10);}

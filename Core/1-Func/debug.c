@@ -23,11 +23,14 @@ struct Buffer debugBuffer = {"inital",0,0};
  */
 uint8_t addDebugBuffer(char c)
 {
-	if((debugBuffer.in+1)%BufferSize == debugBuffer.out)
+	if((debugBuffer.in+2)%BufferSize == debugBuffer.out){
 		return 0;
-	debugBuffer.data[debugBuffer.in] = c;
-	debugBuffer.in = (debugBuffer.in + 1)%BufferSize;
-	return 1;
+	}
+	else{
+		debugBuffer.data[debugBuffer.in] = c;
+		debugBuffer.in = (debugBuffer.in + 1)%BufferSize;
+		return 1;
+	}
 }
 /*
  * author lhx
@@ -39,11 +42,14 @@ uint8_t addDebugBuffer(char c)
 char getDebugBuffer(void)
 {
 	char c;
-	if(debugBuffer.in == debugBuffer.out)
+	if(debugBuffer.in == debugBuffer.out){
 		return 0;
-	c = debugBuffer.data[debugBuffer.out++];
-	debugBuffer.out = (debugBuffer.out)%BufferSize;
-	return c;
+	}
+	else{
+		c = debugBuffer.data[debugBuffer.out];
+		debugBuffer.out = (debugBuffer.out + 1)%BufferSize;
+		return c;
+	}
 }
 
 /*
@@ -82,11 +88,13 @@ int _write(int file, char *ptr, int len)
 #ifdef BUFF_Printf
 int fputc(int ch, FILE * f)		// Keil
 {
-	addDebugBuffer(ch);
-	if(huart1.Instance == USART1){		// waiting for usart1 initalization. so that printf can be used before usart really work.
-		__HAL_UART_ENABLE_IT(&PORT, UART_IT_TXE);
+	if(addDebugBuffer(ch) != 0){
+		if(huart1.Instance == USART1){		// waiting for usart1 initalization. so that printf can be used before usart really work.
+			__HAL_UART_ENABLE_IT(&PORT, UART_IT_TXE);
+		}
+		return ch;
 	}
-	return ch;
+	return 0;
 }
 
 int fgetc(FILE * F)
@@ -141,6 +149,7 @@ void debug_IRQ(void)
 	uint32_t isrflags   = READ_REG(huart1.Instance->SR);
 	uint32_t cr1its     = READ_REG(huart1.Instance->CR1);
 	char c;
+	
 	/* UART in mode Transmitter -----------TXE ------------------------------------*/
 	if (((isrflags & USART_SR_TXE) != RESET) && ((cr1its & USART_CR1_TXEIE) != RESET)){
 	  c = getDebugBuffer();
