@@ -19,13 +19,13 @@ uint8_t acc1[11];
 
 void Acc1_Init(void)
 {
-	MX_USART3_UART_Init();
+	MX_UART4_UART_Init();
 }
 
 
 void Acc2_Init(void)
 {
-	MX_USART2_UART_Init();
+	MX_UART5_UART_Init();
 }
 
 //uint8_t test_data[5] = {0x55,0x00,0x00,0x00,0x00};

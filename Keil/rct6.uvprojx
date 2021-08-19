@@ -330,7 +330,7 @@
             <vShortWch>1</vShortWch>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F103xB</Define>
+              <Define></Define>
               <Undefine></Undefine>
               <IncludePath>..\Core\Inc;..\Drivers\STM32F1xx_HAL_Driver\Inc;..\Drivers\CMSIS\Include;..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy;..\Core\0-Conf;..\Core\1-Func;..\Core\2-Task;..\Drivers\CMSIS\Device\ST\STM32F1xx\Include</IncludePath>
             </VariousControls>
