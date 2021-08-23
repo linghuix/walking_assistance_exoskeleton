@@ -27,7 +27,8 @@ int main(void)
 	float hip2_w, hip2_d, I2;
 
 	//test_AO();
-
+	printf("ABOUT ANGLE AND SPEED couterclock is postive from outside. 从外部看向电机侧");
+	printf("the acc1 of left hip - d w | the acc2 of right hip - d w | I1 ,I2\r\n");
 //	int8_t assive_mode;
 	while (1){
 
@@ -51,38 +52,19 @@ int main(void)
 		
 		/*无线传输显示实时数据*/
 		if(inc % 30 == 0){
-			printf("acc1d %.2f\tw %.2f\t",hip1_d,hip1_w);
-			printf("acc2d %.2f\tw %.2f\t",hip2_d,hip2_w);
-//			printf("%d\t",inc);
-//			printf("%.2f\t%.2f\t",hip1_d,hip1_w);
-//			printf("%.2f\t%.2f\t",hip2_d,hip2_w);
-//			AO(hip1_d,1);
-//			AO(hip2_d,2);
-//			index ++;
-
-//			assive_mode = switch_task( &hip1, hip1_d, hip1_w,1);
-//			if(assive_mode == -20){
-				I1 = PO(hip1_d,hip1_w, 1);
-//			}
-//			else{
-//				I1 = assive_torque(&hip1, hip1_d);
-//			}
-			set_I_direction(1,I1);
-			printf("I1 %.2f\t",I1);
-//			printf("%.2f\t",I1);
+//			printf("acc1d %.2f\tw %.2f\t",hip1_d,hip1_w);
+//			printf("acc2d %.2f\tw %.2f\t",hip2_d,hip2_w);
+			printf("%.2f\t%.2f\t",hip1_d,hip1_w);
+			printf("%.2f\t%.2f\t",hip2_d,hip2_w);
 			
-			/**/
-//			assive_mode = switch_task( &hip2, hip2_d, hip2_w,2);
-//			if(assive_mode == -20){
-				I2 = PO(hip2_d,hip2_w, 2);
-//			}
-//			else{
-//				I2 = assive_torque(&hip2, hip2_d);
-//			}
+			I1 = PO(hip1_d,hip1_w, 1);
+			set_I_direction(1,I1);
+
+			I2 = PO(hip2_d,hip2_w, 2);
 			set_I_direction(2,I2);
 			
-			printf("I2 %.2f\r\n",I2);
-//			printf("%.2f\r\n",I2);
+//			printf("I1 %.2f\tI2 %.2f\r\n",I1, I2);
+			printf("%.2f\t%.2f\r\n",I1, I2);
 		}
   }
 
