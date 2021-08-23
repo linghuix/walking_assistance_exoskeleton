@@ -23,4 +23,5 @@
 *.uvprojx
 *.uvopt
 *.flyleaf
-Keil/
+Keil/*
+*.csv

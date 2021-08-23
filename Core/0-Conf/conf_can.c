@@ -15,10 +15,17 @@
 
 CAN_HandleTypeDef hcan1;
 
+
+/**
+  * @brief CAN Function Initialization. bps set and mode set
+  * @param mode: CAN_MODE_NORMAL/CAN_MODE_LOOPBACK
+  * @retval None
+  * @note  bps: 36M/(SyncJumpWidth+TimeSeg1+TimeSeg2)/Prescaler		36M/(3+8+1)/12 = 250 KHz
+  */
 void CANHandle_Init(uint32_t mode)
 {
 	hcan1.Instance = CAN1;
-	hcan1.Init.Prescaler = 3;
+	hcan1.Init.Prescaler = 12;
 	hcan1.Init.Mode = mode;
 	hcan1.Init.SyncJumpWidth = CAN_SJW_1TQ;
 	hcan1.Init.TimeSeg1 = CAN_BS1_8TQ;
@@ -76,7 +83,7 @@ void MX_CAN1_Init(uint32_t mode)
 {
 	CANHandle_Init(mode);
 	CanFilter_Init(&hcan1, CAN_FILTER_FIFO0);
-	CAN_ITEnable();
+//	CAN_ITEnable();
 }
 
 void MX_CAN1_Test_Init(uint32_t mode)
