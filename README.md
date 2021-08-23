@@ -10,6 +10,6 @@ Implementation of walking assistance algorithm in *[Hybrid oscillator-based no-d
 * ESCON 50/5 motor driver
 * IMU sensor and interaction force sensor
 
-# How does it work
+## How does it work
 
 please refer to the paper
