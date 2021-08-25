@@ -271,7 +271,7 @@ void USART_NVIC_Init(UART_HandleTypeDef* uartHandle)
     else if(uartHandle->Instance==UART4)
     {
 		/* UART4 interrupt Init */
-		HAL_NVIC_SetPriority(UART4_IRQn, 0, 0);
+		HAL_NVIC_SetPriority(UART4_IRQn, 0, 4);
 		HAL_NVIC_EnableIRQ(UART4_IRQn);
     }
     else if(uartHandle->Instance==UART5)

@@ -25,7 +25,7 @@ void Acc1_Init(void)
 
 void Acc2_Init(void)
 {
-	MX_UART5_UART_Init();
+	MX_USART2_UART_Init();
 }
 
 //uint8_t test_data[5] = {0x55,0x00,0x00,0x00,0x00};

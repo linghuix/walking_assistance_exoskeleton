@@ -65,7 +65,7 @@ int8_t assive_mode[2] = {0};					// 当前助力模式
 int state[2] = {0};								// 0-stop 1-walking
 
 /* 助力值计算 */
-float AssisTor = 0.4;
+float AssisTor = 0.3;
 #define RightTorRatio 1	// 右侧的 assist gain 更大一些
 #define D_area 2.0		// 2.0			// for eliminate chattering
 #define W_area 2.0		// 1.0
@@ -95,10 +95,10 @@ int main(void)
 //	right_current_control();
 //	left_current_control();
 	
-	FSR_Init();
+//	FSR_Init();
 	
 	
-	/*初始化*/
+	/* initalization */
 	Acc1_Init();
 	Acc2_Init();
 	WinBuffer(&acc1win_d, acc1WinArray_d, Buffsize);
@@ -126,8 +126,8 @@ int main(void)
 	Acc2_Start();
 
 
-	INF("ABOUT ANGLE AND SPEED couterclock is postive from outside. \r\n");
-	INF("the acc1 of left hip - d w | the acc2 of right hip - d w | I1 ,I2\r\n");
+	printf("ABOUT ANGLE AND SPEED couterclock is postive from outside.\r\n");
+	printf("the acc1 of left hip - d w | the acc2 of right hip - d w | I1 ,I2\r\n");
 	
 //	HC05_RcvCmd();
 	
@@ -290,6 +290,7 @@ int main(void)
 			AssisMonitor("I1 %.2f\t",I1);
 			}
 			
+			
 			/**
 				@name 右 
 			*/
@@ -382,6 +383,7 @@ int main(void)
 	}
 
 }
+
 
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)

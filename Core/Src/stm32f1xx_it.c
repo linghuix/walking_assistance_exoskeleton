@@ -135,7 +135,7 @@ void USART1_IRQHandler(void)
 
 void USART2_IRQHandler(void)
 {
-
+//printf("IRQ uart4\r\n");
   HAL_UART_IRQHandler(&huart2);
 }
 
@@ -149,6 +149,7 @@ void USART3_IRQHandler(void)
 
 void UART4_IRQHandler(void)
 {
+//	printf("4\r\n");
   HAL_UART_IRQHandler(&huart4);
 }
 
