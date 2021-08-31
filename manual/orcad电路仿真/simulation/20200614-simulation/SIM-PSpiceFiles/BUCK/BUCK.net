@@ -1,0 +1,12 @@
+* source SIM
+C_C1         0 OUT  500u IC=0 TC=0,0 
+R_R1         N00362 N00354  50 TC=0,0 
+R_R2         0 OUT  10 TC=0,0 
+L_L1         N00332 OUT  250u  
+M_M1         IN N00354 N00332 N00332 IRF840
+X_D1         0 N00332 murhb840ct/ON
+V_V2         N00362 N00332  
++PULSE 0 15 0 0.1u 0.1u {Duty*50u} 50u
+V_V5         IN 0  
++PULSE 10 12 0 1u 1u 5m 10m
+.PARAM  duty=0.6

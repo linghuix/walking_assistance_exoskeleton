@@ -1,0 +1,20 @@
+** Profile: "drawing-drawing"  [ D:\5-PCB\simulation\20200612\analogygnd-pspicefiles\drawing\drawing.sim ] 
+
+** Creating circuit file "drawing.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+* From [PSPICE NETLIST] section of G:\4-professional\Cadence\SPB_16.5\tools\PSpice\PSpice.ini file:
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 10m 0 5u 
+.OPTIONS ITL2= 200
+.OPTIONS ITL4= 100
+.PROBE V(alias(*)) I(alias(*)) 
+.INC "..\drawing.net" 
+
+
+.END

@@ -5,9 +5,11 @@
 *.bxl文件转化为AD库
 https://blog.csdn.net/cleverhorse/article/details/100732366
 
-### 0.1 封装
+**file - new - project  created lib**
 
+**new** **原理图，** **PCB** 
 
+### 0.1 元器件封装
 
 
 
@@ -15,7 +17,7 @@ https://blog.csdn.net/cleverhorse/article/details/100732366
 
 place - 3D body
 
-<img src="Altium Designer.assets\image-20201028204158714.png" style="zoom:20%;" />          <img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\image-20201028204236846.png" alt="image-20201028204236846" style="zoom:40%;" />
+<img src="Altium Designer.assets\image-20201028204158714.png" style="zoom:20%;" />           <img src="Altium Designer.assets\image-20201028204236846.png" alt="image-20201028204236846" style="zoom:40%;" />
 
 导入时的坐标系和建模时的坐标系是一致的，所以最好在建模的时候在基准面上建模
 
@@ -23,7 +25,7 @@ place - 3D body
 
 
 
-​       <img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\image-20201028195917590.png" style="zoom: 33%;" />            <img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\image-20201028200044651.png" style="zoom: 25%;" />
+​       <img src="Altium Designer.assets\image-20201028195917590.png" style="zoom: 33%;" />            <img src="Altium Designer.assets\image-20201028200044651.png" style="zoom: 25%;" />
 
 如果 standoff Height 为0，或者较小。则，在布置PCB元件的时候，会报错。
 
@@ -43,9 +45,31 @@ https://blog.csdn.net/quinn1994/article/details/89437259
 
 ### 0.2 元件图
 
+#### 0.2.1 基操
+
+AD 软件要求器件需要与格子对齐。摆放前，设置越小的间隔，移动精度越大。
+
+<img src="Altium Designer.assets/image-20201204194148642.png" style="zoom: 50%;" /> 
+
+
+
+放置芯片引脚时，可以按tab键进行设置，注意摆放时要热点朝外
+
+<img src="Altium Designer.assets/image-20201204194138812.png" style="zoom: 50%;" />     <img src="Altium Designer.assets/image-20201204194124701.png" style="zoom:50%;" />    
+
+ 
+
+#### 0.2.1 **超大元件原理图的绘制**
+
+对于有上百个引脚的芯片，我们不可能一个个的手动去布置。我们可以用excel软件等，帮我们快速的建立芯片的各个引脚的位置表格，然后进入SCHLIB List ，智能栅格粘贴，然后将表格复制过去就可以了。
+
+同样的PCBLIB List 也能绘制超大的元件PCB封装
+
 
 
 #### 0.2.5 绑定封装
+
+<img src="Altium Designer.assets/image-20201204194351392.png" style="zoom:67%;" /> 
 
 
 
@@ -141,11 +165,11 @@ Design-layer stack manager
 
 通常电源线和地线可以宽一些,汇流
 
-<img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\image-20201029103033079.png" alt="image-20201029103033079" style="zoom: 50%;" /> 
+<img src="Altium Designer.assets\image-20201029103033079.png" alt="image-20201029103033079" style="zoom: 50%;" /> 
 
 
 
-<img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\image-20201029105821435.png" alt="image-20201029105821435" style="zoom: 50%;" /> 
+<img src="Altium Designer.assets\image-20201029105821435.png" alt="image-20201029105821435" style="zoom: 50%;" /> 
 
 
 
@@ -163,11 +187,11 @@ View - Connection - Hide Component Net    然后对应的元器件，即可屏�
 
 自动布线前，必须配置的RULE参数为：
 
-<img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\image-20201029110638940.png" alt="image-20201029110638940" style="zoom:67%;" /> 
+ <img src="Altium Designer.assets\image-20201029110638940.png" alt="image-20201029110638940" style="zoom:67%;" /> 
 
 RULE——规则的最小值和最大值必须设置为一样，否则无法进行自动布线
 
-<img src="E:\101-WorkShop\simulation\software-manual\manual\Altium Designer.assets\图片1.png"  style="zoom: 33%;" /> 
+ <img src="Altium Designer.assets\图片1.png"  style="zoom: 33%;" /> 
 
 
 
@@ -261,7 +285,19 @@ https://blog.csdn.net/jiangchao3392/article/details/79918772
 
 
 
-**给每个元件标号**
+**修改图纸大小** 
+
+方法一：
+
+双击原理图纸框外的空白区域
+
+方法二：
+
+在工具栏中 -> 点击Design -> 点击Document Options -> 找到Standard style 模块 -> 调整原理图尺寸A4/A3/A2…
+
+
+
+**给每个元件标号**　
 
 <img src="Altium Designer.assets/image-20201127213327719.png" alt="image-20201127213327719" style="zoom: 30%;" />  <img src="Altium Designer.assets/image-20201127213312229.png" style="zoom: 40%;" />  <img src="Altium Designer.assets/image-20201127213428963.png" style="zoom:30%;" />
 

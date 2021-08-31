@@ -1,0 +1,20 @@
+** Profile: "BUCK-BUCK"  [ D:\5-PCB\simulation\20200614-simulation\sim-pspicefiles\buck\buck.sim ] 
+
+** Creating circuit file "BUCK.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+* From [PSPICE NETLIST] section of G:\4-professional\Cadence\SPB_16.5\tools\PSpice\PSpice.ini file:
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 20m 0 0.1u 
+.OPTIONS ITL2= 200
+.OPTIONS ITL4= 100
+.PROBE V(alias(*)) I(alias(*)) 
+.INC "..\BUCK.net" 
+
+
+.END

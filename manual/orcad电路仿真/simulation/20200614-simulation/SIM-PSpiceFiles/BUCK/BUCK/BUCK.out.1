@@ -1,0 +1,199 @@
+
+**** 06/14/20 22:40:23 ****** PSpice 16.5.0 (April 2011) ****** ID# 0 ********
+
+ ** Profile: "BUCK-BUCK"  [ D:\5-PCB\simulation\20200614-simulation\sim-pspicefiles\buck\buck.sim ] 
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** Creating circuit file "BUCK.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+* From [PSPICE NETLIST] section of G:\4-professional\Cadence\SPB_16.5\tools\PSpice\PSpice.ini file:
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 20m 0 0.1u 
+.OPTIONS ITL2= 200
+.OPTIONS ITL4= 100
+.PROBE V(alias(*)) I(alias(*)) 
+.INC "..\BUCK.net" 
+
+
+
+**** INCLUDING BUCK.net ****
+* source SIM
+C_C1         0 OUT  500u IC=0 TC=0,0 
+R_R1         N00362 N00354  50 TC=0,0 
+R_R2         0 OUT  10 TC=0,0 
+L_L1         N00332 OUT  250u  
+M_M1         IN N00354 N00332 N00332 IRF840
+X_D1         0 N00332 murhb840ct/ON
+V_V2         N00362 N00332  
++PULSE 0 15 0 0.1u 0.1u {Duty*50u} 50u
+V_V5         IN 0  
++PULSE 10 12 0 1u 1u 5m 10m
+.PARAM  duty=0.5
+
+**** RESUMING BUCK.cir ****
+.END
+
+**** 06/14/20 22:40:23 ****** PSpice 16.5.0 (April 2011) ****** ID# 0 ********
+
+ ** Profile: "BUCK-BUCK"  [ D:\5-PCB\simulation\20200614-simulation\sim-pspicefiles\buck\buck.sim ] 
+
+
+ ****     Diode MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_D1.dqemod     X_D1.dqmod      X_D1.diomod     X_D1.dmod       
+          IS   50.000000E-06   10.000000E-15    7.060690E-18  100.000000E-27 
+           N    1.74276                                        10            
+         CJO                                                  148.419000E-12 
+          VJ                                                     .384527     
+           M                                                     .453822     
+          EG     .6                                                          
+         XTI     .5                                                          
+
+
+**** 06/14/20 22:40:23 ****** PSpice 16.5.0 (April 2011) ****** ID# 0 ********
+
+ ** Profile: "BUCK-BUCK"  [ D:\5-PCB\simulation\20200614-simulation\sim-pspicefiles\buck\buck.sim ] 
+
+
+ ****     MOSFET MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               IRF840          
+               NMOS            
+       LEVEL    3            
+           L    2.000000E-06 
+           W     .68         
+         VTO    3.879        
+          KP   20.850000E-06 
+       GAMMA    0            
+         PHI     .6          
+      LAMBDA    0            
+          RD     .6703       
+          RS    6.382000E-03 
+          RG     .6038       
+         RDS    2.222000E+06 
+          IS   56.030000E-12 
+          JS    0            
+          PB     .8          
+        PBSW     .8          
+         CBD    1.415000E-09 
+          CJ    0            
+        CJSW    0            
+          TT  710.000000E-09 
+        CGSO    1.625000E-09 
+        CGDO  133.400000E-12 
+        CGBO    0            
+         TOX  100.000000E-09 
+          XJ    0            
+       UCRIT   10.000000E+03 
+       DELTA    0            
+         ETA    0            
+      DIOMOD    1            
+         VFB    0            
+        LETA    0            
+        WETA    0            
+          U0    0            
+        TEMP    0            
+         VDD    5            
+       XPART    0            
+
+
+**** 06/14/20 22:40:23 ****** PSpice 16.5.0 (April 2011) ****** ID# 0 ********
+
+ ** Profile: "BUCK-BUCK"  [ D:\5-PCB\simulation\20200614-simulation\sim-pspicefiles\buck\buck.sim ] 
+
+
+ ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+(   IN)   10.0000  (  OUT) 8.999E-09  (N00332) 8.999E-09 (N00354) 8.999E-09     
+
+(N00362) 8.999E-09 (X_D1.1) 3.190E-09 (X_D1.2)-128.0E-21 (X_D1.3)-126.7E-21     
+
+(X_D1.4) 51.70E-27 (X_D1.5) 51.70E-27 (X_D1.6)-316.8E-12 (X_D1.7)-3.189E-12     
+
+(X_D1.8)-5.811E-21 (X_D1.12) 329.0E-15                   (X_D1.13) 3.190E-09    
+
+(X_D1.22)-2.905E-09                   (X_D1.23)-2.905E-09                       
+
+(X_D1.88)-5.809E-09                   (X_D1.89)-5.809E-09                   
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V2        -9.097E-25
+    V_V5        -4.501E-06
+    X_D1.vdsense  -3.189E-12
+    X_D1.vqe    -3.222E-12
+    X_D1.vsense   5.170E-30
+    X_D1.vie    -5.811E-21
+
+    TOTAL POWER DISSIPATION   4.50E-05  WATTS
+
+Reducing minimum delta to make the circuit converge.
+Reducing minimum delta to make the circuit converge.
+Reducing minimum delta to make the circuit converge.
+Reducing minimum delta to make the circuit converge.
+Reducing minimum delta to make the circuit converge.
+
+ERROR(ORPSIM-15138): Convergence problem in transient analysis at Time =  1.700E-03.
+         Time step =  206.7E-21, minimum allowable step size =  1.000E-18
+
+ERROR(ORPSIM-15659): Discontinuing simulation due to convergence problem
+
+
+
+  Last node voltages tried were:
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+(   IN)   12.0000  (  OUT)    6.7090  (N00332)     .0056 (N00354)     .0731     
+
+(N00362)    1.0801 (X_D1.1)    -.0499 (X_D1.2)-912.5E-15 (X_D1.3)-317.9E-15     
+
+(X_D1.4)     .0015 (X_D1.5)     .0015 (X_D1.6)-794.7E-06 (X_D1.7)    -.0015     
+
+(X_D1.8)-55.45E-15 (X_D1.12) 35.73E-06                   (X_D1.13)    -.0499    
+
+(X_D1.22)    -.0277                   (X_D1.23)    -.0277                       
+
+(X_D1.88)    -.0554                   (X_D1.89)    -.0554                   
+
+
+**** Interrupt ****

@@ -1,0 +1,15 @@
+* source ANALOGYGND
+R_R2         0 N00522  10k TC=0,0 
+R_Ri         N00516 IN  1k TC=0,0 
+R_R4         N00522 OUT  10k TC=0,0 
+R_RL         0 OUT  1k TC=0,0 
+X_U1A         N00516 N00522 +15 -15 OUT TL072/301/TI
+V_V1         +15 0 15
+V_V2         -15 0 -15
+V_Vin         IN 0  AC 1
++SIN 2 1 1k 0 0 0
+R_R5         N01676 OUT1  20k TC=0,0 
+R_Ri1         N01666 IN  1k TC=0,0 
+X_U1B         N01666 N01676 +15 -15 OUT1 TL072/301/TI
+R_R3         0 N01676  10k TC=0,0 
+R_RL1         0 OUT1  1k TC=0,0 

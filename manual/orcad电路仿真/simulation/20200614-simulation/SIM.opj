@@ -1,0 +1,106 @@
+(ExpressProject "SIM"
+  (ProjectVersion "19981106")
+  (ProjectType "Analog or A/D Mixed Mode")
+  (Folder "Design Resources"
+    (Folder "Library")
+    (NoModify)
+    (File ".\sim.dsn"
+      (Type "Schematic Design"))
+    (BuildFileAddedOrDeleted "x")
+    (CompileFileAddedOrDeleted "x")
+    (PSPICE_Regenerate_Netlist_Flag "FALSE"))
+  (Folder "Outputs"
+    (File ".\sim-pspicefiles\buck\buck.net"
+      (Type "Report")))
+  (Folder "PSpice Resources"
+    (Folder "Simulation Profiles"
+      (ActiveProfile ".\sim-pspicefiles\buck\buck.sim")
+      (File.PSpice.{09528990-3187-11D2-BC7B-00A0C90CBF91}
+         ".\sim-pspicefiles\buck\buck.sim"
+        (DisplayName "BUCK-BUCK")
+        (Type "PSpice Profile")))
+    (Folder "Model Libraries"
+      (Sort User))
+    (Folder "Stimulus Files"
+      (Sort User))
+    (Folder "Include Files"
+      (Sort User)))
+  (DefaultLibraryBrowseDirectory "library\PSpice")
+  (PartMRUSelector
+    (VPULSE
+      (FullPartName "VPULSE.Normal")
+      (LibraryName
+         "G:\4-PROFESSIONAL\CADENCE\SPB_16.5\TOOLS\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0"))
+    (VCC
+      (LibraryName
+         "G:\4-PROFESSIONAL\CADENCE\SPB_16.5\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB")
+      (DeviceIndex "0"))
+    (PARAM
+      (FullPartName "PARAM.Normal")
+      (LibraryName
+         "G:\4-PROFESSIONAL\CADENCE\SPB_16.5\TOOLS\CAPTURE\LIBRARY\PSPICE\SPECIAL.OLB")
+      (DeviceIndex "0"))
+    (0
+      (LibraryName
+         "G:\4-PROFESSIONAL\CADENCE\SPB_16.5\TOOLS\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0"))
+    (MV1872
+      (FullPartName "MV1872.Normal")
+      (LibraryName
+         "G:\4-PROFESSIONAL\CADENCE\SPB_16.5\TOOLS\CAPTURE\LIBRARY\PSPICE\DIODE.OLB")
+      (DeviceIndex "0"))
+    (murhb840ct/ON
+      (FullPartName "murhb840ct/ON.Normal")
+      (LibraryName
+         "G:\4-PROFESSIONAL\CADENCE\SPB_16.5\TOOLS\CAPTURE\LIBRARY\PSPICE\ON_DIODE.OLB")
+      (DeviceIndex "0"))
+    (IRF840
+      (FullPartName "IRF840.Normal")
+      (LibraryName
+         "G:\4-PROFESSIONAL\CADENCE\SPB_16.5\TOOLS\CAPTURE\LIBRARY\PSPICE\PWRMOS.OLB")
+      (DeviceIndex "0"))
+    (VDC
+      (FullPartName "VDC.Normal")
+      (LibraryName
+         "G:\4-PROFESSIONAL\CADENCE\SPB_16.5\TOOLS\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB")
+      (DeviceIndex "0"))
+    (L
+      (FullPartName "L.Normal")
+      (LibraryName
+         "G:\4-PROFESSIONAL\CADENCE\SPB_16.5\TOOLS\CAPTURE\LIBRARY\PSPICE\ANALOG.OLB")
+      (DeviceIndex "0"))
+    (R
+      (FullPartName "R.Normal")
+      (LibraryName
+         "G:\4-PROFESSIONAL\CADENCE\SPB_16.5\TOOLS\CAPTURE\LIBRARY\PSPICE\ANALOG.OLB")
+      (DeviceIndex "0"))
+    (C
+      (FullPartName "C.Normal")
+      (LibraryName
+         "G:\4-PROFESSIONAL\CADENCE\SPB_16.5\TOOLS\CAPTURE\LIBRARY\PSPICE\ANALOG.OLB")
+      (DeviceIndex "0")))
+  (GlobalState
+    (FileView
+      (Path "Design Resources")
+      (Path "Design Resources"
+         "D:\5-PCB\simulation\20200614-simulation\sim.dsn")
+      (Path "Design Resources"
+         "D:\5-PCB\simulation\20200614-simulation\sim.dsn" "BUCK")
+      (Path "Outputs"))
+    (HierarchyView)
+    (Doc
+      (Type "COrCapturePMDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -8 -30 0 200 0 267"))
+      (Tab 0))
+    (Doc
+      (Type "COrSchematicDoc")
+      (Frame
+        (Placement "44 2 3 -1 -1 -8 -30 125 679 125 430")
+        (Scroll "428 235")
+        (Zoom "204")
+        (Occurrence "/"))
+      (Path "D:\5-PCB\SIMULATION\20200614-SIMULATION\SIM.DSN")
+      (Schematic "BUCK")
+      (Page "BUCK"))))

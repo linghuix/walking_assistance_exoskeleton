@@ -1,0 +1,54 @@
+
+**** 06/14/20 00:40:56 ****** PSpice 16.5.0 (April 2011) ****** ID# 0 ********
+
+ ** Profile: "drawing-drawing"  [ D:\5-PCB\simulation\20200612\analogygnd-pspicefiles\drawing\drawing.sim ] 
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** Creating circuit file "drawing.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+* From [PSPICE NETLIST] section of G:\4-professional\Cadence\SPB_16.5\tools\PSpice\PSpice.ini file:
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 10m 0 5u 
+.OPTIONS ITL2= 200
+.OPTIONS ITL4= 100
+.PROBE V(alias(*)) I(alias(*)) 
+.INC "..\drawing.net" 
+
+
+
+**** INCLUDING drawing.net ****
+* source ANALOGYGND
+R_R2         0 N00522  10k TC=0,0 
+R_Ri         N00516 IN  1k TC=0,0 
+R_R4         N00522 OUT  10k TC=0,0 
+R_RL         0 OUT  1k TC=0,0 
+X_U1A         N00516 N00522 +15 -15 OUT TL072/301/TI
+V_V1         +15 0 15
+V_V2         -15 0 -15
+V_Vin         IN 0  AC 1
++SIN 2 1 1k 0 0 0
+R_R5         N01676 OUT1  20k TC=0,0 
+R_Ri1         N01666 IN1  1k TC=0,0 
+X_U1B         N01666 N01676 +15 -15 OUT1 TL072/301/TI
+R_R3         0 N01676  10k TC=0,0 
+R_RL1         0 OUT1  1k TC=0,0 
+
+**** RESUMING drawing.cir ****
+.END
+
+ERROR(ORPSIM-15141): Less than 2 connections at node IN1.
+

@@ -1,0 +1,21 @@
+.ALIASES
+R_RL            RL(1=0 2=OUT ) CN @ANALOGYGND.drawing new(sch_1):INS1011@ANALOG.R.Normal(chips)
+V_Vin           Vin(+=IN -=0 ) CN @ANALOGYGND.drawing new(sch_1):INS1227@SOURCE.VSIN.Normal(chips)
+V_V1            V1(+=+15 -=0 ) CN @ANALOGYGND.drawing new(sch_1):INS1065@SOURCE.VDC.Normal(chips)
+V_V2            V2(+=-15 -=0 ) CN @ANALOGYGND.drawing new(sch_1):INS1085@SOURCE.VDC.Normal(chips)
+X_U1A           U1A(+=N01165 -=N01589 V+=+15 V-=-15 OUT=OUT ) CN @ANALOGYGND.drawing
++new(sch_1):INS1031@TEX_INST.TL072/301/TI.Normal(chips)
+R_Ri            Ri(1=N01165 2=IN ) CN @ANALOGYGND.drawing new(sch_1):INS971@ANALOG.R.Normal(chips)
+_    bk1(IN1=0 IN2=OUT FB=N01589 ) CN @ANALOGYGND.drawing new(sch_1):bk1@ANALOGYGND.DL(sch_1)
+R_bk1_R4          bk1.R4(1=N01589 2=0 ) CN @ANALOGYGND.drawing new(sch_1):bk1@ANALOGYGND.DL(sch_1):INS1239@ANALOG.R.Normal(chips)
+R_bk1_R2          bk1.R2(1=OUT 2=N01589 ) CN @ANALOGYGND.drawing new(sch_1):bk1@ANALOGYGND.DL(sch_1):INS1219@ANALOG.R.Normal(chips)
+_    _(bk1.FB=N01589)
+_    _(bk1.IN1=0)
+_    _(IN1=0)
+_    _(bk1.IN2=OUT)
+_    _(IN2=OUT)
+_    _(+15=+15)
+_    _(-15=-15)
+_    _(IN=IN)
+_    _(OUT=OUT)
+.ENDALIASES

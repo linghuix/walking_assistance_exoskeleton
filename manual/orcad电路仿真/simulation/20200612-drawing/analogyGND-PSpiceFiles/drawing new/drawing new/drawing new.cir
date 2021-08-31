@@ -1,0 +1,20 @@
+** Profile: "drawing new-drawing new"  [ D:\5-PCB\simulation\20200612\ANALOGYGND-PSpiceFiles\drawing new\drawing new.sim ] 
+
+** Creating circuit file "drawing new.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+* From [PSPICE NETLIST] section of G:\4-professional\Cadence\SPB_16.5\tools\PSpice\PSpice.ini file:
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 4m 0 10u 
+.OPTIONS ITL2= 200
+.OPTIONS ITL4= 100
+.PROBE V(alias(*)) I(alias(*)) 
+.INC "..\drawing new.net" 
+
+
+.END
