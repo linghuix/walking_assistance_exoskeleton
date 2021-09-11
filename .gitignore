@@ -17,11 +17,13 @@
 *.txt
 *.XLH
 *.zip
+*.txt
 
 *.pc
 *.uvoptx
 *.uvprojx
 *.uvopt
 *.flyleaf
+*.jscope
 Keil/*
 *.csv

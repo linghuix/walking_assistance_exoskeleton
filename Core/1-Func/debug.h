@@ -31,14 +31,14 @@
 
 #    define MSG_WAR(num, string, value) MSG("\r\n%s,%d : 0X%x %s 0X%x \r\n",__FILE__, __LINE__,num, string, value);
 
-#define INF(...) 					MSG(__VA_ARGS__)
+#define INF(...) 					//MSG(__VA_ARGS__)
 #define IMUMonitor(...) 			//MSG(__VA_ARGS__)
 #define AOMonitor(...) 				MSG(__VA_ARGS__)
 #define POMonitor(...) 				MSG(__VA_ARGS__)
 #define INTERFORCE_Monitor(...) 	//MSG(__VA_ARGS__)
 #define AssisMonitor(...) 			//MSG(__VA_ARGS__)
 #define ERROR(s,...)				MSG("#ERROR %d# ",s);MSG(__VA_ARGS__);MSG("\t--%s,%d\r\n",__FILE__, __LINE__)
-#define TESTOUT(...)				MSG(__VA_ARGS__)
+#define TESTOUT(...)				//MSG(__VA_ARGS__)
 
 struct Buffer{
 	char data[BufferSize];
