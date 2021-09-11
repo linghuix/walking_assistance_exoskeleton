@@ -11,10 +11,10 @@
 #include "conf_usart.h"
 
 
-#define acc1_huart huart3
+#define acc1_huart huart4
 #define acc2_huart huart2
 
-#define acc1_uart USART3
+#define acc1_uart UART4
 #define acc2_uart USART2
 
 
