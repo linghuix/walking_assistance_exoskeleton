@@ -18,7 +18,7 @@ int16_t stopCounter[2] = {0}, stopFlag[2] = {0};
 #define TH_W 6.0
 #define TH_D 10.0
 
-
+/* 驱动器编号 */
 uint8_t CANID_righthip_odriver = 0x2;		// driver ID
 uint8_t CANID_lefthip_odriver = 0x1;
 
@@ -72,7 +72,14 @@ float AssisTor = 0.3;
 #define MAX_D_area 50.0	// for safety
 float left_k = 0,right_k = 0;
 float kkkk = 0;
-	
+
+/* 助力值优化参数 */
+float tao_Ep = 7.0;		// 5-10 Nm
+float fai_Ep = 0.25; 	// 0.2-0.3
+float fai_Er = 0.15;	// 0.1-0.2
+float fai_Ef = 0.15;	// 0.1-0.2
+float tao_Fp, fai_Fp, fai_Fr, fai_Ff;
+float a[3],b[3];
 
 // Jscope 调试
 int debug_hip1_d, debug_hip1_rawd, debug_hip2_d, debug_hip2_rawd;
@@ -128,6 +135,12 @@ int main(void)
 
 	printf("ABOUT ANGLE AND SPEED couterclock is postive from outside.\r\n");
 	printf("the acc1 of left hip - d w | the acc2 of right hip - d w | I1 ,I2\r\n");
+	
+	tao_Fp = tao_Ep;
+	fai_Fp = 0.5 + fai_Ep;
+	fai_Fr = fai_Er;	// 0.1-0.2
+	fai_Ff = fai_Ef;	// 0.1-0.2
+
 	
 //	HC05_RcvCmd();
 	
@@ -283,8 +296,28 @@ int main(void)
 //			if(floatabs(hip1_rawd) > TH_BOUND){
 //				left_k = 0.0;
 //			}
-
-			I1 = left_k*sin(phase[0]);
+			
+			if(	phase[0] < fai_Ep ||
+				phase[0] > fai_Ep+fai_Ef && phase[0] < fai_Fp-fai_Fr ||
+				phase[0] > fai_Fp+fai_Ff 
+				){
+					I1 = 0;
+			}
+			else if( phase[0]>fai_Ep-fai_Er && phase[0]<fai_Ep){
+				I1 = (a[0]*phase[0]+a[1])*phase[0]+a[2];
+			}
+			else if( phase[0]>fai_Ep-fai_Er+0.5 && phase[0]<fai_Ep+0.5){
+				int phi = phase[0]-0.5;
+				I1 = -((a[0]*phi+a[1])*phi+a[2]);
+			}
+			else if( phase[0]>fai_Ep && phase[0]<fai_Ep+fai_Ef){
+				I1 = (b[0]*phase[0]+b[1])*phase[0]+b[2];
+			}
+			else if( phase[0]>fai_Ep+0.5 && phase[0]<fai_Ep+fai_Ef+0.5 ){
+				int phi = phase[0]-0.5;
+				I1 = -((b[0]*phi+b[1])*phi+b[2]);
+			}
+			
 			set_I_direction(1,I1);
 
 			AssisMonitor("I1 %.2f\t",I1);
