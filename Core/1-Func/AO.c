@@ -424,9 +424,9 @@ void test_AOs(void)
  */
 uint8_t findpeak(WINp win)
 {
-	ElementType end1 = GetValue(win,1);
-	ElementType end2 = GetValue(win,3);
-	ElementType mid = GetValue(win,2);
+	ElementType end1 = getValue(win,1);
+	ElementType end2 = getValue(win,3);
+	ElementType mid = getValue(win,2);
 	
 	if(mid < end1 && mid < end2 && mid<5){
 		return 1;

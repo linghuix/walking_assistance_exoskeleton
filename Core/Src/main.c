@@ -70,7 +70,7 @@ float AssisTor = 0.3;
 #define D_area 2.0		// 2.0			// for eliminate chattering
 #define W_area 2.0		// 1.0
 #define MAX_D_area 50.0	// for safety
-float left_k = 0,K = 0;
+float left_k = 0,right_k = 0;
 float kkkk = 0;
 	
 
@@ -101,15 +101,15 @@ int main(void)
 	/* initalization */
 	Acc1_Init();
 	Acc2_Init();
-	WinBuffer(&acc1win_d, acc1WinArray_d, Buffsize);
-	WinBuffer(&acc2win_d, acc2WinArray_d, Buffsize);
-	WinBuffer(&acc1win_w, acc1WinArray_w, Buffsize);
-	WinBuffer(&acc2win_w, acc2WinArray_w, Buffsize);
+	winBuffer(&acc1win_d, acc1WinArray_d, Buffsize);
+	winBuffer(&acc2win_d, acc2WinArray_d, Buffsize);
+	winBuffer(&acc1win_w, acc1WinArray_w, Buffsize);
+	winBuffer(&acc2win_w, acc2WinArray_w, Buffsize);
 	
 	
 	/*峰值检测*/
-	WinBuffer(&d1minwin_w, d1Win, 3);
-	WinBuffer(&d2minwin_w, d2Win, 3);
+	winBuffer(&d1minwin_w, d1Win, 3);
+	winBuffer(&d2minwin_w, d2Win, 3);
 
 	MX_TIM_PWMOUT(TIM4, 50000, 100);
 	HAL_TIM_Base_Start_IT(&htim4);
@@ -153,8 +153,8 @@ int main(void)
 			
 			addToBuff(&acc1win_d ,hip1_rawd);
 			addToBuff(&acc1win_w ,hip1_raww);
-			ChangeLastestValue(&acc1win_d, AvergeWin(&acc1win_d, weights, Buffsize));
-			ChangeLastestValue(&acc1win_w, AvergeWin(&acc1win_w, weights, Buffsize));
+			changeLastestValue(&acc1win_d, avergeWin(&acc1win_d, weights, Buffsize));
+			changeLastestValue(&acc1win_w, avergeWin(&acc1win_w, weights, Buffsize));
 			hip1_d = getLastestValue(acc1win_d);
 			hip1_w = getLastestValue(acc1win_w);
 			
@@ -191,8 +191,8 @@ int main(void)
 			
 			addToBuff(&acc2win_d ,hip2_rawd);
 			addToBuff(&acc2win_w ,hip2_raww);
-			ChangeLastestValue(&acc2win_d, AvergeWin(&acc2win_d, weights, Buffsize));
-			ChangeLastestValue(&acc2win_w, AvergeWin(&acc2win_w, weights, Buffsize));
+			changeLastestValue(&acc2win_d, avergeWin(&acc2win_d, weights, Buffsize));
+			changeLastestValue(&acc2win_w, avergeWin(&acc2win_w, weights, Buffsize));
 			hip2_d = getLastestValue(acc2win_d);
 			hip2_w = getLastestValue(acc2win_w);
 
@@ -274,7 +274,7 @@ int main(void)
 //				left_k = 0.0;
 //			}
 
-			// 战立时不助力
+			// 站立时不助力
 //			if(state[0] == 0){
 //				left_k = 0.0;
 //			}
@@ -316,7 +316,7 @@ int main(void)
 			
 			
 			/* get phase */
-			K = 0.4;
+			right_k = AssisTor*RightTorRatio;
 			if(assive_mode[1] == POMODE){
 				phase[1] = PO_phase(hip2_d, hip2_w);
 				phase[1] = -phase[1] + PI;
@@ -330,18 +330,18 @@ int main(void)
 			}
 
 //			if(period[1] < TH_PERIOD){
-//				K = 0.0;
+//				right_k = 0.0;
 //			}
 //			
 //			if(state[1] == 0){
-//				K = 0.0;
+//				right_k = 0.0;
 //			}
 			
 //			if(floatabs(hip2_rawd) > TH_BOUND){
-//				K = 0.0;
+//				right_k = 0.0;
 //			}
 			
-			I2 = K * sin(phase[1]);
+			I2 = right_k * sin(phase[1]);
 			set_I_direction(2,I2);
 
 			AssisMonitor("I2 %.2f\t",I2);
@@ -379,7 +379,9 @@ int main(void)
 	
 		debug_AOphase_offset1 = 1000*phase[0]; 
 		debug_AOphase_offset2 = 1000*phase[1]; 
-		debug_tmp = 1000.0*kkkk;
+		
+
+		debug_tmp = 1000.0;
 	}
 
 }

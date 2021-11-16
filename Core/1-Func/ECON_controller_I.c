@@ -42,13 +42,13 @@ void setPWM_2(float dutyfactor)
 extern uint8_t CANID_righthip_odriver, CANID_lefthip_odriver;
 void set_I_direction(uint8_t node, float I)
 {
-	if(node == 1){
-		ODrive_Set_Input_Current(CANID_lefthip_odriver, I);
-	}
-	else if(node == 2){
-		ODrive_Set_Input_Current(CANID_righthip_odriver, -I);
-	}
-	TESTOUT("f2 - %.2f\r\n", I);
+//	if(node == 1){
+//		ODrive_Set_Input_Current(CANID_lefthip_odriver, I);
+//	}
+//	else if(node == 2){
+//		ODrive_Set_Input_Current(CANID_righthip_odriver, -I);
+//	}
+//	TESTOUT("f2 - %.2f\r\n", I);
 	
 }
 

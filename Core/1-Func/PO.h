@@ -20,4 +20,6 @@
 float PO(float d, float w,uint8_t node);
 float PO_phase(float d, float w);
 
+float APOPhase(float d, float w);
+
 #endif /* 1_FUNC_PO_H_ */
