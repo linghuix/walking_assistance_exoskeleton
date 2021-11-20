@@ -23,7 +23,7 @@ int16_t stopCounter[2] = {0}, stopFlag[2] = {0};
 #define TH_W 6.0
 #define TH_D 10.0
 
-
+/* 驱动器编号 */
 uint8_t CANID_righthip_odriver = 0x2;		// driver ID
 uint8_t CANID_lefthip_odriver = 0x1;
 
@@ -65,7 +65,7 @@ float AOoffset[2] = {0};						// AO 相位补偿器
 
 
 /*advanced PO*/
-struct APO apohip1;
+struct APO apohip1;                             // po.h
 struct APO apohip2;
 
 
@@ -82,7 +82,14 @@ float AssisTor = 0.3;
 #define MAX_D_area 50.0	// for safety
 float left_k = 0,right_k = 0;
 float kkkk = 0;
-	
+
+/* 助力值优化参数 */
+float tao_Ep = 7.0;		// 5-10 Nm
+float fai_Ep = 0.25; 	// 0.2-0.3
+float fai_Er = 0.15;	// 0.1-0.2
+float fai_Ef = 0.15;	// 0.1-0.2
+float tao_Fp, fai_Fp, fai_Fr, fai_Ff;
+float a[3],b[3];
 
 // Jscope 调试
 int debug_hip1_d, debug_hip1_rawd, debug_hip2_d, debug_hip2_rawd;
@@ -150,6 +157,12 @@ int main(void)
 	printf("\r\nthe acc1 of left hip - d w | the acc2 of right hip - d w | I1 ,I2\r\n");
 	
 	
+	tao_Fp = tao_Ep;
+	fai_Fp = 0.5 + fai_Ep;
+	fai_Fr = fai_Er;	// 0.1-0.2
+	fai_Ff = fai_Ef;	// 0.1-0.2
+
+	
 //	HC05_RcvCmd();
 	
 	/******* test code *******/
@@ -161,7 +174,8 @@ int main(void)
 	
 	while(1){
 
-		/* 左髋关节 加速度信号采集  采样周期约100Hz以上 */
+
+		/* 左髋关节 加速度信号采集  采样周期 100Hz */
 		if(flag_1 ==1&&flag_2 == 1&&flag_3 == 1){
 //			printf("L\r\n");
 			flag_1=0;flag_2=0;flag_3=0;
@@ -199,7 +213,8 @@ int main(void)
 			}
 		}
 
-		/* 右髋关节 加速度信号采集  采样周期约100Hz以上 */
+
+		/* 右髋关节 加速度信号采集  采样周期 100Hz */
 		if(flag_11 ==1&&flag_22 == 1&&flag_33 == 1){
 //			printf("R\r\n");
 			flag_11=0;flag_22=0;flag_33=0;
@@ -236,32 +251,37 @@ int main(void)
 			}
 		}
 		
+        
 		/* 控制周期 2ms x CONTROL_PERIOD */
 		if(inc % CONTROL_PERIOD == 0){
-//			printf("Controling\r\n");
+            
+			// promote the code is running
 			if(inc % (CONTROL_PERIOD * 50) == 0){
 				printf("Controling\r\n");
 			}
-			
-//			Interaction_force = GetFSRForce();
-//			INTERFORCE_Monitor("F %d\t", Interaction_force);
-			
+            
+            // print IMU information
 			IMUMonitor("acc1rawd\t%.2f\tw\t%.2f\t",hip1_rawd,hip1_raww);
 			IMUMonitor("acc2rawd\t%.2f\tw\t%.2f\t",hip2_rawd,hip2_raww);
 			IMUMonitor("%.2f\t%.2f\t",hip1_d,hip1_w);
 			IMUMonitor("%.2f\t%.2f\t",hip2_d,hip2_w);
 			
+            // human exo Interaction force
+//			Interaction_force = GetFSRForce();
+//			INTERFORCE_Monitor("F %d\t", Interaction_force);
+			
+			
 			Aoindex++;	// 控制周期的序号
-			debug_AOIndex++; if( debug_AOIndex > 100 ){ debug_AOIndex = 0;}//FOR TEST
+			//debug_AOIndex++; if( debug_AOIndex > 100 ){ debug_AOIndex = 0;}//FOR TEST
 			
 			/**
 				@name 左 
 			*/
 			{
+            /* AO iteration */
 			AO(hip1_d,1);
 			
-			/* summit detect and period predict*/
-
+			/* Peak detection and period estimation*/
 			if(found_peak[0] == 1){									// 检测峰值，估计人体步态周期并记录需要补偿的相位值
 				period[0] = Aoindex - peaktimestamp[0];				// gait period estimation
 				peaktimestamp[0] = Aoindex;							// peaktimestamp 记录上一个峰值对应的 Aoindex
@@ -269,18 +289,17 @@ int main(void)
 				found_peak[0] = 0;
 			}
 			
+            /* Mode selection */
 			assive_mode[0] = switch_task( &hip1, hip1_d, hip1_w, 1);	// 模式切换
 			assive_mode[0] = POMODE;
 			
-			// stop state use POMODE
+			// if stop state is detected, use POMODE
 			if(stopFlag[0] == 1){
 				assive_mode[0] = POMODE;
 				stopFlag[0]=0;
 			}
 			
-			/* get phase */
-			left_k = AssisTor;
-			
+			/* Get phase*/
 			if(assive_mode[0] == POMODE){
 				phase[0] = APOPhase(&apohip1, hip1_d, hip1_w);
 				phase[0] = -phase[0] + PI;
@@ -292,7 +311,9 @@ int main(void)
 			else{
 				while(1){ MSG_ERR(123, "assive_mode error\r\n", 123); }
 			}
-			
+            
+            /* No assistance conditions */
+			left_k = AssisTor;
 			// 防高频率抖动
 //			if(period[0] < TH_PERIOD){
 //				left_k = 0.0;
@@ -308,9 +329,30 @@ int main(void)
 //				left_k = 0.0;
 //			}
 
-			I1 = left_k*sin(phase[0]);
+            /* Assistive Torque */
 			
-			#ifdef ODRIVE
+			if(	phase[0] < fai_Ep ||
+				phase[0] > fai_Ep+fai_Ef && phase[0] < fai_Fp-fai_Fr ||
+				phase[0] > fai_Fp+fai_Ff 
+				){
+					I1 = 0;
+			}
+			else if( phase[0]>fai_Ep-fai_Er && phase[0]<fai_Ep){
+				I1 = (a[0]*phase[0]+a[1])*phase[0]+a[2];
+			}
+			else if( phase[0]>fai_Ep-fai_Er+0.5 && phase[0]<fai_Ep+0.5){
+				int phi = phase[0]-0.5;
+				I1 = -((a[0]*phi+a[1])*phi+a[2]);
+			}
+			else if( phase[0]>fai_Ep && phase[0]<fai_Ep+fai_Ef){
+				I1 = (b[0]*phase[0]+b[1])*phase[0]+b[2];
+			}
+			else if( phase[0]>fai_Ep+0.5 && phase[0]<fai_Ep+fai_Ef+0.5 ){
+				int phi = phase[0]-0.5;
+				I1 = -((b[0]*phi+b[1])*phi+b[2]);
+			}
+			
+            #ifdef ODRIVE
 			set_I_direction(1,I1);
 			#endif
 			
@@ -318,6 +360,8 @@ int main(void)
 			}
 			
 			
+            // -------------------------------------------------------------------//
+            
 			/**
 				@name 右 
 			*/
@@ -375,9 +419,8 @@ int main(void)
 			
 			AssisMonitor("I2 %.2f\t",I2);
 			
-		}
+            }
 			INF("\r\n");
-			
 		}
 		
 		debug_assisTorque1 = 1000.0*I1;
@@ -409,13 +452,10 @@ int main(void)
 		debug_phase1 = 1000*phase[0]; 
 		debug_phase2 = 1000*phase[1]; 
 		
-
 		debug_tmp = 1000.0;
 	}
 
 }
-
-
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
