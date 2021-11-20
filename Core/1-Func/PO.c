@@ -24,10 +24,11 @@
   *
   * @retval v - xy坐标轴上,坐标（x,y)到原点的直线与x轴正向的夹角弧度值，范围为-pi-+pi
 */
+uint8_t error_atana = 0;
 float myatan2(float y, float x)
 {
     float v=0;
-    if( y==0 && x==0){
+    if( y==0 && x==0 && error_atana == 0){
         ERROR(2,"error y = 0, x = 0");
         return 0.0;
 	}
@@ -46,6 +47,7 @@ float myatan2(float y, float x)
     if (y<0 && x==0){
         v = -PI/2;
 	}
+	error_atana = 1;
     return v;
 }
 
@@ -65,98 +67,85 @@ float PO_phase(float d, float w)
 	return myatan2(w,d);
 }
 
-
-#include "win.h"
-float LastestAngleStore[500], LastestVelocityStore[500]; 
-//LastestAngleStore 存储关节角度  LastestVelocityStore 存储关节角速度  LastestPoPhase  存储普通PO算法得出的相位(用于划分步态周期)，存储空间至少存储一个步态周期
-
-WIN gaitSegment; float gaitSegment_data[3] = {0}; int gaitSegment_size = 3;
-
-float APO_d, APO_w, APO_phase;
-float kk=1.0,alpha=0.0,beta=0.0;
-int debugPOphase;
-int stopflag = 1;
-int AdvancedPOindex=0,begin=1,lastSegment_ith, segment_ith;
-// AdvancedPOindex 存储数据游标  segment_ith 存储分割序列索引， begin=1 开始寻找第一个分割点
-
-int once = 1;
-float APOPhase(float d, float w)
+int gaitSegment_size = 5;
+float APOPhase(struct APO * apo, float d, float w)
 {
+
 	// 初始化，仅运行一次
-	if(once){
-		winBuffer(&gaitSegment, gaitSegment_data, gaitSegment_size);
-		once = 0;
+	if(apo->once == 1){
+		winBuffer(&(apo->gaitSegment), apo->gaitSegment_data, gaitSegment_size);
+		apo->once = 0;
 	}
 	
 	/* save para */
-	LastestAngleStore[AdvancedPOindex] = d;
-	LastestVelocityStore[AdvancedPOindex] = w;
-	addToBuff(&gaitSegment, myatan2(w,d));
+	apo->LastestAngleStore[apo->AdvancedPOindex] = d;
+	apo->LastestVelocityStore[apo->AdvancedPOindex] = w;
+	addToBuff(&(apo->gaitSegment), d);
 
-	AdvancedPOindex = AdvancedPOindex + 1;			// 移动光标到下一个存储点
-	if(AdvancedPOindex >= 500) {					// 防止空间溢出
-		AdvancedPOindex=0;
-		begin = 1;
+	apo->AdvancedPOindex = apo->AdvancedPOindex + 1;			// 移动光标到下一个存储点
+	if(apo->AdvancedPOindex >= 500) {					// 防止空间溢出
+		apo->AdvancedPOindex=0;
+		apo->begin = 1;
 	}
 
-	debugPOphase = 1000*myatan2(w,d);											/* debug  PO放大1000倍*/
-	printf("\r\n%d\t%.2f\t%.2f",debugPOphase,w,d);
+	apo->debugPOphase = 1000*myatan2(w,d);											/* debug  PO放大1000倍*/
+	printf("\r\n%d\t%.2f\t%.2f",apo->debugPOphase,w,d);
 	
 
 	/* 判断相位分割点 第一次运行 */
-	if(AdvancedPOindex > 0 
-		&& ( getValue(&gaitSegment,3) - getValue(&gaitSegment,1)) > 4 
-		&& begin == 1)
+	if(apo->AdvancedPOindex > 0 
+		&& findPeak(&(apo->gaitSegment), 5) 
+		&& apo->begin == 1)
 	{
-		//segment_ith = AdvancedPOindex;
-		lastSegment_ith = AdvancedPOindex;
-		begin = 0;
+		//segment_ith = apo->AdvancedPOindex;
+		apo->lastSegment_ith = apo->AdvancedPOindex;
+		apo->begin = 0;
 	}
 	
 
 	// 获取一个步态周期
-	if  (begin == 0		/* 存在相位分割点 */
-		&& (AdvancedPOindex > 0)
-		&& (getValue(&gaitSegment,3) - getValue(&gaitSegment,1))>4 	/* 分割点 */
-		&& (AdvancedPOindex-lastSegment_ith)>100)									/* 分割点间隔大于100 */
+	if  (apo->begin == 0							/* 存在相位分割点 */
+		&& (apo->AdvancedPOindex > 0)
+		&& findPeak(&(apo->gaitSegment), 5)  		/* 分割点 */
+		&& (apo->AdvancedPOindex - apo->lastSegment_ith) > apo->APO_updateinterval)									/* 分割点间隔大于100 */
 	{																				//寻找步态分割点
-		segment_ith=AdvancedPOindex;
+		apo->segment_ith=apo->AdvancedPOindex;
 		
 		/* 寻找极值 */
 		float angmax=-100,angmin=100,wmax=-100,wmin=100; 
-		for(int n = lastSegment_ith;n < segment_ith;n++) {
+		for(int n = apo->lastSegment_ith;n < apo->segment_ith;n++) {
 
-			if(LastestAngleStore[n] > angmax){ 
-				angmax = LastestAngleStore[n];
+			if(apo->LastestAngleStore[n] > angmax){ 
+				angmax = apo->LastestAngleStore[n];
 			}
 
-			if(LastestAngleStore[n] < angmin){
-				angmin = LastestAngleStore[n];
+			if(apo->LastestAngleStore[n] < angmin){
+				angmin = apo->LastestAngleStore[n];
 			}
 
-			if(LastestVelocityStore[n] > wmax){
-				wmax = LastestVelocityStore[n];
+			if(apo->LastestVelocityStore[n] > wmax){
+				wmax = apo->LastestVelocityStore[n];
 			}
 
-			if(LastestVelocityStore[n] < wmin){
-				wmin = LastestVelocityStore[n];
+			if(apo->LastestVelocityStore[n] < wmin){
+				wmin = apo->LastestVelocityStore[n];
 			}
 		}
 		
 		//计算上个周期的正值 k、alpha、beta
-		kk = (angmax-angmin)/(wmax-wmin);
-		alpha = (wmax+wmin)/2;
-		beta = (angmax+angmin)/2;
+		apo->kk = (angmax-angmin)/(wmax-wmin);
+		apo->alpha = (wmax+wmin)/2;
+		apo->beta = (angmax+angmin)/2;
 
 		// 获取一次步态周期后重置存储点
-		AdvancedPOindex = 0;
-		lastSegment_ith = 0;
+		apo->AdvancedPOindex = 0;
+		apo->lastSegment_ith = 0;
 	}
 	
 	/* 计算改变后的相位 */
-	APO_w = kk*(w-alpha);
-	APO_d = d-beta;
-	APO_phase = myatan2(APO_w,APO_d);
+	apo->APO_w = apo->kk*(w-apo->alpha);
+	apo->APO_d = d-apo->beta;
+	apo->APO_phase = myatan2(apo->APO_w,apo->APO_d);
 	
 	/* 抖动判断，站立判断 */
 //	if ((APO_w*APO_w/25 + APO_d*APO_d/49) < 1){
@@ -167,7 +156,8 @@ float APOPhase(float d, float w)
 //	}
 	
 	
-	return APO_phase*stopflag;
+	return apo->APO_phase*apo->stopflag;
+
 }
 
 

@@ -1,6 +1,11 @@
 
 #include "main.h"
 
+//#define ODRIVE
+
+
+
+
 /* safe */
 #define TH_BOUND 40.0
 #define PERIOD 50
@@ -59,6 +64,11 @@ float phase[2], predictPhase[2];				// 0左，1右
 float AOoffset[2] = {0};						// AO 相位补偿器
 
 
+/*advanced PO*/
+struct APO apohip1;
+struct APO apohip2;
+
+
 /* 助力模式 */
 extern int16_t delaySwitch[2];
 int8_t assive_mode[2] = {0};					// 当前助力模式
@@ -79,8 +89,8 @@ int debug_hip1_d, debug_hip1_rawd, debug_hip2_d, debug_hip2_rawd;
 int debug_hip1_w, debug_hip1_raww, debug_hip2_w, debug_hip2_raww;
 uint8_t debug_peak[2] = {0,0};
 uint8_t found_peak[2] = {0,0};
-int debug_AOphase1=0, debug_AOoutput1=0, debug_AOpre1=0, debug_AOphase_offset1=0, debug_AOw1, debug_AOphasePre1;
-int debug_AOphase2=0, debug_AOoutput2=0, debug_AOpre2=0, debug_AOphase_offset2=0, debug_AOw2, debug_AOphasePre2;
+int debug_AOphase1=0, debug_AOoutput1=0, debug_AOpre1=0, debug_phase1=0, debug_AOw1, debug_AOphasePre1;
+int debug_AOphase2=0, debug_AOoutput2=0, debug_AOpre2=0, debug_phase2=0, debug_AOw2, debug_AOphasePre2;
 int debug_AOIndex = 0;
 int debug_assisTorque1 = 0, debug_assisTorque2 = 0;					// 临时查看变量
 int debug_tmp;
@@ -91,6 +101,14 @@ int main(void)
 	Core_Config();
 	Jlink_Init();
 	debug_init();
+	
+	/* advanced PO */
+	apohip1.APO_updateinterval = 20; apohip2.APO_updateinterval = 20;
+	apohip1.kk=1.0;apohip1.alpha=0.0;apohip1.beta=0.0;
+	apohip2.kk=1.0;apohip2.alpha=0.0;apohip2.beta=0.0;
+	apohip1.stopflag = 1; apohip2.stopflag = 1;
+	apohip1.begin = 1; apohip2.begin = 1;
+	apohip1.once = 1; apohip2.once = 1;
 	
 //	right_current_control();
 //	left_current_control();
@@ -115,8 +133,10 @@ int main(void)
 	HAL_TIM_Base_Start_IT(&htim4);
 	
 	
+	#ifdef ODRIVE
 	Odrive_Init(CANID_righthip_odriver);
 	Odrive_Init(CANID_lefthip_odriver);
+	#endif
 	AO_Init(period[0]*dt, 1);
 	AO_Init(period[1]*dt, 2);
 	
@@ -126,8 +146,9 @@ int main(void)
 	Acc2_Start();
 
 
-	printf("ABOUT ANGLE AND SPEED couterclock is postive from outside.\r\n");
-	printf("the acc1 of left hip - d w | the acc2 of right hip - d w | I1 ,I2\r\n");
+	printf("\r\nABOUT ANGLE AND SPEED couterclock is postive from outside.\r\n");
+	printf("\r\nthe acc1 of left hip - d w | the acc2 of right hip - d w | I1 ,I2\r\n");
+	
 	
 //	HC05_RcvCmd();
 	
@@ -142,7 +163,7 @@ int main(void)
 
 		/* 左髋关节 加速度信号采集  采样周期约100Hz以上 */
 		if(flag_1 ==1&&flag_2 == 1&&flag_3 == 1){
-			printf("Limu get\r\n");
+//			printf("L\r\n");
 			flag_1=0;flag_2=0;flag_3=0;
 			hip1_rawd = -angle1[0]/32768.0*180;	hip1_raww = -w1[0]/32768.0*2000;
 			
@@ -180,7 +201,7 @@ int main(void)
 
 		/* 右髋关节 加速度信号采集  采样周期约100Hz以上 */
 		if(flag_11 ==1&&flag_22 == 1&&flag_33 == 1){
-			printf("Rimu get\r\n");
+//			printf("R\r\n");
 			flag_11=0;flag_22=0;flag_33=0;
 			hip2_rawd = angle2[0]/32768.0*180;	hip2_raww = w2[0]/32768.0*2000;
 			
@@ -217,7 +238,10 @@ int main(void)
 		
 		/* 控制周期 2ms x CONTROL_PERIOD */
 		if(inc % CONTROL_PERIOD == 0){
-			INF("Controling\r\n");
+//			printf("Controling\r\n");
+			if(inc % (CONTROL_PERIOD * 50) == 0){
+				printf("Controling\r\n");
+			}
 			
 //			Interaction_force = GetFSRForce();
 //			INTERFORCE_Monitor("F %d\t", Interaction_force);
@@ -258,8 +282,8 @@ int main(void)
 			left_k = AssisTor;
 			
 			if(assive_mode[0] == POMODE){
-				phase[0] = PO_phase(hip1_d, hip1_w);
-				phase[0] = phase[0] + PI;
+				phase[0] = APOPhase(&apohip1, hip1_d, hip1_w);
+				phase[0] = -phase[0] + PI;
 			}
 			else if(assive_mode[0] == AOMODE){
 				phase[0] = hip1.predictedBasicPhase - AOoffset[0];
@@ -285,8 +309,11 @@ int main(void)
 //			}
 
 			I1 = left_k*sin(phase[0]);
+			
+			#ifdef ODRIVE
 			set_I_direction(1,I1);
-
+			#endif
+			
 			AssisMonitor("I1 %.2f\t",I1);
 			}
 			
@@ -300,7 +327,7 @@ int main(void)
 			/* Summit Detect */
 
 			if(found_peak[1] == 1){							// 检测峰值，估计人体步态周期并记录需要补偿的相位值
-				period[1] = Aoindex - peaktimestamp[1];	// gait period get
+				period[1] = Aoindex - peaktimestamp[1];		// gait period get
 				peaktimestamp[1] = Aoindex;
 				AOoffset[1] = hip2.phase[1];
 				found_peak[1] = 0;
@@ -318,7 +345,7 @@ int main(void)
 			/* get phase */
 			right_k = AssisTor*RightTorRatio;
 			if(assive_mode[1] == POMODE){
-				phase[1] = PO_phase(hip2_d, hip2_w);
+				phase[1] = APOPhase(&apohip2, hip2_d, hip2_w);
 				phase[1] = -phase[1] + PI;
 			}
 			else if(assive_mode[1] == AOMODE){
@@ -342,8 +369,10 @@ int main(void)
 //			}
 			
 			I2 = right_k * sin(phase[1]);
+			#ifdef ODRIVE
 			set_I_direction(2,I2);
-
+			#endif
+			
 			AssisMonitor("I2 %.2f\t",I2);
 			
 		}
@@ -377,8 +406,8 @@ int main(void)
 		debug_AOw2 = 1000.0*hip2.ww;
 		debug_AOphasePre2 = 1000.0*hip2.predictedBasicPhase;
 	
-		debug_AOphase_offset1 = 1000*phase[0]; 
-		debug_AOphase_offset2 = 1000*phase[1]; 
+		debug_phase1 = 1000*phase[0]; 
+		debug_phase2 = 1000*phase[1]; 
 		
 
 		debug_tmp = 1000.0;
