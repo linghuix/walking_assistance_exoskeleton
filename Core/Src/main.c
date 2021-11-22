@@ -89,7 +89,8 @@ float fai_Ep = 0.25; 	// 0.2-0.3
 float fai_Er = 0.15;	// 0.1-0.2
 float fai_Ef = 0.15;	// 0.1-0.2
 float tao_Fp, fai_Fp, fai_Fr, fai_Ff;
-float a[3],b[3];
+float a[3] = {-311.11, 155.56, -12.44};
+float b[3] = {-311.11, 155.56, -12.44};
 
 // Jscope 调试
 int debug_hip1_d, debug_hip1_rawd, debug_hip2_d, debug_hip2_rawd;
@@ -105,11 +106,12 @@ int debug_tmp;
 extern float floatabs(float x);
 int main(void)
 {
+	/* Basic initalization */
 	Core_Config();
 	Jlink_Init();
 	debug_init();
 	
-	/* advanced PO */
+	/* Advanced PO */
 	apohip1.APO_updateinterval = 20; apohip2.APO_updateinterval = 20;
 	apohip1.kk=1.0;apohip1.alpha=0.0;apohip1.beta=0.0;
 	apohip2.kk=1.0;apohip2.alpha=0.0;apohip2.beta=0.0;
@@ -120,10 +122,8 @@ int main(void)
 //	right_current_control();
 //	left_current_control();
 	
-//	FSR_Init();
 	
-	
-	/* initalization */
+	/* IMU initalization */
 	Acc1_Init();
 	Acc2_Init();
 	winBuffer(&acc1win_d, acc1WinArray_d, Buffsize);
@@ -131,11 +131,18 @@ int main(void)
 	winBuffer(&acc1win_w, acc1WinArray_w, Buffsize);
 	winBuffer(&acc2win_w, acc2WinArray_w, Buffsize);
 	
+	/* Assistive Curve */
+	tao_Fp = tao_Ep;
+	fai_Fp = 0.5 + fai_Ep;
+	fai_Fr = fai_Er;	// 0.1-0.2
+	fai_Ff = fai_Ef;	// 0.1-0.2
 	
-	/*峰值检测*/
+	
+	/* 峰值检测 Peak Detection */
 	winBuffer(&d1minwin_w, d1Win, 3);
 	winBuffer(&d2minwin_w, d2Win, 3);
 
+	/* Control Loop */
 	MX_TIM_PWMOUT(TIM4, 50000, 100);
 	HAL_TIM_Base_Start_IT(&htim4);
 	
@@ -144,6 +151,8 @@ int main(void)
 	Odrive_Init(CANID_righthip_odriver);
 	Odrive_Init(CANID_lefthip_odriver);
 	#endif
+	
+	/* AO */
 	AO_Init(period[0]*dt, 1);
 	AO_Init(period[1]*dt, 2);
 	
@@ -156,14 +165,8 @@ int main(void)
 	printf("\r\nABOUT ANGLE AND SPEED couterclock is postive from outside.\r\n");
 	printf("\r\nthe acc1 of left hip - d w | the acc2 of right hip - d w | I1 ,I2\r\n");
 	
-	
-	tao_Fp = tao_Ep;
-	fai_Fp = 0.5 + fai_Ep;
-	fai_Fr = fai_Er;	// 0.1-0.2
-	fai_Ff = fai_Ef;	// 0.1-0.2
-
-	
-//	HC05_RcvCmd();
+//	FSR_Init();
+	HC05_RcvCmd();
 	
 	/******* test code *******/
 	//  test_USART1_communication();
@@ -257,7 +260,7 @@ int main(void)
             
 			// promote the code is running
 			if(inc % (CONTROL_PERIOD * 50) == 0){
-				printf("Controling\r\n");
+				printf("\r\nCrl\r\n");
 			}
             
             // print IMU information
@@ -330,27 +333,34 @@ int main(void)
 //			}
 
             /* Assistive Torque */
-			
-			if(	phase[0] < fai_Ep ||
-				phase[0] > fai_Ep+fai_Ef && phase[0] < fai_Fp-fai_Fr ||
-				phase[0] > fai_Fp+fai_Ff 
-				){
+			//c1-2-4-1-3-5-1
+			phase[0] = phase[0]/2.0/PI;
+			if(	phase[0] < fai_Ep-fai_Er ||
+				( (phase[0] > fai_Ep+fai_Ef) && (phase[0] < fai_Fp-fai_Fr) ) ||
+				phase[0] > (fai_Fp+fai_Ff ))
+			{
+				//printf("c1");
 					I1 = 0;
 			}
-			else if( phase[0]>fai_Ep-fai_Er && phase[0]<fai_Ep){
+			else if( (phase[0]>=fai_Ep-fai_Er) && (phase[0]<=fai_Ep)){
+				//printf("c2");
 				I1 = (a[0]*phase[0]+a[1])*phase[0]+a[2];
 			}
-			else if( phase[0]>fai_Ep-fai_Er+0.5 && phase[0]<fai_Ep+0.5){
-				int phi = phase[0]-0.5;
+			else if( (phase[0]>=fai_Ep-fai_Er+0.5) && phase[0]<=(fai_Ep+0.5)){
+				//printf("c3");
+				float phi = phase[0]-0.5;
 				I1 = -((a[0]*phi+a[1])*phi+a[2]);
 			}
-			else if( phase[0]>fai_Ep && phase[0]<fai_Ep+fai_Ef){
+			else if( phase[0]>=fai_Ep && (phase[0]<=fai_Ep+fai_Ef)){
+				//printf("c4");
 				I1 = (b[0]*phase[0]+b[1])*phase[0]+b[2];
 			}
-			else if( phase[0]>fai_Ep+0.5 && phase[0]<fai_Ep+fai_Ef+0.5 ){
-				int phi = phase[0]-0.5;
+			else if( (phase[0]>=fai_Ep+0.5) && (phase[0]<=fai_Ep+fai_Ef+0.5) ){
+				//printf("c5");
+				float phi = phase[0]-0.5;
 				I1 = -((b[0]*phi+b[1])*phi+b[2]);
 			}
+			//printf("%.3f\r\n", phase[0]);
 			
             #ifdef ODRIVE
 			set_I_direction(1,I1);

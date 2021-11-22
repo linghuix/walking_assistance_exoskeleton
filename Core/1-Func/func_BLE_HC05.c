@@ -1,4 +1,4 @@
-/*
+/**
  * func_BLE.c
  *
  *  Created on: May 25, 2020
@@ -39,28 +39,28 @@ void HC05_RcvCmd(void)
 /***********************************************************************************************************************/
 
 
-	/**
-	  * @brief  串口空闲中断回调函数
-	  * @retval None
-	  */
+/**
+  * @brief  串口空闲中断回调函数
+  * @retval None
+  */
 struct parasturct{
 	
-	int para[50];		// 解读出的整型数字
+	int para[50];		// 解读出的整型数字上限
 	uint8_t paranum;	// 解读出的整型数字数量
 };
 
 extern int PREDICT_TIME;
-extern float AssisTor;
+extern float tao_Ep,fai_Ep,fai_Er,fai_Ef,a[3],b[3],tao_Fp,fai_Fp,fai_Fr,fai_Ff;
 struct parasturct para = {0};
 void inputPara(struct parasturct * parasturct, uint8_t * paradata, uint8_t length);
 TEST USAR_UART1_IDLECallback(UART_HandleTypeDef *huart)
 {
 	if(huart->Instance == USART1)
 	{
-		INF("command get\r\n");
+		CMD("command get\r\n");
 		
 //		HAL_UART_Transmit(&huart1, hardtest_CommandReceive, hardtest_length, 500);
-//		INF("%s",hardtest_CommandReceive );
+		CMD("%s",hardtest_CommandReceive );
 		inputPara(&para, hardtest_CommandReceive, hardtest_length);
 		
 		int flag=0;							// 为零表明输入参数没有零的
@@ -70,12 +70,41 @@ TEST USAR_UART1_IDLECallback(UART_HandleTypeDef *huart)
 			}
 		}
 		if(flag == 0){
-
-			PREDICT_TIME = para.para[0];
-			AssisTor = (float)para.para[1] / 10;
+			/* assistive torque curve*/
+			tao_Ep = (float)para.para[0]/10.0;		// 5-10 Nm
+			fai_Ep = (float)para.para[1]/1000.0; 	// 0.2-0.3
+			fai_Er = (float)para.para[2]/1000.0;	// 0.1-0.2
+			fai_Ef = (float)para.para[3]/1000.0;	// 0.1-0.2
 			
-			INF("para change : PREDICT_TIME=%d", PREDICT_TIME);
-			INF("para change : AssisTor=%f", AssisTor);
+			a[0] = (float)para.para[5]/1000.0;
+			a[1] = (float)para.para[6]/1000.0;
+			a[2] = (float)para.para[7]/1000.0;
+			b[0] = (float)para.para[8]/1000.0;
+			b[1] = (float)para.para[9]/1000.0;
+			b[2] = (float)para.para[10]/1000.0;
+			
+			tao_Fp = tao_Ep;
+			fai_Fp = 0.5 + fai_Ep;
+			fai_Fr = fai_Er;	// 0.1-0.2
+			fai_Ff = fai_Ef;	// 0.1-0.2
+			
+			// 毕竟是在中断内部，可能会发生死机情况			
+//			float tmp1 = (fai_Er*fai_Er);
+//			float tmp2 = (fai_Ep*fai_Ep);
+//			float tmp3 = (fai_Ef*fai_Ef);
+//			a[0] = -tao_Ep/tmp1;
+//			a[1] = 2*tao_Ep*fai_Ep/tmp1;
+//			a[2] = tao_Ep - tao_Ep*tmp2/tmp1;
+//			b[0] = -tao_Ep/tmp3;
+//			b[1] = 2*tao_Ep*fai_Ep/tmp3;
+//			b[2] = tao_Ep - tao_Ep*tmp2/tmp3;
+			
+			/* AO */
+			PREDICT_TIME = para.para[4];
+
+			CMD("para change : PREDICT_TIME=%d ", PREDICT_TIME);
+			CMD("para change : [tao_Ep,fai_Ep,fai_Er,fai_Ef]=[%.3f,%.3f,%.3f,%.3f]", tao_Ep,fai_Ep,fai_Er,fai_Ef);
+			CMD("para change : [a,b]=[[%.3f,%.3f,%.3f],[%.3f,%.3f,%.3f]]", a[0],a[1],a[2],b[0],b[1],b[2]);
 		}
 		hardtest_length = 0;
 	}
@@ -83,14 +112,14 @@ TEST USAR_UART1_IDLECallback(UART_HandleTypeDef *huart)
 
 
 
-		/**
-		* @brief: 串口输入字符串"5/6/7/8"，解读出所有整数数字。支持正负数字，串口输入需要换行
-		* @note ：对于输入不全的，不会更新对应参数；但是输入过多的，会更新对应参数；输入多少但是全的，会更新。
-		* “/70” - 不更新  “90/80” 更新 “89/”不更新
-		* @parameter parasturct:	存储输入数据结构体
-		* @parameter paradata:		串口输入的命令字符串
-		* @parameter length:		串口输入的命令字符串字节数
-		 */
+/**
+	* @brief: 串口输入字符串"5/6/7/8"，解读出所有整数数字。支持正负数字，串口输入需要换行
+	* @note ：对于输入不全的，不会更新对应参数；但是输入过多的，会更新对应参数；输入过少但是全的，会更新。
+	* “/70” - 不更新  “90/80” 更新 “89/”不更新
+	* @parameter parasturct:	存储输入数据结构体
+	* @parameter paradata:		串口输入的命令字符串
+	* @parameter length:		串口输入的命令字符串字节数
+*/
 
 #include<stdlib.h>
 

@@ -89,7 +89,7 @@ float APOPhase(struct APO * apo, float d, float w)
 	}
 
 	apo->debugPOphase = 1000*myatan2(w,d);											/* debug  PO放大1000倍*/
-	printf("\r\n%d\t%.2f\t%.2f",apo->debugPOphase,w,d);
+	//printf("\r\n%d\t%.2f\t%.2f",apo->debugPOphase,w,d);
 	
 
 	/* 判断相位分割点 第一次运行 */
@@ -175,8 +175,6 @@ float APOPhase(struct APO * apo, float d, float w)
  * Window > Preferences > C/C++ > Editor > Templates.
  */
 extern float floatabs(float x);
-#define AssisTor 0.1
-#define RightTorRatio 3	// assist gain 
 #define D_area 0.0		// 2.0			// for eliminate chattering
 #define W_area 0.0		// 1.0
 #define MAX_D_area 50.0	// for safety
@@ -200,16 +198,17 @@ void th_algori(float ang, float w, float * k)
  * @return   助力力矩大小和方向
  * Window > Preferences > C/C++ > Editor > Templates.
  */
-float PO(float d, float w,uint8_t node)
-{
-	float sin_fai = w/sqrt(d*d+w*w);
-	float k;
+//#define RightTorRatio 3	// assist gain 
+//float PO(float d, float w,uint8_t node)
+//{
+//	float sin_fai = w/sqrt(d*d+w*w);
+//	float k;
 
-	th_algori(d,w,&k);
-	if(node == 2){						// Right Torque assive
-		k = k*RightTorRatio;
-	}
-	float assistive_torque = sin_fai*k;
-	return assistive_torque;
-}
+//	th_algori(d,w,&k);
+//	if(node == 2){						// Right Torque assive
+//		k = k*RightTorRatio;
+//	}
+//	float assistive_torque = sin_fai*k;
+//	return assistive_torque;
+//}
 

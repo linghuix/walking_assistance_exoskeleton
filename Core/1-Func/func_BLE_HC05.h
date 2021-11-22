@@ -27,5 +27,7 @@ void HC05_RcvCmd(void);
 TEST IDLE_UART_IRQHandler (UART_HandleTypeDef *huart);
 
 
+#define CMD(...) MSG(__VA_ARGS__)
+
 #endif /* 1_FUNC_FUNC_BLE_HC05_H_ */
 
