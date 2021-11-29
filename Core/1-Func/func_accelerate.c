@@ -50,6 +50,7 @@ extern uint8_t CommandReceive[20], receivebyte, length;
 extern uint8_t hardtest_CommandReceive[20], hardtest_receivebyte, hardtest_length;
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
+	// HC05 receive
 	if(huart->Instance == USART1){
 		INF("command arrive");
 		hardtest_CommandReceive[hardtest_length] = hardtest_receivebyte;

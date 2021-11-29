@@ -27,3 +27,5 @@
 *.jscope
 Keil/*
 *.csv
+*.xlsx
+*.flv

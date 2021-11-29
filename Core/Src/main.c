@@ -1,10 +1,8 @@
 
 #include "main.h"
 
-//#define ODRIVE
-
-
-
+#define ODRIVE_LEFT
+//#define ODRIVE_RIGHT
 
 /* safe */
 #define TH_BOUND 40.0
@@ -39,6 +37,7 @@ float hip1_raww, hip1_rawd;
 float hip2_raww, hip2_rawd;
 
 
+/* 滤波 */
 #define Buffsize 2								// 原始数据滤波窗口
 WIN acc1win_w, acc2win_w, acc1win_d, acc2win_d;			
 ElementType acc1WinArray_d[Buffsize] = {0};
@@ -46,6 +45,7 @@ ElementType acc2WinArray_d[Buffsize] = {0};
 ElementType acc1WinArray_w[Buffsize] = {0};
 ElementType acc2WinArray_w[Buffsize] = {0};
 float weights[Buffsize] = {0.05,0.95};			// data_now = 0.95 x data_pre+0.05 x data_now
+float phaseOffset = 0.72*PI*2;						// phase = phase-phaseOffset
 
 
 /*  峰值检测模块 */
@@ -75,7 +75,7 @@ int8_t assive_mode[2] = {0};					// 当前助力模式
 int state[2] = {0};								// 0-stop 1-walking
 
 /* 助力值计算 */
-float AssisTor = 0.3;
+float AssisTor = 0.5;
 #define RightTorRatio 1	// 右侧的 assist gain 更大一些
 #define D_area 2.0		// 2.0			// for eliminate chattering
 #define W_area 2.0		// 1.0
@@ -84,13 +84,13 @@ float left_k = 0,right_k = 0;
 float kkkk = 0;
 
 /* 助力值优化参数 */
-float tao_Ep = 7.0;		// 5-10 Nm
+float tao_Ep = 0.3;		// 5-10 Nm
 float fai_Ep = 0.25; 	// 0.2-0.3
-float fai_Er = 0.15;	// 0.1-0.2
-float fai_Ef = 0.15;	// 0.1-0.2
+float fai_Er = 0.2;	// 0.1-0.2
+float fai_Ef = 0.2;	// 0.1-0.2
 float tao_Fp, fai_Fp, fai_Fr, fai_Ff;
-float a[3] = {-311.11, 155.56, -12.44};
-float b[3] = {-311.11, 155.56, -12.44};
+float a[3];
+float b[3];
 
 // Jscope 调试
 int debug_hip1_d, debug_hip1_rawd, debug_hip2_d, debug_hip2_rawd;
@@ -147,8 +147,10 @@ int main(void)
 	HAL_TIM_Base_Start_IT(&htim4);
 	
 	
-	#ifdef ODRIVE
+	#ifdef ODRIVE_RIGHT
 	Odrive_Init(CANID_righthip_odriver);
+	#endif
+	#ifdef ODRIVE_LEFT
 	Odrive_Init(CANID_lefthip_odriver);
 	#endif
 	
@@ -167,7 +169,17 @@ int main(void)
 	
 //	FSR_Init();
 	HC05_RcvCmd();
-	
+
+	float tmp1 = (fai_Er*fai_Er);
+	float tmp2 = (fai_Ep*fai_Ep);
+	float tmp3 = (fai_Ef*fai_Ef);
+	a[0] = -tao_Ep/tmp1;
+	a[1] = 2*tao_Ep*fai_Ep/tmp1;
+	a[2] = tao_Ep - tao_Ep*tmp2/tmp1;
+	b[0] = -tao_Ep/tmp3;
+	b[1] = 2*tao_Ep*fai_Ep/tmp3;
+	b[2] = tao_Ep - tao_Ep*tmp2/tmp3;
+
 	/******* test code *******/
 	//  test_USART1_communication();
 	//	test_win_buff();
@@ -249,7 +261,7 @@ int main(void)
 			else{
 				stopCounter[1] = 0;
 			}
-			if(stopCounter[1] > 10){
+			if(stopCounter[1] > 5){
 				stopFlag[1] = 1;
 			}
 		}
@@ -305,7 +317,8 @@ int main(void)
 			/* Get phase*/
 			if(assive_mode[0] == POMODE){
 				phase[0] = APOPhase(&apohip1, hip1_d, hip1_w);
-				phase[0] = -phase[0] + PI;
+				phase[0] = -phase[0] + PI - phaseOffset;
+				phase[0] = fitIn(phase[0], 2*PI, 0);
 			}
 			else if(assive_mode[0] == AOMODE){
 				phase[0] = hip1.predictedBasicPhase - AOoffset[0];
@@ -323,9 +336,9 @@ int main(void)
 //			}
 
 			// 站立时不助力
-//			if(state[0] == 0){
-//				left_k = 0.0;
-//			}
+			if(state[0] == 1){
+				left_k = 0.0;
+			}
 
 			// 角度过大时的安全防护
 //			if(floatabs(hip1_rawd) > TH_BOUND){
@@ -362,7 +375,7 @@ int main(void)
 			}
 			//printf("%.3f\r\n", phase[0]);
 			
-            #ifdef ODRIVE
+            #ifdef ODRIVE_LEFT
 			set_I_direction(1,I1);
 			#endif
 			
@@ -400,7 +413,8 @@ int main(void)
 			right_k = AssisTor*RightTorRatio;
 			if(assive_mode[1] == POMODE){
 				phase[1] = APOPhase(&apohip2, hip2_d, hip2_w);
-				phase[1] = -phase[1] + PI;
+				phase[1] = -phase[1] + PI - phaseOffset;
+				phase[1] = fitIn(phase[1], 2*PI, 0);
 			}
 			else if(assive_mode[1] == AOMODE){
 				phase[1] = hip2.predictedBasicPhase - AOoffset[1];
@@ -414,16 +428,42 @@ int main(void)
 //				right_k = 0.0;
 //			}
 //			
-//			if(state[1] == 0){
-//				right_k = 0.0;
-//			}
+			if(state[1] == 1){
+				right_k = 0.0;
+			}
 			
 //			if(floatabs(hip2_rawd) > TH_BOUND){
 //				right_k = 0.0;
 //			}
 			
-			I2 = right_k * sin(phase[1]);
-			#ifdef ODRIVE
+			phase[1] = phase[1]/2.0/PI;
+			if(	phase[1] < fai_Ep-fai_Er ||
+				( (phase[1] > fai_Ep+fai_Ef) && (phase[1] < fai_Fp-fai_Fr) ) ||
+				phase[1] > (fai_Fp+fai_Ff ))
+			{
+				//printf("c1");
+					I2 = 0;
+			}
+			else if( (phase[1]>=fai_Ep-fai_Er) && (phase[1]<=fai_Ep)){
+				//printf("c2");
+				I2 = (a[0]*phase[1]+a[1])*phase[1]+a[2];
+			}
+			else if( (phase[1]>=fai_Ep-fai_Er+0.5) && phase[1]<=(fai_Ep+0.5)){
+				//printf("c3");
+				float phi = phase[1]-0.5;
+				I2 = -((a[0]*phi+a[1])*phi+a[2]);
+			}
+			else if( phase[1]>=fai_Ep && (phase[1]<=fai_Ep+fai_Ef)){
+				//printf("c4");
+				I2 = (b[0]*phase[1]+b[1])*phase[1]+b[2];
+			}
+			else if( (phase[1]>=fai_Ep+0.5) && (phase[1]<=fai_Ep+fai_Ef+0.5) ){
+				//printf("c5");
+				float phi = phase[1]-0.5;
+				I2 = -((b[0]*phi+b[1])*phi+b[2]);
+			}
+			
+			#ifdef ODRIVE_RIGHT
 			set_I_direction(2,I2);
 			#endif
 			
@@ -436,7 +476,7 @@ int main(void)
 		debug_assisTorque1 = 1000.0*I1;
 		debug_assisTorque2 = 1000.0*I2;
 	
-		debug_hip1_d = -(int)hip1_d;
+		debug_hip1_d = (int)hip1_d;
 		debug_hip1_rawd = (int)hip1_rawd;
 		debug_hip2_d = (int)hip2_d;
 		debug_hip2_rawd = (int)hip2_rawd;
