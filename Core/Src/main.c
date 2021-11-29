@@ -2,7 +2,7 @@
 #include "main.h"
 
 #define ODRIVE_LEFT
-//#define ODRIVE_RIGHT
+#define ODRIVE_RIGHT
 
 /* safe */
 #define TH_BOUND 40.0
