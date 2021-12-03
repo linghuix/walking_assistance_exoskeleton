@@ -21,7 +21,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f1xx_it.h"
-
+#include "func_BLE_HC05.h"
 
 /******************************************************************************/
 /*           Cortex-M3 Processor Interruption and Exception Handlers          */ 
@@ -42,8 +42,7 @@ void HardFault_Handler(void)
   //MSG("hardware error\r\n");
   while (1)
   {
-    /* USER CODE BEGIN W1_HardFault_IRQn 0 */
-    /* USER CODE END W1_HardFault_IRQn 0 */
+
   }
 }
 
@@ -52,13 +51,10 @@ void HardFault_Handler(void)
   */
 void MemManage_Handler(void)
 {
-  /* USER CODE BEGIN MemoryManagement_IRQn 0 */
 
-  /* USER CODE END MemoryManagement_IRQn 0 */
   while (1)
   {
-    /* USER CODE BEGIN W1_MemoryManagement_IRQn 0 */
-    /* USER CODE END W1_MemoryManagement_IRQn 0 */
+
   }
 }
 
@@ -67,13 +63,10 @@ void MemManage_Handler(void)
   */
 void BusFault_Handler(void)
 {
-  /* USER CODE BEGIN BusFault_IRQn 0 */
 
-  /* USER CODE END BusFault_IRQn 0 */
   while (1)
   {
-    /* USER CODE BEGIN W1_BusFault_IRQn 0 */
-    /* USER CODE END W1_BusFault_IRQn 0 */
+
   }
 }
 
@@ -82,13 +75,10 @@ void BusFault_Handler(void)
   */
 void UsageFault_Handler(void)
 {
-  /* USER CODE BEGIN UsageFault_IRQn 0 */
 
-  /* USER CODE END UsageFault_IRQn 0 */
   while (1)
   {
-    /* USER CODE BEGIN W1_UsageFault_IRQn 0 */
-    /* USER CODE END W1_UsageFault_IRQn 0 */
+
   }
 }
 
@@ -97,12 +87,7 @@ void UsageFault_Handler(void)
   */
 void SVC_Handler(void)
 {
-  /* USER CODE BEGIN SVCall_IRQn 0 */
 
-  /* USER CODE END SVCall_IRQn 0 */
-  /* USER CODE BEGIN SVCall_IRQn 1 */
-
-  /* USER CODE END SVCall_IRQn 1 */
 }
 
 /**
@@ -110,64 +95,77 @@ void SVC_Handler(void)
   */
 void DebugMon_Handler(void)
 {
-  /* USER CODE BEGIN DebugMonitor_IRQn 0 */
 
-  /* USER CODE END DebugMonitor_IRQn 0 */
-  /* USER CODE BEGIN DebugMonitor_IRQn 1 */
-
-  /* USER CODE END DebugMonitor_IRQn 1 */
 }
+
 
 /**
   * @brief This function handles Pendable request for system service.
   */
 void PendSV_Handler(void)
 {
-  /* USER CODE BEGIN PendSV_IRQn 0 */
 
-  /* USER CODE END PendSV_IRQn 0 */
-  /* USER CODE BEGIN PendSV_IRQn 1 */
-
-  /* USER CODE END PendSV_IRQn 1 */
 }
+
 
 /**
   * @brief This function handles System tick timer.
   */
 void SysTick_Handler(void)
 {
-  /* USER CODE BEGIN SysTick_IRQn 0 */
 
-  /* USER CODE END SysTick_IRQn 0 */
   HAL_IncTick();
-  /* USER CODE BEGIN SysTick_IRQn 1 */
 
-  /* USER CODE END SysTick_IRQn 1 */
 }
 
 /**
 * @brief This function handles USART1 global interrupt.
 */
+#include "debug.h"
 void USART1_IRQHandler(void)
 {
-  HAL_UART_IRQHandler(&huart1);//HAL���ṩ���жϴ�����
-//	debug_IRQ();
+
+	debug_IRQ();
+	
+	HAL_UART_IRQHandler(&huart1);
+	IDLE_UART_IRQHandler(&huart1);
+
 }
+
 
 void USART2_IRQHandler(void)
 {
-  HAL_UART_IRQHandler(&huart2);//HAL���ṩ���жϴ�����
+//printf("IRQ uart4\r\n");
+  HAL_UART_IRQHandler(&huart2);
 }
+
 
 void USART3_IRQHandler(void)
 {
-  HAL_UART_IRQHandler(&huart3);//HAL���ṩ���жϴ�����
+
+  HAL_UART_IRQHandler(&huart3);
 }
+
+
+void UART4_IRQHandler(void)
+{
+//	printf("4\r\n");
+  HAL_UART_IRQHandler(&huart4);
+}
+
+
+void UART5_IRQHandler(void)
+{
+  HAL_UART_IRQHandler(&huart5);
+}
+
 
 void TIM4_IRQHandler(void)
 {
+
 	HAL_TIM_IRQHandler(&htim4);
 }
+
 
 /* USER CODE END 1 */
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

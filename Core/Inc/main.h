@@ -18,6 +18,9 @@ extern "C" {
 
 #include "math.h"
 
+#include "Odrive.h"
+
+
 #ifdef __cplusplus
 }
 #endif

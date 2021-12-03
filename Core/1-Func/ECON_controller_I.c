@@ -39,48 +39,17 @@ void setPWM_2(float dutyfactor)
 	SetTIMCCR(controller_TIM, TIM_CHANNEL_2, pwm);
 }
 
-
+extern uint8_t CANID_righthip_odriver, CANID_lefthip_odriver;
 void set_I_direction(uint8_t node, float I)
 {
-	float max_I = 3;
-	float dutyfactor;
-	uint8_t isclk;
-	if(I > 0){
-		isclk = 1;
-	}
-	else{
-		I = -I;
-		isclk = 0;
-	}
-	if(I>max_I){
-		I = max_I;
-	}
-	
 	if(node == 1){
-		dutyfactor = I/max_I*(0.9-0.1)+0.1;
-		if(isclk){
-			RESET1; 
-			CLK1
-		} 
-		else {
-			RESET1; 
-			UNCLK1
-		}
-		setPWM_1(dutyfactor);
+		ODrive_Set_Input_Current(CANID_lefthip_odriver, I);
 	}
 	else if(node == 2){
-		dutyfactor = I/max_I*(0.9-0.1)+0.1;
-		if(isclk){
-			RESET2; 
-			CLK2
-		}
-		else {
-			RESET2; 
-			UNCLK2
-		}
-		setPWM_2(dutyfactor);
+		ODrive_Set_Input_Current(CANID_righthip_odriver, -I);
 	}
-	//TESTOUT("f2 - %.2f, %.2f \r\n\r\n",dutyfactor,I);
+
+	TESTOUT("f2 - %.2f\r\n", I);
 	
 }
 

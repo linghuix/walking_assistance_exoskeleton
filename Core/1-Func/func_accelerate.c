@@ -19,7 +19,7 @@ uint8_t acc1[11];
 
 void Acc1_Init(void)
 {
-	MX_USART3_UART_Init();
+	MX_UART4_UART_Init();
 }
 
 
@@ -28,12 +28,12 @@ void Acc2_Init(void)
 	MX_USART2_UART_Init();
 }
 
-uint8_t test_data[5] = {0x55,0x00,0x00,0x00,0x00};
+//uint8_t test_data[5] = {0x55,0x00,0x00,0x00,0x00};
 
 void Acc2_Start(void)
 {
 	//HAL_UART_Transmit_IT(&acc2_huart, test_data, 5);
-	HAL_UART_Receive_IT(&acc2_huart, acc2, 11);
+	HAL_UART_Receive_IT(&acc2_huart, acc2, 1);
 }
 
 
@@ -45,16 +45,20 @@ void Acc1_Start(void)
 }
 
 
-uint8_t state1 = 0;
-uint8_t state2 = 0;
+uint8_t state1 = 0,state2 = 0;
+extern uint8_t CommandReceive[20], receivebyte, length;
+extern uint8_t hardtest_CommandReceive[200], hardtest_receivebyte, hardtest_length;
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
+	// HC05 receive
 	if(huart->Instance == USART1){
-		//HAL_UART_Receive_IT(&huart1, acc1, 6);
-		HAL_UART_Transmit_IT(&huart1, test_data, 5);
+		INF("command arrive");
+		hardtest_CommandReceive[hardtest_length] = hardtest_receivebyte;
+		hardtest_length++;
+		HAL_UART_Receive_IT(&huart1, &hardtest_receivebyte, 1);
 	}
 	if(huart->Instance == acc1_uart){
-	    //imu_2_flag = 1;
+//		INF("acc1-%d-%d-%d-%d ", state1, flag_1, flag_2, flag_3);
 		switch(state1){
 			case 0:
 				if(acc1[0]==0x55){state1 = 1;HAL_UART_Receive_IT(&acc1_huart, &acc1[1], 10);}
@@ -89,6 +93,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 		}
 	}
 	if(huart->Instance == acc2_uart){
+//		INF("acc2-%d-%d-%d-%d ", state2, flag_11, flag_22, flag_33);
 		switch(state2){
 			case 0:
 				if(acc2[0]==0x55){state2 = 1;HAL_UART_Receive_IT(&acc2_huart, &acc2[1], 10);}
@@ -123,7 +128,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 		}
 	}
 }
-
 
 
 

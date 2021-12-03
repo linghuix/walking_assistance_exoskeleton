@@ -28,16 +28,23 @@ struct WinBuffer{
 
 
 void test_win_buff(void);
-void WinBuffer(WINp winbuffer, ElementType *data,int size);
-void addToBuff(WINp winbuffer, ElementType data);
-uint16_t getPreIndex(uint16_t index, uint16_t length);
-void ChangeLastestValue(WINp winbuffer, ElementType data);
-float AvergeWin(WINp winbuffer, float *weight, int size);
-ElementType GetValue(WINp winbuffer, uint8_t index);
-void print(WINp winbuffer);
 
+void winBuffer(WINp winbuffer, ElementType *data,int size);
+
+uint16_t getPreIndex(uint16_t index, uint16_t length);
 #define getLastestValue(buff) buff.data[getPreIndex(buff.in,buff.length)]
 
+void addToBuff(WINp winbuffer, ElementType data);
+ElementType getValue(WINp winbuffer, uint8_t index);
 
+void changeLastestValue(WINp winbuffer, ElementType data);
 
-#endif /* 1_FUNC_AO_H_ */
+float avergeWin(WINp winbuffer, float *weight, int size);
+uint8_t findPeak(WINp win, int width);
+ElementType findMin(WINp win, int width);
+ElementType findMax(WINp win, int width);
+uint8_t findPeak(WINp win, int width);
+void print(WINp winbuffer);
+
+#endif
+
