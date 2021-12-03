@@ -24,6 +24,8 @@ TEST test_HC05_communication(void);
 TEST test_USART1_communication(void);
 void HC05_RcvCmd(void);
 
+void commandPrase(void);
+
 TEST IDLE_UART_IRQHandler (UART_HandleTypeDef *huart);
 
 

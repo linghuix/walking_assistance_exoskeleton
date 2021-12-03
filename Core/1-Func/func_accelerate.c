@@ -47,7 +47,7 @@ void Acc1_Start(void)
 
 uint8_t state1 = 0,state2 = 0;
 extern uint8_t CommandReceive[20], receivebyte, length;
-extern uint8_t hardtest_CommandReceive[20], hardtest_receivebyte, hardtest_length;
+extern uint8_t hardtest_CommandReceive[200], hardtest_receivebyte, hardtest_length;
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 	// HC05 receive

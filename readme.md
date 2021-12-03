@@ -1,5 +1,17 @@
 ### Hardware
 
+* whole structure
+
+V2.1 
+
+<img src="readme.assets/image-20211203133115916.png" style="zoom:15%;" />  <img src="readme.assets/image-20211203133135630.png" style="zoom:15%;" />  <img src="readme.assets/image-20211203133207552.png" style="zoom:15%;" />
+
+V2.2  
+
+<img src="readme.assets/image-20211203132741447.png" style="zoom: 25%;" />  <img src="readme.assets/image-20211203132759937.png" style="zoom: 25%;" /> 
+
+
+
 
 
 * *Chen Tian* motor on each hip joint + motor driver with CAN interface **(CAN1)**

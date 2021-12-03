@@ -156,7 +156,7 @@ float APOPhase(struct APO * apo, float d, float w)
 //	}
 	
 	
-	return apo->APO_phase*apo->stopflag;
+	return apo->APO_phase;
 
 }
 
