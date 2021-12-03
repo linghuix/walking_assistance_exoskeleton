@@ -9,21 +9,21 @@
 #define PERIOD 50
 
 /* 控制周期 */
-uint32_t inc=0;								// 2ms 周期计时器
-int CONTROL_PERIOD = PERIOD/2;				// ms 实际控制周期 CONTROL_PERIOD*2 ms
-float dt = PERIOD/1000;						// 控制周期 50 ms
+uint32_t inc=0;											// 2ms 周期计时器
+int CONTROL_PERIOD = PERIOD/2;							// ms 实际控制周期 CONTROL_PERIOD*2 ms
+float dt = PERIOD/1000;									// 控制周期 50 ms
 
 
 /**
  * @para 用于检测人体是否静止
  */
-int16_t stopCounter[2] = {0}, stopFlag[2] = {0};
-#define TH_W 6.0
-#define TH_D 10.0
+int16_t stopCounter[2] = {0}, stopFlag[2] = {0};		// 停止判断计数器；站立判断指示 1-站立
+#define TH_W 8.0										// 角速度阈值
+#define TH_D 15.0										// 角度阈值
 
 /* 驱动器编号 */
-uint8_t CANID_righthip_odriver = 0x2;		// driver ID
-uint8_t CANID_lefthip_odriver = 0x1;
+uint8_t CANID_righthip_odriver = 0x2;					// driver ID
+uint8_t CANID_lefthip_odriver  = 0x1;
 
 
 /*  交互力模块 */
@@ -45,7 +45,7 @@ ElementType acc2WinArray_d[Buffsize] = {0};
 ElementType acc1WinArray_w[Buffsize] = {0};
 ElementType acc2WinArray_w[Buffsize] = {0};
 float weights[Buffsize] = {0.05,0.95};			// data_now = 0.95 x data_pre+0.05 x data_now
-float phaseOffset = 0.72*PI*2;						// phase = phase-phaseOffset
+float phaseOffset = 0.25*PI*2;					// phase = phase-phaseOffset
 
 
 /*  峰值检测模块 */
@@ -75,8 +75,8 @@ int8_t assive_mode[2] = {0};					// 当前助力模式
 int state[2] = {0};								// 0-stop 1-walking
 
 /* 助力值计算 */
-float AssisTor = 0.5;
-#define RightTorRatio 1	// 右侧的 assist gain 更大一些
+//float AssisTor = 0.5;
+//#define RightTorRatio 1	// 右侧的 assist gain 更大一些
 #define D_area 2.0		// 2.0			// for eliminate chattering
 #define W_area 2.0		// 1.0
 #define MAX_D_area 50.0	// for safety
@@ -84,10 +84,10 @@ float left_k = 0,right_k = 0;
 float kkkk = 0;
 
 /* 助力值优化参数 */
-float tao_Ep = 0.3;		// 5-10 Nm
+float tao_Ep = 1.0;		// 5-10 Nm  // 0.1-0.8
 float fai_Ep = 0.25; 	// 0.2-0.3
-float fai_Er = 0.2;	// 0.1-0.2
-float fai_Ef = 0.2;	// 0.1-0.2
+float fai_Er = 0.2;		// 0.1-0.2
+float fai_Ef = 0.2;		// 0.1-0.2
 float tao_Fp, fai_Fp, fai_Fr, fai_Ff;
 float a[3];
 float b[3];
@@ -103,6 +103,7 @@ int debug_AOIndex = 0;
 int debug_assisTorque1 = 0, debug_assisTorque2 = 0;					// 临时查看变量
 int debug_tmp;
 
+extern int idleflag;
 extern float floatabs(float x);
 int main(void)
 {
@@ -188,8 +189,11 @@ int main(void)
 	
 	
 	while(1){
-
-
+		/* idle 串口数据解析 */
+		if( idleflag == 1){
+			commandPrase();
+			idleflag = 0;
+		}
 		/* 左髋关节 加速度信号采集  采样周期 100Hz */
 		if(flag_1 ==1&&flag_2 == 1&&flag_3 == 1){
 //			printf("L\r\n");
@@ -218,14 +222,24 @@ int main(void)
 
 			if(floatabs(hip1_w) < TH_W && floatabs(hip1_d) < TH_D){
 				stopCounter[0]++;
+				if(stopCounter[0] >= 50){
+					stopCounter[0]  = 50;
+				}
 			}
 			else{
-				stopCounter[0] = 0;
+				stopCounter[0]--;
+				if(stopCounter[0] <= -50){
+					stopCounter[0]  = -50;
+				}
 			}
 			
-			if(stopCounter[0] > 10){					// 连续检测到10次，为 stop state 
+			if(stopCounter[0] > 0){					// 连续检测到10次，为 stop state 
 				stopFlag[0] = 1;
 			}
+			else if (stopCounter[0] < 0){
+				stopFlag[0] = 0;
+			}
+			
 		}
 
 
@@ -257,12 +271,22 @@ int main(void)
 			
 			if(floatabs(hip2_w) < TH_W && floatabs(hip2_d) < TH_D){
 				stopCounter[1]++;
+				if(stopCounter[1] >= 50){
+					stopCounter[1]  = 50;
+				}
 			}
 			else{
-				stopCounter[1] = 0;
+				stopCounter[1]--;
+				if(stopCounter[1] <= -50){
+					stopCounter[1]  = -50;
+				}
 			}
-			if(stopCounter[1] > 5){
+			
+			if(stopCounter[1] > 0){
 				stopFlag[1] = 1;
+			}
+			else if (stopCounter[1] < 0){
+				stopFlag[1] = 0;
 			}
 		}
 		
@@ -272,7 +296,7 @@ int main(void)
             
 			// promote the code is running
 			if(inc % (CONTROL_PERIOD * 50) == 0){
-				printf("\r\nCrl\r\n");
+				printf("Ctrl\r\n");
 			}
             
             // print IMU information
@@ -308,12 +332,6 @@ int main(void)
 			assive_mode[0] = switch_task( &hip1, hip1_d, hip1_w, 1);	// 模式切换
 			assive_mode[0] = POMODE;
 			
-			// if stop state is detected, use POMODE
-			if(stopFlag[0] == 1){
-				assive_mode[0] = POMODE;
-				stopFlag[0]=0;
-			}
-			
 			/* Get phase*/
 			if(assive_mode[0] == POMODE){
 				phase[0] = APOPhase(&apohip1, hip1_d, hip1_w);
@@ -329,14 +347,15 @@ int main(void)
 			}
             
             /* No assistance conditions */
-			left_k = AssisTor;
+			left_k = 1.0;
 			// 防高频率抖动
 //			if(period[0] < TH_PERIOD){
 //				left_k = 0.0;
 //			}
 
 			// 站立时不助力
-			if(state[0] == 1){
+			// if stop state is detected
+			if(stopFlag[0] == 1){
 				left_k = 0.0;
 			}
 
@@ -373,10 +392,11 @@ int main(void)
 				float phi = phase[0]-0.5;
 				I1 = -((b[0]*phi+b[1])*phi+b[2]);
 			}
-			//printf("%.3f\r\n", phase[0]);
+
 			
+			I1 = I1*left_k;
             #ifdef ODRIVE_LEFT
-			set_I_direction(1,I1);
+			set_I_direction(1, I1);
 			#endif
 			
 			AssisMonitor("I1 %.2f\t",I1);
@@ -401,16 +421,10 @@ int main(void)
 			}
 			
 			assive_mode[1] = switch_task( &hip2, hip2_d, hip2_w, 2);
-     		assive_mode[1]=POMODE;
-
-			if(stopFlag[1] == 1){
-				assive_mode[1] = POMODE;
-				stopFlag[1]=0;
-			}
-			
+     		assive_mode[1] = POMODE;
 			
 			/* get phase */
-			right_k = AssisTor*RightTorRatio;
+//			right_k = AssisTor*RightTorRatio;
 			if(assive_mode[1] == POMODE){
 				phase[1] = APOPhase(&apohip2, hip2_d, hip2_w);
 				phase[1] = -phase[1] + PI - phaseOffset;
@@ -424,11 +438,12 @@ int main(void)
 				while(1){ MSG_ERR(123, "assive_mode error\r\n", 123); }
 			}
 
+			right_k = 1.0;
 //			if(period[1] < TH_PERIOD){
 //				right_k = 0.0;
 //			}
 //			
-			if(state[1] == 1){
+			if(stopFlag[1] == 1){
 				right_k = 0.0;
 			}
 			
@@ -463,8 +478,10 @@ int main(void)
 				I2 = -((b[0]*phi+b[1])*phi+b[2]);
 			}
 			
+			I2 = I2*right_k;
+			
 			#ifdef ODRIVE_RIGHT
-			set_I_direction(2,I2);
+			set_I_direction(2,-I2);
 			#endif
 			
 			AssisMonitor("I2 %.2f\t",I2);

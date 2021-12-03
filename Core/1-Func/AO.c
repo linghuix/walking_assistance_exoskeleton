@@ -497,9 +497,7 @@ int8_t switch_task(struct Adaptive_Oscillators * AO, float d, float w, uint8_t n
 
 	if(stopFlag[node-1] == 1){
 		assive[node-1] = POMODE;
-		stopFlag[node-1] = 0;
 		delaySwitch[node-1] = 0;
-		state[node-1] = 0;
 		PO_time[node-1] = RESET_TIME-140;			// convert stop state to walking state.
 		return assive[node-1];
 	}
