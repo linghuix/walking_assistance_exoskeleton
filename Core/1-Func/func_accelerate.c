@@ -173,3 +173,6 @@ TEST test_acc_communication(void)
 	HAL_UART_Transmit_IT(&acc1_huart, test_data, 1);
 	HAL_UART_Transmit_IT(&acc2_huart, test_data, 5);
 }
+
+
+

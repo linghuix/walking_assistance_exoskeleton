@@ -18,7 +18,7 @@
 
 /* Definition of error and warning macros */
 /* -------------------------------------- */
-#	define MSG(...) //printf (__VA_ARGS__)
+#	define MSG(...) printf (__VA_ARGS__)
 
 
 /* Definition of MSG_ERR */

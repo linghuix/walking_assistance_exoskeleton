@@ -146,6 +146,35 @@ void USART3_IRQHandler(void)
   HAL_UART_IRQHandler(&huart3);
 }
 
+void TIM4_IRQHandler(void)
+{
+
+	HAL_TIM_IRQHandler(&htim4);
+}
+
+void TIM1_UP_IRQHandler(void)
+{
+
+	HAL_TIM_IRQHandler(&htim1);
+}
+
+//void TIM1_TRG_COM_IRQHandler(void)
+//{
+
+//	HAL_TIM_IRQHandler(&htim1);
+//}
+
+//void TIM1_CC_IRQHandler(void)
+//{
+
+//	HAL_TIM_IRQHandler(&htim1);
+//}
+
+//void TIM1_BRK_IRQHandler(void)
+//{
+
+//	HAL_TIM_IRQHandler(&htim1);
+//}
 
 void UART4_IRQHandler(void)
 {
@@ -158,14 +187,6 @@ void UART5_IRQHandler(void)
 {
   HAL_UART_IRQHandler(&huart5);
 }
-
-
-void TIM4_IRQHandler(void)
-{
-
-	HAL_TIM_IRQHandler(&htim4);
-}
-
 
 /* USER CODE END 1 */
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -325,7 +325,17 @@ void MX_TIM_PWMOUT(TIM_TypeDef * TIM, uint32_t Hz, uint32_t period)
 
 void TIMx_CountSet(TIM_TypeDef * TIM, uint32_t Hz, uint32_t period)	//TIM miu_s
 {
-	if(TIM == TIM2){
+	if(TIM == TIM1){
+		htim1.Instance = TIM1;
+		htim1.Init.Prescaler = HAL_RCC_GetPCLK1Freq()/Hz;//APB2 1MHz
+		htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
+		htim1.Init.Period = period;
+		htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;/*!< TIMx_ARR register is not buffered */
+		if (HAL_TIM_Base_Init(&htim1) != HAL_OK){
+			Error_Handler();
+		}
+	}
+	else if(TIM == TIM2){
 		htim2.Instance = TIM2;
 		htim2.Init.Prescaler = HAL_RCC_GetPCLK2Freq()/Hz;//APB1 1MHz
 		htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
@@ -381,6 +391,7 @@ void TIM_PWMSet(TIM_TypeDef * TIM, uint32_t Hz, uint32_t period)
 {
 	TIM_OC_InitTypeDef sConfigOC;
 	TIMx_CountSet(TIM, Hz, period);	//counter set
+	
 	if(TIM == TIM4){
 		if (HAL_TIM_PWM_Init(&htim4) != HAL_OK){
 			Error_Handler();
@@ -390,14 +401,33 @@ void TIM_PWMSet(TIM_TypeDef * TIM, uint32_t Hz, uint32_t period)
 		sConfigOC.Pulse = 5;						// OCPolarity duration  高电平时间 25/200*20ms=2.5ms
 		sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;	//有效电平,也就是小于比较值的电平，当触发比较后电平反转
 		sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-		if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_1) != HAL_OK){
+
+		
+		if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_3) != HAL_OK){
 			Error_Handler();
 		}
-		if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_2) != HAL_OK){
+		if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_4) != HAL_OK){
 			Error_Handler();
 		}
 		HAL_TIM_MspPostInit(&htim4);
 	}
+	
+	else if(TIM == TIM1){
+		if (HAL_TIM_PWM_Init(&htim1) != HAL_OK){
+			Error_Handler();
+		}
+
+		sConfigOC.OCMode = TIM_OCMODE_PWM1;
+		sConfigOC.Pulse = 5;						// OCPolarity duration  高电平时间 25/200*20ms=2.5ms
+		sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;	//有效电平,也就是小于比较值的电平，当触发比较后电平反转
+		sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+
+		if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_2) != HAL_OK){
+			Error_Handler();
+		}
+		HAL_TIM_MspPostInit(&htim1);
+	}
+	
 }
 
 
@@ -511,14 +541,14 @@ void MX_TIM_CLK(TIM_HandleTypeDef* tim_baseHandle)
 void MX_NVIC(TIM_HandleTypeDef* tim_baseHandle)
 {
 	if(tim_baseHandle->Instance==TIM1){
-		HAL_NVIC_SetPriority(TIM1_UP_IRQn, 1, 2);
-		HAL_NVIC_EnableIRQ(TIM1_UP_IRQn);
+//		HAL_NVIC_SetPriority(TIM1_UP_IRQn, 1, 2);
+//		HAL_NVIC_EnableIRQ(TIM1_UP_IRQn);
 //	    HAL_NVIC_SetPriority(TIM1_BRK_IRQn, 0, 0);
 //	    HAL_NVIC_EnableIRQ(TIM1_BRK_IRQn);
 //	    HAL_NVIC_SetPriority(TIM1_TRG_COM_IRQn, 0, 0);
 //	    HAL_NVIC_EnableIRQ(TIM1_TRG_COM_IRQn);
-	    HAL_NVIC_SetPriority(TIM1_CC_IRQn, 0, 0);
-	    HAL_NVIC_EnableIRQ(TIM1_CC_IRQn);
+//	    HAL_NVIC_SetPriority(TIM1_CC_IRQn, 0, 0);
+//	    HAL_NVIC_EnableIRQ(TIM1_CC_IRQn);
 	}
 	else if(tim_baseHandle->Instance==TIM2)
 	{
@@ -549,15 +579,21 @@ void MX_NVIC(TIM_HandleTypeDef* tim_baseHandle)
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef* timHandle)
 {
   GPIO_InitTypeDef GPIO_InitStruct;
-  if(timHandle->Instance==TIM1){
-	__HAL_RCC_GPIOA_CLK_ENABLE();
-	/**TIM1 GPIO Configuration
-	PA10     ------> TIM1_CH3
+  if(timHandle->Instance == TIM1){
+
+	/** TIM1 GPIO Configuration
+	  PA10     ------> TIM1_CH3
+	  PB0     ------> TIM1_CH2N
 	*/
+	__HAL_RCC_GPIOA_CLK_ENABLE();
 	GPIO_InitStruct.Pin = GPIO_PIN_10;
-	GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-	GPIO_InitStruct.Pull = GPIO_PULLUP;
+	GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
 	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+	  
+	GPIO_InitStruct.Pin = GPIO_PIN_0;
+	HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
   }
   if(timHandle->Instance==TIM2)
   {

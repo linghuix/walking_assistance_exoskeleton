@@ -2,8 +2,10 @@
 #include "main.h"
 
 
-#define ODRIVE_LEFT
-#define ODRIVE_RIGHT
+//#define ECON
+//#define ECON_L
+//#define ECON_R
+
 
 /* safe */
 #define TH_BOUND 40.0
@@ -21,10 +23,6 @@ float dt = PERIOD/1000;									// 控制周期 50 ms
 int16_t stopCounter[2] = {0}, stopFlag[2] = {0};		// 停止判断计数器；站立判断指示 1-站立
 #define TH_W 8.0										// 角速度阈值
 #define TH_D 15.0										// 角度阈值
-
-/* 驱动器编号 */
-uint8_t CANID_righthip_odriver = 0x2;					// driver ID
-uint8_t CANID_lefthip_odriver  = 0x1;
 
 
 /*  交互力模块 */
@@ -133,7 +131,7 @@ int main(void)
 	winBuffer(&acc2win_d, acc2WinArray_d, Buffsize);
 	winBuffer(&acc1win_w, acc1WinArray_w, Buffsize);
 	winBuffer(&acc2win_w, acc2WinArray_w, Buffsize);
-	
+
 	/* Assistive Curve */
 	tao_Fp = tao_Ep;
 	fai_Fp = 0.5 + fai_Ep;
@@ -149,15 +147,10 @@ int main(void)
 	MX_TIM_PWMOUT(TIM4, 50000, 100);
 	HAL_TIM_Base_Start_IT(&htim4);
 	
-	
-
-	
-	#ifdef ODRIVE_RIGHT
+		
+	#ifdef ECON
 	ECON_I_init();
-	ECON_action	();
-	#endif
-	#ifdef ODRIVE_LEFT
-	Odrive_Init(CANID_lefthip_odriver);
+	ECON_action();
 	#endif
 	
 	/* AO */
@@ -201,8 +194,8 @@ int main(void)
 			commandPrase();
 			idleflag = 0;
 		}
+		
 		/* 左髋关节 加速度信号采集  采样周期 100Hz */
-
 		if(flag_1 ==1&&flag_2 == 1&&flag_3 == 1){
 //			printf("L\r\n");
 			flag_1=0;flag_2=0;flag_3=0;
@@ -255,7 +248,6 @@ int main(void)
 
 
 		/* 右髋关节 加速度信号采集  采样周期 100Hz */
-
 		if(flag_11 ==1&&flag_22 == 1&&flag_33 == 1){
 //			printf("R\r\n");
 			flag_11=0;flag_22=0;flag_33=0;
@@ -282,7 +274,6 @@ int main(void)
 			}
 			
 			/* detect the stop state */
-			
 			if(floatabs(hip2_w) < TH_W && floatabs(hip2_d) < TH_D){
 				stopCounter[1]++;
 				if(stopCounter[1] >= 50){
@@ -415,11 +406,13 @@ int main(void)
 
 
 			I1 = I1*left_k;
-            #ifdef ODRIVE_LEFT
-			set_I_direction(1, I1);
+			
+            #ifdef ECON_L
+			set_I_direction(1, 0);		// 正表明是往前
 			#endif
 			
 			AssisMonitor("I1 %.2f\t",I1);
+			
 			}
 			
 			
@@ -500,8 +493,8 @@ int main(void)
 			
 			I2 = I2*right_k;
 			
-			#ifdef ODRIVE_RIGHT
-			set_I_direction(2,-I2);
+			#ifdef ECON_R
+			set_I_direction(2,0);		//负是往前， 
 			#endif
 			
 			AssisMonitor("I2 %.2f\t",I2);

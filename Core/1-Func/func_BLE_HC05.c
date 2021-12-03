@@ -76,28 +76,28 @@ void commandPrase(void)
 	CMD("command length : %d\r\n", hardtest_length );
 	
 	inputPara(&para, hardtest_CommandReceive, hardtest_length);
-	hardtest_length = 0;
 	
-	int flag=0;							// 为零表明输入参数没有零的
-	for(int i=0;i<para.paranum;i++){
-		//printf("NO.%d - %d\r\n", i, para.para[i]);
+	int flag=1;						// 判断第一个数是否为170
+	if( para.para[0] == 170 ){		// 第一个数字必为170 二进制位 0x10101010
 		flag = 0;
 	}
 	if(flag == 0){
 		printf("get number int %d\r\n", para.paranum);
-		if ( para.paranum >= 11){
+		if ( para.paranum >= 12){
 			/* assistive torque curve*/
-			tao_Ep = (float)para.para[0]/100.0;		// 5-10 Nm
-			fai_Ep = (float)para.para[1]/1000.0; 	// 0.2-0.3
-			fai_Er = (float)para.para[2]/1000.0;	// 0.1-0.2
-			fai_Ef = (float)para.para[3]/1000.0;	// 0.1-0.2
+			tao_Ep = (float)para.para[1]/100.0;		// 5-10 Nm
+			fai_Ep = (float)para.para[2]/1000.0; 	// 0.2-0.3
+			fai_Er = (float)para.para[3]/1000.0;	// 0.1-0.2
+			fai_Ef = (float)para.para[4]/1000.0;	// 0.1-0.2
 			
-			a[0] = (float)para.para[5]/1000.0;
-			a[1] = (float)para.para[6]/1000.0;
-			a[2] = (float)para.para[7]/1000.0;
-			b[0] = (float)para.para[8]/1000.0;
-			b[1] = (float)para.para[9]/1000.0;
-			b[2] = (float)para.para[10]/1000.0;
+			PREDICT_TIME = para.para[5];
+			
+			a[0] = (float)para.para[6]/1000.0;
+			a[1] = (float)para.para[7]/1000.0;
+			a[2] = (float)para.para[8]/1000.0;
+			b[0] = (float)para.para[9]/1000.0;
+			b[1] = (float)para.para[10]/1000.0;
+			b[2] = (float)para.para[11]/1000.0;
 			
 			
 			
@@ -118,14 +118,14 @@ void commandPrase(void)
 //			b[2] = tao_Ep - tao_Ep*tmp2/tmp3;
 			
 			/* AO */
-			PREDICT_TIME = para.para[4];
+
 			printf("\r\n#####\r\n");
 			CMD("para change : PREDICT_TIME=%d\r\n", PREDICT_TIME);
 			CMD("para change : [tao_Ep,fai_Ep,fai_Er,fai_Ef]=[%.3f,%.3f,%.3f,%.3f]\r\n", tao_Ep,fai_Ep,fai_Er,fai_Ef);
 			CMD("para change : [a,b]=[[%.3f,%.3f,%.3f],[%.3f,%.3f,%.3f]]\r\n", a[0],a[1],a[2],b[0],b[1],b[2]);
-	
+			
+			hardtest_length = 0;
 		}
-
 	}
 }
 
@@ -203,5 +203,6 @@ TEST test_USART1_communication(void)
 //	HAL_UART_Receive_IT(&huart1, HardwareTestData, 1);
 //	__HAL_UART_ENABLE_IT(&huart1, UART_IT_IDLE);	// 空闲中断
 }
+
 
 
