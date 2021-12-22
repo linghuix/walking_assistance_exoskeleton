@@ -83,7 +83,7 @@ void commandPrase(void)
 	}
 	if(flag == 0){
 		printf("get number int %d\r\n", para.paranum);
-		if ( para.paranum >= 12){
+		if ( para.paranum >= 11){
 			/* assistive torque curve*/
 			tao_Ep = (float)para.para[1]/100.0;		// 5-10 Nm
 			fai_Ep = (float)para.para[2]/1000.0; 	// 0.2-0.3
@@ -119,11 +119,10 @@ void commandPrase(void)
 			
 			/* AO */
 
-			printf("\r\n#####\r\n");
-			CMD("para change : PREDICT_TIME=%d\r\n", PREDICT_TIME);
+//			CMD("para change : PREDICT_TIME=%d\r\n", PREDICT_TIME);
 			CMD("para change : [tao_Ep,fai_Ep,fai_Er,fai_Ef]=[%.3f,%.3f,%.3f,%.3f]\r\n", tao_Ep,fai_Ep,fai_Er,fai_Ef);
-			CMD("para change : [a,b]=[[%.3f,%.3f,%.3f],[%.3f,%.3f,%.3f]]\r\n", a[0],a[1],a[2],b[0],b[1],b[2]);
-			
+//			CMD("para change : [a,b]=[[%.3f,%.3f,%.3f],[%.3f,%.3f,%.3f]]\r\n", a[0],a[1],a[2],b[0],b[1],b[2]);
+			printf("\r\n#####\r\n");
 			hardtest_length = 0;
 		}
 	}

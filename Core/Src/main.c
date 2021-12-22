@@ -2,9 +2,9 @@
 #include "main.h"
 
 
-//#define ECON
-//#define ECON_L
-//#define ECON_R
+#define ECON
+#define ECON_L
+#define ECON_R
 
 
 /* safe */
@@ -43,8 +43,8 @@ ElementType acc1WinArray_d[Buffsize] = {0};
 ElementType acc2WinArray_d[Buffsize] = {0};
 ElementType acc1WinArray_w[Buffsize] = {0};
 ElementType acc2WinArray_w[Buffsize] = {0};
-float weights[Buffsize] = {0.05,0.95};			// data_now = 0.95 x data_pre+0.05 x data_now
-float phaseOffset = 0.25*PI*2;					// phase = phase-phaseOffset
+float weights[Buffsize] = {0.15,0.85};			// data_now = 0.95 x data_pre+0.05 x data_now
+float phaseOffset = -0.10*PI*2;					// phase = phase-phaseOffset
 
 
 /*  峰值检测模块 */
@@ -83,10 +83,10 @@ float left_k = 0,right_k = 0;
 float kkkk = 0;
 
 /* 助力值优化参数 */
-float tao_Ep = 1.0;		// 5-10 Nm  // 0.1-0.8
-float fai_Ep = 0.25; 	// 0.2-0.3
-float fai_Er = 0.2;		// 0.1-0.2
-float fai_Ef = 0.2;		// 0.1-0.2
+float tao_Ep = 2.23;		// 5-10 Nm  // 0.1-0.8
+float fai_Ep = 0.202; 	// 0.2-0.3
+float fai_Er = 0.112;		// 0.1-0.2
+float fai_Ef = 0.176;		// 0.1-0.2
 float tao_Fp, fai_Fp, fai_Fr, fai_Ff;
 float a[3];
 float b[3];
@@ -300,9 +300,9 @@ int main(void)
 		if(inc % CONTROL_PERIOD == 0){
             
 			// promote the code is running
-			if(inc % (CONTROL_PERIOD * 50) == 0){
-				printf("Ctrl\r\n");
-			}
+//			if(inc % (CONTROL_PERIOD * 50) == 0){
+//				printf("Ctrl\r\n");
+//			}
             
             // print IMU information
 
@@ -377,6 +377,9 @@ int main(void)
 
             /* Assistive Torque */
 			//c1-2-4-1-3-5-1
+			
+			//I1  = sin(phase[0]);
+			
 			phase[0] = phase[0]/2.0/PI;
 			if(	phase[0] < fai_Ep-fai_Er ||
 				( (phase[0] > fai_Ep+fai_Ef) && (phase[0] < fai_Fp-fai_Fr) ) ||
@@ -407,8 +410,9 @@ int main(void)
 
 			I1 = I1*left_k;
 			
+			
             #ifdef ECON_L
-			set_I_direction(1, 0);		// 正表明是往前
+			set_I_direction(1, -I1);		// 正表明是往前
 			#endif
 			
 			AssisMonitor("I1 %.2f\t",I1);
@@ -464,6 +468,8 @@ int main(void)
 //				right_k = 0.0;
 //			}
 			
+			//I2 = sin(phase[1]);
+			
 			phase[1] = phase[1]/2.0/PI;
 			if(	phase[1] < fai_Ep-fai_Er ||
 				( (phase[1] > fai_Ep+fai_Ef) && (phase[1] < fai_Fp-fai_Fr) ) ||
@@ -494,13 +500,18 @@ int main(void)
 			I2 = I2*right_k;
 			
 			#ifdef ECON_R
-			set_I_direction(2,0);		//负是往前， 
+			if (I2>0) {
+				set_I_direction( 2,-(I2+0.3) );		//负是往前， 补偿右侧驱动器的减速器的摩擦力
+			}
+			else  {
+				set_I_direction( 2,-(I2-0.3) );		//负是往前， 
+			}
 			#endif
 			
 			AssisMonitor("I2 %.2f\t",I2);
 			
             }
-			INF("\r\n");
+//			INF("\r\n");
 		}
 		
 		debug_assisTorque1 = 1000.0*I1;
