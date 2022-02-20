@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<c:Control xmlns:c="http://www.ansys.com/control" schemaVersion="1.0">
+
+  <Stackup schemaVersion="1.0">
+    <Materials>
+      <Material Name="air">
+        <Permittivity>
+          <Double>1.0006</Double>
+        </Permittivity>
+        <Permeability>
+          <Double>1.0000004</Double>
+        </Permeability>
+        <Conductivity>
+          <Double>0</Double>
+        </Conductivity>
+        <DielectricLossTangent>
+          <Double>0</Double>
+        </DielectricLossTangent>
+        <MagneticLossTangent>
+          <Double>0</Double>
+        </MagneticLossTangent>
+      </Material>
+      <Material Name="copper">
+        <Permittivity>
+          <Double>1</Double>
+        </Permittivity>
+        <Permeability>
+          <Double>0.999991</Double>
+        </Permeability>
+        <Conductivity>
+          <Double>58000000</Double>
+        </Conductivity>
+        <DielectricLossTangent>
+          <Double>0</Double>
+        </DielectricLossTangent>
+        <MagneticLossTangent>
+          <Double>0</Double>
+        </MagneticLossTangent>
+      </Material>
+      <Material Name="FR4_epoxy">
+        <Permittivity>
+          <Double>4.4</Double>
+        </Permittivity>
+        <Permeability>
+          <Double>1</Double>
+        </Permeability>
+        <Conductivity>
+          <Double>0</Double>
+        </Conductivity>
+        <DielectricLossTangent>
+          <Double>0.02</Double>
+        </DielectricLossTangent>
+        <MagneticLossTangent>
+          <Double>0</Double>
+        </MagneticLossTangent>
+      </Material>
+    </Materials>
+    <Layers LengthUnit="mil">
+      <Layer Color="#5c4300" FillMaterial="air" Material="copper" Name="top" Thickness="1.39007092" Type="conductor"/>
+      <Layer Color="#44614c" Material="FR4_epoxy" Name="Dielectric_1" Thickness="10" Type="dielectric"/>
+      <Layer Color="#8db7ca" FillMaterial="FR4_epoxy" Material="copper" Name="mid1" Thickness="1.39007092" Type="conductor"/>
+      <Layer Color="#1a291f" Material="FR4_epoxy" Name="Dielectric_2" Thickness="5" Type="dielectric"/>
+      <Layer Color="#fd777a" FillMaterial="FR4_epoxy" Material="copper" Name="mid2" Thickness="1.406950356" Type="conductor"/>
+      <Layer Color="#264a33" Material="FR4_epoxy" Name="Dielectric_3" Thickness="10" Type="dielectric"/>
+      <Layer Color="#f67fc1" FillMaterial="air" Material="copper" Name="bottom" Thickness="1.39007092" Type="conductor"/>
+      <Layer Color="#6db148" Name="topoverlay" Type="silkscreen"/>
+      <Layer Color="#d5503d" Name="toppaste" Type="solderpaste"/>
+      <Layer Color="#529999" Name="topsolder" Type="soldermask"/>
+      <Layer Color="#bb5484" Name="bottomsolder" Type="soldermask"/>
+      <Layer Color="#c28e39" Name="bottompaste" Type="solderpaste"/>
+      <Layer Color="#ba5ccf" Name="bottomoverlay" Type="silkscreen"/>
+      <Layer Color="#5c4300" Name="outline" Type="assembly"/>
+    </Layers>
+  </Stackup>
+
+  <ImportOptions EnableDefaultComponentValues="true" Flatten="true"/>
+
+  <Nets>
+    <Net Name="+M1" PinsBecomePorts="false"/>
+    <Net Name="+M2" PinsBecomePorts="false"/>
+    <Net Name="+M3" PinsBecomePorts="false"/>
+    <Net Name="+M4" PinsBecomePorts="false"/>
+    <Net Name="+M5" PinsBecomePorts="false"/>
+    <Net Name="+M6" PinsBecomePorts="false"/>
+    <Net Name="-M1" PinsBecomePorts="false"/>
+    <Net Name="-M2" PinsBecomePorts="false"/>
+    <Net Name="-M3" PinsBecomePorts="false"/>
+    <Net Name="-M4" PinsBecomePorts="false"/>
+    <Net Name="-M5" PinsBecomePorts="false"/>
+    <Net Name="-M6" PinsBecomePorts="false"/>
+    <Net Name="A" PinsBecomePorts="false"/>
+    <Net Name="A\" PinsBecomePorts="false"/>
+    <Net Name="A\_1" PinsBecomePorts="false"/>
+    <Net Name="A\_2" PinsBecomePorts="false"/>
+    <Net Name="A\_3" PinsBecomePorts="false"/>
+    <Net Name="A\_4" PinsBecomePorts="false"/>
+    <Net Name="A\_5" PinsBecomePorts="false"/>
+    <Net Name="A_1" PinsBecomePorts="false"/>
+    <Net Name="A_2" PinsBecomePorts="false"/>
+    <Net Name="A_3" PinsBecomePorts="false"/>
+    <Net Name="A_4" PinsBecomePorts="false"/>
+    <Net Name="A_5" PinsBecomePorts="false"/>
+    <Net Name="B" PinsBecomePorts="false"/>
+    <Net Name="B\" PinsBecomePorts="false"/>
+    <Net Name="B\_1" PinsBecomePorts="false"/>
+    <Net Name="B\_2" PinsBecomePorts="false"/>
+    <Net Name="B\_3" PinsBecomePorts="false"/>
+    <Net Name="B\_4" PinsBecomePorts="false"/>
+    <Net Name="B\_5" PinsBecomePorts="false"/>
+    <Net Name="B_1" PinsBecomePorts="false"/>
+    <Net Name="B_2" PinsBecomePorts="false"/>
+    <Net Name="B_3" PinsBecomePorts="false"/>
+    <Net Name="B_4" PinsBecomePorts="false"/>
+    <Net Name="B_5" PinsBecomePorts="false"/>
+    <Net Name="DUMMY" PinsBecomePorts="false"/>
+    <Net Name="GND" PinsBecomePorts="false"/>
+    <Net Name="GND1" PinsBecomePorts="false"/>
+    <Net Name="GND2" PinsBecomePorts="false"/>
+    <Net Name="GND3" PinsBecomePorts="false"/>
+    <Net Name="GND4" PinsBecomePorts="false"/>
+    <Net Name="GND5" PinsBecomePorts="false"/>
+    <Net Name="GND6" PinsBecomePorts="false"/>
+    <Net Name="Hall" PinsBecomePorts="false"/>
+    <Net Name="Hall_1" PinsBecomePorts="false"/>
+    <Net Name="Hall_2" PinsBecomePorts="false"/>
+    <Net Name="Hall_3" PinsBecomePorts="false"/>
+    <Net Name="Hall_4" PinsBecomePorts="false"/>
+    <Net Name="Hall_5" PinsBecomePorts="false"/>
+    <Net Name="I" PinsBecomePorts="false"/>
+    <Net Name="I\" PinsBecomePorts="false"/>
+    <Net Name="I\_1" PinsBecomePorts="false"/>
+    <Net Name="I\_2" PinsBecomePorts="false"/>
+    <Net Name="I\_3" PinsBecomePorts="false"/>
+    <Net Name="I\_4" PinsBecomePorts="false"/>
+    <Net Name="I\_5" PinsBecomePorts="false"/>
+    <Net Name="I_1" PinsBecomePorts="false"/>
+    <Net Name="I_2" PinsBecomePorts="false"/>
+    <Net Name="I_3" PinsBecomePorts="false"/>
+    <Net Name="I_4" PinsBecomePorts="false"/>
+    <Net Name="I_5" PinsBecomePorts="false"/>
+    <Net Name="SCL" PinsBecomePorts="false"/>
+    <Net Name="SDA" PinsBecomePorts="false"/>
+    <Net Name="SHIELD" PinsBecomePorts="false"/>
+    <Net Name="SHIELD_1" PinsBecomePorts="false"/>
+    <Net Name="SHIELD_2" PinsBecomePorts="false"/>
+    <Net Name="SHIELD_3" PinsBecomePorts="false"/>
+    <Net Name="SHIELD_4" PinsBecomePorts="false"/>
+    <Net Name="SHIELD_5" PinsBecomePorts="false"/>
+    <Net Name="V" PinsBecomePorts="false"/>
+    <Net Name="V_1" PinsBecomePorts="false"/>
+    <Net Name="V_2" PinsBecomePorts="false"/>
+    <Net Name="V_3" PinsBecomePorts="false"/>
+    <Net Name="V_4" PinsBecomePorts="false"/>
+    <Net Name="V_5" PinsBecomePorts="false"/>
+    <Net Name="Vcc" PinsBecomePorts="false"/>
+    <Net Name="Vsensor" PinsBecomePorts="false"/>
+    <Net Name="Vsensor_1" PinsBecomePorts="false"/>
+    <Net Name="Vsensor_2" PinsBecomePorts="false"/>
+    <Net Name="Vsensor_3" PinsBecomePorts="false"/>
+    <Net Name="Vsensor_4" PinsBecomePorts="false"/>
+    <Net Name="Vsensor_5" PinsBecomePorts="false"/>
+    <Net Name="pre1" PinsBecomePorts="false"/>
+    <Net Name="pre10" PinsBecomePorts="false"/>
+    <Net Name="pre11" PinsBecomePorts="false"/>
+    <Net Name="pre12" PinsBecomePorts="false"/>
+    <Net Name="pre13" PinsBecomePorts="false"/>
+    <Net Name="pre14" PinsBecomePorts="false"/>
+    <Net Name="pre15" PinsBecomePorts="false"/>
+    <Net Name="pre16" PinsBecomePorts="false"/>
+    <Net Name="pre2" PinsBecomePorts="false"/>
+    <Net Name="pre3" PinsBecomePorts="false"/>
+    <Net Name="pre4" PinsBecomePorts="false"/>
+    <Net Name="pre5" PinsBecomePorts="false"/>
+    <Net Name="pre6" PinsBecomePorts="false"/>
+    <Net Name="pre7" PinsBecomePorts="false"/>
+    <Net Name="pre8" PinsBecomePorts="false"/>
+    <Net Name="pre9" PinsBecomePorts="false"/>
+    <Net Name="reserved" PinsBecomePorts="false"/>
+    <Net Name="reserved_1" PinsBecomePorts="false"/>
+    <Net Name="reserved_2" PinsBecomePorts="false"/>
+    <Net Name="reserved_3" PinsBecomePorts="false"/>
+    <Net Name="reserved_4" PinsBecomePorts="false"/>
+    <Net Name="reserved_5" PinsBecomePorts="false"/>
+    <Net Name="reserved_6" PinsBecomePorts="false"/>
+    <Net Name="reserved_7" PinsBecomePorts="false"/>
+    <Net Name="sensor1" PinsBecomePorts="false"/>
+    <Net Name="sensor10" PinsBecomePorts="false"/>
+    <Net Name="sensor11" PinsBecomePorts="false"/>
+    <Net Name="sensor12" PinsBecomePorts="false"/>
+    <Net Name="sensor13" PinsBecomePorts="false"/>
+    <Net Name="sensor14" PinsBecomePorts="false"/>
+    <Net Name="sensor15" PinsBecomePorts="false"/>
+    <Net Name="sensor16" PinsBecomePorts="false"/>
+    <Net Name="sensor17" PinsBecomePorts="false"/>
+    <Net Name="sensor18" PinsBecomePorts="false"/>
+    <Net Name="sensor2" PinsBecomePorts="false"/>
+    <Net Name="sensor3" PinsBecomePorts="false"/>
+    <Net Name="sensor4" PinsBecomePorts="false"/>
+    <Net Name="sensor5" PinsBecomePorts="false"/>
+    <Net Name="sensor6" PinsBecomePorts="false"/>
+    <Net Name="sensor7" PinsBecomePorts="false"/>
+    <Net Name="sensor8" PinsBecomePorts="false"/>
+    <Net Name="sensor9" PinsBecomePorts="false"/>
+  </Nets>
+
+</c:Control>

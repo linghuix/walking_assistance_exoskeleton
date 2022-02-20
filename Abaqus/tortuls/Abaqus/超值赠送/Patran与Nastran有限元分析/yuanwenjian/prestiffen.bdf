@@ -1,0 +1,291 @@
+$ NASTRAN input file created by the Patran 2010 input file translator on
+$  June      14, 2011 at 11:53:26.
+$ Direct Text Input for Nastran System Cell Section
+$ Direct Text Input for File Management Section
+$ Direct Text Input for Executive Control
+$ Nonlinear Static Analysis, Database
+SOL 106
+CEND
+$ Direct Text Input for Global Case Control Data
+TITLE = MSC.Nastran job created on 14-Jun-11 at 11:50:38
+ECHO = NONE
+SUBCASE 1
+   NLPARM = 1
+   METHOD = 1
+   SPC = 2
+   LOAD = 2
+   VECTOR(SORT1,REAL)=ALL
+   SPCFORCES(SORT1,REAL)=ALL
+BEGIN BULK
+$ Direct Text Input for Bulk Data
+PARAM    POST    0
+PARAM    AUTOSPC NO
+PARAM    WTMASS .00259
+PARAM    LGDISP  1
+PARAM   PRTMAXIM YES
+NLPARM   1       10              AUTO    5       25              NO
+PARAM    NMLOOP  1
+EIGRL    1                       10      0                       MASS
+$ Elements and Element Properties for region : plate
+PSHELL   1       1      .01625   1               1
+$ Pset: "plate" will be imported as: "pshell.1"
+CQUAD4   1       1       1       2       13      12
+CQUAD4   2       1       2       3       14      13
+CQUAD4   3       1       3       4       15      14
+CQUAD4   4       1       4       5       16      15
+CQUAD4   5       1       5       6       17      16
+CQUAD4   6       1       6       7       18      17
+CQUAD4   7       1       7       8       19      18
+CQUAD4   8       1       8       9       20      19
+CQUAD4   9       1       9       10      21      20
+CQUAD4   10      1       10      11      22      21
+CQUAD4   11      1       12      13      24      23
+CQUAD4   12      1       13      14      25      24
+CQUAD4   13      1       14      15      26      25
+CQUAD4   14      1       15      16      27      26
+CQUAD4   15      1       16      17      28      27
+CQUAD4   16      1       17      18      29      28
+CQUAD4   17      1       18      19      30      29
+CQUAD4   18      1       19      20      31      30
+CQUAD4   19      1       20      21      32      31
+CQUAD4   20      1       21      22      33      32
+CQUAD4   21      1       23      24      35      34
+CQUAD4   22      1       24      25      36      35
+CQUAD4   23      1       25      26      37      36
+CQUAD4   24      1       26      27      38      37
+CQUAD4   25      1       27      28      39      38
+CQUAD4   26      1       28      29      40      39
+CQUAD4   27      1       29      30      41      40
+CQUAD4   28      1       30      31      42      41
+CQUAD4   29      1       31      32      43      42
+CQUAD4   30      1       32      33      44      43
+CQUAD4   31      1       34      35      46      45
+CQUAD4   32      1       35      36      47      46
+CQUAD4   33      1       36      37      48      47
+CQUAD4   34      1       37      38      49      48
+CQUAD4   35      1       38      39      50      49
+CQUAD4   36      1       39      40      51      50
+CQUAD4   37      1       40      41      52      51
+CQUAD4   38      1       41      42      53      52
+CQUAD4   39      1       42      43      54      53
+CQUAD4   40      1       43      44      55      54
+CQUAD4   41      1       45      46      57      56
+CQUAD4   42      1       46      47      58      57
+CQUAD4   43      1       47      48      59      58
+CQUAD4   44      1       48      49      60      59
+CQUAD4   45      1       49      50      61      60
+CQUAD4   46      1       50      51      62      61
+CQUAD4   47      1       51      52      63      62
+CQUAD4   48      1       52      53      64      63
+CQUAD4   49      1       53      54      65      64
+CQUAD4   50      1       54      55      66      65
+CQUAD4   51      1       56      57      68      67
+CQUAD4   52      1       57      58      69      68
+CQUAD4   53      1       58      59      70      69
+CQUAD4   54      1       59      60      71      70
+CQUAD4   55      1       60      61      72      71
+CQUAD4   56      1       61      62      73      72
+CQUAD4   57      1       62      63      74      73
+CQUAD4   58      1       63      64      75      74
+CQUAD4   59      1       64      65      76      75
+CQUAD4   60      1       65      66      77      76
+CQUAD4   61      1       67      68      79      78
+CQUAD4   62      1       68      69      80      79
+CQUAD4   63      1       69      70      81      80
+CQUAD4   64      1       70      71      82      81
+CQUAD4   65      1       71      72      83      82
+CQUAD4   66      1       72      73      84      83
+CQUAD4   67      1       73      74      85      84
+CQUAD4   68      1       74      75      86      85
+CQUAD4   69      1       75      76      87      86
+CQUAD4   70      1       76      77      88      87
+CQUAD4   71      1       78      79      90      89
+CQUAD4   72      1       79      80      91      90
+CQUAD4   73      1       80      81      92      91
+CQUAD4   74      1       81      82      93      92
+CQUAD4   75      1       82      83      94      93
+CQUAD4   76      1       83      84      95      94
+CQUAD4   77      1       84      85      96      95
+CQUAD4   78      1       85      86      97      96
+CQUAD4   79      1       86      87      98      97
+CQUAD4   80      1       87      88      99      98
+CQUAD4   81      1       89      90      101     100
+CQUAD4   82      1       90      91      102     101
+CQUAD4   83      1       91      92      103     102
+CQUAD4   84      1       92      93      104     103
+CQUAD4   85      1       93      94      105     104
+CQUAD4   86      1       94      95      106     105
+CQUAD4   87      1       95      96      107     106
+CQUAD4   88      1       96      97      108     107
+CQUAD4   89      1       97      98      109     108
+CQUAD4   90      1       98      99      110     109
+CQUAD4   91      1       100     101     112     111
+CQUAD4   92      1       101     102     113     112
+CQUAD4   93      1       102     103     114     113
+CQUAD4   94      1       103     104     115     114
+CQUAD4   95      1       104     105     116     115
+CQUAD4   96      1       105     106     117     116
+CQUAD4   97      1       106     107     118     117
+CQUAD4   98      1       107     108     119     118
+CQUAD4   99      1       108     109     120     119
+CQUAD4   100     1       109     110     121     120
+$ Referenced Material Records
+$ Material Record : A1
+$ Description of Material : Date: 14-Jun-11           Time: 11:48:43
+MAT1     1      1.+7            .33     .101
+$ Nodes of the Entire Model
+GRID     1               0.      0.      0.
+GRID     2              .1       0.      0.
+GRID     3              .2       0.      0.
+GRID     4              .3       0.      0.
+GRID     5              .4       0.      0.
+GRID     6              .5       0.      0.
+GRID     7              .6       0.      0.
+GRID     8              .7       0.      0.
+GRID     9              .8       0.      0.
+GRID     10             .9       0.      0.
+GRID     11             1.       0.      0.
+GRID     12              0.     .1       0.
+GRID     13             .1      .1       0.
+GRID     14             .2      .1       0.
+GRID     15             .3      .1       0.
+GRID     16             .4      .1       0.
+GRID     17             .5      .1       0.
+GRID     18             .6      .1       0.
+GRID     19             .7      .1       0.
+GRID     20             .8      .1       0.
+GRID     21             .9      .1       0.
+GRID     22             1.      .1       0.
+GRID     23              0.     .2       0.
+GRID     24             .1      .2       0.
+GRID     25             .2      .2       0.
+GRID     26             .3      .2       0.
+GRID     27             .4      .2       0.
+GRID     28             .5      .2       0.
+GRID     29             .6      .2       0.
+GRID     30             .7      .2       0.
+GRID     31             .8      .2       0.
+GRID     32             .9      .2       0.
+GRID     33             1.      .2       0.
+GRID     34              0.     .3       0.
+GRID     35             .1      .3       0.
+GRID     36             .2      .3       0.
+GRID     37             .3      .3       0.
+GRID     38             .4      .3       0.
+GRID     39             .5      .3       0.
+GRID     40             .6      .3       0.
+GRID     41             .7      .3       0.
+GRID     42             .8      .3       0.
+GRID     43             .9      .3       0.
+GRID     44             1.      .3       0.
+GRID     45              0.     .4       0.
+GRID     46             .1      .4       0.
+GRID     47             .2      .4       0.
+GRID     48             .3      .4       0.
+GRID     49             .4      .4       0.
+GRID     50             .5      .4       0.
+GRID     51             .6      .4       0.
+GRID     52             .7      .4       0.
+GRID     53             .8      .4       0.
+GRID     54             .9      .4       0.
+GRID     55             1.      .4       0.
+GRID     56              0.     .5       0.
+GRID     57             .1      .5       0.
+GRID     58             .2      .5       0.
+GRID     59             .3      .5       0.
+GRID     60             .4      .5       0.
+GRID     61             .5      .5       0.
+GRID     62             .6      .5       0.
+GRID     63             .7      .5       0.
+GRID     64             .8      .5       0.
+GRID     65             .9      .5       0.
+GRID     66             1.      .5       0.
+GRID     67              0.     .6       0.
+GRID     68             .1      .6       0.
+GRID     69             .2      .6       0.
+GRID     70             .3      .6       0.
+GRID     71             .4      .6       0.
+GRID     72             .5      .6       0.
+GRID     73             .6      .6       0.
+GRID     74             .7      .6       0.
+GRID     75             .8      .6       0.
+GRID     76             .9      .6       0.
+GRID     77             1.      .6       0.
+GRID     78              0.     .7       0.
+GRID     79             .1      .7       0.
+GRID     80             .2      .7       0.
+GRID     81             .3      .7       0.
+GRID     82             .4      .7       0.
+GRID     83             .5      .7       0.
+GRID     84             .6      .7       0.
+GRID     85             .7      .7       0.
+GRID     86             .8      .7       0.
+GRID     87             .9      .7       0.
+GRID     88             1.      .7       0.
+GRID     89              0.     .8       0.
+GRID     90             .1      .8       0.
+GRID     91             .2      .8       0.
+GRID     92             .3      .8       0.
+GRID     93             .4      .8       0.
+GRID     94             .5      .8       0.
+GRID     95             .6      .8       0.
+GRID     96             .7      .8       0.
+GRID     97             .8      .8       0.
+GRID     98             .9      .8       0.
+GRID     99             1.      .8       0.
+GRID     100             0.     .9       0.
+GRID     101            .1      .9       0.
+GRID     102            .2      .9       0.
+GRID     103            .3      .9       0.
+GRID     104            .4      .9       0.
+GRID     105            .5      .9       0.
+GRID     106            .6      .9       0.
+GRID     107            .7      .9       0.
+GRID     108            .8      .9       0.
+GRID     109            .9      .9       0.
+GRID     110            1.      .9       0.
+GRID     111             0.     1.       0.
+GRID     112            .1      1.       0.
+GRID     113            .2      1.       0.
+GRID     114            .3      1.       0.
+GRID     115            .4      1.       0.
+GRID     116            .5      1.       0.
+GRID     117            .6      1.       0.
+GRID     118            .7      1.       0.
+GRID     119            .8      1.       0.
+GRID     120            .9      1.       0.
+GRID     121            1.      1.       0.
+$ Loads for Load Case : Default
+SPCADD   2       1       3
+LOAD     2      1.      1.       1      1.       3
+$ Displacement Constraints of Load Set : constraint_bottom
+SPC1     1       234     1       THRU    11
+$ Displacement Constraints of Load Set : constraint_left
+SPC1     3       135     1       12      23      34      45      56
+         67      78      89      100     111
+$ Pressures of Total Load Set : right
+PLOAD4   1       10     10000.
+                1.       0.      0.
+PLOAD4   1       20     10000.
+                1.       0.      0.
+PLOAD4   1       30     10000.
+                1.       0.      0.
+PLOAD4   1       40     10000.
+                1.       0.      0.
+PLOAD4   1       50     10000.
+                1.       0.      0.
+PLOAD4   1       60     10000.
+                1.       0.      0.
+PLOAD4   1       70     10000.
+                1.       0.      0.
+PLOAD4   1       80     10000.
+                1.       0.      0.
+PLOAD4   1       90     10000.
+                1.       0.      0.
+PLOAD4   1       100    10000.
+                1.       0.      0.
+$ Pressures of Total Load Set : top
+PLOAD4   3       91     10000.                           THRU    100
+                 0.     1.       0.
+$ Referenced Coordinate Frames
+ENDDATA ae27a2c9

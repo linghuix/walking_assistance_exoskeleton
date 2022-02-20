@@ -1,0 +1,200 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.0, 120.0), point2=
+    (35.0, 120.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(35.0, 120.0), 
+    point2=(38.0, 88.0))
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(38.0, 88.0), point2=
+    (12.0, 88.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(12.0, 88.0), point2=
+    (12.0, 28.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[5])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(12.0, 28.0), point2=
+    (60.0, 24.0))
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(60.0, 24.0), point2=
+    (60.0, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[7])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(60.0, 0.0), point2=(
+    0.0, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[8])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[8])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.0, 120.0), point2=
+    (35.0, 120.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(35.0, 120.0), 
+    point2=(38.0, 88.0))
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(38.0, 88.0), point2=
+    (12.0, 88.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(12.0, 88.0), point2=
+    (12.0, 28.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[5])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(12.0, 28.0), point2=
+    (60.0, 24.0))
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(60.0, 24.0), point2=
+    (60.0, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[7])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(60.0, 0.0), point2=(
+    0.0, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[8])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[8])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.0, 0.0), point2=(
+    0.0, 120.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[9])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[8], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[9])
+mdb.models['Model-1'].Part(dimensionality=THREE_D, name='Part-tiegui', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['Part-tiegui'].BaseSolidExtrude(depth=130.0, 
+    sketch=mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].Material(name='Material-1')
+mdb.models['Model-1'].materials['Material-1'].Elastic(table=((210000.0, 0.3), 
+    ))
+mdb.models['Model-1'].materials['Material-1'].Expansion(table=((1.18e-05, ), ))
+mdb.models['Model-1'].HomogeneousSolidSection(material='Material-1', name=
+    'Section-1', thickness=None)
+mdb.models['Model-1'].parts['Part-tiegui'].Set(cells=
+    mdb.models['Model-1'].parts['Part-tiegui'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), name='Set-1')
+mdb.models['Model-1'].parts['Part-tiegui'].SectionAssignment(offset=0.0, 
+    offsetField='', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Model-1'].parts['Part-tiegui'].sets['Set-1'], sectionName=
+    'Section-1', thicknessAssignment=FROM_SECTION)
+mdb.models['Model-1'].rootAssembly.DatumCsysByDefault(CARTESIAN)
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='Part-tiegui-1', 
+    part=mdb.models['Model-1'].parts['Part-tiegui'])
+mdb.models['Model-1'].StaticStep(name='Step-1', previous='Initial')
+mdb.models['Model-1'].rootAssembly.Set(faces=
+    mdb.models['Model-1'].rootAssembly.instances['Part-tiegui-1'].faces.getSequenceFromMask(
+    ('[#40 ]', ), ), name='Set-Fix')
+mdb.models['Model-1'].rootAssembly.Set(faces=
+    mdb.models['Model-1'].rootAssembly.instances['Part-tiegui-1'].faces.getSequenceFromMask(
+    ('[#80 ]', ), ), name='Set-Symm')
+mdb.models['Model-1'].EncastreBC(createStepName='Initial', localCsys=None, 
+    name='BC-Fix', region=mdb.models['Model-1'].rootAssembly.sets['Set-Fix'])
+mdb.models['Model-1'].ZsymmBC(createStepName='Initial', localCsys=None, name=
+    'BC-Symm', region=mdb.models['Model-1'].rootAssembly.sets['Set-Symm'])
+mdb.models['Model-1'].rootAssembly.Set(cells=
+    mdb.models['Model-1'].rootAssembly.instances['Part-tiegui-1'].cells.getSequenceFromMask(
+    ('[#1 ]', ), ), edges=
+    mdb.models['Model-1'].rootAssembly.instances['Part-tiegui-1'].edges.getSequenceFromMask(
+    ('[#ffffff ]', ), ), faces=
+    mdb.models['Model-1'].rootAssembly.instances['Part-tiegui-1'].faces.getSequenceFromMask(
+    ('[#3ff ]', ), ), name='Set-3', vertices=
+    mdb.models['Model-1'].rootAssembly.instances['Part-tiegui-1'].vertices.getSequenceFromMask(
+    ('[#ffff ]', ), ))
+mdb.models['Model-1'].Temperature(createStepName='Initial', 
+    crossSectionDistribution=CONSTANT_THROUGH_THICKNESS, distributionType=
+    UNIFORM, magnitudes=(15.0, ), name='Predefined Field-1', region=
+    mdb.models['Model-1'].rootAssembly.sets['Set-3'])
+mdb.models['Model-1'].predefinedFields['Predefined Field-1'].setValuesInStep(
+    magnitudes=(45.0, ), stepName='Step-1')
+mdb.models['Model-1'].parts['Part-tiegui'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=8.0)
+mdb.models['Model-1'].parts['Part-tiegui'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D20R, elemLibrary=STANDARD), ElemType(elemCode=C3D15, 
+    elemLibrary=STANDARD), ElemType(elemCode=C3D10, elemLibrary=STANDARD)), 
+    regions=(
+    mdb.models['Model-1'].parts['Part-tiegui'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['Model-1'].parts['Part-tiegui'].generateMesh()
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-tiegui', nodalOutputPrecision=SINGLE
+    , numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', type=
+    ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+# Save by mjs on 2016_12_01-10.20.02; build 2016 2015_09_25-04.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.jobs['Job-tiegui'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-tiegui']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'fzs', 'handle': 0, 'jobName': 'Job-tiegui'})
+mdb.jobs['Job-tiegui']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'e:\\temp\\Job-tiegui.odb', 'jobName': 'Job-tiegui'})
+mdb.jobs['Job-tiegui']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-tiegui'})
+mdb.jobs['Job-tiegui']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'fzs', 'handle': 5660, 'jobName': 'Job-tiegui'})
+mdb.jobs['Job-tiegui']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-tiegui'})
+mdb.jobs['Job-tiegui']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-tiegui'})
+mdb.jobs['Job-tiegui']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-tiegui', 'memory': 131.0})
+mdb.jobs['Job-tiegui']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-tiegui'})
+mdb.jobs['Job-tiegui']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-tiegui', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Job-tiegui']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'Job-tiegui'})
+mdb.jobs['Job-tiegui']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-tiegui'})
+mdb.jobs['Job-tiegui']._Message(JOB_COMPLETED, {
+    'time': 'Thu Dec 01 10:20:31 2016', 'jobName': 'Job-tiegui'})
+# Save by mjs on 2016_12_01-10.22.30; build 2016 2015_09_25-04.31.09 126547

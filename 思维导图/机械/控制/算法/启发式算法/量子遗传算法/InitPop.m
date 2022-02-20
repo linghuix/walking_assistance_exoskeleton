@@ -1,0 +1,1 @@
+function chrom = InitPop(M,N)% 初始化种群 % M为种群大小 X 2,(α和β)% N为量子比特编码长度 for i = 1: M	for j = 1 :N		chrom(i,j) = 1/sqrt(2);	endend

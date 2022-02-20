@@ -1,0 +1,292 @@
+Adams View model name: pendulum
+!
+!-------------------------------- SYSTEM UNITS ---------------------------------
+!
+UNITS/
+, FORCE = NEWTON
+, MASS = KILOGRAM
+, LENGTH = MILLIMETER
+, TIME = SECOND
+!
+!----------------------------------- PARTS -------------------------------------
+!
+!----------------------------------- Ground ------------------------------------
+!
+!                            adams_view_name='fixed'
+PART/5
+, GROUND
+!
+!                          adams_view_name='MARKER_13'
+MARKER/13
+, PART = 5
+, QP = -200, 0, 200
+, REULER = 180D, 90D, 180D
+!
+!                          adams_view_name='MARKER_14'
+MARKER/14
+, PART = 5
+, REULER = 90D, 90D, 270D
+!
+!                              adams_view_name='cm'
+MARKER/16
+, PART = 5
+, QP = 5.551115123E-14, -5, 0
+, REULER = 90D, 90D, 0D
+!
+!                          adams_view_name='MARKER_19'
+MARKER/19
+, PART = 5
+, QP = 0, 30, 0
+!
+!                            adams_view_name='BOX_5'
+GRAPHICS/5
+, BOX
+, CORNER = 13
+, X = 400
+, Y = 400
+, Z = -10
+!
+!------------------------------------ Part -------------------------------------
+!
+!                            adams_view_name='ground'
+PART/1
+!
+!------------------------------------ Part -------------------------------------
+!
+!                           adams_view_name='pedeatal'
+PART/2
+, MASS = 1.838067322
+, CM = 7
+, IP = 2297.584152, 1286.647125, 1286.647125
+, VX = 0.1
+!
+!                           adams_view_name='MARKER_1'
+MARKER/1
+, PART = 2
+, REULER = 180D, 90D, 180D
+!
+!                              adams_view_name='cm'
+MARKER/7
+, PART = 2
+, QP = 1.836970199E-15, 15, 0
+, REULER = 90D, 90D, 0D
+!
+!                          adams_view_name='MARKER_15'
+MARKER/15
+, PART = 2
+, REULER = 90D, 90D, 270D
+!
+!                          adams_view_name='CYLINDER_1'
+GRAPHICS/1
+, CYLINDER
+, CM = 1
+, LENGTH = 30
+, RADIUS = 50
+!
+!------------------------------------ Part -------------------------------------
+!
+!                           adams_view_name='rod_down'
+PART/3
+, QG = -20, 10, -10
+, REULER = 80D, 5D, 222D
+, MASS = 0.0787300257
+, CM = 8
+, IP = 67.58552093, 67.57235101, 1.298997163
+, VX = 0
+, VY = 0
+, VZ = 0
+!
+!                           adams_view_name='MARKER_2'
+MARKER/2
+, PART = 3
+, QP = 0, 30, 0
+, REULER = 135D, 0D, 0D
+!
+!                           adams_view_name='MARKER_3'
+MARKER/3
+, PART = 3
+, QP = -70.71067812, 90.71067812, 0
+, REULER = 135D, 0D, 0D
+!
+!                              adams_view_name='cm'
+MARKER/8
+, PART = 3
+, QP = -35.35533906, 60.35533906, 0
+, REULER = 49.35131591D, 90.00000001D, 359.999995D
+!
+!                          adams_view_name='MARKER_17'
+MARKER/17
+, PART = 3
+, QP = -70.71067812, 90.71067812, 4.726601055E-11
+, REULER = 57.96271079D, 0D, 0D
+!
+!                          adams_view_name='MARKER_20'
+MARKER/20
+, PART = 3
+, QP = -6.987070592, 26.86577641, 11.37589129
+, REULER = 318D, 5D, 100D
+!
+!------------------------------------ Part -------------------------------------
+!
+!                            adams_view_name='rod_up'
+PART/4
+, QG = -70.71067812, 110.7106781, 0
+, REULER = 326D, 0D, 0D
+, MASS = 0.0840366039
+, CM = 6
+, IP = 82.08054929, 82.06737936, 1.387440133
+, PLANAR
+, XY
+, VX = 0
+, VY = 0
+, VZ = 0
+!
+!                           adams_view_name='MARKER_2'
+MARKER/4
+, PART = 4
+, QP = 70.58583014, 56.46196256, -11.7515247
+, REULER = 135D, 0D, 0D
+!
+!                           adams_view_name='MARKER_3'
+MARKER/5
+, PART = 4
+, QP = -0.1248479765, 127.1726407, -11.7515247
+, REULER = 135D, 0D, 0D
+!
+!                              adams_view_name='cm'
+MARKER/6
+, PART = 4
+, QP = 35.23049108, 91.81730162, -11.7515247
+, REULER = 45D, 90.00000001D, 359.999996D
+!
+!                          adams_view_name='MARKER_18'
+MARKER/18
+, PART = 4
+, QP = 70.58583014, 56.46196256, -11.7515247
+, REULER = 114D, 5D, 279.9627108D
+!
+!-------------------------------- CONSTRAINTS ----------------------------------
+!
+!                           adams_view_name='JOINT_3'
+JOINT/3
+, TRANSLATIONAL
+, I = 14
+, J = 15
+!
+!                           adams_view_name='JOINT_4'
+JOINT/4
+, REVOLUTE
+, I = 17
+, J = 18
+!
+!                           adams_view_name='JOINT_5'
+JOINT/5
+, REVOLUTE
+, I = 19
+, J = 20
+!
+!                           adams_view_name='MOTION_1'
+MOTION/1
+, TRANSLATIONAL
+, ACCELERATION
+, JOINT = 3
+, FUNCTION = VARVAL( 7)
+!
+!------------------------------ DATA STRUCTURES --------------------------------
+!
+!                          adams_view_name='ddisplace'
+VARIABLE/1
+, IC = 0
+, FUNCTION = VX(13)
+!
+!                           adams_view_name='displace'
+VARIABLE/2
+, IC = 0
+, FUNCTION = DX( 13)
+!
+!                           adams_view_name='ddowndeg'
+VARIABLE/3
+, IC = 0
+, FUNCTION = WZ( 2,7,7)
+!
+!                           adams_view_name='downdeg'
+VARIABLE/4
+, IC = 0
+, FUNCTION = AZ( 2,7)
+!
+!                            adams_view_name='dupdeg'
+VARIABLE/5
+, IC = 0
+, FUNCTION = WZ(8,6,16)
+!
+!                            adams_view_name='updeg'
+VARIABLE/6
+, IC = 0
+, FUNCTION = AZ(8,6)
+!
+!                          adams_view_name='motivation'
+VARIABLE/7
+, IC = 0
+, FUNCTION = 0
+!
+!                    adams_view_name='control_1.ctrl_pinput'
+PINPUT/1
+, VARIABLES = 7
+!
+!                 adams_view_name='Controls_Plant_1.ctrl_pinput'
+PINPUT/2
+, VARIABLES = 7
+!
+!                     adams_view_name='Plant_1.ctrl_pinput'
+PINPUT/3
+, VARIABLES = 7
+!
+!                        adams_view_name='P.ctrl_pinput'
+PINPUT/4
+, VARIABLES = 7
+!
+!                          adams_view_name='PINPUT_mo'
+PINPUT/5
+, VARIABLES = 7
+!
+!                 adams_view_name='Controls_Plant_2.ctrl_pinput'
+PINPUT/6
+, VARIABLES = 7
+!
+!                    adams_view_name='control_1.ctrl_poutput'
+POUTPUT/1
+, VARIABLES = 1, 3, 2, 4, 5, 6
+!
+!                adams_view_name='Controls_Plant_1.ctrl_poutput'
+POUTPUT/2
+, VARIABLES = 1, 3, 2, 4, 5, 6
+!
+!                     adams_view_name='Plant_1.ctrl_poutput'
+POUTPUT/3
+, VARIABLES = 1, 3, 2, 4, 5, 6
+!
+!                        adams_view_name='P.ctrl_poutput'
+POUTPUT/4
+, VARIABLES = 1, 3, 2, 4, 5, 6
+!
+!                adams_view_name='Controls_Plant_2.ctrl_poutput'
+POUTPUT/5
+, VARIABLES = 1, 3, 2, 4, 5, 6
+!
+!------------------------- GRAVITATIONAL ACCELERATION --------------------------
+!
+ACCGRAV/
+, JGRAV = -9806.65
+!
+!----------------------------- ANALYSIS SETTINGS -------------------------------
+!
+KINEMATICS/
+!
+OUTPUT/
+, REQSAVE
+, GRSAVE
+!
+RESULTS/
+, XRF
+!
+END

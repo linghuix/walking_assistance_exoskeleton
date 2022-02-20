@@ -1,0 +1,470 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].CircleByCenterPerimeter(center=(
+    0.0, 0.0), point1=(0.0, 1.0))
+mdb.models['Model-1'].sketches['__profile__'].CircleByCenterPerimeter(center=(
+    0.0, 0.0), point1=(5.0, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].CircleByCenterPerimeter(center=(
+    0.0, 0.0), point1=(25.0, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].ConstructionLine(angle=80.0, 
+    point1=(0.0, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[0], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5])
+mdb.models['Model-1'].sketches['__profile__'].ConstructionLine(angle=100.0, 
+    point1=(0.0, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[0], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(-4.34120444168002, 
+    24.6201938253362), point2=(-0.868240888339642, 4.92403876509343))
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7])
+mdb.models['Model-1'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[4], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4])
+mdb.models['Model-1'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[5], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.868240888346918, 
+    4.92403876510798), point2=(4.34120444168366, 24.6201938253507))
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[8])
+mdb.models['Model-1'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[6], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3])
+mdb.models['Model-1'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[7], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4])
+mdb.models['Model-1'].sketches['__profile__'].delete(objectList=(
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6], ))
+mdb.models['Model-1'].sketches['__profile__'].delete(objectList=(
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5], ))
+mdb.models['Model-1'].sketches['__profile__'].autoTrimCurve(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4], point1=(
+    -19.2579441070557, 17.0652599334717))
+mdb.models['Model-1'].sketches['__profile__'].autoTrimCurve(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[9], point1=(
+    15.13454246521, 19.9992923736572))
+mdb.models['Model-1'].sketches['__profile__'].FilletByRadius(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[10], curve2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7], nearPoint1=(
+    -1.68206357955933, 25.4288215637207), nearPoint2=(-4.15590238571167, 
+    23.1798210144043), radius=2.0)
+mdb.models['Model-1'].sketches['__profile__'].FilletByRadius(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[10], curve2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[8], nearPoint1=(
+    1.57889986038208, 24.9790229797363), nearPoint2=(3.37804841995239, 
+    21.7179679870605), radius=2.0)
+mdb.models['Model-1'].sketches['__profile__'].radialPattern(centerPoint=(0.0, 
+    0.0), geomList=(mdb.models['Model-1'].sketches['__profile__'].geometry[7], 
+    mdb.models['Model-1'].sketches['__profile__'].geometry[8], 
+    mdb.models['Model-1'].sketches['__profile__'].geometry[10], 
+    mdb.models['Model-1'].sketches['__profile__'].geometry[11], 
+    mdb.models['Model-1'].sketches['__profile__'].geometry[12]), number=3, 
+    totalAngle=360.0, vertexList=())
+mdb.models['Model-1'].sketches['__profile__'].autoTrimCurve(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3], point1=(
+    -0.24348258972168, 5.13467407226563))
+mdb.models['Model-1'].sketches['__profile__'].autoTrimCurve(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[24], point1=(
+    -4.19416618347168, -2.50352478027344))
+mdb.models['Model-1'].sketches['__profile__'].autoTrimCurve(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[26], point1=(
+    4.23396110534668, -2.50352478027344))
+mdb.models['Model-1'].Part(dimensionality=THREE_D, name='Part-yepian', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['Part-yepian'].BaseShell(sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].CircleByCenterPerimeter(center=(
+    0.0, 0.0), point1=(1.0, 0.0))
+mdb.models['Model-1'].Part(dimensionality=THREE_D, name='Part-zhou', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['Part-zhou'].BaseSolidExtrude(depth=25.0, sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].Material(name='Material-1')
+mdb.models['Model-1'].materials['Material-1'].Elastic(table=((210000.0, 0.3), 
+    ))
+mdb.models['Model-1'].HomogeneousSolidSection(material='Material-1', name=
+    'Section-zhou', thickness=None)
+mdb.models['Model-1'].HomogeneousShellSection(idealization=NO_IDEALIZATION, 
+    integrationRule=SIMPSON, material='Material-1', name='Section-pian', 
+    numIntPts=5, poissonDefinition=DEFAULT, preIntegrate=OFF, temperature=
+    GRADIENT, thickness=0.5, thicknessField='', thicknessModulus=None, 
+    thicknessType=UNIFORM, useDensity=OFF)
+mdb.models['Model-1'].parts['Part-yepian'].Set(faces=
+    mdb.models['Model-1'].parts['Part-yepian'].faces.getSequenceFromMask((
+    '[#1 ]', ), ), name='Set-1')
+mdb.models['Model-1'].parts['Part-yepian'].SectionAssignment(offset=0.0, 
+    offsetField='', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Model-1'].parts['Part-yepian'].sets['Set-1'], sectionName=
+    'Section-pian', thicknessAssignment=FROM_SECTION)
+mdb.models['Model-1'].parts['Part-zhou'].Set(cells=
+    mdb.models['Model-1'].parts['Part-zhou'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), name='Set-1')
+mdb.models['Model-1'].parts['Part-zhou'].SectionAssignment(offset=0.0, 
+    offsetField='', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Model-1'].parts['Part-zhou'].sets['Set-1'], sectionName=
+    'Section-zhou', thicknessAssignment=FROM_SECTION)
+mdb.models['Model-1'].rootAssembly.DatumCsysByDefault(CARTESIAN)
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='Part-yepian-1', 
+    part=mdb.models['Model-1'].parts['Part-yepian'])
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='Part-zhou-1', 
+    part=mdb.models['Model-1'].parts['Part-zhou'])
+mdb.models['Model-1'].rootAssembly.ReferencePoint(point=(0.0, 0.0, 0.0))
+mdb.models['Model-1'].rootAssembly.ReferencePoint(point=(0.0, 25.0, 0.0))
+mdb.models['Model-1'].rootAssembly.ReferencePoint(point=(0.0, 0.0, 25.0))
+mdb.models['Model-1'].rootAssembly.features['Datum csys-1'].suppress()
+mdb.models['Model-1'].rootAssembly.DatumCsysByThreePoints(coordSysType=
+    CARTESIAN, name='Datum csys-Hinge', origin=(0.0, 0.0, 0.0), point1=(0.0, 
+    0.0, 1.0), point2=(0.0, 1.0, 0.0))
+mdb.models['Model-1'].rootAssembly.Set(name='Set-RP-yepian-Top', 
+    referencePoints=(mdb.models['Model-1'].rootAssembly.referencePoints[7], ))
+mdb.models['Model-1'].rootAssembly.Set(name='Set-yepian-center', 
+    referencePoints=(mdb.models['Model-1'].rootAssembly.referencePoints[6], ))
+mdb.models['Model-1'].rootAssembly.Set(name='Set-RP-gan', referencePoints=(
+    mdb.models['Model-1'].rootAssembly.referencePoints[8], ))
+mdb.models['Model-1'].rootAssembly.Set(faces=
+    mdb.models['Model-1'].rootAssembly.instances['Part-yepian-1'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), name='Set-yepian')
+mdb.models['Model-1'].rootAssembly.Set(cells=
+    mdb.models['Model-1'].rootAssembly.instances['Part-zhou-1'].cells.getSequenceFromMask(
+    ('[#1 ]', ), ), name='Set-gan')
+mdb.models['Model-1'].RigidBody(bodyRegion=
+    mdb.models['Model-1'].rootAssembly.sets['Set-yepian'], name=
+    'Constraint-yepian', refPointRegion=
+    mdb.models['Model-1'].rootAssembly.sets['Set-RP-yepian-Top'], tieRegion=
+    mdb.models['Model-1'].rootAssembly.sets['Set-yepian-center'])
+mdb.models['Model-1'].RigidBody(bodyRegion=
+    mdb.models['Model-1'].rootAssembly.sets['Set-gan'], name='Constraint-zhou', 
+    refPointRegion=mdb.models['Model-1'].rootAssembly.sets['Set-RP-gan'])
+mdb.models['Model-1'].ConnectorSection(assembledType=BEAM, name=
+    'ConnSect-Hinge')
+mdb.models['Model-1'].rootAssembly.WirePolyLine(mergeType=IMPRINT, meshable=OFF
+    , points=((mdb.models['Model-1'].rootAssembly.referencePoints[6], 
+    mdb.models['Model-1'].rootAssembly.referencePoints[8]), ))
+mdb.models['Model-1'].rootAssembly.Set(edges=
+    mdb.models['Model-1'].rootAssembly.edges.getSequenceFromMask(('[#1 ]', ), )
+    , name='Wire-1-Set-1')
+mdb.models['Model-1'].rootAssembly.SectionAssignment(region=
+    mdb.models['Model-1'].rootAssembly.sets['Wire-1-Set-1'], sectionName=
+    'ConnSect-Hinge')
+mdb.models['Model-1'].rootAssembly.sectionAssignments[0].getSet()
+mdb.models['Model-1'].rootAssembly.ConnectorOrientation(localCsys1=
+    mdb.models['Model-1'].rootAssembly.datums[9], region=
+    mdb.models['Model-1'].rootAssembly.allSets['Wire-1-Set-1'])
+mdb.models['Model-1'].StaticStep(initialInc=0.1, maxInc=0.1, minInc=1e-06, 
+    name='Step-1', nlgeom=ON, previous='Initial')
+mdb.models['Model-1'].historyOutputRequests['H-Output-1'].setValues(rebar=
+    EXCLUDE, region=mdb.models['Model-1'].rootAssembly.sets['Wire-1-Set-1'], 
+    sectionPoints=DEFAULT, variables=('U1', 'U2', 'U3', 'UR1', 'UR2', 'UR3', 
+    'CTF1', 'CTF2', 'CTF3', 'CTM1', 'CTM2', 'CTM3', 'CU1', 'CU2', 'CU3', 
+    'CUR1', 'CUR2', 'CUR3'))
+mdb.models['Model-1'].EncastreBC(createStepName='Initial', localCsys=None, 
+    name='BC-gan', region=
+    mdb.models['Model-1'].rootAssembly.sets['Set-RP-gan'])
+mdb.models['Model-1'].DisplacementBC(amplitude=UNSET, createStepName='Step-1', 
+    distributionType=UNIFORM, fieldName='', fixed=OFF, localCsys=None, name=
+    'BC-pian', region=
+    mdb.models['Model-1'].rootAssembly.sets['Set-RP-yepian-Top'], u1=1.0, u2=
+    UNSET, u3=UNSET, ur1=UNSET, ur2=UNSET, ur3=UNSET)
+mdb.models['Model-1'].parts['Part-yepian'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=1.0)
+mdb.models['Model-1'].parts['Part-zhou'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=0.2)
+mdb.models['Model-1'].parts['Part-yepian'].setMeshControls(elemShape=QUAD, 
+    regions=
+    mdb.models['Model-1'].parts['Part-yepian'].faces.getSequenceFromMask((
+    '[#1 ]', ), ))
+mdb.models['Model-1'].parts['Part-zhou'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D8R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    kinematicSplit=AVERAGE_STRAIN, hourglassControl=DEFAULT, 
+    distortionControl=DEFAULT), ElemType(elemCode=C3D6, elemLibrary=STANDARD), 
+    ElemType(elemCode=C3D4, elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].parts['Part-zhou'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['Model-1'].parts['Part-yepian'].setElementType(elemTypes=(ElemType(
+    elemCode=S4R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    hourglassControl=DEFAULT), ElemType(elemCode=S3, elemLibrary=STANDARD)), 
+    regions=(
+    mdb.models['Model-1'].parts['Part-yepian'].faces.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['Model-1'].parts['Part-zhou'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D8R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    kinematicSplit=AVERAGE_STRAIN, hourglassControl=DEFAULT, 
+    distortionControl=DEFAULT), ElemType(elemCode=C3D6, elemLibrary=STANDARD), 
+    ElemType(elemCode=C3D4, elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].parts['Part-zhou'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['Model-1'].parts['Part-zhou'].generateMesh()
+mdb.models['Model-1'].parts['Part-yepian'].generateMesh()
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-luoxuanjiang', nodalOutputPrecision=
+    SINGLE, numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', 
+    type=ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+# Save by mjs on 2016_12_03-09.41.15; build 2016 2015_09_25-04.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.saveAs(pathName='e:/temp/9.3')
+mdb.jobs['Job-luoxuanjiang'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-luoxuanjiang']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'fzs', 'handle': 0, 'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'e:\\temp\\Job-luoxuanjiang.odb', 'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'fzs', 'handle': 5244, 'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(MEMORY_ESTIMATE, {
+    'phase': STANDARD_PHASE, 'jobName': 'Job-luoxuanjiang', 'memory': 40.0})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 5 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_5_1_1_1_1.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 5 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_5_1_1_2_1.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 6 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_6_1_1_3_1.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 5 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_5_1_1_3_1.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 4 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_4_1_1_3_1.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 3 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_3_1_1_3_1.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 2 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_2_1_1_3_1.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 1 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_1_1_1_3_1.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 6 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_6_1_1_4_1.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 5 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_5_1_1_4_1.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 4 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_4_1_1_4_1.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 3 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_3_1_1_4_1.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 2 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_2_1_1_4_1.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 1 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_1_1_1_4_1.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(STATUS, {'totalTime': 0.0, 
+    'attempts': ' 1U', 'timeIncrement': 0.1, 'increment': 1, 'stepTime': 0.0, 
+    'step': 1, 'jobName': 'Job-luoxuanjiang', 'severe': 0, 'iterations': 4, 
+    'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 5 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_5_1_1_1_2.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 5 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_5_1_1_2_2.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 6 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_6_1_1_3_2.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 5 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_5_1_1_3_2.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 4 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_4_1_1_3_2.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 3 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_3_1_1_3_2.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 2 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_2_1_1_3_2.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 1 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_1_1_1_3_2.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 6 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_6_1_1_4_2.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 5 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_5_1_1_4_2.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 4 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_4_1_1_4_2.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 3 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_3_1_1_4_2.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 2 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_2_1_1_4_2.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 1 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_1_1_1_4_2.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(STATUS, {'totalTime': 0.0, 
+    'attempts': ' 2U', 'timeIncrement': 0.025, 'increment': 1, 'stepTime': 0.0, 
+    'step': 1, 'jobName': 'Job-luoxuanjiang', 'severe': 0, 'iterations': 4, 
+    'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 5 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_5_1_1_1_3.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 5 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_5_1_1_2_3.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 6 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_6_1_1_3_3.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 5 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_5_1_1_3_3.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 4 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_4_1_1_3_3.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 3 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_3_1_1_3_3.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 2 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_2_1_1_3_3.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 1 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_1_1_1_3_3.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 5 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_5_1_1_4_3.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 4 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_4_1_1_4_3.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 3 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_3_1_1_4_3.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 2 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_2_1_1_4_3.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 1 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_1_1_1_4_3.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(STATUS, {'totalTime': 0.0, 
+    'attempts': ' 3U', 'timeIncrement': 0.00625, 'increment': 1, 
+    'stepTime': 0.0, 'step': 1, 'jobName': 'Job-luoxuanjiang', 'severe': 0, 
+    'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 5 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_5_1_1_1_4.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 5 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_5_1_1_2_4.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 6 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_6_1_1_3_4.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 5 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_5_1_1_3_4.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 4 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_4_1_1_3_4.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 3 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_3_1_1_3_4.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 2 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_2_1_1_3_4.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Solver problem. Zero pivot when processing D.O.F. 1 at one or more of the internal nodes of 1 elements. The elements have been identified in element set WarnElemSolvProbZeroPiv_1_1_1_3_4.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(STATUS, {'totalTime': 0.0015625, 
+    'attempts': 4, 'timeIncrement': 0.0015625, 'increment': 1, 
+    'stepTime': 0.0015625, 'step': 1, 'jobName': 'Job-luoxuanjiang', 
+    'severe': 0, 'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-luoxuanjiang']._Message(STATUS, {'totalTime': 0.0015625, 
+    'attempts': ' 1U', 'timeIncrement': 0.0015625, 'increment': 2, 
+    'stepTime': 0.0015625, 'step': 1, 'jobName': 'Job-luoxuanjiang', 
+    'severe': 0, 'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-luoxuanjiang']._Message(STATUS, {'totalTime': 0.0015625, 
+    'attempts': ' 2U', 'timeIncrement': 0.000390625, 'increment': 2, 
+    'stepTime': 0.0015625, 'step': 1, 'jobName': 'Job-luoxuanjiang', 
+    'severe': 0, 'iterations': 5, 'phase': STANDARD_PHASE, 'equilibrium': 5})
+mdb.jobs['Job-luoxuanjiang']._Message(STATUS, {'totalTime': 0.0015625, 
+    'attempts': ' 3U', 'timeIncrement': 9.765625e-05, 'increment': 2, 
+    'stepTime': 0.0015625, 'step': 1, 'jobName': 'Job-luoxuanjiang', 
+    'severe': 0, 'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-luoxuanjiang']._Message(STATUS, {'totalTime': 0.0015625, 
+    'attempts': ' 4U', 'timeIncrement': 2.44140625e-05, 'increment': 2, 
+    'stepTime': 0.0015625, 'step': 1, 'jobName': 'Job-luoxuanjiang', 
+    'severe': 0, 'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-luoxuanjiang']._Message(STATUS, {'totalTime': 0.0015625, 
+    'attempts': ' 5U', 'timeIncrement': 6.103515625e-06, 'increment': 2, 
+    'stepTime': 0.0015625, 'step': 1, 'jobName': 'Job-luoxuanjiang', 
+    'severe': 0, 'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-luoxuanjiang']._Message(ERROR, {'phase': STANDARD_PHASE, 
+    'message': 'Too many attempts made for this increment', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 2, 'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(STATUS, {'totalTime': 0.0015625, 
+    'attempts': 6, 'timeIncrement': 1e-35, 'increment': 2, 
+    'stepTime': 0.0015625, 'step': 1, 'jobName': 'Job-luoxuanjiang', 
+    'severe': 0, 'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-luoxuanjiang']._Message(ERROR, {'phase': STANDARD_PHASE, 
+    'message': 'THE ANALYSIS HAS BEEN TERMINATED DUE TO PREVIOUS ERRORS. ALL OUTPUT REQUESTS HAVE BEEN WRITTEN FOR THE LAST CONVERGED INCREMENT.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(ABORTED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase failed due to errors', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(ERROR, {
+    'message': 'Abaqus/Standard Analysis exited with an error - Please see the  message file for possible error messages if the file exists.', 
+    'jobName': 'Job-luoxuanjiang'})
+mdb.jobs['Job-luoxuanjiang']._Message(JOB_ABORTED, {
+    'message': 'Abaqus/Standard Analysis exited with an error - Please see the  message file for possible error messages if the file exists.', 
+    'jobName': 'Job-luoxuanjiang'})
+# Save by mjs on 2016_12_03-09.43.01; build 2016 2015_09_25-04.31.09 126547

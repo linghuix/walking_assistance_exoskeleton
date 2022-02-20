@@ -1,0 +1,14 @@
+/BATCH  
+/COM,ANSYS RELEASE 14.0    UP20111024       10:24:54    11/22/2012
+/input,menust,tmp,'',,,,,,,,,,,,,,,,1   
+/GRA,POWER
+/GST,ON
+/PLO,INFO,3
+/GRO,CURL,ON
+/CPLANE,1   
+/REPLOT,RESIZE  
+WPSTYLE,,,,,,,,0
+/CLEAR  
+/COM,ANSYS RELEASE 14.0    UP20111024       10:24:59    11/22/2012
+/input,start140,ans,'C:\Program Files\ANSYS Inc\v140\ANSYS\apdl\',,,,,,,,,,,,,,,,1  
+/FILENAME,example,1 

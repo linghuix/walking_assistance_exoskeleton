@@ -1,0 +1,642 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].ConstructionLine(point1=(0.0, 
+    -100.0), point2=(0.0, 100.0))
+mdb.models['Model-1'].sketches['__profile__'].FixedConstraint(entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].rectangle(point1=(40.0, -15.0), 
+    point2=(0.0, 0.0))
+mdb.models['Model-1'].Part(dimensionality=THREE_D, name='Part-ban', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['Part-ban'].BaseSolidRevolve(angle=180.0, 
+    flipRevolveDirection=OFF, sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].ConstructionLine(point1=(0.0, 
+    -100.0), point2=(0.0, 100.0))
+mdb.models['Model-1'].sketches['__profile__'].FixedConstraint(entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].CircleByCenterPerimeter(center=(
+    0.0, 5.0), point1=(0.0, 10.0))
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.0, 0.0), point2=(
+    0.0, 10.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[4])
+mdb.models['Model-1'].sketches['__profile__'].autoTrimCurve(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3], point1=(
+    -1.38142061233521, 10.2826728820801))
+mdb.models['Model-1'].Part(dimensionality=THREE_D, name='Part-qiu', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['Part-qiu'].BaseSolidRevolve(angle=180.0, 
+    flipRevolveDirection=OFF, sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].Material(name='Material-1')
+mdb.models['Model-1'].materials['Material-1'].Elastic(table=((210000.0, 0.3), 
+    ))
+mdb.models['Model-1'].materials['Material-1'].Density(table=((7.8e-09, ), ))
+mdb.models['Model-1'].HomogeneousSolidSection(material='Material-1', name=
+    'Section-1', thickness=None)
+mdb.models['Model-1'].parts['Part-ban'].Set(cells=
+    mdb.models['Model-1'].parts['Part-ban'].cells.getSequenceFromMask(('[#1 ]', 
+    ), ), name='Set-1')
+mdb.models['Model-1'].parts['Part-ban'].SectionAssignment(offset=0.0, 
+    offsetField='', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Model-1'].parts['Part-ban'].sets['Set-1'], sectionName=
+    'Section-1', thicknessAssignment=FROM_SECTION)
+mdb.models['Model-1'].parts['Part-qiu'].Set(cells=
+    mdb.models['Model-1'].parts['Part-qiu'].cells.getSequenceFromMask(('[#1 ]', 
+    ), ), name='Set-1')
+mdb.models['Model-1'].parts['Part-qiu'].SectionAssignment(offset=0.0, 
+    offsetField='', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Model-1'].parts['Part-qiu'].sets['Set-1'], sectionName=
+    'Section-1', thicknessAssignment=FROM_SECTION)
+mdb.models['Model-1'].rootAssembly.DatumCsysByDefault(CARTESIAN)
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='Part-ban-1', 
+    part=mdb.models['Model-1'].parts['Part-ban'])
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='Part-qiu-1', 
+    part=mdb.models['Model-1'].parts['Part-qiu'])
+mdb.models['Model-1'].ExplicitDynamicsStep(name='Step-1', previous='Initial', 
+    quadBulkViscosity=0.03, timePeriod=0.0025)
+mdb.models['Model-1'].parts['Part-qiu'].PartitionCellByPlanePointNormal(cells=
+    mdb.models['Model-1'].parts['Part-qiu'].cells.getSequenceFromMask(('[#1 ]', 
+    ), ), normal=mdb.models['Model-1'].parts['Part-qiu'].datums[1], point=
+    mdb.models['Model-1'].parts['Part-qiu'].InterestingPoint(
+    mdb.models['Model-1'].parts['Part-qiu'].edges[1], MIDDLE))
+mdb.models['Model-1'].parts['Part-qiu'].PartitionCellByPlanePointNormal(cells=
+    mdb.models['Model-1'].parts['Part-qiu'].cells.getSequenceFromMask(('[#2 ]', 
+    ), ), normal=mdb.models['Model-1'].parts['Part-qiu'].edges[1], point=
+    mdb.models['Model-1'].parts['Part-qiu'].vertices[4])
+mdb.models['Model-1'].parts['Part-qiu'].PartitionCellByPlanePointNormal(cells=
+    mdb.models['Model-1'].parts['Part-qiu'].cells.getSequenceFromMask(('[#2 ]', 
+    ), ), normal=mdb.models['Model-1'].parts['Part-qiu'].edges[7], point=
+    mdb.models['Model-1'].parts['Part-qiu'].vertices[5])
+mdb.models['Model-1'].parts['Part-ban'].PartitionCellByPlanePointNormal(cells=
+    mdb.models['Model-1'].parts['Part-ban'].cells.getSequenceFromMask(('[#1 ]', 
+    ), ), normal=mdb.models['Model-1'].parts['Part-ban'].edges[2], point=
+    mdb.models['Model-1'].parts['Part-ban'].InterestingPoint(
+    mdb.models['Model-1'].parts['Part-ban'].edges[1], MIDDLE))
+mdb.models['Model-1'].parts['Part-qiu'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=0.5)
+mdb.models['Model-1'].parts['Part-ban'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=2.0)
+mdb.models['Model-1'].parts['Part-qiu'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D8R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    kinematicSplit=AVERAGE_STRAIN, hourglassControl=DEFAULT, 
+    distortionControl=DEFAULT), ElemType(elemCode=C3D6, elemLibrary=STANDARD), 
+    ElemType(elemCode=C3D4, elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].parts['Part-qiu'].cells.getSequenceFromMask(('[#f ]', 
+    ), ), ))
+mdb.models['Model-1'].parts['Part-ban'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D8R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    kinematicSplit=AVERAGE_STRAIN, hourglassControl=DEFAULT, 
+    distortionControl=DEFAULT), ElemType(elemCode=C3D6, elemLibrary=STANDARD), 
+    ElemType(elemCode=C3D4, elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].parts['Part-ban'].cells.getSequenceFromMask(('[#3 ]', 
+    ), ), ))
+mdb.models['Model-1'].parts['Part-ban'].generateMesh()
+mdb.models['Model-1'].parts['Part-qiu'].generateMesh()
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.models['Model-1'].rootAssembly.Surface(name='Surf-qiu', side1Faces=
+    mdb.models['Model-1'].rootAssembly.instances['Part-qiu-1'].faces.getSequenceFromMask(
+    ('[#30a ]', ), ))
+mdb.models['Model-1'].rootAssembly.Surface(name='Surf-ban', side1Faces=
+    mdb.models['Model-1'].rootAssembly.instances['Part-ban-1'].faces.getSequenceFromMask(
+    ('[#18 ]', ), ))
+mdb.models['Model-1'].ContactProperty('IntProp-1')
+mdb.models['Model-1'].interactionProperties['IntProp-1'].TangentialBehavior(
+    formulation=FRICTIONLESS)
+mdb.models['Model-1'].SurfaceToSurfaceContactExp(clearanceRegion=None, 
+    createStepName='Step-1', datumAxis=None, initialClearance=OMIT, 
+    interactionProperty='IntProp-1', master=
+    mdb.models['Model-1'].rootAssembly.surfaces['Surf-qiu'], 
+    mechanicalConstraint=KINEMATIC, name='Int-1', slave=
+    mdb.models['Model-1'].rootAssembly.surfaces['Surf-ban'], sliding=FINITE)
+mdb.models['Model-1'].rootAssembly.Set(faces=
+    mdb.models['Model-1'].rootAssembly.instances['Part-ban-1'].faces.getSequenceFromMask(
+    ('[#24 ]', ), ), name='Set-Fix')
+mdb.models['Model-1'].rootAssembly.Set(faces=
+    mdb.models['Model-1'].rootAssembly.instances['Part-ban-1'].faces.getSequenceFromMask(
+    mask=('[#180 ]', ), )+\
+    mdb.models['Model-1'].rootAssembly.instances['Part-qiu-1'].faces.getSequenceFromMask(
+    mask=('[#cc0 ]', ), ), name='Set-Symm')
+mdb.models['Model-1'].rootAssembly.Set(cells=
+    mdb.models['Model-1'].rootAssembly.instances['Part-qiu-1'].cells.getSequenceFromMask(
+    ('[#f ]', ), ), name='Set-qiu')
+mdb.models['Model-1'].EncastreBC(createStepName='Initial', localCsys=None, 
+    name='BC-Fix', region=mdb.models['Model-1'].rootAssembly.sets['Set-Fix'])
+mdb.models['Model-1'].ZsymmBC(createStepName='Initial', localCsys=None, name=
+    'BC-Symm', region=mdb.models['Model-1'].rootAssembly.sets['Set-Symm'])
+mdb.models['Model-1'].Velocity(distributionType=MAGNITUDE, field='', name=
+    'Predefined Field-1', omega=0.0, region=
+    mdb.models['Model-1'].rootAssembly.sets['Set-qiu'], velocity1=600.0, 
+    velocity2=-2500.0, velocity3=0.0)
+mdb.Job(activateLoadBalancing=False, atTime=None, contactPrint=OFF, 
+    description='', echoPrint=OFF, explicitPrecision=SINGLE, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-qiu-ban', nodalOutputPrecision=
+    SINGLE, numCpus=1, numDomains=1, parallelizationMethodExplicit=DOMAIN, 
+    queue=None, resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine=''
+    , waitHours=0, waitMinutes=0)
+# Save by mjs on 2016_11_30-20.00.44; build 2016 2015_09_25-04.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.jobs['Job-qiu-ban'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-qiu-ban']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'fzs', 'handle': 0, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STARTED, {'phase': PACKAGER_PHASE, 
+    'clientHost': 'fzs', 'handle': 144, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(WARNING, {'phase': PACKAGER_PHASE, 
+    'message': 'Boundary conditions are defined at the nodes contained in node set WarnNodeBcIntersectKinCon. In addition the nodes are also part of a surface involved in kinematic contact. The kinematic contact constraint will be overridden by the boundary conditions in case of a conflict. Penalty contact may be used instead.', 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(COMPLETED, {'phase': PACKAGER_PHASE, 
+    'message': 'Phase complete', 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STARTED, {'phase': EXPLICIT_PHASE, 
+    'clientHost': 'fzs', 'handle': 6444, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.0, 
+    'stableTimeIncrement': 1.49603121002428e-08, 'stepTime': 0.0, 
+    'totalEnergy': 6.72038793563843, 'cpuTime': 0.400000005960464, 
+    'jobName': 'Job-qiu-ban', 'step': 1, 'increment': 0, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 6.72038793563843})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(WARNING, {'phase': EXPLICIT_PHASE, 
+    'message': 'The slave surface nodes in node set WarnNodeMassRatio3fix-Step1 have much larger masses than the nodes on the master surface. Significant contact noise may result. Suggested workarounds include setting the WEIGHT parameter so that what was the master surface becomes a pure slave surface in the contact pair, using mass-scaling to adjust the ratio of nodal masses, or using the penalty contact algorithm. See the status file for further details.', 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.000125026170280762, 
+    'stableTimeIncrement': 3.55417490993659e-08, 
+    'stepTime': 0.000125026170280762, 'totalEnergy': 6.71969079971313, 
+    'cpuTime': 39.2000007629395, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 3524, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.8000340461731})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.000250005512498319, 
+    'stableTimeIncrement': 3.55417490993659e-08, 
+    'stepTime': 0.000250005512498319, 'totalEnergy': 6.71968412399292, 
+    'cpuTime': 81.5999984741211, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 7041, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.47462034225464})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 2, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.000375020375940949, 
+    'stableTimeIncrement': 3.55417490993659e-08, 
+    'stepTime': 0.000375020375940949, 'totalEnergy': 6.71965408325195, 
+    'cpuTime': 132.399993896484, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 10559, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.7667179107666})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 3, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.000500009278766811, 
+    'stableTimeIncrement': 3.55417490993659e-08, 
+    'stepTime': 0.000500009278766811, 'totalEnergy': 6.71964645385742, 
+    'cpuTime': 169.899993896484, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 14076, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.52780771255493})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 4, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.000625019834842533, 
+    'stableTimeIncrement': 3.55414542241306e-08, 
+    'stepTime': 0.000625019834842533, 'totalEnergy': 6.71964406967163, 
+    'cpuTime': 210.799987792969, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 17591, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.67206811904907})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 5, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.000750030390918255, 
+    'stableTimeIncrement': 3.55416780450923e-08, 
+    'stepTime': 0.000750030390918255, 'totalEnergy': 6.71964406967163, 
+    'cpuTime': 261.100006103516, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 21106, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.6183066368103})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 6, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.000875005382113159, 
+    'stableTimeIncrement': 3.55414435659895e-08, 
+    'stepTime': 0.000875005382113159, 'totalEnergy': 6.71964359283447, 
+    'cpuTime': 309.100006103516, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 24620, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.5659065246582})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 7, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.0010000130860135, 
+    'stableTimeIncrement': 3.55414755404126e-08, 
+    'stepTime': 0.0010000130860135, 'totalEnergy': 6.71964311599731, 
+    'cpuTime': 348.699981689453, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 28136, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.6998085975647})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 8, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.00112503208220005, 
+    'stableTimeIncrement': 3.55415679109683e-08, 
+    'stepTime': 0.00112503208220005, 'totalEnergy': 6.71964406967163, 
+    'cpuTime': 392.699981689453, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 31657, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.48613548278809})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 9, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.00125001557171345, 
+    'stableTimeIncrement': 3.55409746077839e-08, 
+    'stepTime': 0.00125001557171345, 'totalEnergy': 6.71964311599731, 
+    'cpuTime': 432.600006103516, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 35177, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.73467588424683})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 10, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.0013750345679, 
+    'stableTimeIncrement': 3.55412765884466e-08, 'stepTime': 0.0013750345679, 
+    'totalEnergy': 6.71964359283447, 'cpuTime': 469.399993896484, 
+    'jobName': 'Job-qiu-ban', 'step': 1, 'increment': 38698, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 4.47689056396484})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 11, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.0015000180574134, 
+    'stableTimeIncrement': 3.5541095400049e-08, 'stepTime': 0.0015000180574134, 
+    'totalEnergy': 6.71964311599731, 'cpuTime': 505.299987792969, 
+    'jobName': 'Job-qiu-ban', 'step': 1, 'increment': 42218, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 4.69243001937866})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 12, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.0016250015469268, 
+    'stableTimeIncrement': 3.5541283693874e-08, 'stepTime': 0.0016250015469268, 
+    'totalEnergy': 6.71964359283447, 'cpuTime': 554.0, 
+    'jobName': 'Job-qiu-ban', 'step': 1, 'increment': 45738, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 4.53633594512939})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 13, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.00175002054311335, 
+    'stableTimeIncrement': 3.55411238217584e-08, 
+    'stepTime': 0.00175002054311335, 'totalEnergy': 6.71964311599731, 
+    'cpuTime': 604.100036621094, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 49259, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.59984827041626})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 14, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.00187500403262675, 
+    'stableTimeIncrement': 3.55410278984891e-08, 
+    'stepTime': 0.00187500403262675, 'totalEnergy': 6.71964263916016, 
+    'cpuTime': 654.800048828125, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 52779, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.62187051773071})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 15, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.00200003432109952, 
+    'stableTimeIncrement': 3.55414009334254e-08, 
+    'stepTime': 0.00200003432109952, 'totalEnergy': 6.71964263916016, 
+    'cpuTime': 703.0, 'jobName': 'Job-qiu-ban', 'step': 1, 'increment': 56296, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 4.51329660415649})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 16, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.002125000115484, 
+    'stableTimeIncrement': 3.5541383169857e-08, 'stepTime': 0.002125000115484, 
+    'totalEnergy': 6.71964168548584, 'cpuTime': 745.900024414063, 
+    'jobName': 'Job-qiu-ban', 'step': 1, 'increment': 59804, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 4.67213821411133})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 17, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.00225000153295696, 
+    'stableTimeIncrement': 3.5541372511716e-08, 
+    'stepTime': 0.00225000153295696, 'totalEnergy': 6.719642162323, 
+    'cpuTime': 786.400024414063, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 63313, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.47543048858643})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 18, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.00237500295042992, 
+    'stableTimeIncrement': 3.55414186969938e-08, 
+    'stepTime': 0.00237500295042992, 'totalEnergy': 6.71964120864868, 
+    'cpuTime': 834.300048828125, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 66822, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.68131351470947})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 19, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.00249999994412065, 
+    'stableTimeIncrement': 3.55414009334254e-08, 
+    'stepTime': 0.00249999994412065, 'totalEnergy': 6.71964168548584, 
+    'cpuTime': 882.800048828125, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 70331, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.47447919845581})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 20, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(COMPLETED, {'phase': EXPLICIT_PHASE, 
+    'message': 'Phase complete', 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(JOB_COMPLETED, {
+    'time': 'Wed Nov 30 20:15:56 2016', 'jobName': 'Job-qiu-ban'})
+# Save by mjs on 2016_11_30-20.23.44; build 2016 2015_09_25-04.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.jobs['Job-qiu-ban'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-qiu-ban']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 0, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STARTED, {'phase': PACKAGER_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 5736, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(WARNING, {'phase': PACKAGER_PHASE, 
+    'message': 'Boundary conditions are defined at the nodes contained in node set WarnNodeBcIntersectKinCon. In addition the nodes are also part of a surface involved in kinematic contact. The kinematic contact constraint will be overridden by the boundary conditions in case of a conflict. Penalty contact may be used instead.', 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(COMPLETED, {'phase': PACKAGER_PHASE, 
+    'message': 'Phase complete', 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STARTED, {'phase': EXPLICIT_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 6408, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.0, 
+    'stableTimeIncrement': 1.49603121002428e-08, 'stepTime': 0.0, 
+    'totalEnergy': 6.72038793563843, 'cpuTime': 0.100000001490116, 
+    'jobName': 'Job-qiu-ban', 'step': 1, 'increment': 0, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 6.72038793563843})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(WARNING, {'phase': EXPLICIT_PHASE, 
+    'message': 'The slave surface nodes in node set WarnNodeMassRatio3fix-Step1 have much larger masses than the nodes on the master surface. Significant contact noise may result. Suggested workarounds include setting the WEIGHT parameter so that what was the master surface becomes a pure slave surface in the contact pair, using mass-scaling to adjust the ratio of nodal masses, or using the penalty contact algorithm. See the status file for further details.', 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.000125026170280762, 
+    'stableTimeIncrement': 3.55417490993659e-08, 
+    'stepTime': 0.000125026170280762, 'totalEnergy': 6.71969079971313, 
+    'cpuTime': 8.0, 'jobName': 'Job-qiu-ban', 'step': 1, 'increment': 3524, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 4.8000340461731})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': 'Job-qiu-ban'})
+mdb.models['Model-1'].fieldOutputRequests['F-Output-1'].setValues(variables=(
+    'S', 'SVAVG', 'PE', 'PEVAVG', 'PEEQ', 'PEEQVAVG', 'LE', 'U', 'UT', 'UR', 
+    'V', 'VT', 'VR', 'A', 'AT', 'AR', 'RBANG', 'RBROT', 'RF', 'RT', 'RM', 'CF', 
+    'SF', 'NFORC', 'NFORCSO', 'RBFOR', 'BF', 'GRAV', 'P', 'HP', 'IWCONWEP', 
+    'TRSHR', 'TRNOR', 'VP', 'STAGP', 'SBF', 'CSTRESS', 'EVF'))
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.000250005512498319, 
+    'stableTimeIncrement': 3.55417490993659e-08, 
+    'stepTime': 0.000250005512498319, 'totalEnergy': 6.71968412399292, 
+    'cpuTime': 15.8000001907349, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 7041, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.47462034225464})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 2, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(ERROR, {'phase': EXPLICIT_PHASE, 
+    'message': 'Process terminated by external request (SIGTERM or SIGINT received).', 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(INTERRUPTED, {'phase': EXPLICIT_PHASE, 
+    'message': 'Analysis terminated by external signal', 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(ERROR, {
+    'message': 'Abaqus/Explicit Analysis exited with an error - Please see the  status file for possible error messages if the file exists.', 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(JOB_ABORTED, {
+    'message': 'Abaqus/Explicit Analysis exited with an error - Please see the  status file for possible error messages if the file exists.', 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-qiu-ban']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 0, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R', 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R', 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R', 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R', 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R', 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R', 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R', 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R', 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST NFORCSO IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST NFORCSO IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SF IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R', 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SF IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R', 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STARTED, {'phase': PACKAGER_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 13592, 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(WARNING, {'phase': PACKAGER_PHASE, 
+    'message': 'There are 12 warning messages in the data (.dat) file.  Please check the data file for possible errors in the input file.', 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(WARNING, {'phase': PACKAGER_PHASE, 
+    'message': 'Boundary conditions are defined at the nodes contained in node set WarnNodeBcIntersectKinCon. In addition the nodes are also part of a surface involved in kinematic contact. The kinematic contact constraint will be overridden by the boundary conditions in case of a conflict. Penalty contact may be used instead.', 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(COMPLETED, {'phase': PACKAGER_PHASE, 
+    'message': 'Phase complete', 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STARTED, {'phase': EXPLICIT_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 12968, 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.0, 
+    'stableTimeIncrement': 1.49603121002428e-08, 'stepTime': 0.0, 
+    'totalEnergy': 6.72038793563843, 'cpuTime': 0.100000001490116, 
+    'jobName': 'Job-qiu-ban', 'step': 1, 'increment': 0, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 6.72038793563843})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(WARNING, {'phase': EXPLICIT_PHASE, 
+    'message': 'The slave surface nodes in node set WarnNodeMassRatio3fix-Step1 have much larger masses than the nodes on the master surface. Significant contact noise may result. Suggested workarounds include setting the WEIGHT parameter so that what was the master surface becomes a pure slave surface in the contact pair, using mass-scaling to adjust the ratio of nodal masses, or using the penalty contact algorithm. See the status file for further details.', 
+    'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.000125026170280762, 
+    'stableTimeIncrement': 3.55417490993659e-08, 
+    'stepTime': 0.000125026170280762, 'totalEnergy': 6.71969079971313, 
+    'cpuTime': 7.80000019073486, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 3524, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.8000340461731})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.000250005512498319, 
+    'stableTimeIncrement': 3.55417490993659e-08, 
+    'stepTime': 0.000250005512498319, 'totalEnergy': 6.71968412399292, 
+    'cpuTime': 15.5, 'jobName': 'Job-qiu-ban', 'step': 1, 'increment': 7041, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 4.47462034225464})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 2, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.000375020375940949, 
+    'stableTimeIncrement': 3.55417490993659e-08, 
+    'stepTime': 0.000375020375940949, 'totalEnergy': 6.71965408325195, 
+    'cpuTime': 23.1000003814697, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 10559, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.7667179107666})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 3, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.000500009278766811, 
+    'stableTimeIncrement': 3.55417490993659e-08, 
+    'stepTime': 0.000500009278766811, 'totalEnergy': 6.71964645385742, 
+    'cpuTime': 30.7999992370605, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 14076, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.52780771255493})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 4, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.000625019834842533, 
+    'stableTimeIncrement': 3.55414542241306e-08, 
+    'stepTime': 0.000625019834842533, 'totalEnergy': 6.71964406967163, 
+    'cpuTime': 38.5, 'jobName': 'Job-qiu-ban', 'step': 1, 'increment': 17591, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 4.67206811904907})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 5, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.000750030390918255, 
+    'stableTimeIncrement': 3.55416780450923e-08, 
+    'stepTime': 0.000750030390918255, 'totalEnergy': 6.71964406967163, 
+    'cpuTime': 46.2000007629395, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 21106, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.6183066368103})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 6, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.000875005382113159, 
+    'stableTimeIncrement': 3.55414435659895e-08, 
+    'stepTime': 0.000875005382113159, 'totalEnergy': 6.71964359283447, 
+    'cpuTime': 53.7999992370605, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 24620, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.5659065246582})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 7, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.0010000130860135, 
+    'stableTimeIncrement': 3.55414755404126e-08, 
+    'stepTime': 0.0010000130860135, 'totalEnergy': 6.71964311599731, 
+    'cpuTime': 61.5, 'jobName': 'Job-qiu-ban', 'step': 1, 'increment': 28136, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 4.6998085975647})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 8, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.00112503208220005, 
+    'stableTimeIncrement': 3.55415679109683e-08, 
+    'stepTime': 0.00112503208220005, 'totalEnergy': 6.71964406967163, 
+    'cpuTime': 69.1999969482422, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 31657, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.48613548278809})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 9, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.00125001557171345, 
+    'stableTimeIncrement': 3.55409746077839e-08, 
+    'stepTime': 0.00125001557171345, 'totalEnergy': 6.71964311599731, 
+    'cpuTime': 76.9000015258789, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 35177, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.73467588424683})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 10, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.0013750345679, 
+    'stableTimeIncrement': 3.55412765884466e-08, 'stepTime': 0.0013750345679, 
+    'totalEnergy': 6.71964359283447, 'cpuTime': 84.5999984741211, 
+    'jobName': 'Job-qiu-ban', 'step': 1, 'increment': 38698, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 4.47689056396484})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 11, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.0015000180574134, 
+    'stableTimeIncrement': 3.5541095400049e-08, 'stepTime': 0.0015000180574134, 
+    'totalEnergy': 6.71964311599731, 'cpuTime': 92.3000030517578, 
+    'jobName': 'Job-qiu-ban', 'step': 1, 'increment': 42218, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 4.69243001937866})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 12, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.0016250015469268, 
+    'stableTimeIncrement': 3.5541283693874e-08, 'stepTime': 0.0016250015469268, 
+    'totalEnergy': 6.71964359283447, 'cpuTime': 100.0, 
+    'jobName': 'Job-qiu-ban', 'step': 1, 'increment': 45738, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 4.53633594512939})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 13, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.00175002054311335, 
+    'stableTimeIncrement': 3.55411238217584e-08, 
+    'stepTime': 0.00175002054311335, 'totalEnergy': 6.71964311599731, 
+    'cpuTime': 107.699996948242, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 49259, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.59984827041626})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 14, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.00187500403262675, 
+    'stableTimeIncrement': 3.55410278984891e-08, 
+    'stepTime': 0.00187500403262675, 'totalEnergy': 6.71964263916016, 
+    'cpuTime': 115.300003051758, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 52779, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.62187051773071})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 15, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.00200003432109952, 
+    'stableTimeIncrement': 3.55414009334254e-08, 
+    'stepTime': 0.00200003432109952, 'totalEnergy': 6.71964263916016, 
+    'cpuTime': 123.0, 'jobName': 'Job-qiu-ban', 'step': 1, 'increment': 56296, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 4.51329660415649})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 16, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.002125000115484, 
+    'stableTimeIncrement': 3.5541383169857e-08, 'stepTime': 0.002125000115484, 
+    'totalEnergy': 6.71964168548584, 'cpuTime': 130.699996948242, 
+    'jobName': 'Job-qiu-ban', 'step': 1, 'increment': 59804, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 4.67213821411133})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 17, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.00225000153295696, 
+    'stableTimeIncrement': 3.5541372511716e-08, 
+    'stepTime': 0.00225000153295696, 'totalEnergy': 6.719642162323, 
+    'cpuTime': 138.399993896484, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 63313, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.47543048858643})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 18, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.00237500295042992, 
+    'stableTimeIncrement': 3.55414186969938e-08, 
+    'stepTime': 0.00237500295042992, 'totalEnergy': 6.71964120864868, 
+    'cpuTime': 146.0, 'jobName': 'Job-qiu-ban', 'step': 1, 'increment': 66822, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 4.68131351470947})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 19, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(STATUS, {'totalTime': 0.00249999994412065, 
+    'stableTimeIncrement': 3.55414009334254e-08, 
+    'stepTime': 0.00249999994412065, 'totalEnergy': 6.71964168548584, 
+    'cpuTime': 153.699996948242, 'jobName': 'Job-qiu-ban', 'step': 1, 
+    'increment': 70331, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 4.47447919845581})
+mdb.jobs['Job-qiu-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 20, 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(COMPLETED, {'phase': EXPLICIT_PHASE, 
+    'message': 'Phase complete', 'jobName': 'Job-qiu-ban'})
+mdb.jobs['Job-qiu-ban']._Message(JOB_COMPLETED, {
+    'time': 'Fri Jan 10 23:50:56 2020', 'jobName': 'Job-qiu-ban'})
+# Save by XLH on 2020_01_10-23.52.45; build 2016 2015_09_25-04.31.09 126547

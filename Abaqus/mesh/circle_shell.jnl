@@ -1,0 +1,397 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].ConstructionLine(point1=(0.0, 
+    12.5), point2=(0.0, -21.25))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].ConstructionLine(point1=(-13.75, 
+    0.0), point2=(17.5, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3])
+mdb.models['Model-1'].sketches['__profile__'].CircleByCenterPerimeter(center=(
+    0.0, 0.0), point1=(12.5, 20.0))
+mdb.models['Model-1'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[0], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].RadialDimension(curve=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4], radius=30.0, 
+    textPoint=(29.767951965332, 17.782527923584))
+mdb.models['Model-1'].Part(dimensionality=THREE_D, name='Part-1', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['Part-1'].BaseShell(sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].parts['Part-1'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=8.5)
+mdb.models['Model-1'].parts['Part-1'].generateMesh()
+mdb.models['Model-1'].parts['Part-1'].deleteMesh(regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1 ]', 
+    ), ))
+mdb.models['Model-1'].parts['Part-1'].setMeshControls(elemShape=TRI, regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1 ]', 
+    ), ))
+mdb.models['Model-1'].parts['Part-1'].generateMesh()
+mdb.models['Model-1'].parts['Part-1'].deleteMesh(regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1 ]', 
+    ), ))
+mdb.models['Model-1'].ConstrainedSketch(gridSpacing=4.23, name='__profile__', 
+    sheetSize=169.44, transform=
+    mdb.models['Model-1'].parts['Part-1'].MakeSketchTransform(
+    sketchPlane=mdb.models['Model-1'].parts['Part-1'].faces[0], 
+    sketchPlaneSide=SIDE1, 
+    sketchUpEdge=mdb.models['Model-1'].parts['Part-1'].edges[0], 
+    sketchOrientation=RIGHT, origin=(-3.399968, -5.439949, 0.0)))
+mdb.models['Model-1'].parts['Part-1'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['Model-1'].sketches['__profile__'])
+mdb.models['Model-1'].sketches['__profile__'].rectangle(point1=(19.035, 
+    -11.6325), point2=(-15.8625, 10.575))
+mdb.models['Model-1'].sketches['__profile__'].ConstructionLine(point1=(0.0, 
+    13.7475), point2=(-2.00095399360833e-07, -1.20152638061199e-07))
+mdb.models['Model-1'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[0], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7])
+mdb.models['Model-1'].sketches['__profile__'].ConstructionLine(point1=(-4.23, 
+    0.0), point2=(6.34499999998603, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[8])
+mdb.models['Model-1'].sketches['__profile__'].SymmetryConstraint(entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[4], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[3], symmetryAxis=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7])
+mdb.models['Model-1'].sketches['__profile__'].undo()
+mdb.models['Model-1'].sketches['__profile__'].autoConstrain(objectList=(
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7], 
+    mdb.models['Model-1'].sketches['__profile__'].geometry[8]))
+mdb.models['Model-1'].sketches['__profile__'].FixedConstraint(entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7])
+mdb.models['Model-1'].sketches['__profile__'].FixedConstraint(entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[8])
+mdb.models['Model-1'].sketches['__profile__'].SymmetryConstraint(entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[4], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[3], symmetryAxis=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7])
+mdb.models['Model-1'].sketches['__profile__'].SymmetryConstraint(entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[5], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[4], symmetryAxis=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[8])
+mdb.models['Model-1'].sketches['__profile__'].ObliqueDimension(textPoint=(
+    -21.8304702324219, 6.67310305845642), value=20.0, vertex1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[4], vertex2=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[5])
+mdb.models['Model-1'].sketches['__profile__'].ObliqueDimension(textPoint=(
+    -6.87523475115967, 12.6029147745361), value=20.0, vertex1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[3], vertex2=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[4])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(10.0, 10.0), point2=
+    (19.035, 23.1876855638989))
+mdb.models['Model-1'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[6], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(10.0, -10.0), 
+    point2=(21.2762190383514, -21.15))
+mdb.models['Model-1'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[7], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(-10.0, -10.0), 
+    point2=(-23.1876861470416, -19.035))
+mdb.models['Model-1'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[8], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(-10.0, 10.0), 
+    point2=(-22.6938519943176, 19.6211387545884))
+mdb.models['Model-1'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[9], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].TangentConstraint(entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[9], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4])
+mdb.models['Model-1'].sketches['__profile__'].AngularDimension(line1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[9], line2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4], textPoint=(
+    4.28427490765381, 7.66574474584961), value=45.0)
+mdb.models['Model-1'].sketches['__profile__'].AngularDimension(line1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[12], line2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4], textPoint=(
+    -3.30629363482666, 7.54443165075684), value=45.0)
+mdb.models['Model-1'].sketches['__profile__'].AngularDimension(line1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[11], line2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6], textPoint=(
+    -3.67063918536377, -8.46897414910889), value=45.0)
+mdb.models['Model-1'].sketches['__profile__'].AngularDimension(line1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[10], line2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6], textPoint=(45.0, 
+    0.0), value=45.0)
+mdb.models['Model-1'].sketches['__profile__'].undo()
+mdb.models['Model-1'].sketches['__profile__'].AngularDimension(line1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[10], line2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6], textPoint=(
+    4.39711842114258, -8.6363973973999), value=45.0)
+mdb.models['Model-1'].sketches['__profile__'].undo()
+mdb.models['Model-1'].sketches['__profile__'].AngularDimension(line1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[10], line2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[8], textPoint=(
+    20.4601486640625, -5.24202731835937), value=45.0)
+mdb.models['Model-1'].sketches['__profile__'].undo()
+mdb.models['Model-1'].parts['Part-1'].PartitionFaceBySketch(faces=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1 ]', 
+    ), ), sketch=mdb.models['Model-1'].sketches['__profile__'], sketchUpEdge=
+    mdb.models['Model-1'].parts['Part-1'].edges[0])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].parts['Part-1'].setMeshControls(elemShape=QUAD, regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1c ]', 
+    ), ), technique=STRUCTURED)
+mdb.models['Model-1'].parts['Part-1'].setMeshControls(elemShape=QUAD, regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#3 ]', 
+    ), ), technique=STRUCTURED)
+mdb.models['Model-1'].parts['Part-1'].generateMesh()
+mdb.models['Model-1'].parts['Part-1'].deleteMesh()
+mdb.models['Model-1'].parts['Part-1'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=4.0)
+mdb.models['Model-1'].parts['Part-1'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=2.0)
+mdb.models['Model-1'].parts['Part-1'].generateMesh()
+mdb.models['Model-1'].parts['Part-1'].setElementType(elemTypes=(ElemType(
+    elemCode=S8R, elemLibrary=STANDARD), ElemType(elemCode=STRI65, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1f ]', 
+    ), ), ))
+mdb.models['Model-1'].parts['Part-1'].deleteMesh()
+mdb.models['Model-1'].parts['Part-1'].features['Partition face-1'].suppress()
+mdb.models['Model-1'].parts['Part-1'].setMeshControls(elemShape=QUAD, regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1 ]', 
+    ), ))
+mdb.models['Model-1'].parts['Part-1'].generateMesh()
+mdb.models['Model-1'].parts['Part-1'].deleteMesh()
+mdb.models['Model-1'].parts['Part-1'].features['Partition face-1'].resume()
+mdb.models['Model-1'].parts['Part-1'].generateMesh()
+mdb.models['Model-1'].parts['Part-1'].deleteMesh(regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1f ]', 
+    ), ))
+mdb.models['Model-1'].parts['Part-1'].setMeshControls(elemShape=TRI, regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1f ]', 
+    ), ))
+mdb.models['Model-1'].parts['Part-1'].generateMesh()
+mdb.models['Model-1'].parts['Part-1'].setElementType(elemTypes=(ElemType(
+    elemCode=S4R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    hourglassControl=DEFAULT), ElemType(elemCode=S3, elemLibrary=STANDARD, 
+    secondOrderAccuracy=OFF)), regions=(
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1f ]', 
+    ), ), ))
+mdb.models['Model-1'].parts['Part-1'].setElementType(elemTypes=(ElemType(
+    elemCode=S4R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    hourglassControl=DEFAULT), ElemType(elemCode=S3, elemLibrary=STANDARD, 
+    secondOrderAccuracy=OFF)), regions=(
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1f ]', 
+    ), ), ))
+mdb.models['Model-1'].parts['Part-1'].setElementType(elemTypes=(ElemType(
+    elemCode=S4, elemLibrary=STANDARD, secondOrderAccuracy=OFF), ElemType(
+    elemCode=S3, elemLibrary=STANDARD, secondOrderAccuracy=OFF)), regions=(
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#8 ]', 
+    ), ), ))
+mdb.models['Model-1'].parts['Part-1'].setElementType(elemTypes=(ElemType(
+    elemCode=S8R, elemLibrary=STANDARD), ElemType(elemCode=STRI65, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1f ]', 
+    ), ), ))
+mdb.models['Model-1'].parts['Part-1'].Set(faces=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1f ]', 
+    ), ), name='Set-1')
+mdb.models['Model-1'].parts['Part-1'].deleteMesh(regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1f ]', 
+    ), ))
+mdb.models['Model-1'].parts['Part-1'].setMeshControls(elemShape=QUAD, regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1f ]', 
+    ), ))
+mdb.models['Model-1'].parts['Part-1'].generateMesh()
+# Save by XLH on 2020_11_14-16.51.33; build 2016 2015_09_25-04.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].parts['Part-1'].setElementType(elemTypes=(ElemType(
+    elemCode=S8R, elemLibrary=STANDARD), ElemType(elemCode=STRI65, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#8 ]', 
+    ), ), ))
+mdb.models['Model-1'].parts['Part-1'].setElementType(elemTypes=(ElemType(
+    elemCode=S8R5, elemLibrary=STANDARD), ElemType(elemCode=STRI65, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1 ]', 
+    ), ), ))
+mdb.models['Model-1'].parts['Part-1'].setElementType(elemTypes=(ElemType(
+    elemCode=S8R, elemLibrary=STANDARD), ElemType(elemCode=STRI65, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#8 ]', 
+    ), ), ))
+mdb.models['Model-1'].parts['Part-1'].setElementType(elemTypes=(ElemType(
+    elemCode=S8R5, elemLibrary=STANDARD), ElemType(elemCode=STRI65, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1 ]', 
+    ), ), ))
+mdb.models['Model-1'].parts['Part-1'].setElementType(elemTypes=(ElemType(
+    elemCode=S8R, elemLibrary=STANDARD), ElemType(elemCode=STRI65, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#2 ]', 
+    ), ), ))
+mdb.models['Model-1'].parts['Part-1'].setElementType(elemTypes=(ElemType(
+    elemCode=S4R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    hourglassControl=DEFAULT), ElemType(elemCode=S3, elemLibrary=STANDARD)), 
+    regions=(mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask((
+    '[#4 ]', ), ), ))
+mdb.models['Model-1'].parts['Part-1'].setElementType(elemTypes=(ElemType(
+    elemCode=S4R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    hourglassControl=DEFAULT), ElemType(elemCode=S3, elemLibrary=STANDARD, 
+    secondOrderAccuracy=OFF)), regions=(
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#10 ]', 
+    ), ), ))
+mdb.models['Model-1'].parts['Part-1'].setElementType(elemTypes=(ElemType(
+    elemCode=S8R, elemLibrary=STANDARD), ElemType(elemCode=STRI65, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1f ]', 
+    ), ), ))
+mdb.models['Model-1'].parts['Part-1'].deleteMesh(regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1f ]', 
+    ), ))
+mdb.models['Model-1'].parts['Part-1'].setMeshControls(elemShape=TRI, regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1f ]', 
+    ), ))
+mdb.models['Model-1'].parts['Part-1'].generateMesh()
+mdb.models['Model-1'].parts['Part-1'].setElementType(elemTypes=(ElemType(
+    elemCode=S8R, elemLibrary=STANDARD), ElemType(elemCode=STRI65, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#8 ]', 
+    ), ), ))
+mdb.models['Model-1'].parts['Part-1'].setElementType(elemTypes=(ElemType(
+    elemCode=S4R, elemLibrary=STANDARD), ElemType(elemCode=S3, 
+    elemLibrary=STANDARD, secondOrderAccuracy=OFF)), regions=(
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1f ]', 
+    ), ), ))
+mdb.models['Model-1'].parts['Part-1'].setElementType(elemTypes=(ElemType(
+    elemCode=S8R, elemLibrary=STANDARD), ElemType(elemCode=STRI65, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1f ]', 
+    ), ), ))
+mdb.Model(name='Model-2', objectToCopy=mdb.models['Model-1'])
+mdb.models.changeKey(fromName='Model-2', toName='structure mesh')
+mdb.models['structure mesh'].parts['Part-1'].deleteMesh(regions=
+    mdb.models['structure mesh'].parts['Part-1'].faces.getSequenceFromMask((
+    '[#1f ]', ), ))
+mdb.models['structure mesh'].parts['Part-1'].setMeshControls(elemShape=QUAD, 
+    regions=
+    mdb.models['structure mesh'].parts['Part-1'].faces.getSequenceFromMask((
+    '[#1f ]', ), ))
+mdb.models['structure mesh'].parts['Part-1'].generateMesh()
+# Save by XLH on 2020_11_14-20.26.05; build 2016 2015_09_25-04.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].parts['Part-1'].features['Partition face-1'].suppress()
+mdb.models['Model-1'].parts['Part-1'].generateMesh()
+mdb.models.changeKey(fromName='Model-1', toName='Free')
+# Save by XLH on 2020_11_14-20.28.48; build 2016 2015_09_25-04.31.09 126547
+# Save by XLH on 2020_11_14-20.28.48; build 2016 2015_09_25-04.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models.changeKey(fromName='Free', toName='Free mesh')
+mdb.Model(name='Free mesh-tri', objectToCopy=mdb.models['Free mesh'])
+mdb.models['Free mesh-tri'].parts['Part-1'].deleteMesh(regions=
+    mdb.models['Free mesh-tri'].parts['Part-1'].faces.getSequenceFromMask((
+    '[#1 ]', ), ))
+mdb.models['Free mesh-tri'].parts['Part-1'].setMeshControls(elemShape=TRI, 
+    regions=
+    mdb.models['Free mesh-tri'].parts['Part-1'].faces.getSequenceFromMask((
+    '[#1 ]', ), ))
+mdb.models['Free mesh-tri'].parts['Part-1'].generateMesh()
+# Save by XLH on 2020_11_14-20.30.20; build 2016 2015_09_25-04.31.09 126547
+# Save by XLH on 2020_11_14-20.30.21; build 2016 2015_09_25-04.31.09 126547
+# Save by XLH on 2020_11_14-20.30.21; build 2016 2015_09_25-04.31.09 126547
+# Save by XLH on 2020_11_14-20.30.21; build 2016 2015_09_25-04.31.09 126547
+# Save by XLH on 2020_11_14-20.30.21; build 2016 2015_09_25-04.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.Model(name='structure mesh-tri', objectToCopy=mdb.models['structure mesh'])
+mdb.models['structure mesh-tri'].parts['Part-1'].deleteMesh(regions=
+    mdb.models['structure mesh-tri'].parts['Part-1'].faces.getSequenceFromMask(
+    ('[#1f ]', ), ))
+mdb.models['structure mesh-tri'].parts['Part-1'].setMeshControls(elemShape=TRI, 
+    regions=
+    mdb.models['structure mesh-tri'].parts['Part-1'].faces.getSequenceFromMask(
+    ('[#1f ]', ), ))
+mdb.models['structure mesh-tri'].parts['Part-1'].generateMesh()
+# Save by XLH on 2020_11_14-20.34.16; build 2016 2015_09_25-04.31.09 126547
+# Save by XLH on 2020_11_14-20.34.17; build 2016 2015_09_25-04.31.09 126547
+# Save by XLH on 2020_11_14-20.34.17; build 2016 2015_09_25-04.31.09 126547
+# Save by XLH on 2020_11_14-20.34.18; build 2016 2015_09_25-04.31.09 126547
+# Save by XLH on 2020_11_14-20.34.18; build 2016 2015_09_25-04.31.09 126547
+# Save by XLH on 2020_11_14-20.34.18; build 2016 2015_09_25-04.31.09 126547
+# Save by XLH on 2020_11_14-20.34.19; build 2016 2015_09_25-04.31.09 126547
+# Save by XLH on 2020_11_14-20.34.19; build 2016 2015_09_25-04.31.09 126547
+# Save by XLH on 2020_11_14-20.34.19; build 2016 2015_09_25-04.31.09 126547
+# Save by XLH on 2020_11_14-20.34.19; build 2016 2015_09_25-04.31.09 126547
+# Save by XLH on 2020_11_14-20.34.19; build 2016 2015_09_25-04.31.09 126547
+# Save by XLH on 2020_11_14-20.34.20; build 2016 2015_09_25-04.31.09 126547
+# Save by XLH on 2020_11_14-20.34.37; build 2016 2015_09_25-04.31.09 126547
+# Save by XLH on 2020_11_14-20.34.38; build 2016 2015_09_25-04.31.09 126547
+# Save by XLH on 2020_11_14-20.34.38; build 2016 2015_09_25-04.31.09 126547

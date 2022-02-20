@@ -1,0 +1,3073 @@
+# Validation Check Errors/Warnings
+# BEGIN LIST
+
+Disjoint Net Error
+ net "GND"
+Misalignment Warning
+ The centerline of a trace (127.914400, 64.744600) mm on layer top is not connected to the center of a via (127.914400, 65.125600) mm
+Misalignment Warning
+ The centerline of a trace (130.454400, 67.284600) mm on layer top is not connected to the center of a via (130.454400, 67.665600) mm
+Misalignment Warning
+ The centerline of a trace (130.454400, 64.541400) mm on layer top is not connected to the center of a via (130.454400, 65.125600) mm
+Misalignment Warning
+ The centerline of a trace (130.454400, 64.744600) mm on layer top is not connected to the center of a via (130.454400, 65.125600) mm
+Misalignment Warning
+ The centerline of a trace (157.073600, 56.819800) mm on layer top is not connected to the center of a via (157.073600, 56.235600) mm
+Misalignment Warning
+ The centerline of a trace (135.289392, 82.182614) mm on layer top is not connected to the center of a via (135.289399, 82.182599) mm
+Misalignment Warning
+ The centerline of a trace (121.450100, 44.742100) mm on layer top is not connected to the center of a via (121.488200, 44.704000) mm
+Misalignment Warning
+ The centerline of a trace (122.689417, 82.182614) mm on layer top is not connected to the center of a via (122.689402, 82.182599) mm
+Misalignment Warning
+ The centerline of a trace (169.291000, 100.685600) mm on layer top is not connected to the center of a via (169.291000, 100.736400) mm
+Misalignment Warning
+ The centerline of a trace (99.526903, 67.905325) mm on layer top is not connected to the center of a via (99.526905, 67.905300) mm
+Misalignment Warning
+ The centerline of a trace (52.655114, 65.873325) mm on layer top is not connected to the center of a via (52.655132, 65.873300) mm
+Misalignment Warning
+ The centerline of a trace (104.606903, 65.365325) mm on layer top is not connected to the center of a via (104.606905, 65.365300) mm
+Misalignment Warning
+ The centerline of a trace (156.304691, 67.460825) mm on layer top is not connected to the center of a via (156.311600, 67.919600) mm
+Misalignment Warning
+ The centerline of a trace (47.575114, 68.413325) mm on layer top is not connected to the center of a via (47.575132, 68.413300) mm
+Misalignment Warning
+ The centerline of a trace (169.291000, 98.145600) mm on layer top is not connected to the center of a via (169.291000, 98.196400) mm
+Misalignment Warning
+ The centerline of a trace (26.357783, 45.542200) mm on layer top is not connected to the center of a via (26.357798, 45.542200) mm
+Misalignment Warning
+ The centerline of a trace (161.384691, 64.920825) mm on layer top is not connected to the center of a via (161.391600, 65.379600) mm
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (11.662696, 68.427600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (14.740575, 68.653739) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (14.740575, 68.455461) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (15.509173, 89.980144) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (15.509173, 95.060144) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (15.509173, 97.600144) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (15.509173, 100.140144) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (22.961600, 67.470354) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (22.961600, 67.324246) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (25.501600, 67.470354) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (25.501600, 67.324246) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (28.041600, 67.470354) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (28.657358, 55.226535) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (28.669671, 55.408991) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (29.869881, 54.168029) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (28.041600, 67.324246) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (30.581600, 80.049970) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (30.499858, 79.631718) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (30.499858, 79.631718) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (30.478897, 79.680003) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (30.331556, 79.857600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (30.581600, 80.150985) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (30.331556, 79.857600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (30.581600, 80.150985) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (31.775400, 56.192769) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (31.654558, 55.226535) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (31.666871, 55.408991) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (32.867081, 54.168029) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (31.775400, 58.208831) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (40.030400, 76.510481) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (40.030400, 76.510481) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (40.233600, 76.467554) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (40.233600, 76.330449) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (40.197390, 80.162400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (39.217600, 80.220842) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (39.725600, 80.307160) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (40.233600, 80.140449) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (41.249600, 79.821764) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (41.249600, 79.821764) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (41.249600, 80.053526) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (41.249600, 80.053526) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (40.741600, 80.049969) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (45.143768, 76.638783) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (45.143768, 76.638783) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (45.034313, 76.806223) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (45.110400, 76.683109) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (46.634400, 76.594277) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (47.946480, 69.434948) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (48.279858, 75.821718) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (48.279858, 75.821718) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (46.837600, 76.410842) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (47.345600, 76.497161) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (47.853600, 76.330450) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (48.129749, 76.098400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (48.361600, 76.340985) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (48.129749, 76.098400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (48.361600, 76.340985) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (48.402466, 76.234019) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (48.361600, 76.239970) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (49.591442, 56.107539) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (49.729168, 56.227828) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (49.620256, 57.833686) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (51.348339, 79.654400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (51.258051, 79.260700) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (51.265204, 79.349600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (51.409600, 79.774106) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (52.248655, 56.965271) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (52.431111, 56.952958) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (53.026480, 66.894948) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (53.460204, 54.972535) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (53.472517, 55.154991) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (54.672727, 53.914029) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (53.489617, 58.165481) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (54.725996, 69.393963) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (54.547528, 69.568399) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (54.547528, 69.568399) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (56.296334, 76.234019) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (56.997600, 76.617371) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (56.457404, 54.972535) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (56.469717, 55.154991) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (57.669927, 53.914029) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (56.569051, 76.098400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (56.569051, 76.098400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (56.616223, 79.656071) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (56.616223, 79.656071) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (55.443214, 56.819800) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (56.578246, 55.938768) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (56.578246, 57.954832) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (56.583394, 76.098400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (56.997600, 76.410840) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (56.439903, 79.680003) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (61.968958, 78.130400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (62.077600, 78.017828) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (62.890405, 77.952098) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (62.941125, 77.830728) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (62.890405, 77.952098) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (62.941125, 77.830728) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (63.519858, 78.803525) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (63.398400, 78.465629) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (63.519858, 78.803525) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (63.398400, 78.465629) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (62.405237, 78.130400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (62.077600, 78.214402) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (62.613563, 78.130400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (63.093600, 78.294794) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (63.049841, 78.130400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (63.093600, 78.167646) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (63.601600, 78.395231) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (66.954400, 76.594277) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (68.760493, 74.296914) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (68.578800, 74.269600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (68.478400, 74.409300) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (68.760493, 74.296914) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (68.578800, 74.269600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (68.478400, 74.409300) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (67.157600, 76.410842) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (70.543768, 76.638783) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (70.543768, 76.638783) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (70.434313, 76.806223) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (70.510400, 76.683109) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (72.922890, 66.954400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (72.034400, 76.594277) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (72.081614, 76.741067) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (72.081614, 76.741067) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (72.237600, 76.410842) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (73.034612, 66.954400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (73.034612, 66.954400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (73.525032, 78.538804) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (73.525032, 78.538804) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (73.558400, 78.465629) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (73.558400, 78.465629) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (73.761600, 78.395231) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (74.777600, 76.617371) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (74.777600, 76.564207) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (74.777600, 76.564207) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (74.777600, 76.410842) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (75.628841, 67.153104) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (75.793600, 67.297299) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (75.793600, 67.297299) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (76.098400, 78.465629) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (76.098400, 78.465629) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (76.301600, 78.395231) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (77.317600, 76.617371) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (77.317600, 76.564207) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (77.317600, 76.564207) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (77.317600, 76.410842) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (79.654400, 76.428965) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (81.145032, 78.538803) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (81.145032, 78.538803) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (79.288339, 79.654400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (79.363440, 78.638400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (79.199525, 79.146400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (79.349600, 79.774106) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (80.185239, 78.130400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (79.857600, 78.214402) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (80.365600, 78.128083) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (80.393562, 78.130400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (80.873600, 78.294794) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (79.888300, 77.784470) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (79.888300, 77.784470) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (79.748958, 78.130400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (79.857600, 78.017828) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (79.857600, 76.410842) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (81.178400, 78.465629) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (81.178400, 78.465629) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (80.829841, 78.130400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (80.873600, 78.167646) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (81.381600, 78.395231) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (82.397600, 76.617371) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (82.397600, 76.410841) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (84.734400, 76.428962) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (84.937600, 76.410841) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (99.155502, 66.883670) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (101.838859, 43.350245) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (101.913467, 46.081644) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (104.074027, 78.574256) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (104.042496, 83.997800) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (104.978268, 66.386947) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (107.158510, 75.371746) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (107.003279, 75.285600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (107.086400, 75.132167) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (107.284765, 75.487614) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (107.163797, 75.285600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (107.289600, 75.239544) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (107.403547, 75.642357) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (107.395002, 56.184800) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (108.381070, 57.334518) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (108.530034, 55.303768) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (108.439702, 57.449391) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (109.499531, 56.410031) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (108.389446, 57.516656) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (110.195634, 45.269572) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (110.502064, 66.075263) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (109.314063, 66.488737) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (110.218499, 66.446400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (109.427002, 66.553124) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (109.829600, 66.575137) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (110.337600, 66.369509) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (110.583037, 66.518191) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (110.326734, 66.271074) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (110.437683, 66.581960) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (118.616402, 75.037966) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (119.941307, 76.126818) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (118.616402, 78.327234) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (127.563817, 74.574400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (126.882781, 64.639903) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (127.898275, 74.574400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (127.898275, 74.574400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (129.422781, 67.179903) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (132.525263, 68.646264) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (132.764232, 81.005987) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (132.764232, 81.005987) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (132.598983, 80.857132) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (133.033222, 53.096171) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (136.741300, 81.626793) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (137.771473, 75.443022) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (137.771473, 75.443022) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (137.771473, 75.443022) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (137.771473, 75.443022) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (137.819110, 75.496496) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (137.769595, 75.441149) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (137.819110, 75.496496) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (137.769595, 75.441149) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (153.536647, 42.905745) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (153.611255, 45.637144) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (156.354628, 56.963278) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (156.234339, 57.101004) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (157.960486, 57.072190) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (159.062769, 56.108600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (160.197800, 55.227569) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (160.197800, 57.243631) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (167.858671, 97.666398) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (167.858671, 100.206398) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (167.694896, 70.434200) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (167.842373, 98.659760) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (167.931368, 98.678751) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (167.842373, 101.199760) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (167.931368, 101.218751) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (170.772775, 70.660339) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (170.772775, 70.462061) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (26.338979, 43.789600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (26.685319, 43.764351) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (26.577358, 43.586400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (25.988429, 55.270400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (13.035118, 67.665600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (11.551600, 68.478400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (13.250833, 69.494400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (13.030200, 67.700599) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (13.284200, 69.408601) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (13.280501, 67.670175) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (13.280501, 69.439025) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (14.714808, 68.669731) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (15.644865, 89.961088) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (15.692996, 89.970277) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (15.644865, 95.041088) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (15.692996, 95.050277) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (15.644865, 97.581088) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (15.692996, 97.590277) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (15.644865, 100.121088) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (15.692996, 100.130277) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (22.961600, 67.462400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (25.929996, 55.403744) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (25.501600, 67.462400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (26.054803, 55.268661) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (25.994723, 55.268270) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (26.173170, 43.994272) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (26.231411, 55.419491) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (26.301830, 43.815000) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (26.315322, 43.815000) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (26.314400, 43.815000) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (26.314400, 43.806405) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (26.314400, 43.816429) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (26.517600, 43.732875) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (26.808697, 43.645437) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (26.670048, 54.423485) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (26.676332, 54.391306) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (26.873200, 54.480914) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (26.775976, 54.618948) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (26.822400, 54.338624) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (28.570095, 55.270400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (28.649714, 55.270400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (28.041600, 67.462400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (28.934299, 55.261937) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (29.877983, 54.254400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (29.870400, 54.169338) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (30.426939, 79.856415) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (30.581600, 79.950946) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (31.567295, 55.270400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (31.646914, 55.270400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (31.724600, 58.318400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (31.597600, 56.068403) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (31.580708, 55.254662) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (31.521400, 58.209587) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (31.955880, 55.288901) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (32.875183, 54.254400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (38.890262, 80.193035) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (39.027100, 80.003165) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (40.030400, 76.503214) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (40.146197, 76.172112) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (41.152924, 79.657578) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (46.647100, 76.193165) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (46.759323, 76.143465) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (46.837600, 76.606400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (47.809068, 69.494400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (47.834042, 69.455051) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (47.766197, 76.172112) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (48.397786, 76.154927) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (47.926222, 69.678765) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (48.361600, 76.140946) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (49.733319, 57.810400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (48.466484, 68.605092) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (48.550635, 68.680588) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (48.474867, 68.564519) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (48.600650, 68.614477) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (48.621485, 68.801125) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (48.666400, 68.564384) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (48.797954, 68.720179) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (48.666400, 68.603293) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (49.761521, 57.740078) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (49.761521, 56.153522) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (52.409874, 56.967409) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (52.430436, 56.937283) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (52.889068, 66.954400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (52.222400, 57.070211) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (52.425600, 57.057892) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (52.914042, 66.915051) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (52.994932, 80.162400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (53.006222, 67.138765) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (53.407292, 54.985245) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (53.439613, 55.041370) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (53.347103, 57.972952) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (53.775393, 55.071666) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (53.546484, 66.065092) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (53.630635, 66.140588) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (53.554867, 66.024519) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (53.680650, 66.074477) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (53.701485, 66.261125) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (53.746400, 66.024384) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (53.877954, 66.180179) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (53.746400, 66.063293) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (54.539757, 69.494400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (54.486250, 53.909637) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (55.308500, 56.954828) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (55.405748, 56.823273) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (56.301014, 76.154927) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (56.489600, 55.809730) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (56.433456, 54.974545) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (56.465118, 54.999262) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (56.325754, 57.982310) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (56.311732, 76.137803) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (56.919323, 76.143465) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (56.997600, 76.576721) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (57.483450, 53.909637) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (61.524911, 78.197296) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (62.382400, 78.130400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (62.509400, 78.254000) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (62.585600, 78.133035) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (63.477953, 78.168803) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (63.594265, 78.230078) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (66.967100, 76.193165) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (67.079323, 76.143465) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (67.157600, 76.606400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (72.047100, 76.193165) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (72.159323, 76.143465) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (72.237600, 76.638930) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (73.050400, 66.954400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (73.070780, 66.954400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (73.637953, 78.168803) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (73.754265, 78.230078) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (74.699323, 76.143465) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (74.777600, 76.606400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (74.755354, 76.718696) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (76.177953, 78.168803) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (76.294265, 78.230078) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (77.239323, 76.143465) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (77.317600, 76.606400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (77.295354, 76.718696) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (79.304911, 78.197296) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (79.779323, 76.143465) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (80.162400, 78.130400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (80.289400, 78.254000) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (79.857600, 76.450128) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (80.365600, 78.133035) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (81.257953, 78.168803) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (81.374265, 78.230078) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (82.319323, 76.143465) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (82.397600, 76.606400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (98.361345, 67.462400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (98.496505, 67.523629) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (84.859323, 76.143465) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (84.937600, 76.576721) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (98.472849, 67.489771) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (98.351634, 67.628118) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (98.487709, 67.710427) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (98.627144, 67.754144) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (99.055781, 66.794186) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (99.081186, 66.649600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (104.840865, 66.446400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (99.161600, 66.635307) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (101.174171, 43.758114) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (103.895845, 78.397100) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (101.671967, 46.126400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (101.142407, 45.999359) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (101.193600, 43.554433) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (101.141060, 45.808830) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (101.701600, 43.408952) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (101.701294, 45.968996) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (104.019650, 84.251096) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (104.103451, 78.543643) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (105.410000, 83.270799) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (105.664000, 84.978801) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (104.958001, 66.630753) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (105.664000, 83.270799) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (105.664000, 84.978801) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (105.498260, 65.557102) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (105.582407, 65.632588) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (105.506643, 65.516505) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (105.632473, 65.566438) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (105.562400, 65.462475) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (105.653265, 65.753113) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (105.765600, 65.596486) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (105.829730, 65.672166) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (107.262600, 56.286400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (107.289600, 56.393259) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (108.715474, 65.631925) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (108.464081, 65.672138) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (108.276674, 55.283066) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (108.297005, 57.370635) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (108.305574, 57.409227) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (108.288421, 57.382506) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (108.353768, 57.444855) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (109.424994, 56.438660) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (109.437722, 56.437418) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (108.676002, 57.391112) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (108.676977, 65.570726) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (109.335790, 66.630745) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (112.440103, 82.194400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (109.201227, 66.504657) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (109.233041, 66.457786) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (110.394075, 66.446400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (110.231202, 45.259177) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (110.311631, 45.257087) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (110.393633, 66.650589) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (112.595579, 81.994608) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (112.439714, 82.193167) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (112.461399, 82.231323) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (127.003248, 64.471948) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (118.465600, 74.906850) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (118.362402, 78.327867) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (119.759402, 76.555600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (119.813191, 76.797647) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (119.786400, 76.558503) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (120.001721, 76.098400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (119.836247, 75.988266) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (120.077796, 76.009464) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (127.004429, 64.473179) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (127.609600, 74.574400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (127.914839, 74.574400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (129.502088, 66.984125) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (129.544429, 67.013179) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (132.489576, 68.612538) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (133.190798, 52.895655) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (132.542912, 68.777905) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (133.197600, 52.901788) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (136.877788, 81.509453) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (152.800762, 43.281600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (152.871960, 43.313614) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (153.344388, 45.618400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (152.840195, 45.554859) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (152.806400, 43.136956) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (152.806400, 45.534444) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (153.517600, 42.903256) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (153.485719, 45.521176) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (156.185158, 56.996743) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (156.524093, 57.176347) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (157.220878, 67.656449) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (157.217790, 67.635935) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (157.378400, 67.548517) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (160.187197, 57.302400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (157.962039, 56.996743) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (157.886400, 56.932804) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (158.938403, 56.286400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (167.613771, 97.637600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (160.121600, 55.103203) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (159.947273, 57.281098) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (162.300878, 65.116449) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (162.297790, 65.095935) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (162.458400, 65.008517) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (167.613771, 100.177600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (169.062763, 69.697600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (167.569003, 70.510400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (167.668071, 100.037900) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (167.633869, 101.333113) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (167.682760, 101.317088) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (169.250746, 71.526400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (167.668071, 97.497900) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (167.633869, 98.793113) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (167.682760, 98.777088) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (167.741600, 97.490250) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (167.666145, 98.597113) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (167.741600, 100.030250) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (167.698423, 98.612169) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (167.666145, 101.137113) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (167.698423, 101.152169) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (169.062400, 69.707199) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (169.316400, 71.415201) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (169.074354, 69.653412) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (169.265600, 71.516799) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer top are not connected (170.722741, 70.684764) mm net "GND"
+Misalignment Warning
+ The centerline of a trace (114.289383, 82.182614) mm on layer top is not connected to the center of a via (114.289403, 82.182599) mm
+Misalignment Warning
+ The centerline of a trace (154.840229, 44.335700) mm on layer top is not connected to the center of a via (154.840231, 44.335700) mm
+Misalignment Warning
+ The centerline of a trace (126.889408, 82.182614) mm on layer top is not connected to the center of a via (126.889401, 82.182599) mm
+Misalignment Warning
+ The centerline of a trace (103.142440, 44.780200) mm on layer top is not connected to the center of a via (103.142458, 44.780200) mm
+Misalignment Warning
+ The centerline of a trace (118.489425, 82.182614) mm on layer top is not connected to the center of a via (118.489402, 82.182599) mm
+Misalignment Warning
+ The centerline of a trace (55.195114, 68.413325) mm on layer top is not connected to the center of a via (55.195132, 68.413300) mm
+Misalignment Warning
+ The centerline of a trace (107.146903, 67.905325) mm on layer top is not connected to the center of a via (107.146905, 67.905300) mm
+Misalignment Warning
+ The centerline of a trace (57.735114, 65.873325) mm on layer top is not connected to the center of a via (57.735132, 65.873300) mm
+Misalignment Warning
+ The centerline of a trace (169.291000, 103.225600) mm on layer mid1 is not connected to the center of a via (169.291000, 103.276400) mm
+Misalignment Warning
+ The centerline of a trace (47.575114, 65.873325) mm on layer mid1 is not connected to the center of a via (47.575132, 65.873300) mm
+Misalignment Warning
+ The centerline of a trace (167.868600, 93.065600) mm on layer mid1 is not connected to the center of a via (169.291000, 93.116400) mm
+Misalignment Warning
+ The centerline of a trace (168.173400, 93.065600) mm on layer mid1 is not connected to the center of a via (169.291000, 93.116400) mm
+Misalignment Warning
+ The centerline of a trace (169.291000, 87.985600) mm on layer mid1 is not connected to the center of a via (169.291000, 88.036400) mm
+Misalignment Warning
+ The centerline of a trace (156.882328, 53.822600) mm on layer mid1 is not connected to the center of a via (157.073600, 53.238400) mm
+Misalignment Warning
+ The centerline of a trace (157.073600, 53.822600) mm on layer mid1 is not connected to the center of a via (157.073600, 53.238400) mm
+Misalignment Warning
+ The centerline of a trace (151.224691, 67.460825) mm on layer mid1 is not connected to the center of a via (151.231600, 67.919600) mm
+Misalignment Warning
+ The centerline of a trace (156.304691, 64.920825) mm on layer mid1 is not connected to the center of a via (156.311600, 65.379600) mm
+Misalignment Warning
+ The centerline of a trace (8.864600, 102.209600) mm on layer mid1 is not connected to the center of a via (8.204200, 102.209600) mm
+Misalignment Warning
+ The centerline of a trace (143.689375, 76.682600) mm on layer mid1 is not connected to the center of a via (143.689398, 76.682600) mm
+Misalignment Warning
+ The centerline of a trace (22.742246, 66.127325) mm on layer mid1 is not connected to the center of a via (22.742246, 66.127300) mm
+Misalignment Warning
+ The centerline of a trace (52.655114, 68.413325) mm on layer mid1 is not connected to the center of a via (52.655132, 68.413300) mm
+Misalignment Warning
+ The centerline of a trace (50.115114, 68.413325) mm on layer mid1 is not connected to the center of a via (50.115132, 68.413300) mm
+Misalignment Warning
+ The centerline of a trace (77.978000, 53.873400) mm on layer mid1 is not connected to the center of a via (78.435200, 53.416200) mm
+Misalignment Warning
+ The centerline of a trace (50.115114, 65.873325) mm on layer mid1 is not connected to the center of a via (50.115132, 65.873300) mm
+Misalignment Warning
+ The centerline of a trace (77.361034, 67.905325) mm on layer mid1 is not connected to the center of a via (77.368400, 67.970400) mm
+Misalignment Warning
+ The centerline of a trace (127.914400, 67.284600) mm on layer mid1 is not connected to the center of a via (127.914400, 67.665600) mm
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (4.927600, 80.502383) mm net "Vcc"
+Misalignment Warning
+ The centerline of a trace (168.148000, 78.130400) mm on layer mid1 is not connected to the center of a via (169.189400, 78.181200) mm
+Misalignment Warning
+ The centerline of a trace (175.514000, 79.273400) mm on layer mid1 is not connected to the center of a via (175.514000, 79.273385) mm
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (135.277091, 65.113501) mm net "V"
+Misalignment Warning
+ The centerline of a trace (158.844691, 67.460825) mm on layer mid1 is not connected to the center of a via (158.851600, 67.919600) mm
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (8.807163, 98.653600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (8.873094, 98.614171) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (9.907894, 99.583582) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (9.714359, 99.634764) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (9.888520, 99.466400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (9.757351, 99.414845) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (9.709809, 102.191588) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (9.877604, 102.006400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (9.764911, 101.976321) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (9.889050, 99.532962) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (11.565086, 75.029449) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (11.397303, 75.142493) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (11.467605, 77.475074) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (11.718943, 74.957332) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (11.582400, 74.803376) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (11.666587, 77.563489) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (11.500318, 77.334062) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (11.698294, 77.375982) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (11.675756, 74.777600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (11.737179, 74.959200) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (11.885024, 74.927186) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (11.785600, 77.602687) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (11.878139, 77.596270) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (11.662696, 68.427600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (15.509173, 87.440144) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (22.961600, 67.470354) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (22.961600, 67.324246) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (23.113608, 67.148942) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (25.660158, 58.223735) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (25.672471, 58.406191) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (26.872681, 57.165229) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.711897, 80.620322) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.634548, 80.235951) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.697615, 80.162400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.597600, 80.292097) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.711897, 80.620322) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.634548, 80.235951) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.697615, 80.162400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.597600, 80.292097) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.270562, 80.162400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.597600, 80.427372) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (30.429719, 57.236371) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (30.526165, 57.131207) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.717993, 58.323035) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.654558, 58.223735) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.666871, 58.406191) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.578807, 56.078565) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (32.770635, 57.270393) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (32.867081, 57.165229) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.841482, 80.284362) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.597600, 80.220842) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (33.753685, 79.678070) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (33.753685, 79.678070) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (33.751044, 79.940942) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (36.165906, 79.747436) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (40.741600, 80.049970) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (40.638897, 79.680003) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (40.491556, 79.857600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (40.741600, 80.150985) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (40.491556, 79.857600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (40.741600, 80.150985) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (46.837600, 76.617371) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (46.837600, 76.564207) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (46.837600, 76.564207) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (46.837600, 76.410842) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (49.377600, 76.617371) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (49.377600, 76.410842) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (49.855233, 69.601127) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (52.185996, 69.393963) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (54.475032, 80.448782) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (54.475032, 80.448782) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (54.130564, 80.162400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (54.457600, 80.427371) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (53.878942, 79.631718) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (54.076223, 79.656071) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (53.878942, 79.631718) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (54.076223, 79.656071) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (53.899903, 79.680003) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (55.245855, 56.965271) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (55.428311, 56.952958) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (55.329011, 57.016393) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (56.578246, 55.938769) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (57.546621, 57.045939) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (55.533793, 76.059377) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (55.725136, 76.249068) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (55.778400, 76.029393) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (55.533793, 76.059377) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (55.725136, 76.249068) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (55.778400, 76.029393) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (56.381653, 58.069035) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (57.546621, 56.847661) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (59.334400, 76.594277) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (59.528311, 76.606400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (59.549969, 80.442448) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (59.549969, 80.442448) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (59.370807, 80.365600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (59.334400, 80.404277) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (59.537600, 76.537646) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (59.514472, 76.809600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (59.537600, 76.537646) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (59.514472, 76.809600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (59.537600, 76.410842) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (61.640500, 78.750752) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (61.640500, 78.750752) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (61.376334, 76.234019) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (61.874400, 76.428963) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (61.986947, 76.673668) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (61.498942, 75.821718) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (61.649051, 76.098400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (61.498942, 75.821718) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (61.649051, 76.098400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (63.365032, 78.538804) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (63.365032, 78.538804) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (62.405243, 78.130400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (62.077600, 78.214403) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (62.585600, 78.128083) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (62.613558, 78.130400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (63.093600, 78.294794) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (61.663394, 76.098400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (62.077600, 76.410840) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (63.398400, 78.465629) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (63.398400, 78.465629) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (63.601600, 78.395231) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (65.938400, 78.465629) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (65.938400, 78.465629) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (66.141600, 78.395231) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (67.125990, 80.391181) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (67.125990, 80.391181) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (66.830565, 80.162400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (67.157600, 80.427371) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (67.199449, 80.237837) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (67.199449, 80.237837) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (67.405008, 80.282524) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (67.157600, 80.220841) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (69.697600, 76.617371) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (69.697600, 76.410842) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (71.856223, 79.656071) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (71.856223, 79.656071) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (71.679903, 79.680003) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (74.568496, 69.158225) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (76.029185, 78.495921) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (76.029185, 78.495921) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (76.028828, 78.495515) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (77.216519, 53.451771) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (78.379179, 68.511194) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (78.333600, 68.608564) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (78.391991, 68.478400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (78.416729, 52.210809) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (78.429042, 52.393265) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (78.416729, 55.208009) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (78.429042, 55.390465) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (77.216519, 56.448971) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (80.104134, 73.890520) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (80.326161, 74.066400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (80.162428, 73.871132) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (80.227009, 53.434671) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (80.409465, 53.422358) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (81.559400, 55.405368) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (82.527775, 56.512539) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (81.467971, 54.634881) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (82.527775, 56.314261) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (99.267002, 66.553124) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (102.444205, 57.530481) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (104.187153, 53.350171) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (105.387363, 52.109209) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (105.441413, 52.095922) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (106.999973, 84.595344) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (108.060178, 86.772653) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (108.060178, 86.772653) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (107.925094, 86.766401) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (107.059564, 87.054022) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (107.289600, 86.910281) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (107.797600, 86.771886) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (107.924106, 86.766401) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (108.122773, 86.952888) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (108.122773, 86.952888) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (108.134211, 86.941838) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (107.393049, 56.438800) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (108.472627, 55.189565) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (108.367464, 55.093119) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (107.240186, 84.654178) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (107.240186, 84.654178) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (109.525269, 56.242207) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (109.425969, 56.305642) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (109.608426, 56.293329) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (117.037486, 77.238420) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (118.616402, 78.327234) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (126.882781, 67.179903) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (127.052112, 56.076271) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (127.234569, 56.063958) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (128.293074, 57.276481) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (130.049312, 53.079071) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (130.231769, 53.066758) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (131.290274, 54.279281) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (133.243872, 55.930800) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (135.347278, 56.156939) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (135.347278, 55.958661) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (135.138789, 56.894390) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (135.274496, 66.313424) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (145.141314, 76.126780) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (150.225057, 67.404421) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (152.759575, 67.381860) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (154.082558, 57.258535) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (154.094871, 57.440991) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (154.165001, 66.803338) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (155.295081, 56.200029) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (155.305057, 64.864421) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (157.845057, 67.404421) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (158.927800, 56.350209) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (159.325927, 55.270400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (158.940572, 55.778400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (158.857768, 56.286400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (158.851832, 56.256643) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (159.105600, 55.490727) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (158.991825, 56.345887) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (159.613600, 55.105372) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (159.918400, 55.025964) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (160.181087, 55.156625) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (160.120844, 55.213940) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (159.183914, 52.401810) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (160.057225, 57.377872) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (161.213071, 56.222016) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (161.092906, 56.277315) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (161.274745, 56.271668) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (167.726427, 72.630656) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (167.694896, 70.434200) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (170.772775, 70.660339) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (170.627668, 76.963930) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (170.423366, 76.809600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (170.468461, 76.759530) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (170.586400, 76.757435) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (170.679999, 79.570101) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (170.461576, 79.428614) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (170.623444, 79.397739) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (170.652373, 73.571744) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (170.781518, 77.036048) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (170.640064, 76.809600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (170.647742, 76.979487) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (170.846282, 77.021738) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (170.878992, 79.481681) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (170.789600, 79.540748) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (170.772775, 70.462061) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (170.776482, 79.426259) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (170.949297, 79.213307) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (175.545773, 77.847716) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (13.035118, 67.665600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (11.551600, 68.478400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (14.431600, 83.400182) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (8.639669, 96.100602) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (8.912530, 98.653600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (9.216777, 98.648336) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (8.416895, 96.214799) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (8.915028, 98.795376) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (8.650989, 96.075148) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (8.651421, 96.073604) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (9.166568, 98.687501) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (9.168333, 98.681998) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (9.042400, 98.540082) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (9.087270, 98.505543) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (11.123014, 75.152591) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (13.250833, 69.494400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (9.762627, 99.475378) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (9.765508, 102.014132) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (9.839042, 99.308259) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (9.847874, 101.864826) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (11.074400, 74.962993) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (13.030200, 67.700599) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (13.284200, 69.408601) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (13.280501, 67.670175) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (13.280501, 69.439025) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (14.202116, 83.507419) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (14.325600, 83.246195) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (14.442671, 83.376405) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (15.644865, 87.421088) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (15.692996, 87.430277) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (22.961600, 67.462400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (23.093347, 67.392758) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (25.555159, 58.318400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (25.634084, 58.318400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (23.641990, 66.278516) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (23.767720, 66.328470) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (23.774400, 66.225191) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (23.788600, 66.515103) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (23.838565, 66.516696) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (23.774400, 66.325106) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (23.965065, 66.434158) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (23.836058, 66.570112) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (25.827617, 58.283823) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (25.910443, 58.244391) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (26.702302, 57.353151) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (26.822400, 57.111702) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.724600, 58.318400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.549559, 58.318400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.628484, 58.318400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (30.615295, 57.326643) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (30.581600, 57.031495) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (30.581600, 57.317197) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (30.616342, 57.074819) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.667367, 56.059224) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.597600, 56.068403) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.521400, 58.209587) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.580708, 58.251862) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.522708, 56.166621) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.552506, 58.300067) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.629433, 58.342376) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (32.747667, 57.104906) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (31.955880, 58.286101) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (32.569024, 46.880321) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (32.465070, 47.053529) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (32.696702, 57.353151) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (36.356150, 79.708258) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (36.356229, 79.803593) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (36.169600, 79.785828) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (36.232379, 79.919781) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (36.322869, 80.087770) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (40.586939, 79.856415) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (40.741600, 79.950946) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (48.892303, 68.720151) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (46.759323, 76.143465) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (49.764023, 69.678747) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (46.837600, 76.606400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (46.815354, 76.718696) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (49.143694, 68.679926) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (49.299323, 76.143465) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (49.105207, 68.618742) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (49.377600, 76.606400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (49.661273, 69.505789) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (49.682400, 69.676369) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (51.999757, 69.494400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (52.203643, 69.525570) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (55.407074, 56.967409) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (55.427636, 56.937283) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (55.405748, 56.823273) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (55.309670, 56.927833) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (55.417067, 57.072492) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (56.325265, 57.978858) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (56.489600, 55.809730) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (56.327336, 57.990646) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (57.496744, 56.823273) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (59.347100, 76.193165) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (59.459323, 76.143465) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (59.537600, 76.606400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (59.502482, 76.732078) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (59.700738, 76.736643) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (61.381014, 76.154927) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (61.391732, 76.137803) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (61.999323, 76.143465) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (62.382400, 78.130400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (62.509400, 78.254000) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (62.077600, 76.576721) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (63.477953, 78.168803) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (63.594265, 78.230078) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (66.017953, 78.168803) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (66.134265, 78.230078) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (69.619323, 76.143465) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (69.697600, 76.606400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (73.605575, 68.277238) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (73.699298, 68.173600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (73.761600, 68.155472) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (73.818472, 68.175826) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (74.477285, 69.235845) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (74.430629, 69.009571) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (74.582218, 69.037123) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (77.216345, 56.286400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (77.264946, 53.238400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (77.317600, 53.228419) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (77.317600, 56.225619) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (78.638400, 68.251973) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (78.820972, 68.345112) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (78.130400, 52.219680) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (78.130400, 55.216880) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (78.333600, 52.191034) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (78.333600, 55.188234) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (78.919367, 68.173588) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (78.841600, 68.100916) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (80.375889, 53.423076) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (80.405525, 53.390563) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (80.365600, 53.708966) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (80.365600, 53.580424) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (81.306589, 54.448187) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (81.381600, 55.281003) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (82.502034, 56.298281) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (98.304081, 65.672138) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (98.555474, 65.631925) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (99.175790, 66.630745) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (98.516977, 65.570726) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (99.041227, 66.504657) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (99.073041, 66.457786) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (104.178695, 53.238400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (104.241600, 53.134099) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (105.410000, 83.270799) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (105.295620, 52.084206) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (105.301453, 52.090039) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (105.257600, 52.080599) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (105.257600, 52.112503) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (105.664000, 83.270799) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (106.971401, 84.734400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (107.135665, 84.576288) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (107.150231, 84.576581) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (107.353100, 56.189418) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (108.276674, 55.283066) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (108.305600, 55.205492) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (108.307141, 55.212533) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (109.541910, 56.343904) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (109.429784, 56.438344) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (109.502301, 56.407694) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (109.544610, 56.330767) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (109.484500, 56.401314) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (109.625848, 56.259966) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (109.429909, 56.337437) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (109.459545, 56.304924) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (109.628389, 56.321504) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (109.626400, 56.258083) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (117.058682, 77.474243) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (117.117802, 76.606400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (117.146878, 77.315493) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (116.941600, 77.482143) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (117.219402, 76.809600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (118.362402, 78.327867) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (119.759402, 76.555600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (119.813191, 76.797647) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (119.786400, 76.558503) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (127.188889, 55.975472) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (127.017315, 56.286400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (126.950919, 66.980775) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (127.004429, 67.013179) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (127.003248, 67.011948) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (127.101600, 56.379106) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (127.101600, 56.236145) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (128.086361, 57.127273) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (130.017897, 53.238400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (130.097108, 53.238400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (130.149600, 53.377572) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (130.149600, 53.241480) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (131.092825, 54.254400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (131.108587, 54.104003) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (133.108903, 56.057802) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (133.236526, 55.930800) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (133.197600, 56.178886) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (134.312500, 65.430400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (134.311575, 65.432438) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (135.267281, 55.930800) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (134.524472, 65.331026) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (135.183285, 66.391045) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (135.045792, 56.997600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (135.026400, 57.008478) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (135.080731, 66.217898) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (150.079614, 67.665600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (150.329075, 67.630901) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (150.184240, 67.462400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (145.201670, 76.098400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (145.277782, 76.009427) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (145.186400, 76.110682) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (150.135711, 67.898161) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (150.251088, 67.771959) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (150.250377, 67.684520) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (150.326316, 67.643793) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (150.345088, 67.406316) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (153.995295, 57.302400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (154.074914, 57.302400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (152.897916, 67.232549) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (153.757952, 66.686026) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (153.792704, 66.649600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (153.822400, 66.637071) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (153.907799, 66.883597) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (154.008708, 57.286662) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (154.025600, 66.715559) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (154.383880, 57.320901) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (155.159614, 65.125600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (155.409075, 65.090901) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (155.264240, 64.922400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (155.215711, 65.358161) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (155.331088, 65.231959) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (155.330377, 65.144520) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (155.303183, 56.286400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (155.406316, 65.103793) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (155.425088, 64.866316) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (156.976880, 54.620701) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (167.548245, 72.453500) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (156.920867, 54.440282) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (157.159151, 54.531431) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (157.699614, 67.665600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (157.949075, 67.630901) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (157.804240, 67.462400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (157.755711, 67.898161) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (157.871088, 67.771959) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (157.870377, 67.684520) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (157.946316, 67.643793) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (157.965088, 67.406316) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (159.432076, 52.414329) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (158.927800, 56.190779) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (158.927800, 56.235601) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (158.846132, 56.286400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (158.938403, 56.286400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (167.569003, 70.510400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (158.936487, 56.189436) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (160.187197, 57.302400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (159.945763, 57.273844) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (169.062763, 69.697600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (160.121600, 55.103203) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (160.121600, 55.010932) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (159.950496, 57.292294) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (159.955854, 57.305605) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (160.024636, 55.101287) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (161.203197, 56.286400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (161.122597, 56.357451) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (161.192948, 56.305326) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (161.099844, 56.323036) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (161.147069, 56.291210) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (161.213047, 55.957934) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (169.250746, 71.526400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (167.590303, 91.097100) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (167.670220, 91.097100) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (167.692338, 91.027888) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (167.704136, 91.211598) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (167.538400, 72.457940) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (168.953646, 89.219930) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (169.006507, 86.680704) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (169.062400, 69.707199) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (169.316400, 71.415201) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (169.072506, 88.948667) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (169.127787, 89.083787) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (169.078952, 86.404140) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (169.178702, 86.539089) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (169.074354, 69.653412) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (169.265600, 71.516799) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (170.722741, 70.684764) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (170.680732, 73.558400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (170.691792, 73.555822) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (170.788065, 73.552688) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (175.426345, 77.740695) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (175.597556, 77.622400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid1 are not connected (175.671265, 77.827544) mm net "GND"
+Misalignment Warning
+ The centerline of a trace (79.901034, 67.905325) mm on layer mid1 is not connected to the center of a via (79.908400, 67.970400) mm
+Misalignment Warning
+ The centerline of a trace (118.300500, 64.503300) mm on layer mid2 is not connected to the center of a via (118.313200, 64.490600) mm
+Misalignment Warning
+ The centerline of a trace (153.764691, 64.920825) mm on layer mid2 is not connected to the center of a via (153.771600, 65.379600) mm
+Misalignment Warning
+ The centerline of a trace (56.337200, 44.361100) mm on layer mid2 is not connected to the center of a via (56.718213, 45.110400) mm
+Misalignment Warning
+ The centerline of a trace (56.337200, 45.364400) mm on layer mid2 is not connected to the center of a via (56.718213, 45.110400) mm
+Misalignment Warning
+ The centerline of a trace (56.727903, 45.364400) mm on layer mid2 is not connected to the center of a via (56.718213, 45.110400) mm
+Misalignment Warning
+ The centerline of a trace (152.089409, 76.682600) mm on layer mid2 is not connected to the center of a via (152.089396, 76.682600) mm
+Misalignment Warning
+ The centerline of a trace (160.489392, 82.182614) mm on layer mid2 is not connected to the center of a via (160.489395, 82.182599) mm
+Misalignment Warning
+ The centerline of a trace (147.889417, 76.682600) mm on layer mid2 is not connected to the center of a via (147.889397, 76.682600) mm
+Misalignment Warning
+ The centerline of a trace (27.822246, 66.127325) mm on layer mid2 is not connected to the center of a via (27.822246, 66.127300) mm
+Misalignment Warning
+ The centerline of a trace (25.282246, 68.667325) mm on layer mid2 is not connected to the center of a via (25.282246, 68.667300) mm
+Misalignment Warning
+ The centerline of a trace (77.361034, 65.365325) mm on layer mid2 is not connected to the center of a via (77.368400, 65.430400) mm
+Misalignment Warning
+ The centerline of a trace (74.821034, 65.365325) mm on layer mid2 is not connected to the center of a via (74.828400, 65.430400) mm
+Misalignment Warning
+ The centerline of a trace (102.066903, 65.365325) mm on layer mid2 is not connected to the center of a via (102.066905, 65.365300) mm
+Misalignment Warning
+ The centerline of a trace (102.066903, 67.905325) mm on layer mid2 is not connected to the center of a via (102.066905, 67.905300) mm
+Misalignment Warning
+ The centerline of a trace (104.606903, 67.905325) mm on layer mid2 is not connected to the center of a via (104.606905, 67.905300) mm
+Misalignment Warning
+ The centerline of a trace (27.822246, 68.667325) mm on layer mid2 is not connected to the center of a via (27.822246, 68.667300) mm
+Misalignment Warning
+ The centerline of a trace (25.282246, 66.127325) mm on layer mid2 is not connected to the center of a via (25.282246, 66.127300) mm
+Misalignment Warning
+ The centerline of a trace (72.281034, 65.365325) mm on layer mid2 is not connected to the center of a via (72.288400, 65.430400) mm
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (150.624708, 106.972100) mm net "I_5"
+Misalignment Warning
+ The centerline of a trace (151.224691, 64.920825) mm on layer mid2 is not connected to the center of a via (151.231600, 65.379600) mm
+Misalignment Warning
+ The centerline of a trace (22.742246, 68.667325) mm on layer mid2 is not connected to the center of a via (22.742246, 68.667300) mm
+Misalignment Warning
+ The centerline of a trace (72.281034, 67.905325) mm on layer mid2 is not connected to the center of a via (72.288400, 67.970400) mm
+Misalignment Warning
+ The centerline of a trace (156.289400, 76.682600) mm on layer mid2 is not connected to the center of a via (156.289395, 76.682600) mm
+Misalignment Warning
+ The centerline of a trace (135.289392, 76.682600) mm on layer mid2 is not connected to the center of a via (135.289399, 76.682600) mm
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (7.739228, 70.679278) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (7.618939, 70.817004) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (9.345086, 70.788190) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (11.694227, 73.164056) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (11.662696, 68.427600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (14.740575, 68.653739) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (14.620173, 71.565144) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (14.620173, 74.105144) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (14.740575, 68.455461) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (15.509173, 92.520144) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (22.961600, 67.470354) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (22.273109, 69.647963) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (22.961600, 67.324246) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (25.501600, 67.470354) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (24.813109, 69.647963) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (25.501600, 67.324246) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (25.653608, 67.148942) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (28.791162, 76.247480) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (29.893109, 69.647963) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (29.930489, 76.606400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (29.686270, 77.114400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (29.710593, 77.622400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (30.073600, 76.467554) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (30.073600, 78.086939) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (28.861944, 76.301600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (28.765427, 76.225400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (29.037800, 76.402084) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (29.565600, 76.497160) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (30.073600, 76.330449) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (31.212908, 79.676943) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (31.212908, 79.676943) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (32.903072, 79.689605) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (32.903072, 79.689605) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (31.209972, 79.939729) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (32.577392, 80.162400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (31.597600, 80.220842) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (32.105600, 80.307160) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (32.613600, 80.140450) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (32.939112, 79.820540) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (32.928077, 79.712309) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (35.558897, 79.680003) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (35.411556, 79.857600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (35.661600, 80.150985) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (35.411556, 79.857600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (35.661600, 80.150985) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (37.005241, 78.130400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (36.677600, 78.214403) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (37.213559, 78.130400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (37.693600, 78.294794) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (35.661600, 80.049970) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (36.568959, 78.130400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (36.677600, 78.017829) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (37.541125, 77.830728) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (37.541125, 77.830728) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (37.649841, 78.130400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (37.693600, 78.167646) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (50.223768, 76.638783) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (50.223768, 76.638783) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (50.114313, 76.806223) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (50.190400, 76.683109) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (51.935032, 76.638783) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (51.935032, 76.638783) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (51.714400, 76.594277) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (51.908311, 76.606400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (51.917600, 76.410841) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (54.033768, 78.538804) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (54.033768, 78.538804) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (56.670565, 80.162400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (56.794400, 80.238963) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (56.906947, 80.483668) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (56.681853, 79.861553) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (55.443215, 56.819800) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (56.578246, 55.938768) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (56.578246, 57.954830) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (58.318400, 78.465629) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (58.318400, 78.465629) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (58.521600, 78.395231) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (60.962040, 78.765954) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (60.962040, 78.765954) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (62.113245, 78.199799) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (62.113245, 78.199799) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (62.090342, 77.723139) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (62.090342, 77.723139) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (61.061600, 78.395231) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (62.334681, 78.147567) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (61.991640, 77.879562) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (62.334681, 78.147567) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (61.991640, 77.879562) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (62.837770, 80.162400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (62.890400, 80.239011) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (62.837770, 80.162400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (62.890400, 80.239011) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (63.001585, 80.365600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (62.890400, 80.493109) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (63.093600, 76.467554) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (63.057393, 80.162400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (63.093600, 80.140450) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (63.093600, 76.330449) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (66.059858, 79.631718) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (66.059858, 79.631718) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (65.597392, 80.162400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (64.617600, 80.220842) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (65.125600, 80.307161) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (65.633600, 80.140450) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (66.038897, 79.680003) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (65.891556, 79.857600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (66.141600, 80.150985) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (65.891556, 79.857600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (66.141600, 80.150985) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (66.141600, 80.049970) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (69.108691, 75.018966) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (68.711723, 74.066400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (68.907035, 73.761600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (68.711724, 74.574400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (68.681600, 74.460096) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (69.189600, 73.588523) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (69.189600, 75.052276) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (69.413544, 73.694402) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (71.856223, 79.656071) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (71.856223, 79.656071) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (73.558400, 78.455627) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (73.558400, 78.455627) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (71.679903, 79.680003) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (73.761600, 78.395231) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (73.865290, 65.123530) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (73.739465, 65.221773) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (75.462890, 66.954400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (74.615139, 64.233130) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (75.574612, 66.954400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (75.574612, 66.954400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (76.405290, 65.123530) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (76.279465, 65.221773) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (77.155139, 64.233130) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (78.243416, 80.358998) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (78.243416, 80.358998) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (78.508236, 80.162400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (78.333600, 80.277554) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (78.623072, 79.689605) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (78.623072, 79.689605) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (78.659112, 79.820540) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (78.648077, 79.712309) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (80.377837, 74.319008) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (79.730583, 73.628291) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (80.326162, 74.066400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (80.365600, 74.206100) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (80.548942, 77.731696) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (80.548942, 77.731696) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (80.424369, 56.286400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (81.364330, 55.290183) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (80.873600, 78.086939) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (81.500470, 55.290183) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (83.279614, 76.595899) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (83.210400, 76.573287) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (83.279614, 76.595899) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (83.210400, 76.573287) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (83.182290, 76.770758) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (83.921600, 80.049970) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (83.413600, 76.330449) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (83.633508, 76.098400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (83.685032, 78.538804) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (83.685032, 78.538804) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (83.718400, 78.465629) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (83.718400, 78.465629) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (83.818897, 79.680003) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (83.671556, 79.857600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (83.921600, 80.150985) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (83.671556, 79.857600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (83.921600, 80.150985) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (83.921600, 78.395231) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (87.275254, 74.559747) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (87.782400, 74.322830) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (90.017600, 76.617371) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (90.017600, 76.410842) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (101.807020, 66.553129) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (101.807020, 69.093129) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (104.042496, 83.997800) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (104.347020, 69.093129) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (107.120375, 84.223939) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (106.999973, 79.515344) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (107.120375, 84.025661) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (118.616402, 75.037966) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (118.616402, 78.327234) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (125.003018, 66.643960) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (131.236232, 54.852409) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (131.248545, 55.034865) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (130.036022, 56.093371) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (146.615855, 81.640212) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (157.562937, 77.224985) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (159.215854, 81.640248) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (159.062768, 56.108600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (159.351828, 56.963278) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (159.231539, 57.101004) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (160.197800, 55.227569) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (161.166175, 56.334739) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (161.166175, 56.136461) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (160.957686, 57.072190) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (167.966832, 69.926976) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (167.757071, 70.031198) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (167.728877, 70.005899) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (167.740773, 71.024560) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (167.829768, 71.043551) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (170.772775, 70.660339) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (170.652373, 76.111744) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (170.772775, 70.462061) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (173.235965, 98.217540) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (13.035118, 67.665600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (11.551600, 68.478400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (7.569758, 70.712743) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (7.717275, 70.661496) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (7.721600, 70.703496) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (9.097108, 70.775139) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (9.346639, 70.712743) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (13.250833, 69.494400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (22.256704, 69.628323) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (11.516045, 72.986900) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (11.582400, 72.979387) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (13.030200, 67.700599) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (13.284200, 69.408601) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (13.280501, 67.670175) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (13.280501, 69.439025) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (14.714808, 68.669731) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (14.630400, 71.739538) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (14.755865, 71.546088) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (14.630400, 74.279538) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (14.755865, 74.086088) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (15.644865, 92.501088) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (15.692996, 92.510277) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (22.290757, 69.779605) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (22.961600, 67.462400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (24.796704, 69.628323) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (24.830757, 69.779605) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (25.501600, 67.462400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (25.633347, 67.392758) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (26.181990, 66.278516) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (26.307720, 66.328470) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (26.314400, 66.225191) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (26.328600, 66.515103) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (26.378565, 66.516696) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (26.314400, 66.325106) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (26.505065, 66.434158) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (26.376058, 66.570112) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (29.756100, 69.615147) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (29.876704, 69.628323) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (29.910757, 69.779605) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (29.986197, 76.172112) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (35.506939, 79.856415) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (35.661600, 79.950946) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (36.124911, 78.197296) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (36.982400, 78.130400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (37.109400, 78.254000) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (37.185600, 78.133035) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (38.077953, 78.168803) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (51.727100, 76.193165) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (51.839323, 76.143465) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (51.917600, 76.606400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (55.405748, 56.823273) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (56.365843, 43.750017) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (56.489600, 43.596592) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (56.489600, 55.809730) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (56.325754, 57.982310) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (56.381173, 43.766498) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (58.397953, 78.168803) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (58.514265, 78.230078) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (60.937953, 78.168803) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (62.890400, 76.525921) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (63.154932, 80.162400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (62.890400, 80.465711) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (63.006197, 76.172112) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (64.290262, 80.193035) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (64.427100, 80.003165) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (65.986939, 79.856415) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (66.141600, 79.950946) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (76.328337, 64.971129) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (76.206739, 65.109363) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (76.938473, 64.304264) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (73.637953, 78.168803) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (73.791988, 64.974931) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (73.801864, 65.000485) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (73.788337, 64.971129) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (73.666739, 65.109363) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (73.757411, 64.947719) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (73.761600, 64.994655) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (73.754265, 78.230078) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (73.924961, 65.251194) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (74.398473, 64.304264) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (74.574400, 64.191749) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (75.590400, 66.954400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (75.610780, 66.954400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (76.331988, 64.974931) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (76.341864, 65.000485) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (76.297411, 64.947719) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (76.301600, 64.994655) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (76.464961, 65.251194) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (77.114400, 64.191749) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (81.364330, 55.290183) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (80.362766, 56.298281) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (80.365600, 56.529797) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (81.459367, 65.633588) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (81.360972, 65.805112) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (81.381600, 65.560916) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (81.500470, 55.290183) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (82.032134, 78.277176) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (82.181700, 78.130400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (82.351351, 45.873292) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (82.573202, 45.977397) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (82.751316, 45.947516) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (82.740507, 45.780383) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (83.210400, 76.525921) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (83.797953, 78.168803) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (83.766939, 79.856415) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (83.914265, 78.230078) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (83.921600, 79.950946) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (89.939323, 76.143465) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (90.017600, 76.606400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (101.095475, 65.631925) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (101.095475, 68.171925) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (100.844086, 65.672156) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (100.844086, 68.212156) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (101.057052, 65.570797) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (101.057052, 68.110797) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (101.715802, 66.630755) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (101.715802, 69.170755) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (101.581236, 66.504678) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (101.581236, 69.044678) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (101.613059, 66.457791) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (101.613059, 68.997791) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (103.384086, 68.212156) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (104.255802, 69.170755) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (103.635475, 68.171925) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (103.597052, 68.110797) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (104.019650, 84.251096) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (104.121236, 69.044678) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (104.153059, 68.997791) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (105.410000, 83.270799) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (105.664000, 84.978801) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (105.664000, 83.270799) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (105.664000, 84.978801) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (107.054350, 84.251096) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (107.086400, 84.006192) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (106.971401, 79.654400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (107.135665, 79.496288) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (107.150231, 79.496581) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (117.117802, 76.606400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (117.219402, 76.809600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (118.465600, 74.906850) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (118.362402, 78.327867) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (119.759402, 76.555600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (119.813191, 76.797647) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (119.786400, 76.558503) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (124.352473, 67.462400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (124.239989, 67.462400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (124.320345, 67.250045) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (124.199148, 67.388397) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (124.335032, 67.470788) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (124.474641, 67.514416) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (124.903294, 66.554477) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (125.069600, 66.434529) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (125.081974, 66.446400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (130.215719, 55.918313) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (130.149600, 55.871802) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (130.943307, 54.965600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (131.077382, 54.965600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (130.962400, 54.846418) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (131.165600, 54.830894) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (146.343226, 81.529851) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (146.448779, 81.686400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (146.405600, 81.428131) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (146.481182, 81.706826) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (152.140878, 65.116449) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (152.137790, 65.095935) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (152.298400, 65.008517) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (153.446583, 76.600239) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (153.597931, 76.606400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (153.560267, 76.857064) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (154.680878, 65.116449) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (154.677790, 65.095935) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (154.838400, 65.008517) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (157.559042, 77.255848) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (157.697617, 77.158370) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (157.712363, 77.442408) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (167.478432, 71.018400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (167.557277, 71.018400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (159.182358, 56.996743) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (158.938403, 56.286400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (158.943228, 81.529868) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (159.048755, 81.686400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (159.094534, 81.433567) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (159.081149, 81.706838) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (160.121600, 55.103203) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (161.203197, 56.286400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (160.959239, 56.996743) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (160.934400, 56.959127) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (169.062763, 69.697600) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (167.532269, 71.157913) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (167.581160, 71.141888) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (167.566471, 69.862700) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (169.250746, 71.526400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (167.538400, 71.160105) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (167.538400, 69.879204) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (167.645861, 70.963405) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (169.062400, 69.707199) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (169.316400, 71.415201) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (169.074354, 69.653412) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (169.265600, 71.516799) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (170.722741, 70.684764) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (170.680732, 76.098400) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (170.691792, 76.095822) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (170.788065, 76.092688) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (173.314120, 98.011980) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (173.340565, 98.033064) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (173.322610, 98.017268) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (174.029991, 97.443813) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (174.142400, 97.287195) mm net "GND"
+Misalignment Warning
+ The centerlines of two traces on layer mid2 are not connected (174.186533, 97.545870) mm net "GND"
+Misalignment Warning
+ The centerline of a trace (160.070800, 56.819800) mm on layer mid2 is not connected to the center of a via (160.070782, 56.235600) mm
+Misalignment Warning
+ The centerline of a trace (82.441034, 65.365325) mm on layer mid2 is not connected to the center of a via (82.448400, 65.430400) mm
+Misalignment Warning
+ The centerline of a trace (30.362246, 68.667325) mm on layer mid2 is not connected to the center of a via (30.362246, 68.667300) mm
+Misalignment Warning
+ The centerline of a trace (32.902246, 66.127325) mm on layer mid2 is not connected to the center of a via (32.902246, 66.127300) mm
+
+# END LIST

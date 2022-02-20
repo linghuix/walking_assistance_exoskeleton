@@ -1,0 +1,239 @@
+$begin '$base_index$'
+  $begin 'properties'
+    all_levels=000000000000
+    time(year=000000002020, month=000000000001, day=000000000010, hour=000000000000, min=000000000049, sec=000000000029)
+    version=000000000000
+  $end 'properties'
+  $begin '$base_index$'
+    $index$(pos=000000006473, lin=000000000217, lvl=000000000000)
+  $end '$base_index$'
+$end '$base_index$'
+$begin 'SolutionBlock1'
+	ProductName=''
+	CircuitName='2DExtractorDesign1'
+	VersionID=80
+	PostProcess=false
+	LossLess=true
+	NextUniqueID=138
+	MoveBackwards=false
+	$begin 'VariationIDs'
+		Map(V='', ID=20)
+	$end 'VariationIDs'
+	$begin 'LinkedDataList'
+	$end 'LinkedDataList'
+	$begin 'InitialMeshes'
+		M(VID=20, Ver=80, Dir='DV20_V80.imesh/')
+	$end 'InitialMeshes'
+	$begin 'MI'
+		$begin 'SubData'
+			ID=45520
+			MI(VID=20, Ver=80, Dir='DV20_MI45520_V80.sd/')
+		$end 'SubData'
+		$begin 'SubData'
+			ID=45521
+			MI(VID=20, Ver=80, Dir='DV20_MI45521_V80.sd/')
+		$end 'SubData'
+	$end 'MI'
+$end 'SolutionBlock1'
+$begin 'BlockMapName'
+	FileHeader='SolutionBlock1'
+	'SolutionKey(SimSetup=17, Instance=\'\', Solution=-3, VersionID=80)'='SolutionBlock11'
+	'SolutionKey(SimSetup=17, Instance=\'SetupDefinition\', Solution=-1, VersionID=80)'='SolutionBlock10'
+	'SolutionKey(SimSetup=17, Instance=\'SolutionDefinition\', Solution=18, VersionID=80)'='SolutionBlock8'
+	'SolutionKey(SimSetup=17, Instance=\'SolutionDefinition\', Solution=19, VersionID=80)'='SolutionBlock9'
+$end 'BlockMapName'
+$begin 'SolutionBlock10'
+	SimSetupID=17
+	SimSetupName='Setup1'
+	VersionID=80
+	SolveSetupID=0
+	$begin 'CGCurrentPassNum'
+		'CG.CP'(VID=20, Ver=80, P=6)
+	$end 'CGCurrentPassNum'
+	$begin 'CGCurrentMeshes'
+		IDDblMap(108, 1, 109, 2, 114, 3, 116, 4, 118, 5, 120, 6)
+		$begin 'DataMap'
+			VID=20
+			Ver=80
+			'CG.cmesh'(DblID=118, Dir='DV20_S17_V80_CG.cmesh118/')
+			'CG.cmesh'(DblID=120, Dir='DV20_S17_V80_CG.cmesh120/')
+		$end 'DataMap'
+	$end 'CGCurrentMeshes'
+	$begin 'RLCurrentPassNum'
+		'RL.CP'(VID=20, Ver=80, P=6)
+	$end 'RLCurrentPassNum'
+	$begin 'RLCurrentMeshes'
+		IDDblMap(122, 1, 123, 2, 128, 3, 130, 4, 132, 5, 134, 6)
+		$begin 'DataMap'
+			VID=20
+			Ver=80
+			'RL.cmesh'(DblID=132, Dir='DV20_S17_V80_RL.cmesh132/')
+			'RL.cmesh'(DblID=134, Dir='DV20_S17_V80_RL.cmesh134/')
+		$end 'DataMap'
+	$end 'RLCurrentMeshes'
+	$begin 'CapLastPassNumbers'
+		'Cap.LP'(VID=20, Ver=80, P=5)
+	$end 'CapLastPassNumbers'
+	$begin 'IndLastPassNumbers'
+		'Ind.LP'(VID=20, Ver=80, P=5)
+	$end 'IndLastPassNumbers'
+	$begin 'Profiles'
+		PRF(VID=20, Ver=80, File='DV20_S17_V80.profile')
+	$end 'Profiles'
+	$begin 'MI'
+		$begin 'SubData'
+			ID=45520
+			MI(VID=20, Ver=80, Dir='DV20_S17_MI45520_V80.sd/')
+		$end 'SubData'
+		$begin 'SubData'
+			ID=45521
+			MI(VID=20, Ver=80, Dir='DV20_S17_MI45521_V80.sd/')
+		$end 'SubData'
+	$end 'MI'
+	$begin 'MeshGeometryInfo'
+		MGEOM(VID=20, Ver=80, Dir='DV20_S17_V80.meshgeom/')
+	$end 'MeshGeometryInfo'
+$end 'SolutionBlock10'
+$begin 'SolutionBlock11'
+	$begin '45520'
+		ConvSetupName='CGConv'
+		MaxPasses='10'
+		MinPasses='1'
+		ConvTarget='1'
+		ConvTargetConsecPasses='N/A'
+		ConvCurrentConsecPasses='N/A'
+		c(ce='(N/A, 14.098)', p=1, tri=342, te=6.9222e-10, ee=14.0982, tl=0, le=0)
+		c(ce='(7.8695, 2.5956)', p=2, tri=502, te=6.37746e-10, de=7.86948, ee=2.5956, dl=0, tl=0, le=0)
+		c(ce='(5.1726, 1.0074)', p=3, tri=720, te=6.04758e-10, de=5.17259, ee=1.00745, dl=0, tl=0, le=0)
+		c(ce='(2.818, 0.25751)', p=4, tri=1012, te=5.87716e-10, de=2.81799, ee=0.257512, dl=0, tl=0, le=0)
+		c(ce='(0.92993, 0.12071)', p=5, tri=1390, te=5.8225e-10, de=0.929934, ee=0.120708, dl=0, tl=0, le=0)
+	$end '45520'
+	$begin '45521'
+		ConvSetupName='RLConv'
+		MaxPasses='10'
+		MinPasses='1'
+		ConvTarget='1'
+		ConvTargetConsecPasses='N/A'
+		ConvCurrentConsecPasses='N/A'
+		c(ce='(N/A, 16.164)', le=0, tri=342, tl=0, te=3.29157e-08, ee=16.1644, p=1)
+		c(ce='(10.994, 2.8524)', le=0, tri=496, tl=0, te=3.65344e-08, ee=2.85241, dl=0, de=10.9938, p=2)
+		c(ce='(5.1338, 0.68144)', le=0, tri=720, tl=0, te=3.841e-08, ee=0.681439, dl=0, de=5.13379, p=3)
+		c(ce='(1.5418, 0.29347)', le=0, tri=1006, tl=0, te=3.90022e-08, ee=0.29347, dl=0, de=1.54178, p=4)
+		c(ce='(0.69318, 0.10031)', le=0, tri=1380, tl=0, te=3.92726e-08, ee=0.100305, dl=0, de=0.693177, p=5)
+	$end '45521'
+$end 'SolutionBlock11'
+$begin 'SolutionBlock8'
+	SolutionName='LastAdaptive'
+	SolutionID=18
+	V=80
+	$begin 'States'
+		F(VID=20, Ver=80)
+	$end 'States'
+	$begin 'Definition'
+		SamplingInterpolation=false
+		Frequencies(1000000000)
+		SolutionType=6
+		CenterFreq=0
+	$end 'Definition'
+	SweepID=-1
+	$begin 'MCAP'
+		$begin 'SubData'
+			ID=0
+			MCAP(VID=20, Ver=80, File='DV20_SOL18_MCAP0_V80.sd')
+		$end 'SubData'
+	$end 'MCAP'
+	$begin 'MIND'
+		$begin 'SubData'
+			ID=0
+			MIND(VID=20, Ver=80, File='DV20_SOL18_MIND0_V80.sd')
+		$end 'SubData'
+	$end 'MIND'
+	$begin 'CGSurfFields'
+		IDDblMap(111, 1000000000)
+		$begin 'DataMap'
+			VID=20
+			Ver=80
+			CGF(DblID=111, Dir='DV20_SOL18_V80_F111_CGF/')
+		$end 'DataMap'
+	$end 'CGSurfFields'
+	$begin 'RLSurfFields'
+		IDDblMap(125, 1000000000)
+		$begin 'DataMap'
+			VID=20
+			Ver=80
+			RLF(DblID=125, Dir='DV20_SOL18_V80_F125_RLF/')
+		$end 'DataMap'
+	$end 'RLSurfFields'
+$end 'SolutionBlock8'
+$begin 'SolutionBlock9'
+	SolutionName='AdaptivePass'
+	SolutionID=19
+	V=80
+	$begin 'States'
+		F(VID=20, Ver=80)
+	$end 'States'
+	$begin 'Definition'
+		SamplingInterpolation=false
+		Frequencies(1000000000)
+		SolutionType=6
+		CenterFreq=0
+	$end 'Definition'
+	SweepID=-1
+	$begin 'MCAP'
+		$begin 'SubData'
+			ID=1
+			MCAP(VID=20, Ver=80, File='DV20_SOL19_MCAP1_V80.sd')
+		$end 'SubData'
+		$begin 'SubData'
+			ID=2
+			MCAP(VID=20, Ver=80, File='DV20_SOL19_MCAP2_V80.sd')
+		$end 'SubData'
+		$begin 'SubData'
+			ID=3
+			MCAP(VID=20, Ver=80, File='DV20_SOL19_MCAP3_V80.sd')
+		$end 'SubData'
+		$begin 'SubData'
+			ID=4
+			MCAP(VID=20, Ver=80, File='DV20_SOL19_MCAP4_V80.sd')
+		$end 'SubData'
+		$begin 'SubData'
+			ID=5
+			MCAP(VID=20, Ver=80, File='DV20_SOL19_MCAP5_V80.sd')
+		$end 'SubData'
+	$end 'MCAP'
+	$begin 'MIND'
+		$begin 'SubData'
+			ID=1
+			MIND(VID=20, Ver=80, File='DV20_SOL19_MIND1_V80.sd')
+		$end 'SubData'
+		$begin 'SubData'
+			ID=2
+			MIND(VID=20, Ver=80, File='DV20_SOL19_MIND2_V80.sd')
+		$end 'SubData'
+		$begin 'SubData'
+			ID=3
+			MIND(VID=20, Ver=80, File='DV20_SOL19_MIND3_V80.sd')
+		$end 'SubData'
+		$begin 'SubData'
+			ID=4
+			MIND(VID=20, Ver=80, File='DV20_SOL19_MIND4_V80.sd')
+		$end 'SubData'
+		$begin 'SubData'
+			ID=5
+			MIND(VID=20, Ver=80, File='DV20_SOL19_MIND5_V80.sd')
+		$end 'SubData'
+	$end 'MIND'
+$end 'SolutionBlock9'
+$begin '$index$'
+	$begin '$index$'
+		BlockMapName(pos=973, lin=28, lvl=0)
+		SolutionBlock11(pos=2886, lin=87, lvl=0)
+		SolutionBlock8(pos=4229, lin=115, lvl=0)
+		SolutionBlock9(pos=5129, lin=158, lvl=0)
+		SolutionBlock10(pos=1445, lin=35, lvl=0)
+		SolutionBlock1(pos=370, lin=1, lvl=0)
+		$base_index$(pos=0, lin=1, lvl=0)
+		$index$(pos=6473, lin=217, lvl=0)
+	$end '$index$'
+$end '$index$'
+                                                                                                                              

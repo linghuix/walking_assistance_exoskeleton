@@ -1,0 +1,38 @@
+
+ ===========================
+ = multifrontal statistics =
+ ===========================
+
+     number of equations                     =             830
+     no. of nonzeroes in lower triangle of a =            4744
+     number of compressed nodes              =              82
+     no. of compressed nonzeroes in l. tri.  =             180
+     amount of workspace currently in use    =           27247
+     max. amt. of workspace used             =         1999996
+     no. of nonzeroes in the factor l        =           15523.
+     number of super nodes                   =              66
+     number of compressed subscripts         =             834
+     size of stack storage                   =            2643
+     maximum order of a front matrix         =              42
+     maximum size of a front matrix          =             903
+     maximum size of a front trapezoid       =             861
+     no. of floating point ops for factor    =      3.6682D+05
+     no. of floating point ops for solve     =      4.3290D+04
+     actual no. of nonzeroes in the factor l =           15523.
+     actual number of compressed subscripts  =             834
+     actual size of stack storage used       =            5724
+     negative pivot monitoring activated
+     number of negative pivots encountered   =              0.
+     factorization panel size                =              42
+     factorization update panel size         =              32
+     solution block size                     =               2
+     number of cores used                    =               2
+     time (cpu & wall) for structure input   =        0.000000        0.001266
+     time (cpu & wall) for ordering          =        0.000000        0.000097
+     time (cpu & wall) for symbolic factor   =        0.000000        0.000051
+     time (cpu & wall) for value input       =        0.000000        0.001017
+     time (cpu & wall) for numeric factor    =        0.015600        0.004350
+     computational rate (mflops) for factor  =       23.513794       84.331755
+     condition number estimate               =      0.0000D+00
+
+     no input or output performed

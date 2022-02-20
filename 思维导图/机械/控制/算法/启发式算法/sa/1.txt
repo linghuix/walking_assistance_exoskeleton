@@ -1,0 +1,13 @@
+SimulatedAnnealing : SimulatedAnnealing.class City.class Tour.class TourManager.class
+	java SimulatedAnnealing City Tour TourManager
+
+SimulatedAnnealing.class : SimulatedAnnealing.java
+	javac SimulatedAnnealing.java
+City.class : City.java
+	javac City.java
+Tour.class : Tour.java
+	javac Tour.java
+TourManager.class:TourManager.java
+	javac TourManager.java
+clean :
+	rm edit Main ACO ant

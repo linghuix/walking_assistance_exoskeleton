@@ -1,0 +1,2173 @@
+! Adams View Adams 2017.2 (built Jul 12 2017)
+! Graphics:  OpenGL
+! Enter a command, '?', or 'help'.
+interface dialog_box display dialog_box_name = .gui.open_existing_model_panel
+interface dialog_box undisplay dialog_box_name = .gui.new_start_session_panel
+variable set variable=.gui.open_existing_model_panel.button_3.dTmpFile str=""
+variable set variable=.gui.open_existing_model_panel.button_3.dTmpFile str="F:\adam\try\try.bin"
+interface field set field=.gui.open_existing_model_panel.field_1 str="F:\adam\try\try.bin"
+if cond=(str_find("F:/adam/try/try.bin", ".cmd"))
+interface container display container_name = .gui.open_existing_model_panel.cmd_import_cont
+interface container undisplay container_name = .gui.open_existing_model_panel.adm_import_cont
+elseif cond=(str_find("F:/adam/try/try.bin", ".adm"))
+interface container display container_name = .gui.open_existing_model_panel.adm_import_cont
+interface container undisplay container_name = .gui.open_existing_model_panel.cmd_import_cont
+elseif cond=(str_find("F:/adam/try/try.bin", ".bin"))
+interface container undisplay container_name = .gui.open_existing_model_panel.adm_import_cont
+interface container undisplay container_name = .gui.open_existing_model_panel.cmd_import_cont
+elseif cond=(str_find("F:/adam/try/try.bin", ".py"))
+interface container undisplay container_name = .gui.open_existing_model_panel.adm_import_cont
+interface container undisplay container_name = .gui.open_existing_model_panel.cmd_import_cont
+end
+var del var=.gui.open_existing_model_panel.button_3.dTmpFile
+if cond=1
+ interface field set field=.gui.open_existing_model_panel.field_2 str="F:/adam/try"
+ interface field execute field=.gui.open_existing_model_panel.field_2
+if cond=(!str_is_space("F:/adam/try"))
+   var set var=.gui.open_existing_model_panel.field_2.temp_dir str="F:/adam/try" 
+   var set var=.gui.open_existing_model_panel.field_2.success int=(CHDIR(temp_dir))
+   var del var=.gui.open_existing_model_panel.field_2.success
+   var del var=.gui.open_existing_model_panel.field_2.temp_dir
+end
+end
+if cond=(STR_LENGTH("F:/adam/try/try.bin") > 0)
+interface dialog execute dialog=.gui.open_existing_model_panel undisp=yes
+if cond=(str_find("F:/adam/try/try.bin", ".cmd"))
+interface container execute container=.gui.open_existing_model_panel.cmd_import_cont undisplay=no
+elseif cond=(str_find("F:/adam/try/try.bin", ".adm"))
+interface container execute container=.gui.open_existing_model_panel.adm_import_cont undisplay=no
+elseif cond=(str_find("F:/adam/try/try.bin", ".bin"))
+file bin read alert=no file="F:/adam/try/try.bin"
+elseif cond=(str_find(, ".py"))
+file python read file=(eval())
+end
+interface dialog undisplay dialog=.gui.open_existing_model_panel
+end
+view zoom auto=on
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! MODIFY View Zoom
+undo begin
+view zoom view=.gui.main.front zoom=0.1751874574
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! MODIFY View Rotate
+undo begin
+view rotate view=.gui.main.front screen=-37.0290107194, 80.4950431051, -51.1004396474
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! MODIFY View Rotate
+undo begin
+view rotate view=.gui.main.front screen=29.1458423969, 26.4667120614, 12.8766915297
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! MODIFY View Zoom
+undo begin
+view zoom view=.gui.main.front zoom=3.2178988327
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! MODIFY View Rotate
+undo begin
+view rotate view=.gui.main.front screen=-94.9111232165, 17.4912309194, 13.9871377946
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! MODIFY View Rotate
+undo begin
+view rotate view=.gui.main.front screen=-5.0459011354, 66.769144188, 6.0340373319
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+! Check changed db now, so that we can suppress the confusing 'continue with read' later
+! Do not do anything before DB_CHANGED() and nothing after file bin read so that DB_CHANGED() is not confused
+if cond=( DB_CHANGED() && db_default(.system_defaults, "model") != (none) )
+   var set var=.mdi.file_menu_tmp_name str="try"
+   if cond=( DB_EXISTS(".mdi.LAST_DATABASE_NAME"))
+      if cond=(!str_is_space(.mdi.LAST_DATABASE_NAME))
+         var set var=.mdi.file_menu_tmp_name str="F:/adam/try/try.bin"
+      end
+   end
+   var set var = .mdi.file_menu_status &
+      int = 2
+   if cond=( .mdi.file_menu_status != 3  && .mdi.file_menu_status != 0)
+      if cond=( .mdi.file_menu_status == 1 )
+         file binary write file = (eval( .mdi.file_menu_tmp_name ))
+      end
+   end
+else
+   var set var=.mdi.file_menu_status int=-1
+end
+if cond=( .mdi.file_menu_status != 3  && .mdi.file_menu_status != 0)
+   file bin read alert=no file=?
+end
+! Check changed db now, so that we can suppress the confusing 'continue with read' later
+! Do not do anything before DB_CHANGED() and nothing after file bin read so that DB_CHANGED() is not confused
+if cond=( DB_CHANGED() && db_default(.system_defaults, "model") != (none) )
+   var set var=.mdi.file_menu_tmp_name str="try"
+   if cond=( DB_EXISTS(".mdi.LAST_DATABASE_NAME"))
+      if cond=(!str_is_space(.mdi.LAST_DATABASE_NAME))
+         var set var=.mdi.file_menu_tmp_name str="F:/adam/try/try.bin"
+      end
+   end
+   var set var = .mdi.file_menu_status &
+      int = 2
+   if cond=( .mdi.file_menu_status != 3  && .mdi.file_menu_status != 0)
+      if cond=( .mdi.file_menu_status == 1 )
+         file binary write file = (eval( .mdi.file_menu_tmp_name ))
+      end
+   end
+else
+   var set var=.mdi.file_menu_status int=-1
+end
+if cond=( .mdi.file_menu_status != 3  && .mdi.file_menu_status != 0)
+   file bin read alert=no file=?
+end
+! ERROR:  Unable to delete .try.pos_y because 8 objects depend upon it.  
+! You must first delete the following objects:
+!  .try.Controls_Plant_1.input_channels, .try.Controls_Plant_1.ctrl_pinput, .try.Controls_Plant_2.output_channels,  
+! .try.Controls_Plant_2.ctrl_poutput, .try.Controls_Plant_3.output_channels, .try.Controls_Plant_3.ctrl_poutput,  
+! .try.Controls_Plant_4.output_channels, .try.Controls_Plant_4.ctrl_poutput 
+! ERROR:  Unable to delete .try.pos_z because 8 objects depend upon it.  
+! You must first delete the following objects:
+!  .try.Controls_Plant_1.output_channels, .try.Controls_Plant_1.ctrl_poutput, .try.Controls_Plant_2.output_channels,  
+! .try.Controls_Plant_2.ctrl_poutput, .try.Controls_Plant_3.output_channels, .try.Controls_Plant_3.ctrl_poutput,  
+! .try.Controls_Plant_4.output_channels, .try.Controls_Plant_4.ctrl_poutput 
+! ERROR:  Unable to delete .try.PART_2 because 2 objects depend upon it.  
+! You must first delete the following objects:
+!  .try.pos_y, .try.pos_z 
+interface dialog undisplay dialog=.gui.msg_box
+interface dialog undisplay dialog=.gui.msg_box
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! MODIFY View Zoom
+undo begin
+view zoom view=.gui.main.front zoom=1.5836575875
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+view zoom auto=on
+view manage orient view=front up_axis=(.MDI.up_axis) forward_axis=(.MDI.forward_axis)
+var set var=.MDI.PRIM_MODE   index=1 int=(on)
+var set var=.MDI.PRIM_VALUES index=1 str="(40.0cm)"
+interface mode repeat=single mode=link
+var set var=.MDI.PRIM_MODE   index=2 int=(on)
+var set var=.MDI.PRIM_VALUES index=2 str="(4.0cm)"
+interface mode repeat=single mode=link
+var set var=.MDI.PRIM_MODE   index=3 int=(on)
+var set var=.MDI.PRIM_VALUES index=3 str="(2.0cm)"
+interface mode repeat=single mode=link
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! CREATE LINK
+undo begin
+part create rigid_body name_and_position part_name=.try.PART_2 adams_id=2
+part modify rigid_body mass_properties part_name=.try.PART_2 material=.materials.steel
+part attributes part_name=.try.PART_2 color=RED name_vis=off
+marker create marker=.try.PART_2.MARKER_1 &
+    adams_id=1 &
+    location=0.0, 0.0, 0.0 &
+    orientation=0.0, 0.0, 0.0
+marker create marker=.try.PART_2.MARKER_2 &
+    adams_id=2 &
+    location=(LOC_RELATIVE_TO({(40.0cm),0.0,0.0}, .try.PART_2.MARKER_1)) &
+    orientation=0.0, 0.0, 0.0
+geometry create shape link &
+    link_name=.try.PART_2.LINK_1 &
+    width=(4.0cm) &
+    depth=(2.0cm) &
+    i_marker=.try.PART_2.MARKER_1 &
+    j_marker=.try.PART_2.MARKER_2
+group modify group=SELECT_LIST object=.try.PART_2
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! MODIFY View Zoom
+undo begin
+view zoom view=.gui.main.front zoom=0.4034536892
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! MODIFY View Zoom
+undo begin
+view zoom view=.gui.main.front zoom=1.0778210117
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! MODIFY View Translate
+undo begin
+view center view=.gui.main.front object=278.0881512893, 2.3566792482, 0.0
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! MODIFY View Zoom
+undo begin
+view zoom view=.gui.main.front zoom=1.5058365759
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! CREATE REVOLUTE JOINT
+undo begin
+marker create marker=.try.PART_2.MARKER_3 &
+    adams_id=3 &
+    location=0.0, 0.0, 10.0 &
+    orientation=0.0, 0.0, 0.0
+marker create marker=.try.ground.MARKER_4 &
+    adams_id=4 &
+    location=0.0, 0.0, 10.0 &
+    orientation=0.0, 0.0, 0.0
+constraint create joint Revolute &
+    joint_name=.try.JOINT_1 &
+    adams_id=1 &
+    i_marker_name=.try.PART_2.MARKER_3 &
+    j_marker_name=.try.ground.MARKER_4 
+constraint attribute constraint_name=.try.JOINT_1 name_vis=off
+group modify group=SELECT_LIST object=.try.JOINT_1
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group empty group=SELECT_LIST
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+if cond=("" == "interactive")
+   int cont undisp cont=c_scripted
+   int cont disp cont=c_interactive
+else
+   int cont disp cont=c_scripted
+   int cont undisp cont=c_interactive
+end
+if cond=((.gui.sim_int_panel.c_interactive.displayed == 1)) 
+if cond=((.gui.sim_int_panel.c_interactive.duration.displayed == 1)   && (eval(""))==""   ) 
+  mdi gui_utl_alert_box_1 type = "Warning" text = "Enter Duration."
+return
+end
+if cond=( (.gui.sim_int_panel.c_interactive.end_time.displayed == 1) &&(eval("5.0"))==""   ) 
+  mdi gui_utl_alert_box_1 type = "Warning" text = "Enter End Time."
+return
+end
+if cond=( (.gui.sim_int_panel.c_interactive.step_size.displayed == 1)    && (eval(""))==""   ) 
+  mdi gui_utl_alert_box_1 type = "Warning" text = "Enter Step Size."
+return
+end
+if cond=( (.gui.sim_int_panel.c_interactive.number_of_steps.displayed == 1)   && (eval("50"))==""   ) 
+  mdi gui_utl_alert_box_1 type = "Warning" text = "Enter Steps."
+return
+end
+end
+var set var = .mdi.errno int=0
+if cond=("Interactive" == "interactive")
+   if cond=0
+      simulation single reset
+   end
+   if cond=("End Time" == "Forever")
+      simulation single trans &
+         type             = auto_select   &
+         initial_static   = no    &
+         forever          = true               &
+         
+   else
+      simulation single trans &
+         type             = auto_select   &
+         initial_static   = no    &
+                  &
+         end_time        = 5.0         &
+                 &
+         number_of_steps = 50
+! VERIFY MODEL: .try
+! 
+!    1 Gruebler Count (approximate degrees of freedom)
+!    1 Moving Parts (not including ground)
+!    1 Revolute Joints
+! 
+!    1 Degrees of Freedom for .try
+! 
+! There are no redundant constraint equations.
+! 
+! 
+! Model verified successfully
+      end
+else
+   simulation single scripted &
+      sim_script_name =  &
+      reset_before_and_after = 
+end
+mdi gui_utl_check_sim alert_done=no alert_stop=no
+var set var = .mdi.errno int=0   ! in case a simulation is running
+if cond=((.gui.sim_int_panel.c_interactive.displayed == 1)) 
+if cond=((.gui.sim_int_panel.c_interactive.duration.displayed == 1)   && (eval(""))==""   ) 
+  mdi gui_utl_alert_box_1 type = "Warning" text = "Enter Duration."
+return
+end
+if cond=( (.gui.sim_int_panel.c_interactive.end_time.displayed == 1) &&(eval("2"))==""   ) 
+  mdi gui_utl_alert_box_1 type = "Warning" text = "Enter End Time."
+return
+end
+if cond=( (.gui.sim_int_panel.c_interactive.step_size.displayed == 1)    && (eval(""))==""   ) 
+  mdi gui_utl_alert_box_1 type = "Warning" text = "Enter Step Size."
+return
+end
+if cond=( (.gui.sim_int_panel.c_interactive.number_of_steps.displayed == 1)   && (eval("100"))==""   ) 
+  mdi gui_utl_alert_box_1 type = "Warning" text = "Enter Steps."
+return
+end
+end
+var set var = .mdi.errno int=0
+if cond=("Interactive" == "interactive")
+   if cond=1
+      simulation single reset
+   end
+   if cond=("End Time" == "Forever")
+      simulation single trans &
+         type             = auto_select   &
+         initial_static   = no    &
+         forever          = true               &
+         
+   else
+      simulation single trans &
+         type             = auto_select   &
+         initial_static   = no    &
+                  &
+         end_time        = 2         &
+                 &
+         number_of_steps = 100
+! VERIFY MODEL: .try
+! 
+!    1 Gruebler Count (approximate degrees of freedom)
+!    1 Moving Parts (not including ground)
+!    1 Revolute Joints
+! 
+!    1 Degrees of Freedom for .try
+! 
+! There are no redundant constraint equations.
+! 
+! 
+! Model verified successfully
+      end
+else
+   simulation single scripted &
+      sim_script_name =  &
+      reset_before_and_after = 
+end
+mdi gui_utl_check_sim alert_done=no alert_stop=no
+var set var = .mdi.errno int=0   ! in case a simulation is running
+interface dialog undisplay dialog=.gui.joint_cremod
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! MODIFY View Zoom
+undo begin
+view zoom view=.gui.main.front zoom=1.0778210117
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+int dia disp dia=gravity_panel
+if cond = (!1)
+   int label undis label=.gui.gravity_panel.x_label, .gui.gravity_panel.y_label, .gui.gravity_panel.z_label
+   int field undis field=.gui.gravity_panel.x, .gui.gravity_panel.y, .gui.gravity_panel.z
+   int push mod push=.gui.gravity_panel.posx enabled=no
+   int push mod push=.gui.gravity_panel.posy enabled=no
+   int push mod push=.gui.gravity_panel.posz enabled=no
+   int push mod push=.gui.gravity_panel.negx enabled=no
+   int push mod push=.gui.gravity_panel.negy enabled=no
+   int push mod push=.gui.gravity_panel.negz enabled=no
+   int label mod label=.gui.gravity_panel.def_set_label enabled=no
+   int label mod label=.gui.gravity_panel.def_set_label_2 enabled=no
+else
+   int label dis label=.gui.gravity_panel.x_label, .gui.gravity_panel.y_label, .gui.gravity_panel.z_label
+   int field dis field=.gui.gravity_panel.x, .gui.gravity_panel.y, .gui.gravity_panel.z
+   int push mod push=.gui.gravity_panel.posx enabled=yes
+   int push mod push=.gui.gravity_panel.posy enabled=yes
+   int push mod push=.gui.gravity_panel.posz enabled=yes
+   int push mod push=.gui.gravity_panel.negx enabled=yes
+   int push mod push=.gui.gravity_panel.negy enabled=yes
+   int push mod push=.gui.gravity_panel.negz enabled=yes
+   int label mod label=.gui.gravity_panel.def_set_label enabled=yes
+   int label mod label=.gui.gravity_panel.def_set_label_2 enabled=yes
+end
+int field set field=.gui.gravity_panel.y str="-9806.65" 
+int field set field=.gui.gravity_panel.x str="0"
+int field set field=.gui.gravity_panel.z str="0"
+interface dialog execute dialog=.gui.gravity_panel undisp=yes
+if cond=1
+   force modify body gravitational gravity = .try.gravity &
+      x_comp = 0 &
+      y_comp = -9806.65 &
+      z_comp = 0
+     force attrib force=.try.gravity visibility=no_opinion
+else
+   force modify body gravitational gravity = (eval( .gui.gravity_panel.gravity_obj)) &
+      x_comp = 0 &
+      y_comp = 0 &
+      z_comp = 0
+     force attrib force=(eval( .gui.gravity_panel.gravity_obj)) visibility=off
+end
+if cond=((.gui.sim_int_panel.c_interactive.displayed == 1)) 
+if cond=((.gui.sim_int_panel.c_interactive.duration.displayed == 1)   && (eval(""))==""   ) 
+  mdi gui_utl_alert_box_1 type = "Warning" text = "Enter Duration."
+return
+end
+if cond=( (.gui.sim_int_panel.c_interactive.end_time.displayed == 1) &&(eval("2"))==""   ) 
+  mdi gui_utl_alert_box_1 type = "Warning" text = "Enter End Time."
+return
+end
+if cond=( (.gui.sim_int_panel.c_interactive.step_size.displayed == 1)    && (eval(""))==""   ) 
+  mdi gui_utl_alert_box_1 type = "Warning" text = "Enter Step Size."
+return
+end
+if cond=( (.gui.sim_int_panel.c_interactive.number_of_steps.displayed == 1)   && (eval("100"))==""   ) 
+  mdi gui_utl_alert_box_1 type = "Warning" text = "Enter Steps."
+return
+end
+end
+var set var = .mdi.errno int=0
+if cond=("Interactive" == "interactive")
+   if cond=1
+      simulation single reset
+   end
+   if cond=("End Time" == "Forever")
+      simulation single trans &
+         type             = auto_select   &
+         initial_static   = no    &
+         forever          = true               &
+         
+   else
+      simulation single trans &
+         type             = auto_select   &
+         initial_static   = no    &
+                  &
+         end_time        = 2         &
+                 &
+         number_of_steps = 100
+! VERIFY MODEL: .try
+! 
+!    1 Gruebler Count (approximate degrees of freedom)
+!    1 Moving Parts (not including ground)
+!    1 Revolute Joints
+! 
+!    1 Degrees of Freedom for .try
+! 
+! There are no redundant constraint equations.
+! 
+! 
+! Model verified successfully
+      end
+else
+   simulation single scripted &
+      sim_script_name =  &
+      reset_before_and_after = 
+end
+mdi gui_utl_check_sim alert_done=no alert_stop=no
+var set var = .mdi.errno int=0   ! in case a simulation is running
+interface dialog undisplay dialog=.gui.sim_int_panel
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! MODIFY View Zoom
+undo begin
+view zoom view=.gui.main.front zoom=0.4034536892
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+if cond=("" == "interactive")
+   int cont undisp cont=c_scripted
+   int cont disp cont=c_interactive
+else
+   int cont disp cont=c_scripted
+   int cont undisp cont=c_interactive
+end
+simulation single replay
+var set var = .mdi.errno int=0   ! in case a simulation is running
+simulation single replay
+var set var = .mdi.errno int=0   ! in case a simulation is running
+interface dialog undisplay dialog =.gui.sim_int_panel 
+interface plot window open
+undo flush
+undo begin suppress=yes
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Element_Force,  Mag_component)" legend=".JOINT_1.Element_Force.Mag"  d_units = "force" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Element_Torque,  Mag_component)" legend=".JOINT_1.Element_Torque.Mag"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Element_Torque,  Z_component)" legend=".JOINT_1.Element_Torque.Z"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Element_Force,  Z_component)" legend=".JOINT_1.Element_Force.Z"  d_units = "force" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Element_Force,  Y_component)" legend=".JOINT_1.Element_Force.Y"  d_units = "force" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Element_Force,  X_component)" legend=".JOINT_1.Element_Force.X"  d_units = "force" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Element_Force,  Y_component)" legend=".JOINT_1.Element_Force.Y"  d_units = "force" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Element_Force,  X_component)" legend=".JOINT_1.Element_Force.X"  d_units = "force" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Element_Force,  Y_component)" legend=".JOINT_1.Element_Force.Y"  d_units = "force" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Element_Force,  X_component)" legend=".JOINT_1.Element_Force.X"  d_units = "force" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Element_Force,  Y_component)" legend=".JOINT_1.Element_Force.Y"  d_units = "force" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Element_Force,  Z_component)" legend=".JOINT_1.Element_Force.Z"  d_units = "force" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Element_Force,  X_component)" legend=".JOINT_1.Element_Force.X"  d_units = "force" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Element_Force,  Y_component)" legend=".JOINT_1.Element_Force.Y"  d_units = "force" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Element_Torque,  Y_component)" legend=".JOINT_1.Element_Torque.Y"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Element_Torque,  X_component)" legend=".JOINT_1.Element_Torque.X"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Element_Torque,  Y_component)" legend=".JOINT_1.Element_Torque.Y"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Element_Torque,  Z_component)" legend=".JOINT_1.Element_Torque.Z"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Element_Torque,  Y_component)" legend=".JOINT_1.Element_Torque.Y"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Element_Force,  Y_component)" legend=".JOINT_1.Element_Force.Y"  d_units = "force" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Element_Torque,  Y_component)" legend=".JOINT_1.Element_Torque.Y"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+undo end
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_2 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Angular_Velocity,  Y_component)" legend=".JOINT_1.Angular_Velocity.Y"  d_units = "angular_velocity" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_3 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Angular_Velocity,  Z_component)" legend=".JOINT_1.Angular_Velocity.Z"  d_units = "angular_velocity" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+variable set variable=.gui.ppt_main.ppt_tbar1.plotting_cont.tracking.plot object=(db_default(.system_defaults, "plot"))
+!  If default plot is scatter plot then give error and set mode to select
+if cond=(user_string(.gui.ppt_main.ppt_tbar1.plotting_cont.tracking.plot // ".type") == "Complex Scatter")
+  interface mode repeat=multiple mode=plot_select
+  mdi gui_utl_alert_box_1 type="Error" text="Plot statistics invalid for scatter plots.  Mode has been set to select mode."
+else
+  interface mode repeat=toggle mode=plot_cursor_track
+end
+variable delete var=.gui.ppt_main.ppt_tbar1.plotting_cont.tracking.*
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_2
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+variable set variable=.gui.ppt_main.ppt_tbar1.plotting_cont.tracking.plot object=(db_default(.system_defaults, "plot"))
+!  If default plot is scatter plot then give error and set mode to select
+if cond=(user_string(.gui.ppt_main.ppt_tbar1.plotting_cont.tracking.plot // ".type") == "Complex Scatter")
+  interface mode repeat=multiple mode=plot_select
+  mdi gui_utl_alert_box_1 type="Error" text="Plot statistics invalid for scatter plots.  Mode has been set to select mode."
+else
+  interface mode repeat=toggle mode=plot_cursor_track
+end
+variable delete var=.gui.ppt_main.ppt_tbar1.plotting_cont.tracking.*
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_2
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+group modify group=SELECT_LIST obj=.plot_1.curve_2 expand_groups=no
+mdi delete_macro
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group modify group=SELECT_LIST object=.plot_1.curve_3
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_2 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Angular_Acceleration,  Z_component)" legend=".JOINT_1.Angular_Acceleration.Z"  d_units = "angular_acceleration" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_2
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_4 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Element_Torque,  Z_component)" legend=".JOINT_1.Element_Torque.Z"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_4
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+group modify group=SELECT_LIST obj=.plot_1.curve_4 expand_groups=no
+mdi delete_macro
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_4 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Angular_Velocity,  Y_component)" legend=".JOINT_1.Angular_Velocity.Y"  d_units = "angular_velocity" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_4
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+group modify group=SELECT_LIST obj=.plot_1.curve_4 expand_groups=no
+mdi delete_macro
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_4 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Element_Torque,  Y_component)" legend=".JOINT_1.Element_Torque.Y"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_4
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+group modify group=SELECT_LIST obj=.plot_1.curve_4 expand_groups=no
+mdi delete_macro
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_4 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Element_Torque,  Z_component)" legend=".JOINT_1.Element_Torque.Z"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_4
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+group modify group=SELECT_LIST obj=.plot_1.curve_4 expand_groups=no
+mdi delete_macro
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_4 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.JOINT_1, 0, 0, Angular_Acceleration,  Z_component)" legend=".JOINT_1.Angular_Acceleration.Z"  d_units = "angular_acceleration" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_4
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+group modify group=SELECT_LIST obj=.plot_1.curve_4 expand_groups=no
+mdi delete_macro
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group modify group=SELECT_LIST object=.plot_1.curve_2
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_4 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_3, 0, 0, Total_Torque_On_Point,  Y_component)" legend=".MARKER_3.Total_Torque_On_Point.Y"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group modify group=SELECT_LIST object=.plot_1.curve_4
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+group modify group=SELECT_LIST obj=.plot_1.curve_4 expand_groups=no
+mdi delete_macro
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_4 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_3, 0, 0, Total_Torque_On_Point,  Z_component)" legend=".MARKER_3.Total_Torque_On_Point.Z"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_4
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+group modify group=SELECT_LIST obj=.plot_1.curve_4 expand_groups=no
+mdi delete_macro
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_1
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+group modify group=SELECT_LIST obj=.plot_1.curve_1 expand_groups=no
+mdi delete_macro
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_2
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+group modify group=SELECT_LIST obj=.plot_1 expand_groups=no
+mdi delete_macro
+undo begin suppress=yes
+xy_plot template create plot_name=plot_1 view=.gui.ppt_main.sash1.sash2.gfx.page_1.view_1 auto_title=yes auto_subtitle=yes auto_date=yes auto_analysis_name=yes
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_3, 0, 0, Total_Force_On_Point,  Y_component)" legend=".MARKER_3.Total_Force_On_Point.Y"  d_units = "force" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_2 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_3, 0, 0, Total_Force_On_Point,  X_component)" legend=".MARKER_3.Total_Force_On_Point.X"  d_units = "force" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_3 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.cm, 0, 0, Translational_Acceleration,  X_component)" legend=".cm.Translational_Acceleration.X"  d_units = "acceleration" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_4 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.cm, 0, 0, Translational_Acceleration,  Y_component)" legend=".cm.Translational_Acceleration.Y"  d_units = "acceleration" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_5 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_3, 0, 0, Total_Force_At_Location,  Y_component)" legend=".MARKER_3.Total_Force_At_Location.Y"  d_units = "force" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group modify group=SELECT_LIST object=.plot_1.curve_5
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+group modify group=SELECT_LIST obj=.plot_1.curve_5 expand_groups=no
+mdi delete_macro
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_5 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_3, 0, 0, Total_Force_At_Location,  X_component)" legend=".MARKER_3.Total_Force_At_Location.X"  d_units = "force" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+group modify group=SELECT_LIST obj=.plot_1.curve_5 expand_groups=no
+mdi delete_macro
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+view activate view=.gui.main.front
+group empty group=SELECT_LIST
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_5 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.cm, 0, 0, Angular_Acceleration,  Z_component)" legend=".cm.Angular_Acceleration.Z"  d_units = "angular_acceleration" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_4
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group modify group=SELECT_LIST object=.plot_1.curve_1
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_2
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group modify group=SELECT_LIST object=.plot_1.curve_3
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group empty group=SELECT_LIST
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group modify group=SELECT_LIST object=.plot_1.curve_4
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_1
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group empty group=SELECT_LIST
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_2
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_3
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group modify group=SELECT_LIST object=.plot_1.curve_2
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_3
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+view activate view=.gui.main.front
+group modify group=SELECT_LIST objects=.try.PART_2, .try.PART_2.cm
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+undo begin suppress=yes
+interface page create set_contents = yes page_name=page_2 layout= page1 display = no
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Total_Force_On_Point,  Mag_component)" legend=".MARKER_2.Total_Force_On_Point.Mag"  d_units = "force" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window page_display page=.gui.ppt_main.sash1.sash2.gfx.page_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Total_Torque_On_Point,  Mag_component)" legend=".MARKER_2.Total_Torque_On_Point.Mag"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Total_Force_At_Location,  Mag_component)" legend=".MARKER_2.Total_Force_At_Location.Mag"  d_units = "force" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Total_Torque_At_Location,  Mag_component)" legend=".MARKER_2.Total_Torque_At_Location.Mag"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Translational_Displacement,  Mag_component)" legend=".MARKER_2.Translational_Displacement.Mag"  d_units = "length" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Translational_Velocity,  Mag_component)" legend=".MARKER_2.Translational_Velocity.Mag"  d_units = "velocity" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Translational_Acceleration,  Mag_component)" legend=".MARKER_2.Translational_Acceleration.Mag"  d_units = "acceleration" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Angular_Velocity,  Mag_component)" legend=".MARKER_2.Angular_Velocity.Mag"  d_units = "angular_velocity" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Angular_Velocity,  Mag_component)" legend=".MARKER_2.Angular_Velocity.Mag"  d_units = "angular_velocity" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Angular_Acceleration,  Mag_component)" legend=".MARKER_2.Angular_Acceleration.Mag"  d_units = "angular_acceleration" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Translational_Velocity,  Mag_component)" legend=".MARKER_2.Translational_Velocity.Mag"  d_units = "velocity" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Total_Torque_On_Point,  Mag_component)" legend=".MARKER_2.Total_Torque_On_Point.Mag"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Total_Torque_On_Point,  Mag_component)" legend=".MARKER_2.Total_Torque_On_Point.Mag"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Total_Force_On_Point,  Mag_component)" legend=".MARKER_2.Total_Force_On_Point.Mag"  d_units = "force" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Total_Torque_On_Point,  Mag_component)" legend=".MARKER_2.Total_Torque_On_Point.Mag"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Total_Force_At_Location,  Mag_component)" legend=".MARKER_2.Total_Force_At_Location.Mag"  d_units = "force" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Total_Torque_At_Location,  Mag_component)" legend=".MARKER_2.Total_Torque_At_Location.Mag"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Translational_Displacement,  Mag_component)" legend=".MARKER_2.Translational_Displacement.Mag"  d_units = "length" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Translational_Velocity,  Mag_component)" legend=".MARKER_2.Translational_Velocity.Mag"  d_units = "velocity" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Translational_Displacement,  Mag_component)" legend=".MARKER_2.Translational_Displacement.Mag"  d_units = "length" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Translational_Velocity,  Mag_component)" legend=".MARKER_2.Translational_Velocity.Mag"  d_units = "velocity" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Translational_Displacement,  Mag_component)" legend=".MARKER_2.Translational_Displacement.Mag"  d_units = "length" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_2
+group modify group=SELECT_LIST object=.plot_2
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group empty group=SELECT_LIST
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+interface dialog undisplay dialog=.gui.mar_mod
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Translational_Velocity,  Mag_component)" legend=".MARKER_2.Translational_Velocity.Mag"  d_units = "velocity" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Translational_Displacement,  Mag_component)" legend=".MARKER_2.Translational_Displacement.Mag"  d_units = "length" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Translational_Displacement,  Z_component)" legend=".MARKER_2.Translational_Displacement.Z"  d_units = "length" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Translational_Displacement,  Y_component)" legend=".MARKER_2.Translational_Displacement.Y"  d_units = "length" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Translational_Displacement,  Mag_component)" legend=".MARKER_2.Translational_Displacement.Mag"  d_units = "length" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Translational_Displacement,  Y_component)" legend=".MARKER_2.Translational_Displacement.Y"  d_units = "length" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Translational_Displacement,  X_component)" legend=".MARKER_2.Translational_Displacement.X"  d_units = "length" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Translational_Displacement,  Y_component)" legend=".MARKER_2.Translational_Displacement.Y"  d_units = "length" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Translational_Velocity,  Y_component)" legend=".MARKER_2.Translational_Velocity.Y"  d_units = "velocity" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Translational_Acceleration,  Y_component)" legend=".MARKER_2.Translational_Acceleration.Y"  d_units = "acceleration" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Angular_Velocity,  Y_component)" legend=".MARKER_2.Angular_Velocity.Y"  d_units = "angular_velocity" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_2
+xy_plot template modify plot=.plot_2 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_2.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Angular_Acceleration,  Y_component)" legend=".MARKER_2.Angular_Acceleration.Y"  d_units = "angular_acceleration" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_2
+xy_plot template calculate_axis_limits plot_name=.plot_2
+interface plot window update_toolbar
+undo end
+group modify group=SELECT_LIST objects=.plot_1
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_1
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group empty group=SELECT_LIST
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.cm, 0, 0, Angular_Acceleration,  Y_component)" legend=".cm.Angular_Acceleration.Y"  d_units = "angular_acceleration" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.cm, 0, 0, Angular_Velocity,  Y_component)" legend=".cm.Angular_Velocity.Y"  d_units = "angular_velocity" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.cm, 0, 0, Angular_Acceleration,  Y_component)" legend=".cm.Angular_Acceleration.Y"  d_units = "angular_acceleration" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.cm, 0, 0, Angular_Acceleration,  Z_component)" legend=".cm.Angular_Acceleration.Z"  d_units = "angular_acceleration" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+group modify group=SELECT_LIST objects=.plot_1
+group modify group=SELECT_LIST objects=.gui.ppt_main.sash1.sash2.gfx.page_2
+interface plot window page_display page=.gui.ppt_main.sash1.sash2.gfx.page_2
+group modify group=SELECT_LIST objects=.plot_1.analysis
+group modify group=SELECT_LIST objects=.gui.ppt_main.sash1.sash2.gfx.page_1
+interface plot window page_display page=.gui.ppt_main.sash1.sash2.gfx.page_1
+group modify group=SELECT_LIST objects=.plot_1
+undo back
+undo back
+undo back
+undo back
+undo back
+undo back
+undo back
+undo back
+undo back
+undo back
+undo back
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_6 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.cm, 0, 0, Angular_Acceleration,  Z_component)" legend=".cm.Angular_Acceleration.Z"  d_units = "angular_acceleration" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_6
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+group modify group=SELECT_LIST obj=.plot_1.curve_6 expand_groups=no
+mdi delete_macro
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_5
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+group modify group=SELECT_LIST obj=.plot_1.curve_5 expand_groups=no
+mdi delete_macro
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group modify group=SELECT_LIST object=.plot_1.curve_4
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+variable set variable=.gui.ppt_main.ppt_tbar1.plotting_cont.tracking.plot object=(db_default(.system_defaults, "plot"))
+!  If default plot is scatter plot then give error and set mode to select
+if cond=(user_string(.gui.ppt_main.ppt_tbar1.plotting_cont.tracking.plot // ".type") == "Complex Scatter")
+  interface mode repeat=multiple mode=plot_select
+  mdi gui_utl_alert_box_1 type="Error" text="Plot statistics invalid for scatter plots.  Mode has been set to select mode."
+else
+  interface mode repeat=toggle mode=plot_cursor_track
+end
+variable delete var=.gui.ppt_main.ppt_tbar1.plotting_cont.tracking.*
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_1
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_4
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_3
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group modify group=SELECT_LIST object=.plot_1.curve_2
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_3
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group empty group=SELECT_LIST
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group modify group=SELECT_LIST object=.plot_1.curve_2
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group modify group=SELECT_LIST object=.plot_1.curve_3
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+variable set variable=.gui.ppt_main.ppt_tbar1.plotting_cont.tracking.plot object=(db_default(.system_defaults, "plot"))
+!  If default plot is scatter plot then give error and set mode to select
+if cond=(user_string(.gui.ppt_main.ppt_tbar1.plotting_cont.tracking.plot // ".type") == "Complex Scatter")
+  interface mode repeat=multiple mode=plot_select
+  mdi gui_utl_alert_box_1 type="Error" text="Plot statistics invalid for scatter plots.  Mode has been set to select mode."
+else
+  interface mode repeat=toggle mode=plot_cursor_track
+end
+variable delete var=.gui.ppt_main.ppt_tbar1.plotting_cont.tracking.*
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group modify group=SELECT_LIST object=.plot_1.curve_2
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+view activate view=.gui.main.front
+group empty group=SELECT_LIST
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+view manage modify render=solid
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! MODIFY View Zoom
+undo begin
+view zoom view=.gui.main.front zoom=1.8171206226
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group modify group=SELECT_LIST object=.try.PART_2
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group empty group=SELECT_LIST
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+undo end
+group modify group=SELECT_LIST objects=.gui.ppt_main.sash1.sash2.gfx.page_1
+interface plot window page_display page=.gui.ppt_main.sash1.sash2.gfx.page_1
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+undo end
+undo begin suppress=yes
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_3, 0, 0, Total_Torque_On_Point,  X_component)" legend=".MARKER_3.Total_Torque_On_Point.X"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_2 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.cm, 0, 0, Angular_Acceleration,  X_component)" legend=".cm.Angular_Acceleration.X"  d_units = "angular_acceleration" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_3 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.cm, 0, 0, Total_Torque_At_Location,  X_component)" legend=".cm.Total_Torque_At_Location.X"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_3
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_4 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.cm, 0, 0, Total_Torque_On_Point,  X_component)" legend=".cm.Total_Torque_On_Point.X"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_4
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+undo end
+undo begin suppress=yes
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.cm, 0, 0, Total_Torque_On_Point,  X_component)" legend=".cm.Total_Torque_On_Point.X"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+undo end
+undo begin suppress=yes
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.cm, 0, 0, Total_Torque_At_Location,  X_component)" legend=".cm.Total_Torque_At_Location.X"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+undo end
+undo begin suppress=yes
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.cm, 0, 0, Total_Torque_At_Location,  Y_component)" legend=".cm.Total_Torque_At_Location.Y"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+undo end
+undo begin suppress=yes
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_3, 0, 0, Total_Torque_At_Location,  X_component)" legend=".MARKER_3.Total_Torque_At_Location.X"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_2 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_3, 0, 0, Total_Torque_On_Point,  X_component)" legend=".MARKER_3.Total_Torque_On_Point.X"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot template clear plot=.plot_1
+undo end
+undo begin suppress=yes
+xy_plot template modify plot=.plot_1 auto_title=yes auto_subtitle=no auto_date=yes auto_analysis_name=yes table=no
+xy_plot curve create curve=.plot_1.curve_1 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_3, 0, 0, Total_Torque_At_Location,  X_component)" legend=".MARKER_3.Total_Torque_At_Location.X"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_2 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_3, 0, 0, Angular_Acceleration,  X_component)" legend=".MARKER_3.Angular_Acceleration.X"  d_units = "angular_acceleration" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_2
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+group modify group=SELECT_LIST obj=.plot_1.curve_2 expand_groups=no
+mdi delete_macro
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_2 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.ground.MARKER_4, 0, 0, Angular_Acceleration,  X_component)" legend=".MARKER_4.Angular_Acceleration.X"  d_units = "angular_acceleration" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group empty group=SELECT_LIST
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_2
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+group modify group=SELECT_LIST obj=.plot_1.curve_2 expand_groups=no
+mdi delete_macro
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_2 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.ground.MARKER_4, 0, 0, Total_Torque_At_Location,  X_component)" legend=".MARKER_4.Total_Torque_At_Location.X"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group modify group=SELECT_LIST object=.plot_1.curve_2
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+group modify group=SELECT_LIST obj=.plot_1.curve_2 expand_groups=no
+mdi delete_macro
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_2 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.cm, 0, 0, Angular_Acceleration,  X_component)" legend=".cm.Angular_Acceleration.X"  d_units = "angular_acceleration" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_2
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+group modify group=SELECT_LIST obj=.plot_1.curve_2 expand_groups=no
+mdi delete_macro
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_2 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.cm, 0, 0, Translational_Acceleration,  X_component)" legend=".cm.Translational_Acceleration.X"  d_units = "acceleration" run=.try.Last_Run auto_axis=UNITS
+xy_plots template auto_zoom plot_name=.plot_1
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group modify group=SELECT_LIST object=.plot_1.curve_2
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+group modify group=SELECT_LIST obj=.plot_1.curve_2 expand_groups=no
+mdi delete_macro
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_2 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Total_Torque_At_Location,  X_component)" legend=".MARKER_2.Total_Torque_At_Location.X"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_2
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+group modify group=SELECT_LIST obj=.plot_1.curve_2 expand_groups=no
+mdi delete_macro
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_2 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Total_Torque_At_Location,  Y_component)" legend=".MARKER_2.Total_Torque_At_Location.Y"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_3 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Total_Torque_At_Location,  Z_component)" legend=".MARKER_2.Total_Torque_At_Location.Z"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_4 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Total_Torque_At_Location,  Mag_component)" legend=".MARKER_2.Total_Torque_At_Location.Mag"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_5 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Total_Torque_On_Point,  Mag_component)" legend=".MARKER_2.Total_Torque_On_Point.Mag"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_6 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Total_Torque_On_Point,  X_component)" legend=".MARKER_2.Total_Torque_On_Point.X"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_7 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Total_Torque_On_Point,  Z_component)" legend=".MARKER_2.Total_Torque_On_Point.Z"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+undo begin suppress=yes
+xy_plot curve create curve=.plot_1.curve_8 create_page=no calculate_axis_limits=no dexpression="MEASURE(.try.PART_2.MARKER_2, 0, 0, Total_Torque_On_Point,  Y_component)" legend=".MARKER_2.Total_Torque_On_Point.Y"  d_units = "torque" run=.try.Last_Run auto_axis=UNITS
+xy_plot template calculate_axis_limits plot_name=.plot_1
+interface plot window update_toolbar
+undo end
+! we have to have the right type in the database before we can 
+! impose motions
+if cond=( "Revolute" != user_string( ".try.JOINT_1.type" ) )
+   mdi gui_utl_alert_box_1 &
+      type="info" &
+      text="Modified type not stored yet. Click 'APPLY' and try again!"
+! Invoke a panel for every associated classic motion
+elseif cond=( db_object_count(DB_DEPENDENTS(.try.JOINT_1, "motion"))  >  0 )
+   for var=.gui.joint_cremod.add_motions_button.motion_pnt obj=(eval( DB_DEPENDENTS(.try.JOINT_1, "motion" ) ))
+      int com com="constraint mod motion" init=(eval( .gui.joint_cremod.add_motions_button.motion_pnt.object_value ))
+   end
+! Search for 'general motions' dependent on this joint. If there is none, create
+! one. If there is one, offer it for modification
+else
+   var set var=.gui.joint_cremod.add_motions_button.general_motion_cnt int=0
+   var set var=.gui.joint_cremod.add_motions_button.general_motion_pnt obj=(none)
+   for var=.gui.joint_cremod.add_motions_button.variable_pnt obj=(eval(DB_DEPENDENTS(.try.JOINT_1, "variable" ) ))
+      if cond=( db_type( .gui.joint_cremod.add_motions_button.variable_pnt.object_value.parent ) == "general_motion" )
+         var set var=.gui.joint_cremod.add_motions_button.general_motion_cnt &
+            int=(eval( .gui.joint_cremod.add_motions_button.general_motion_cnt + 1 ))
+         var set var=.gui.joint_cremod.add_motions_button.general_motion_pnt &
+            ind=(eval( .gui.joint_cremod.add_motions_button.general_motion_cnt )) &
+            obj=(eval( .gui.joint_cremod.add_motions_button.variable_pnt.object_value.parent ))
+      end
+   end
+   if cond=( .gui.joint_cremod.add_motions_button.general_motion_cnt == 0 )
+      mdi default_instance create general_motion &
+         model=.try  &
+         name="general_motion_1"  &
+         i_marker=MARKER_3  &
+         j_marker=MARKER_4  &
+         constraint=.try.JOINT_1  &
+         show_dbox=yes
+   elseif cond=( .gui.joint_cremod.add_motions_button.general_motion_cnt == 1 )
+      int dia dis dia=.gui.general_motion_cremod &
+         par=(eval( .gui.joint_cremod.add_motions_button.general_motion_pnt.object_value ))
+   else
+      mdi gui_utl_alert_box_1 &
+         type="Error" &
+         text="More than one general_motion associated with ."
+      end
+end
+var del var=.gui.joint_cremod.add_motions_button.general_motion_cnt, .gui.joint_cremod.add_motions_button.general_motion_pnt
+interface dialog undisplay dialog=.gui.general_motion_cremod
+! we have to have the right type in the database before we can 
+! add friction
+if cond=( "Revolute" != user_string( ".try.JOINT_1.type" ) )
+   mdi gui_utl_alert_box_1 &
+      type="info" &
+      text="Modified type not stored yet. Click 'APPLY' and try again!"
+else
+   int dialog display dialog=.gui.joint_ics_panel par=".try.JOINT_1"
+end
+interface dialog undisplay dialog=.gui.joint_ics_panel
+interface dialog undisplay dialog=.gui.joint_cremod
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+view activate view=.gui.main.front
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group modify group=SELECT_LIST object=.try.general_motion_1
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group empty group=SELECT_LIST
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+if cond=("" == "interactive")
+   int cont undisp cont=c_scripted
+   int cont disp cont=c_interactive
+else
+   int cont disp cont=c_scripted
+   int cont undisp cont=c_interactive
+end
+if cond=((.gui.sim_int_panel.c_interactive.displayed == 1)) 
+if cond=((.gui.sim_int_panel.c_interactive.duration.displayed == 1)   && (eval(""))==""   ) 
+  mdi gui_utl_alert_box_1 type = "Warning" text = "Enter Duration."
+return
+end
+if cond=( (.gui.sim_int_panel.c_interactive.end_time.displayed == 1) &&(eval("5"))==""   ) 
+  mdi gui_utl_alert_box_1 type = "Warning" text = "Enter End Time."
+return
+end
+if cond=( (.gui.sim_int_panel.c_interactive.step_size.displayed == 1)    && (eval(""))==""   ) 
+  mdi gui_utl_alert_box_1 type = "Warning" text = "Enter Step Size."
+return
+end
+if cond=( (.gui.sim_int_panel.c_interactive.number_of_steps.displayed == 1)   && (eval("100"))==""   ) 
+  mdi gui_utl_alert_box_1 type = "Warning" text = "Enter Steps."
+return
+end
+end
+var set var = .mdi.errno int=0
+if cond=("Interactive" == "interactive")
+   if cond=1
+      simulation single reset
+   end
+   if cond=("End Time" == "Forever")
+      simulation single trans &
+         type             = auto_select   &
+         initial_static   = no    &
+         forever          = true               &
+         
+   else
+      simulation single trans &
+         type             = auto_select   &
+         initial_static   = no    &
+                  &
+         end_time        = 5         &
+                 &
+         number_of_steps = 100
+! VERIFY MODEL: .try
+! 
+!    1 Gruebler Count (approximate degrees of freedom)
+!    1 Moving Parts (not including ground)
+!    1 Revolute Joints
+! 
+!    1 Degrees of Freedom for .try
+! 
+! There are no redundant constraint equations.
+! 
+! 
+! Model verified successfully
+      end
+else
+   simulation single scripted &
+      sim_script_name =  &
+      reset_before_and_after = 
+end
+mdi gui_utl_check_sim alert_done=no alert_stop=no
+var set var = .mdi.errno int=0   ! in case a simulation is running
+if cond=((.gui.sim_int_panel.c_interactive.displayed == 1)) 
+if cond=((.gui.sim_int_panel.c_interactive.duration.displayed == 1)   && (eval(""))==""   ) 
+  mdi gui_utl_alert_box_1 type = "Warning" text = "Enter Duration."
+return
+end
+if cond=( (.gui.sim_int_panel.c_interactive.end_time.displayed == 1) &&(eval("5"))==""   ) 
+  mdi gui_utl_alert_box_1 type = "Warning" text = "Enter End Time."
+return
+end
+if cond=( (.gui.sim_int_panel.c_interactive.step_size.displayed == 1)    && (eval(""))==""   ) 
+  mdi gui_utl_alert_box_1 type = "Warning" text = "Enter Step Size."
+return
+end
+if cond=( (.gui.sim_int_panel.c_interactive.number_of_steps.displayed == 1)   && (eval("100"))==""   ) 
+  mdi gui_utl_alert_box_1 type = "Warning" text = "Enter Steps."
+return
+end
+end
+var set var = .mdi.errno int=0
+if cond=("Interactive" == "interactive")
+   if cond=1
+      simulation single reset
+   end
+   if cond=("End Time" == "Forever")
+      simulation single trans &
+         type             = auto_select   &
+         initial_static   = no    &
+         forever          = true               &
+         
+   else
+      simulation single trans &
+         type             = auto_select   &
+         initial_static   = no    &
+                  &
+         end_time        = 5         &
+                 &
+         number_of_steps = 100
+! VERIFY MODEL: .try
+! 
+!    1 Gruebler Count (approximate degrees of freedom)
+!    1 Moving Parts (not including ground)
+!    1 Revolute Joints
+! 
+!    1 Degrees of Freedom for .try
+! 
+! There are no redundant constraint equations.
+! 
+! 
+! Model verified successfully
+      end
+else
+   simulation single scripted &
+      sim_script_name =  &
+      reset_before_and_after = 
+end
+mdi gui_utl_check_sim alert_done=no alert_stop=no
+var set var = .mdi.errno int=0   ! in case a simulation is running
+abort stop_all_commands=no
+simulation single reset
+simulation single replay
+var set var = .mdi.errno int=0   ! in case a simulation is running
+simulation single replay
+var set var = .mdi.errno int=0   ! in case a simulation is running
+interface dialog undisplay dialog=.gui.sim_int_panel
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+interface dialog undisplay dialog=.gui.precision_move
+int dia disp dia=mea_object_panel par=(eval(select_object(.try.general_motion_1,"*","motion")))
+interface dialog undisplay dialog=.gui.general_motion_cremod
+var set var=.mdi.file_menu_tmp_name str=""
+if cond=( DB_EXISTS(".mdi.LAST_DATABASE_NAME"))
+   if cond=(!str_is_space(.mdi.LAST_DATABASE_NAME))
+      var set var=.mdi.file_menu_tmp_name str="F:/adam/try/try.bin"
+   end
+end
+if cond=( str_is_space( .mdi.file_menu_tmp_name ))
+   if cond=( DB_DEFAULT(.system_defaults, "model") != (none) )
+      var set var=.mdi.file_menu_tmp_name str=(eval(DB_DEFAULT(.system_defaults, "model").name//".bin"))
+   end
+end
+if cond=( !str_is_space(.mdi.file_menu_tmp_name) )
+   ! Give info about file name and opportunity to cancel also if file doesn't exist yet
+   if cond=( ! file_exists( .mdi.file_menu_tmp_name ) )
+      if cond=(eval(alert("Info", "Saving current database as '"//.mdi.file_menu_tmp_name//"'.","OK", "Cancel","", 1) != 2))
+         file binary write file=(eval(.mdi.file_menu_tmp_name ))
+      end
+   else
+      file binary write file="F:/adam/try/try.bin" alert=yes
+! Writing the file: 'F:/adam/try/try.bin'.
+!ALERT=1
+! The file named 'F:/adam/try/try.bin' will be copied to the backup file named 'F:/adam/try/try.biq'.
+! File writing completed.
+   end
+   var set var=.mdi.LAST_DATABASE_NAME str="F:/adam/try/try.bin"
+else
+   var set var = .mdi.file_menu_status &
+      int = (eval(alert("Error", "No model exists. Create one first or use 'Save Database As..'","OK","", "", 1)))
+end
+var set var=.gui.exit_panel.b_save_then_exit.filename str="F:/adam/try/try.bin"
+interface dialog undis dialog=.gui.exit_panel
+file binary write file="F:/adam/try/try.bin"
+! Writing the file: 'F:/adam/try/try.bin'.
+!ALERT=2
+! File writing completed.
+quit conf=no

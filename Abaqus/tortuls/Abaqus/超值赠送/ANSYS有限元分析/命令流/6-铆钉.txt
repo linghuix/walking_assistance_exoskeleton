@@ -1,0 +1,122 @@
+本实例的命令流文件如下：
+/FILNAME,example6-3,0  
+/TITLE,plastic analysis of a part   
+!*  
+! 设定分析作业名和标题
+/NOPR   
+/PMETH,OFF,0
+KEYW,PR_SET,1   
+KEYW,PR_STRUC,1 
+KEYW,PR_THERM,0 
+KEYW,PR_FLUID,0 
+KEYW,PR_ELMAG,0 
+KEYW,MAGNOD,0   
+KEYW,MAGEDG,0   
+KEYW,MAGHFE,0   
+KEYW,MAGELC,0   
+KEYW,PR_MULTI,0 
+KEYW,PR_CFD,0   
+/GO 
+!*  
+/COM,   
+/COM,Preferences for GUI filtering have been set to display:
+/COM,  Structural   
+!*  
+/PREP7  
+!*  
+ET,1,SOLID45
+!*  
+!*  
+! 定义单元类型
+TB,MELA,1,1,7,  
+TBTEMP,0
+TBPT,,0.003,618 
+TBPT,,0.005,1128
+TBPT,,0.007,1317
+TBPT,,0.009,1466
+TBPT,,0.011,1510
+TBPT,,0.02,1600 
+TBPT,,0.2,1610  
+MPTEMP,,,,,,,,  
+MPTEMP,1,0  
+MPDATA,EX,1,,2.06e11
+MPDATA,PRXY,1,,0.3  
+! 定义材料属性
+SPH4,0,3,7.5
+! 创建一个球
+wprot,0,90,0
+! 将工作平面旋转90o
+VSBW,       1   
+! 用工作平面分割球
+VDELE,       3, , ,1
+! 删除上半球
+CYL4,0,0,3, , , ,-10
+! 创建一个圆柱体
+FLST,2,1,8  
+FITEM,2,0,10,0  
+WPAVE,P51X  
+! 偏移工作平面到总坐标系的某一点
+CYL4,0,0,1.5, , , ,4
+! 创建另一个圆柱体
+VSBV,       1,       3  
+! 从大圆柱体中“减”去小圆柱体
+FLST,2,2,6,ORDE,2   
+FITEM,2,2   
+FITEM,2,4   
+VADD,P51X   
+! 从大圆柱体中“减”去小圆柱体的结果与下半球相加
+MSHAPE,1,3D 
+MSHKEY,0
+CM,_Y,VOLU  
+VSEL, , , ,       1 
+CM,_Y1,VOLU 
+CHKMSH,'VOLU'   
+CMSEL,S,_Y  
+VMESH,_Y1   
+CMDELE,_Y   
+CMDELE,_Y1  
+CMDELE,_Y2  
+FINISH  
+! 对铆钉划分网格
+/SOL
+FLST,2,1,5,ORDE,1   
+FITEM,2,3   
+/GO 
+DA,P51X,ALL,
+! 施加位移边界
+FLST,2,1,5,ORDE,1   
+FITEM,2,11  
+/GO 
+DA,P51X,UY,0.2  
+! 施加位移载荷
+ANTYPE,0
+NLGEOM,1
+OUTRES,ALL,1
+TIME,1  
+NSUBST,20,0,0 
+SOLVE   
+! 求解
+FINISH  
+/POST1  
+AVPRIN,0, , 
+! PLNSOL,U,Y,2,1  
+! 查看变形
+! /EFACE,1
+AVPRIN,0, , 
+!*  
+! PLNSOL,S,EQV,0,1
+! 查看应力
+! /GRAPHICS,POWER 
+! /TYPE,1,5   
+! /CPLANE,0   
+! /SHADE,1,1  
+/HBC,1,0
+! /REPLOT
+! PLNSOL,S,Y  
+! 查看截面
+!*  
+ANCNTR,10,0.5   
+! 动画显示模态形状
+! SAVE, EXAMPLE6-3,db, 
+SAVE
+FINISH

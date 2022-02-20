@@ -1,0 +1,118 @@
+FINISH
+/FILNAME,Exercise13       ! 定义隐式热分析文件名
+/PREP7                    ! 进入前处理器
+ET,1,PLANE55             ! 选择单元类型
+KEYOPT,1,3,1              ! 设置为轴对称分析
+MP,DENS,1,1000            ! 定义水的密度
+MP,KXX,1,0.6              ! 定义水的热传导系数
+MPTEMP,1,-10,-1,0,10        ! 定义焓变化温度                            
+MPDATA,ENTH,1,1,0,37.8E6,79.8E6,121.8E6  ! 定义与温度所对应的焓值
+K,1
+K,2,0.025
+K,3,0.03,0.08
+K,4,,0.08                  ! 建立几何模型的4个关键点
+L,1,2
+L,2,3
+L,3,4
+L,1,4                    ! 建立4条线
+A,1,2,3,4                 ! 建立矩形
+ESIZE,0.005,0,            ! 定义单元划分尺寸
+MSHKEY,2               ! 选择映射单元划分选项
+AMESH,1                ! 划分单元
+FINISH
+/SOLU                   ! 进入求解器 
+IC,ALL,TEMP,0           ! 定义初始温度
+SFL,2,CONV,12.5, ,-20,     ! 在2号线上施加对流换热载荷
+SFL,3,CONV,12.5, ,-20,     ! 在3号线上施加对流换热载荷
+ANTYPE,TRANS          ! 设置为瞬态求解
+OUTRES,,ALL            ! 定义结果输出
+TOFFST,273            ! 定义温度偏移量
+NSEL,ALL               ! 选择所有节点
+KBC,1                   ! 设置载荷为阶越载荷
+AUTOTS,ON             ! 打开自动时间开关
+DELTIM,30,30,100        ! 定义时间子步
+TIME,2700               ! 定义求解时间
+SOLVE                  ! 求解
+FINISH
+/POST1                  ! 进入后处理器      
+SET,LAST                ! 读入最后子步结果
+FLST,2,7,1  
+FITEM,2,1   
+FITEM,2,3   
+FITEM,2,4   
+FITEM,2,5   
+FITEM,2,6   
+FITEM,2,7   
+FITEM,2,2   
+PATH,rad,7,30,20,          ! 建立径向路径
+PPATH,P51X,1
+PATH,STAT   
+PDEF,TRAD,TEMP, ,AVG   ! 向所定义路径映射温度分析结果
+PLPATH,TRAD             ! 显示沿路径温度变化曲线图
+PLPAGM,TRAD,1,Blank     ! 在几何模型上显示径向温度分布云图
+EPLOT                    ! 显示单元
+FLST,2,18,1 
+FITEM,2,1   
+FITEM,2,31  
+FITEM,2,32  
+FITEM,2,33  
+FITEM,2,34  
+FITEM,2,35  
+FITEM,2,36  
+FITEM,2,37  
+FITEM,2,38  
+FITEM,2,39  
+FITEM,2,40  
+FITEM,2,41  
+FITEM,2,42  
+FITEM,2,43  
+FITEM,2,44  
+FITEM,2,45  
+FITEM,2,46  
+FITEM,2,25  
+PATH,HIG,18,30,20,              ! 建立沿高度方向路径
+PPATH,P51X,1
+PATH,STAT    
+PATH,HIG                     ! 选择沿高度方向的路径
+PDEF,THIG,TEMP, ,AVG        ! 向所定义路径映射温度分析结果
+PLPATH,THIG                 ! 显示沿路径温度变化曲线图
+PLPAGM,THIG,1,Blank          ! 在几何模型上显示沿高度方向路径温度分布云图
+PLNSOL,TEMP                 ! 显示温度分布云图 
+/EXPAND,27,AXIS,,,10          ! 设置轴对称扩展选项
+PLNSOL,TEMP                 ! 显示三维扩展的温度分布云图 
+/CVAL,1,-1,-0.04,0,0,0,0,0    ! 设置显示比例
+PLNSOL,TEMP                 ! 显示三维扩展的温度分布云图 
+FINISH
+/POST26                       ! 进入时间历程后处理器                      
+NSOL,2,1,TEMP,, TEMP_2  
+NSOL,3,5,TEMP,, TEMP_3  
+NSOL,4,2,TEMP,, TEMP_4  
+NSOL,5,38,TEMP,, TEMP_5 
+NSOL,6,86,TEMP,, TEMP_6 
+NSOL,7,16,TEMP,, TEMP_7 
+NSOL,8,25,TEMP,, TEMP_8  
+NSOL,9,28,TEMP,, TEMP_9 
+NSOL,10,8,TEMP,, TEMP_10  ! 定义9个节点温度变量
+/AXLAB,X,TIME   
+/AXLAB,Y,TEMPERATURE
+/GTHK,AXIS,2
+/GRTYP,0
+/GROPT,ASCAL,ON 
+/GROPT,LOGX,OFF 
+/GROPT,LOGY,OFF 
+/GROPT,AXDV,1   
+/GROPT,AXNM,ON  
+/GROPT,AXNSC,1, 
+/GROPT,DIG1,4,  
+/GROPT,DIG2,3,  
+/GROPT,XAXO,0,  
+/GROPT,YAXO,0,  
+/GROPT,DIVX,
+/GROPT,DIVY,
+/GROPT,REVX,0   
+/GROPT,REVY,0   
+/GROPT,LTYP,0   
+/XRANGE,0,2700  
+/YRANGE,DEFAULT,,1        ! 定义坐标轴
+PLVAR,2,3,4,5,6,7,8,9,10       ! 显示9个节点随温度变化曲线
+/EXIT,NOSAV                ! 退出ANSYS                   

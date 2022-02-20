@@ -1,0 +1,149 @@
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:information 0050 [Validation Directory]: "E:/101-WorkShop/simulation/Ansys/SIwave/Results/PCB6D8F152321578644314139.gc/snapshot.siwaveresults/valchk/":
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:message Loading design and preparing validation check...:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  1.000000:
+0 capacitors read
+0 inductors read
+2 resistors read
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:message Validating Layer Stackup...:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:message Updating Pad lists For All Vias...:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  2.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:message Updating Via Lists For All Layers...:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  3.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  4.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:message Writing siw files for each metal layer...:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:message Detecting identical/overlapping vias...:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:message Detecting disjoint nets...:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  5.000000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:message Launch threads for layer-basis checking...:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  16.875000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  28.750000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  40.625000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:progress  52.500000:
+e:/2-profession/ansysem/ansysem19.2/win64/siwavevalchk.exe:message All Validation Check threads have finished.:
+0 capacitors read
+0 inductors read
+2 resistors read

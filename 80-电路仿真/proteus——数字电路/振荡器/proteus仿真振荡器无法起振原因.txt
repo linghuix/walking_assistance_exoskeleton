@@ -1,0 +1,16 @@
+proteus更加适合仿真数字电路
+
+这是proteus仿真器的一个通病，原因是缺乏初始扰动信号。
+解决方法：
+1. 在电源上加仿真开关，仿真开始后，点击仿真开关使其闭合接通电源，产生一个人为扰动，就容易起振了；
+还要注意将R2适当加大一些，以满足起振条件。
+2. 通过RC串联电路给电源加进一定的噪声源产生扰动
+3. 改用Multisim仿真，彻底解决不易起振的怪病。
+
+https://wenku.baidu.com/view/a8873f3d376baf1ffc4fad54.html
+https://zhidao.baidu.com/question/328603184.html
+
+
+proteus电源设置详解
+https://jingyan.baidu.com/article/93f9803f493357e0e56f5564.html
+

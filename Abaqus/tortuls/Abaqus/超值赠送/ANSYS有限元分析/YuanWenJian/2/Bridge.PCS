@@ -1,0 +1,121 @@
+******************************************************************************
+(C) Copyright 1992-2004
+Computational Applications and System Integration Inc.
+All rights Reserved.
+******************************************************************************
+
+Job:Bridge	at:Thu Jul 18 16:12:36 2013
+
+
+Lanczos Solver Parameters
+-------------------------
+	Lanczos Block Size: 1
+	Eigenpairs computed: 6 lowest
+	Extra Eigenpairs: 1
+	Lumped Mass Flag: 0
+	In Memory Flag: 1
+	Extra Krylov Dimension: 1
+	Mass Matrix Singular Flag: 1
+	PCCG Stopping Criteria Selector: 4
+	PCCG Stopping Threshold: 1.000000e-004
+	Extreme Preconditioner Flag: 1
+	Reortho Type: 1
+	Number of Reorthogonalizations: 4
+	nExtraWorkVecs for computing eigenvectors: 0
+	Rel. Eigenvalue Tolerance: 1.000000e-008
+	Rel. Eigenvalue Residual Tolerance: 1.000000e-011
+	Restart Condition Number Threshold: 1.000000e+015
+	Sturm Check Flag: 0
+
+	Shifts Applied: -3.671034e-002
+
+Eigenpairs
+
+Number of Eigenpairs 6
+
+---------------------------------------
+
+No.	Eigenvalue	Frequency(Hz)
+---	----------	-------------
+1	2.815069e+001	8.444319e-001
+2	6.990625e+001	1.330694e+000
+3	1.577695e+002	1.999087e+000
+4	2.628459e+002	2.580303e+000
+5	3.010371e+002	2.761405e+000
+6	3.015134e+002	2.763589e+000
+
+
+******************************************************************************
+(C) Copyright 1992-2004
+Computational Applications and System Integration Inc.
+All rights Reserved.
+******************************************************************************
+
+Job:Bridge	at:Thu Jul 18 16:12:36 2013
+
+
+	Number of cores used: 1
+	Degrees of Freedom: 840
+	DOF Constraints: 10
+	Elements: 64
+		Assembled: 64
+		Implicit: 0
+	Nodes: 140
+	Number of Load Cases: 38
+
+	Nonzeros in Upper Triangular part of
+	             Global Stiffness Matrix : 15756
+	Nonzeros in Preconditioner: 17988
+		*** Precond Reorder: MLD ***
+		Nonzeros in V: 0
+		Nonzeros in factor: 17988
+		Equations in factor: 840
+	*** Level of Difficulty: 5   (internal 0) ***
+
+	Total Operation Count: 5.48021e+006
+	Total Iterations In PCG: 38
+	Average Iterations Per Load Case:    1.0
+	Input PCG Error Tolerance: 0.0001
+	Achieved PCG Error Tolerance: 1e-010
+
+
+	DETAILS OF PCG SOLVER SETUP TIME(secs)        Cpu        Wall
+	     Gather Finite Element Data              0.00        0.00
+	     Element Matrix Assembly                 0.02        0.05
+
+	DETAILS OF PCG SOLVER SOLUTION TIME(secs)     Cpu        Wall
+	     Preconditioner Construction             0.00        0.00
+	     Preconditioner Factoring                0.02        0.18
+	     Apply Boundary Conditions               0.00        0.00
+	     Eigen Solve                             0.11        0.22
+	          Eigen Solve Overhead               0.08        0.20
+	               Compute MQ                    0.03        0.03
+	               Reorthogonalization           0.03        0.02
+	                    Computation              0.03        0.02
+	                    I/O                      0.00        0.00
+	               Block Tridiag Eigen           0.00        0.06
+	               Compute Eigenpairs            0.00        0.00
+	               Output Eigenpairs             0.00        0.00
+	          Multiply With A                    0.00        0.00
+	               Multiply With A22             0.00        0.00
+	          Solve With Precond                 0.00        0.00
+	               Solve With Bd                 0.00        0.00
+	               Multiply With V               0.00        0.00
+	               Direct Solve                  0.03        0.02
+******************************************************************************
+	     TOTAL PCG SOLVER SOLUTION CP TIME      =       0.12 secs
+	     TOTAL PCG SOLVER SOLUTION ELAPSED TIME =       0.40 secs
+******************************************************************************
+	Total Memory Usage at Lanczos    :     471.93 MB
+	PCG Memory Usage at Lanczos      :     143.45 MB
+	Memory Usage for Matrix          :       0.00 MB
+	*** I/O Reduction Mode Activated ***
+******************************************************************************
+	Multiply with A Memory Bandwidth :      18.97 GB/s
+	Solve With Precond MFLOP Rate    :     134.28 MFlops
+	Precond Factoring MFLOP Rate     :       0.00 MFlops
+******************************************************************************
+	Total amount of I/O read         :       0.22 MB
+	Total amount of I/O written      :       0.22 MB
+******************************************************************************
+

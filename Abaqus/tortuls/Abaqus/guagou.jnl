@@ -1,0 +1,203 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.0, 15.0), point2=(
+    5.0, 15.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(5.0, 15.0), point2=(
+    5.0, -5.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[3])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(5.0, -5.0), point2=(
+    15.0, -5.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(15.0, -5.0), point2=
+    (15.0, 5.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[5])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(15.0, 5.0), point2=(
+    20.0, 5.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(20.0, 5.0), point2=(
+    20.0, -10.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[7])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(20.0, -10.0), 
+    point2=(5.0, -10.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[8])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[8])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(5.0, -10.0), point2=
+    (5.0, -25.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[9])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[8], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[9])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(5.0, -25.0), point2=
+    (0.0, -25.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[10])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[9], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[10])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.0, -25.0), point2=
+    (0.0, 15.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[11])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[10], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[11])
+mdb.models['Model-1'].sketches['__profile__'].FilletByRadius(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3], curve2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4], nearPoint1=(
+    4.92843627929688, -0.428569793701172), nearPoint2=(8.49977111816406, 
+    -4.85714149475098), radius=2.0)
+mdb.models['Model-1'].sketches['__profile__'].FilletByRadius(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4], curve2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5], nearPoint1=(
+    12.0710983276367, -4.71428298950195), nearPoint2=(14.9281692504883, 
+    -2.14285659790039), radius=2.0)
+mdb.models['Model-1'].sketches['__profile__'].FilletByRadius(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5], curve2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6], nearPoint1=(
+    14.7853164672852, 3.0), nearPoint2=(17.0709686279297, 5.57143020629883), 
+    radius=2.0)
+mdb.models['Model-1'].sketches['__profile__'].FilletByRadius(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6], curve2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7], nearPoint1=(
+    18.0709381103516, 5.14285659790039), nearPoint2=(19.6423263549805, 2.0), 
+    radius=2.0)
+mdb.models['Model-1'].sketches['__profile__'].FilletByRadius(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[8], curve2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7], nearPoint1=(
+    15.6424331665039, -9.71428489685059), nearPoint2=(19.7851791381836, 
+    -6.28571510314941), radius=4.5)
+mdb.models['Model-1'].Part(dimensionality=THREE_D, name='Part-guagou', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['Part-guagou'].BaseSolidExtrude(depth=15.0, sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].Material(name='Material-1')
+mdb.models['Model-1'].materials['Material-1'].Elastic(table=((210000.0, 0.3), 
+    ))
+mdb.models['Model-1'].HomogeneousSolidSection(material='Material-1', name=
+    'Section-1', thickness=None)
+mdb.models['Model-1'].parts['Part-guagou'].Set(cells=
+    mdb.models['Model-1'].parts['Part-guagou'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), name='Set-1')
+mdb.models['Model-1'].parts['Part-guagou'].SectionAssignment(offset=0.0, 
+    offsetField='', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Model-1'].parts['Part-guagou'].sets['Set-1'], sectionName=
+    'Section-1', thicknessAssignment=FROM_SECTION)
+mdb.models['Model-1'].rootAssembly.DatumCsysByDefault(CARTESIAN)
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='Part-guagou-1', 
+    part=mdb.models['Model-1'].parts['Part-guagou'])
+mdb.models['Model-1'].StaticStep(initialInc=0.3, name='Step-1', previous=
+    'Initial')
+mdb.models['Model-1'].StaticStep(name='Step-2', previous='Step-1')
+mdb.models['Model-1'].fieldOutputRequests['F-Output-1'].setValues(variables=(
+    'S', 'U'))
+mdb.models['Model-1'].parts['Part-guagou'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=1.0)
+mdb.models['Model-1'].parts['Part-guagou'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D20R, elemLibrary=STANDARD), ElemType(elemCode=C3D15, 
+    elemLibrary=STANDARD), ElemType(elemCode=C3D10, elemLibrary=STANDARD)), 
+    regions=(
+    mdb.models['Model-1'].parts['Part-guagou'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['Model-1'].parts['Part-guagou'].generateMesh()
+# Save by mjs on 2016_11_16-18.59.44; build 2016 2015_09_25-04.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.saveAs(pathName='e:/temp/guagou')
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.models['Model-1'].rootAssembly.Set(faces=
+    mdb.models['Model-1'].rootAssembly.instances['Part-guagou-1'].faces.getSequenceFromMask(
+    ('[#4000 ]', ), ), name='Set-Fix')
+mdb.models['Model-1'].rootAssembly.Set(faces=
+    mdb.models['Model-1'].rootAssembly.instances['Part-guagou-1'].faces.getSequenceFromMask(
+    ('[#8000 ]', ), ), name='Set-Symm')
+mdb.models['Model-1'].rootAssembly.Surface(name='Surf-P', side1Faces=
+    mdb.models['Model-1'].rootAssembly.instances['Part-guagou-1'].faces.getSequenceFromMask(
+    ('[#8 ]', ), ))
+mdb.models['Model-1'].rootAssembly.Surface(name='Surf-S', side1Faces=
+    mdb.models['Model-1'].rootAssembly.instances['Part-guagou-1'].faces.getSequenceFromMask(
+    ('[#200 ]', ), ))
+mdb.models['Model-1'].EncastreBC(createStepName='Initial', localCsys=None, 
+    name='BC-Fix', region=mdb.models['Model-1'].rootAssembly.sets['Set-Fix'])
+mdb.models['Model-1'].ZsymmBC(createStepName='Initial', localCsys=None, name=
+    'BC-2', region=mdb.models['Model-1'].rootAssembly.sets['Set-Symm'])
+mdb.models['Model-1'].TabularAmplitude(data=((0.0, 0.0), (0.3, 2.0), (0.5, 
+    3.0), (1.0, 1.0)), name='Amp-1', smooth=SOLVER_DEFAULT, timeSpan=STEP)
+mdb.models['Model-1'].Pressure(amplitude='Amp-1', createStepName='Step-1', 
+    distributionType=UNIFORM, field='', magnitude=1000.0, name='Load-P', 
+    region=mdb.models['Model-1'].rootAssembly.surfaces['Surf-P'])
+mdb.models['Model-1'].SurfaceTraction(createStepName='Step-2', directionVector=
+    ((0.0, 0.0, 0.0), (0.0, 10.0, 0.0)), distributionType=UNIFORM, field='', 
+    localCsys=None, magnitude=20.0, name='Load-S', region=
+    mdb.models['Model-1'].rootAssembly.surfaces['Surf-S'])
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-guagou', nodalOutputPrecision=SINGLE
+    , numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', type=
+    ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+# Save by mjs on 2016_11_16-19.16.20; build 2016 2015_09_25-04.31.09 126547

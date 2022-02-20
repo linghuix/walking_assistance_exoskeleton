@@ -1,0 +1,65 @@
+! Adams View Adams 2017.2 (built Jul 12 2017)
+! Graphics:  OpenGL
+! Enter a command, '?', or 'help'.
+model display model=.pendulum view=all
+! >> model display model=.pendulum view=all
+! VERIFY MODEL: .pendulum
+! 
+!    8 Gruebler Count (approximate degrees of freedom)
+!    4 Moving Parts (not including ground)
+!    2 Revolute Joints
+!    1 Translational Joints
+!    1 Motions
+! 
+! This model has one or more degree of freedom and there are
+! parts without mass properties. Check the following parts to ensure
+! that they are valid without mass properties specified:
+! Part .pendulum.ground has no center-of-mass marker
+! Part .pendulum.ground has no mass
+! 
+! The following parts have no constraints or 
+! forces acting on them.  You may want to verify 
+! that they are valid without constraints and forces.
+! Part .pendulum.ground has no constraints or forces acting on it
+! 
+! WARNING:     Planar Part pendulum.rod_up is Constrained to another Part.
+!    This may cause Planar Part to move out of Global XY Plane.
+! 
+!    7 Degrees of Freedom for .pendulum
+! 
+! There are 2 redundant constraint equations.
+! 
+!    This constraint:                      unnecessarily removes this DOF:
+! 
+!    .pendulum.JOINT_5  (Revolute Joint)   Rotation Between Zi & Yj
+!    .pendulum.JOINT_4  (Revolute Joint)   Rotation Between Zi & Xj
+! 
+! 
+! Model verified successfully
+! WARNING:     Planar Part pendulum.rod_up is Constrained to another Part.
+!    This may cause Planar Part to move out of Global XY Plane.
+! 
+! 
+!   The Reconcile Acceleration-Force has detected a singular Jacobian matrix.
+!   This problem may be caused by:
+!      (a) A constraint equations that became almost redundant, e.g., the model
+!          is at a singular configuration or at a  bifurcation point.
+!      (b) A massless PARTS in the model.
+! 
+!   The Sparse Solver has detected row 1 has zero length (during the symbolic pivot selection).
+!   The corresponding equation is: Part/1 X Force
+! 
+!   A minimization algorithm will be used to find a solution on the
+!   projected constraint manifold.
+! 
+!   The Integrator has detected a singular Jacobian matrix.
+!   This problem may be caused by:
+!      (a) A constraint equations that became almost redundant, e.g., the model
+!          is at a singular configuration or at a  bifurcation point.
+!      (b) A massless PARTS in the model.
+! 
+!   The Calahan Sparse Solver has detected an unexpected singularity at row 54.
+!   The corresponding equation is: TrnJnt/3 Zi.Xj
+! 
+!   A minimization algorithm will be used to find a solution on the
+!   projected constraint manifold.

@@ -1,0 +1,57 @@
+
+ EXIT THE ANSYS POST1 DATABASE PROCESSOR
+
+
+ ***** ROUTINE COMPLETED *****  CP =         9.422
+
+
+
+ *** NOTE ***                            CP =       9.422   TIME= 16:15:01
+ A total of 3 warnings and errors written to D:\ansys\Bridge\Bridge.err. 
+
+ SAVE ALL MODEL, SOLUTION AND POST DATA
+
+ ALL CURRENT ANSYS DATA WRITTEN TO FILE NAME= Bridge.db
+  FOR POSSIBLE RESUME FROM THIS POINT
+
+
+ NUMBER OF WARNING MESSAGES ENCOUNTERED=          2
+ NUMBER OF ERROR   MESSAGES ENCOUNTERED=          1
+
++--------------------- A N S Y S   S T A T I S T I C S ------------------------+
+
+Release: 14.5       Build: UP20120918   Platform: INTEL NT    
+Date Run: 07/18/2013   Time: 16:15
+Windows Process ID:         4360
+
+Processor Model: Pentium(R) Dual-Core  CPU      E5400  @ 2.70GHz
+
+Compiler: Intel(R) FORTRAN Compiler Version 11.1.0  (Build: 20100414)
+          Microsoft(R) Visual C/C++ Compiler Version 15.0  (Build: 30729)
+          Intel(R) Math Kernel Library Version 10.3.3 Product Build 20110314
+
+Total number of cores available    :    2
+Number of physical cores available :    2
+Number of cores requested          :    2 (Shared Memory Parallel)
+
+GPU Acceleration: Not Requested
+
+Job Name: Bridge
+Working Directory: D:\ansys\Bridge
+
+Total CPU time for main thread                    :        9.7 seconds
+Total CPU time summed for all threads             :        9.5 seconds
+
+Elapsed time spent pre-processing model (/PREP7)  :        0.0 seconds
+Elapsed time spent solution - preprocessing       :        0.0 seconds
+Elapsed time spent computing solution             :        0.9 seconds
+Elapsed time spent solution - postprocessing      :        0.0 seconds
+Elapsed time spent post-processing model (/POST1) :      139.2 seconds
+
+Equation solver computational rate                :     2036.6 Mflops
+
+Maximum total memory used                         :      154.0 MB
+Maximum total memory allocated                    :      576.0 MB
+Maximum total memory available                    :          2 GB
+
++------------------ E N D   A N S Y S   S T A T I S T I C S -------------------+

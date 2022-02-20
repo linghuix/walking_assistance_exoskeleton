@@ -1,0 +1,42 @@
+/PREP7 
+/TITLE, FREE VIBRATION WITH COULOMB DAMPING
+ET,1,COMBIN40,,,,,,2 
+! 定义单元类型
+R,1,1E4,,(10/386),,1.875,30 
+! 定义实常数
+N,1
+N,2,1
+E,1,2
+FINISH
+/SOLU    
+SOLCONTROL,0
+ANTYPE,TRANS 
+! 定义分析类型
+D,1,UX
+IC,2,UX,-1,0 
+! 定义初始条件
+KBC,1 
+! 阶跃载荷和边界条件
+CNVTOL,F,1,0.001 
+! 力收敛准则
+TIME,.2025
+NSUBST,404 
+! 定义子步数
+OUTRES,,1
+SOLVE
+FINISH
+/POST26
+NSOL,2,2,U,X,UX 
+! 定义结点变量
+ESOL,3,1,,SMISC,1,F1 
+! 定义单元变量
+PRVAR,2,3 
+/GRID,1  
+! 设置坐标
+/AXLAB,Y,DISP 
+/GTHK,CURVE,2  
+PLVAR,2  
+! 显示变量
+/AXLAB,Y,FORCE 
+PLVAR,3 
+FINISH

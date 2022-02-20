@@ -1,0 +1,1415 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].rectangle(point1=(-2.5, 75.0), 
+    point2=(2.5, -75.0))
+mdb.models['Model-1'].Part(dimensionality=THREE_D, name='Part-1', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['Part-1'].BaseSolidExtrude(depth=20.0, sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].parts['Part-1'].features['Solid extrude-1'].setValues(
+    depth=2.5)
+mdb.models['Model-1'].parts['Part-1'].regenerate()
+mdb.models['Model-1'].parts['Part-1'].regenerate()
+mdb.models['Model-1'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['Model-1'].parts['Part-1'].features['Solid extrude-1'].sketch)
+mdb.models['Model-1'].parts['Part-1'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['Model-1'].sketches['__edit__'], 
+    upToFeature=
+    mdb.models['Model-1'].parts['Part-1'].features['Solid extrude-1'])
+del mdb.models['Model-1'].sketches['__edit__']
+mdb.models['Model-1'].parts['Part-1'].regenerate()
+mdb.models['Model-1'].Material(name='Material-1')
+mdb.models['Model-1'].materials['Material-1'].Density(table=((0.0, ), ))
+del mdb.models['Model-1'].materials['Material-1'].density
+mdb.models['Model-1'].materials['Material-1'].Elastic(table=((70000000000.0, 
+    0.0), ))
+mdb.models['Model-1'].materials['Material-1'].Density(table=((0.0, ), ))
+mdb.models['Model-1'].HomogeneousSolidSection(material='Material-1', name=
+    'Section-1', thickness=None)
+mdb.models['Model-1'].parts.changeKey(fromName='Part-1', toName='stick')
+mdb.models['Model-1'].materials.changeKey(fromName='Material-1', toName=
+    'steel')
+mdb.models['Model-1'].rootAssembly.DatumCsysByDefault(CARTESIAN)
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='stick-1', part=
+    mdb.models['Model-1'].parts['stick'])
+mdb.models['Model-1'].StaticStep(name='Step-1', previous='Initial')
+mdb.models['Model-1'].steps['Step-1'].setValues()
+mdb.models['Model-1'].rootAssembly.Set(name='Set-1', vertices=
+    mdb.models['Model-1'].rootAssembly.instances['stick-1'].vertices.getSequenceFromMask(
+    ('[#2 ]', ), ))
+mdb.models['Model-1'].ConcentratedForce(cf1=5.0, createStepName='Step-1', 
+    distributionType=UNIFORM, field='', localCsys=None, name='Load-1', region=
+    mdb.models['Model-1'].rootAssembly.sets['Set-1'])
+mdb.models['Model-1'].FieldOutputRequest(createStepName='Step-1', name=
+    'F-Output-2', variables=('U', 'UT', 'UR'))
+mdb.models['Model-1'].rootAssembly.Set(faces=
+    mdb.models['Model-1'].rootAssembly.instances['stick-1'].faces.getSequenceFromMask(
+    ('[#8 ]', ), ), name='Set-2')
+mdb.models['Model-1'].DisplacementBC(amplitude=UNSET, createStepName='Step-1', 
+    distributionType=UNIFORM, fieldName='', fixed=OFF, localCsys=None, name=
+    'fix', region=mdb.models['Model-1'].rootAssembly.sets['Set-2'], u1=0.0, u2=
+    0.0, u3=0.0, ur1=0.0, ur2=0.0, ur3=0.0)
+mdb.models['Model-1'].EncastreBC(createStepName='Step-1', localCsys=None, name=
+    'BC-2', region=mdb.models['Model-1'].rootAssembly.sets['Set-2'])
+# Save by XLH on 2019_12_09-16.02.34; build 2016 2015_09_25-04.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].parts['stick'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=7.5)
+mdb.models['Model-1'].parts['stick'].generateMesh()
+mdb.models['Model-1'].parts['stick'].generateMesh()
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.models['Model-1'].parts['stick'].deleteMesh()
+mdb.models['Model-1'].parts['stick'].seedEdgeBySize(constraint=FINER, 
+    deviationFactor=0.1, edges=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#a44 ]', 
+    ), ), minSizeFactor=0.1, size=1.0)
+mdb.models['Model-1'].parts['stick'].generateMesh()
+mdb.models['Model-1'].parts['stick'].deleteMesh(regions=
+    mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ))
+mdb.models['Model-1'].parts['stick'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#8 ]', ), 
+    ), number=3)
+mdb.models['Model-1'].parts['stick'].generateMesh()
+mdb.models['Model-1'].parts['stick'].deleteMesh()
+mdb.models['Model-1'].parts['stick'].deleteSeeds(regions=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#800 ]', 
+    ), ))
+mdb.models['Model-1'].parts['stick'].deleteSeeds(regions=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#4 ]', ), 
+    ))
+mdb.models['Model-1'].parts['stick'].deleteSeeds(regions=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#200 ]', 
+    ), ))
+mdb.models['Model-1'].parts['stick'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#4 ]', ), 
+    ), number=50)
+mdb.models['Model-1'].parts['stick'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#800 ]', 
+    ), ), number=3)
+mdb.models['Model-1'].parts['stick'].generateMesh()
+# Save by XLH on 2019_12_09-16.14.49; build 2016 2015_09_25-04.31.09 126547
+# Save by XLH on 2019_12_09-16.14.49; build 2016 2015_09_25-04.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.Job(atTime=None, contactPrint=OFF, description=
+    'linear stick deformation_5N', echoPrint=OFF, explicitPrecision=SINGLE, 
+    getMemoryFromAnalysis=True, historyPrint=OFF, memory=90, memoryUnits=
+    PERCENTAGE, model='Model-1', modelPrint=OFF, multiprocessingMode=DEFAULT, 
+    name='Job-1', nodalOutputPrecision=SINGLE, numCpus=1, numGPUs=0, queue=None
+    , resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', 
+    waitHours=0, waitMinutes=0)
+# Save by XLH on 2019_12_09-16.15.55; build 2016 2015_09_25-04.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(HEADING, {'phase': BATCHPRE_PHASE, 
+    'heading': 'linear stick deformation_5N', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': '750 elements have missing property definitions. The elements have been identified in element set ErrElemMissingSection.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'DEGREE OF FREEDOM 4 IS NOT ACTIVE IN THIS MODEL AND CANNOT BE RESTRAINED.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'DEGREE OF FREEDOM 5 IS NOT ACTIVE IN THIS MODEL AND CANNOT BE RESTRAINED.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'DEGREE OF FREEDOM 6 IS NOT ACTIVE IN THIS MODEL AND CANNOT BE RESTRAINED.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'NO SECTION DEFINITIONS FOUND', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'YOU HAVE ENTERED A ZERO OR NEGATIVE DENSITY VALUE. ABAQUS ALLOWS NON-PHYSICAL DATA; HOWEVER, MOST APPLICATIONS EXPECT A POSITIVE DENSITY VALUE AND GREATER THAN 1.00000E-36 .', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'E:\\2-profession\\Abaqus\\SIMULIA\\Commands\\Job-1.odb', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-1'})
+del mdb.models['Model-1'].materials['steel'].density
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(HEADING, {'phase': BATCHPRE_PHASE, 
+    'heading': 'linear stick deformation_5N', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': '750 elements have missing property definitions. The elements have been identified in element set ErrElemMissingSection.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'DEGREE OF FREEDOM 4 IS NOT ACTIVE IN THIS MODEL AND CANNOT BE RESTRAINED.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'DEGREE OF FREEDOM 5 IS NOT ACTIVE IN THIS MODEL AND CANNOT BE RESTRAINED.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'DEGREE OF FREEDOM 6 IS NOT ACTIVE IN THIS MODEL AND CANNOT BE RESTRAINED.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'NO SECTION DEFINITIONS FOUND', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'E:\\2-profession\\Abaqus\\SIMULIA\\Commands\\Job-1.odb', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-1'})
+del mdb.models['Model-1'].boundaryConditions['fix']
+mdb.models['Model-1'].boundaryConditions.changeKey(fromName='BC-2', toName=
+    'fix')
+mdb.models['Model-1'].materials['steel'].elastic.setValues(table=((
+    70000000000.0, 0.1), ))
+mdb.models['Model-1'].materials['steel'].Density(table=((1.0, ), ))
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(HEADING, {'phase': BATCHPRE_PHASE, 
+    'heading': 'linear stick deformation_5N', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': '750 elements have missing property definitions. The elements have been identified in element set ErrElemMissingSection.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'NO SECTION DEFINITIONS FOUND', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'E:\\2-profession\\Abaqus\\SIMULIA\\Commands\\Job-1.odb', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-1'})
+mdb.models['Model-1'].HomogeneousSolidSection(material='steel', name=
+    'Section-2', thickness=None)
+del mdb.models['Model-1'].sections['Section-2']
+mdb.models['Model-1'].sections['Section-1'].setValues(material='steel', 
+    thickness=None)
+mdb.models['Model-1'].parts['stick'].Set(cells=
+    mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ), name='Set-8')
+mdb.models['Model-1'].parts['stick'].SectionAssignment(offset=0.0, offsetField=
+    '', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Model-1'].parts['stick'].sets['Set-8'], sectionName='Section-1'
+    , thicknessAssignment=FROM_SECTION)
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(HEADING, {'phase': BATCHPRE_PHASE, 
+    'heading': 'linear stick deformation_5N', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'E:\\2-profession\\Abaqus\\SIMULIA\\Commands\\Job-1.odb', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 8344, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-1', 'memory': 31.0})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-1', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-1']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_COMPLETED, {'time': 'Mon Dec 09 16:34:10 2019', 
+    'jobName': 'Job-1'})
+del mdb.models['Model-1'].materials['steel'].density
+mdb.models['Model-1'].materials['steel'].elastic.setValues(table=((
+    70000000000.0, 0.0), ))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-2', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', type=
+    ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.jobs['Job-2'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-2']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 0, 'jobName': 'Job-2'})
+# Save by XLH on 2019_12_09-16.46.25; build 2016 2015_09_25-04.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.jobs['Job-2']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'E:\\2-profession\\Abaqus\\SIMULIA\\Commands\\Job-2.odb', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 8364, 'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-2', 'memory': 31.0})
+mdb.jobs['Job-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-2', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-2']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(JOB_COMPLETED, {'time': 'Mon Dec 09 16:46:40 2019', 
+    'jobName': 'Job-2'})
+mdb.models['Model-1'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['Model-1'].parts['stick'].features['Solid extrude-1'].sketch)
+mdb.models['Model-1'].parts['stick'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['Model-1'].sketches['__edit__'], 
+    upToFeature=
+    mdb.models['Model-1'].parts['stick'].features['Solid extrude-1'])
+del mdb.models['Model-1'].sketches['__edit__']
+mdb.models['Model-1'].fieldOutputRequests['F-Output-1'].setValues(variables=(
+    'U', 'UT', 'UR'))
+del mdb.models['Model-1'].fieldOutputRequests['F-Output-1']
+mdb.models['Model-1'].fieldOutputRequests.changeKey(fromName='F-Output-2', 
+    toName='test')
+# Save by XLH on 2019_12_09-16.59.22; build 2016 2015_09_25-04.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-3', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', type=
+    ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.jobs['Job-3'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-3']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 0, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'E:\\2-profession\\Abaqus\\SIMULIA\\Commands\\Job-3.odb', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 3416, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-3', 'memory': 31.0})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-3', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-3']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(JOB_COMPLETED, {'time': 'Mon Dec 09 16:59:57 2019', 
+    'jobName': 'Job-3'})
+mdb.models['Model-1'].fieldOutputRequests['test'].setValues(variables=('MISES', 
+    'U', 'UT', 'UR'))
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-4', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', type=
+    ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.jobs['Job-4'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-4']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 0, 'jobName': 'Job-4'})
+mdb.jobs['Job-4']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE REQUEST FOR MISES OUTPUT WILL BE REPLACED BY A REQUEST FOR S OUTPUT', 
+    'jobName': 'Job-4'})
+mdb.jobs['Job-4']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'E:\\2-profession\\Abaqus\\SIMULIA\\Commands\\Job-4.odb', 
+    'jobName': 'Job-4'})
+mdb.jobs['Job-4']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-4'})
+mdb.jobs['Job-4']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 12616, 'jobName': 'Job-4'})
+mdb.jobs['Job-4']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-4'})
+mdb.jobs['Job-4']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-4'})
+mdb.jobs['Job-4']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-4', 'memory': 31.0})
+mdb.jobs['Job-4']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-4'})
+mdb.jobs['Job-4']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-4', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-4']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-4'})
+mdb.jobs['Job-4']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-4'})
+mdb.jobs['Job-4']._Message(JOB_COMPLETED, {'time': 'Mon Dec 09 17:09:50 2019', 
+    'jobName': 'Job-4'})
+del mdb.jobs['Job-3']
+del mdb.jobs['Job-1']
+del mdb.jobs['Job-2']
+mdb.jobs.changeKey(fromName='Job-4', toName='5N_3x3x15')
+mdb.jobs.changeKey(fromName='5N_3x3x15', toName='5N_3x5x50')
+mdb.jobs.changeKey(fromName='5N_3x5x50', toName='5N_3x5x50mesh')
+mdb.jobs['5N_3x5x50mesh'].submit(consistencyChecking=OFF)
+mdb.jobs['5N_3x5x50mesh']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 0, 'jobName': '5N_3x5x50mesh'})
+mdb.jobs['5N_3x5x50mesh']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE REQUEST FOR MISES OUTPUT WILL BE REPLACED BY A REQUEST FOR S OUTPUT', 
+    'jobName': '5N_3x5x50mesh'})
+mdb.jobs['5N_3x5x50mesh']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'E:\\2-profession\\Abaqus\\SIMULIA\\Commands\\5N_3x5x50mesh.odb', 
+    'jobName': '5N_3x5x50mesh'})
+mdb.jobs['5N_3x5x50mesh']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': '5N_3x5x50mesh'})
+mdb.jobs['5N_3x5x50mesh']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 2088, 
+    'jobName': '5N_3x5x50mesh'})
+mdb.jobs['5N_3x5x50mesh']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': '5N_3x5x50mesh'})
+mdb.jobs['5N_3x5x50mesh']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': '5N_3x5x50mesh'})
+mdb.jobs['5N_3x5x50mesh']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': '5N_3x5x50mesh', 'memory': 31.0})
+mdb.jobs['5N_3x5x50mesh']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': '5N_3x5x50mesh'})
+mdb.jobs['5N_3x5x50mesh']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': '5N_3x5x50mesh', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['5N_3x5x50mesh']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': '5N_3x5x50mesh'})
+mdb.jobs['5N_3x5x50mesh']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': '5N_3x5x50mesh'})
+mdb.jobs['5N_3x5x50mesh']._Message(JOB_COMPLETED, {
+    'time': 'Mon Dec 09 17:18:59 2019', 'jobName': '5N_3x5x50mesh'})
+# Save by XLH on 2019_12_09-17.19.01; build 2016 2015_09_25-04.31.09 126547
+# Save by XLH on 2019_12_09-17.19.04; build 2016 2015_09_25-04.31.09 126547
+# Save by XLH on 2019_12_09-17.19.05; build 2016 2015_09_25-04.31.09 126547
+# Save by XLH on 2019_12_09-17.20.10; build 2016 2015_09_25-04.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].parts['stick'].deleteMesh()
+mdb.models['Model-1'].parts['stick'].deleteSeeds(regions=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#4 ]', ), 
+    ))
+mdb.models['Model-1'].parts['stick'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#4 ]', ), 
+    ), number=20)
+mdb.models['Model-1'].parts['stick'].deleteSeeds(regions=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#4 ]', ), 
+    ))
+mdb.models['Model-1'].parts['stick'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#4 ]', ), 
+    ), number=10)
+mdb.models['Model-1'].parts['stick'].generateMesh()
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='5N_3x5x10', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', type=
+    ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.jobs.changeKey(fromName='5N_3x5x10', toName='5N_3x5x10mesh')
+mdb.jobs['5N_3x5x10mesh'].submit(consistencyChecking=OFF)
+mdb.jobs['5N_3x5x10mesh']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 0, 'jobName': '5N_3x5x10mesh'})
+mdb.jobs['5N_3x5x10mesh']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE REQUEST FOR MISES OUTPUT WILL BE REPLACED BY A REQUEST FOR S OUTPUT', 
+    'jobName': '5N_3x5x10mesh'})
+mdb.jobs['5N_3x5x10mesh']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'E:\\101-WorkShop\\simulation\\Abaqus\\result\\5N_3x5x10mesh.odb', 
+    'jobName': '5N_3x5x10mesh'})
+mdb.jobs['5N_3x5x10mesh']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': '5N_3x5x10mesh'})
+mdb.jobs['5N_3x5x10mesh']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 2764, 
+    'jobName': '5N_3x5x10mesh'})
+mdb.jobs['5N_3x5x10mesh']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': '5N_3x5x10mesh'})
+mdb.jobs['5N_3x5x10mesh']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': '5N_3x5x10mesh'})
+mdb.jobs['5N_3x5x10mesh']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': '5N_3x5x10mesh', 'memory': 26.0})
+mdb.jobs['5N_3x5x10mesh']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': '5N_3x5x10mesh'})
+mdb.jobs['5N_3x5x10mesh']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': '5N_3x5x10mesh', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['5N_3x5x10mesh']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': '5N_3x5x10mesh'})
+mdb.jobs['5N_3x5x10mesh']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': '5N_3x5x10mesh'})
+mdb.jobs['5N_3x5x10mesh']._Message(JOB_COMPLETED, {
+    'time': 'Mon Dec 09 19:55:46 2019', 'jobName': '5N_3x5x10mesh'})
+mdb.models['Model-1'].parts['stick'].deleteMesh(regions=
+    mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ))
+mdb.models['Model-1'].parts['stick'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#8 ]', ), 
+    ), number=2)
+mdb.models['Model-1'].parts['stick'].generateMesh()
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.models['Model-1'].parts['stick'].deleteMesh(regions=
+    mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ))
+mdb.models['Model-1'].parts['stick'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#8 ]', ), 
+    ), number=3)
+mdb.models['Model-1'].parts['stick'].generateMesh()
+mdb.models['Model-1'].parts['stick'].deleteMesh(regions=
+    mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ))
+mdb.models['Model-1'].parts['stick'].deleteSeeds(regions=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#800 ]', 
+    ), ))
+mdb.models['Model-1'].parts['stick'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#800 ]', 
+    ), ), number=3)
+mdb.models['Model-1'].parts['stick'].generateMesh()
+mdb.models['Model-1'].parts['stick'].deleteMesh(regions=
+    mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ))
+mdb.models['Model-1'].parts['stick'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#800 ]', 
+    ), ), number=2)
+mdb.models['Model-1'].parts['stick'].generateMesh()
+mdb.models['Model-1'].parts['stick'].deleteMesh()
+mdb.models['Model-1'].parts['stick'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#100 ]', 
+    ), ), number=3)
+mdb.models['Model-1'].parts['stick'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#400 ]', 
+    ), ), number=2)
+mdb.models['Model-1'].parts['stick'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D8R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    kinematicSplit=AVERAGE_STRAIN, hourglassControl=DEFAULT, 
+    distortionControl=DEFAULT), ElemType(elemCode=C3D6, elemLibrary=STANDARD), 
+    ElemType(elemCode=C3D4, elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ), ))
+mdb.models['Model-1'].parts['stick'].setMeshControls(regions=
+    mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ), technique=BOTTOM_UP)
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.models['Model-1'].parts['stick'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#200 ]', 
+    ), ), number=10)
+mdb.models['Model-1'].parts['stick'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#80 ]', 
+    ), ), number=10)
+mdb.models['Model-1'].parts['stick'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#1 ]', ), 
+    ), number=10)
+mdb.meshEditOptions.setValues(enableUndo=True, maxUndoCacheElements=0.5)
+mdb.models['Model-1'].parts['stick'].generateBottomUpSweptMesh(cell=
+    mdb.models['Model-1'].parts['stick'].cells[0], geometryConnectingSides=
+    Region(
+    faces=mdb.models['Model-1'].parts['stick'].faces.getSequenceFromMask(mask=(
+    '[#3a ]', ), )), geometrySourceSide=Region(
+    faces=mdb.models['Model-1'].parts['stick'].faces.getSequenceFromMask(mask=(
+    '[#1 ]', ), )))
+mdb.models['Model-1'].parts['stick'].generateBottomUpSweptMesh(cell=
+    mdb.models['Model-1'].parts['stick'].cells[0], geometryConnectingSides=
+    Region(
+    faces=mdb.models['Model-1'].parts['stick'].faces.getSequenceFromMask(mask=(
+    '[#35 ]', ), )), geometrySourceSide=Region(
+    faces=mdb.models['Model-1'].parts['stick'].faces.getSequenceFromMask(mask=(
+    '[#8 ]', ), )))
+mdb.models['Model-1'].parts['stick'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#400 ]', 
+    ), ), number=3)
+mdb.models['Model-1'].parts['stick'].deleteMesh()
+mdb.models['Model-1'].parts['stick'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#400 ]', 
+    ), ), number=2)
+mdb.models['Model-1'].parts['stick'].generateBottomUpRevolvedMesh(
+    angleOfRevolution=90.0, axisOfRevolution=(
+    mdb.models['Model-1'].parts['stick'].vertices[6], 
+    mdb.models['Model-1'].parts['stick'].vertices[7]), cell=
+    mdb.models['Model-1'].parts['stick'].cells[0], geometrySourceSide=Region(
+    faces=mdb.models['Model-1'].parts['stick'].faces.getSequenceFromMask(mask=(
+    '[#8 ]', ), )), numberOfLayers=1)
+mdb.models['Model-1'].parts['stick'].deleteMesh()
+mdb.models['Model-1'].parts['stick'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=0.5)
+mdb.models['Model-1'].parts['stick'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=0.1)
+mdb.models['Model-1'].parts['stick'].generateBottomUpExtrudedMesh(cell=
+    mdb.models['Model-1'].parts['stick'].cells[0], extrudeVector=(
+    mdb.models['Model-1'].parts['stick'].vertices[6], 
+    mdb.models['Model-1'].parts['stick'].vertices[4]), geometrySourceSide=
+    Region(
+    faces=mdb.models['Model-1'].parts['stick'].faces.getSequenceFromMask(mask=(
+    '[#8 ]', ), )), numberOfLayers=1)
+mdb.models['Model-1'].parts['stick'].generateBottomUpExtrudedMesh(cell=
+    mdb.models['Model-1'].parts['stick'].cells[0], extrudeVector=(
+    mdb.models['Model-1'].parts['stick'].vertices[3], 
+    mdb.models['Model-1'].parts['stick'].vertices[7]), geometrySourceSide=
+    Region(
+    faces=mdb.models['Model-1'].parts['stick'].faces.getSequenceFromMask(mask=(
+    '[#1 ]', ), )), numberOfLayers=1)
+mdb.models['Model-1'].parts['stick'].undoMeshEdit()
+mdb.models['Model-1'].parts['stick'].generateBottomUpSweptMesh(cell=
+    mdb.models['Model-1'].parts['stick'].cells[0], geometryConnectingSides=
+    Region(
+    faces=mdb.models['Model-1'].parts['stick'].faces.getSequenceFromMask(mask=(
+    '[#3a ]', ), )), geometrySourceSide=Region(
+    faces=mdb.models['Model-1'].parts['stick'].faces.getSequenceFromMask(mask=(
+    '[#1 ]', ), )))
+mdb.models['Model-1'].parts['stick'].deleteMesh()
+mdb.models['Model-1'].parts['stick'].generateBottomUpExtrudedMesh(cell=
+    mdb.models['Model-1'].parts['stick'].cells[0], extrudeVector=(
+    mdb.models['Model-1'].parts['stick'].vertices[6], 
+    mdb.models['Model-1'].parts['stick'].vertices[4]), geometrySourceSide=
+    Region(
+    faces=mdb.models['Model-1'].parts['stick'].faces.getSequenceFromMask(mask=(
+    '[#8 ]', ), )), numberOfLayers=10)
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='5N_3x3x10mesh', nodalOutputPrecision=
+    SINGLE, numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', 
+    type=ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.jobs.changeKey(fromName='5N_3x3x10mesh', toName='5N_3x2x10mesh')
+# Save by XLH on 2019_12_09-20.25.46; build 2016 2015_09_25-04.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].loads['Load-1'].setValues(distributionType=UNIFORM, 
+    field='', region=mdb.models['Model-1'].rootAssembly.sets['Set-1'])
+mdb.models['Model-1'].rootAssembly.Set(name='Set-3', vertices=
+    mdb.models['Model-1'].rootAssembly.instances['stick-1'].vertices.getSequenceFromMask(
+    ('[#2 ]', ), ))
+mdb.models['Model-1'].loads['Load-1'].setValues(distributionType=UNIFORM, 
+    field='', region=mdb.models['Model-1'].rootAssembly.sets['Set-3'])
+del mdb.models['Model-1'].loads['Load-1']
+mdb.jobs['5N_3x2x10mesh'].submit(consistencyChecking=OFF)
+mdb.jobs['5N_3x2x10mesh']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 0, 'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE REQUEST FOR MISES OUTPUT WILL BE REPLACED BY A REQUEST FOR S OUTPUT', 
+    'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'E:\\101-WorkShop\\simulation\\Abaqus\\result\\5N_3x2x10mesh.odb', 
+    'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 10404, 
+    'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'memory': 24.0, 'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(STATUS, {'totalTime': 1.0, 'increment': 1, 
+    'attempts': 1, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'timeIncrement': 1.0, 'stepTime': 1.0, 'step': 1, 
+    'jobName': '5N_3x2x10mesh', 'severe': 0, 'equilibrium': 1})
+mdb.jobs['5N_3x2x10mesh']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': '5N_3x2x10mesh'})
+mdb.models['Model-1'].rootAssembly.Set(name='Set-4', vertices=
+    mdb.models['Model-1'].rootAssembly.instances['stick-1'].vertices.getSequenceFromMask(
+    ('[#2 ]', ), ))
+mdb.models['Model-1'].ConcentratedForce(cf1=5.0, createStepName='Step-1', 
+    distributionType=UNIFORM, field='', localCsys=None, name='Load-1', region=
+    mdb.models['Model-1'].rootAssembly.sets['Set-4'])
+mdb.jobs['5N_3x2x10mesh']._Message(JOB_COMPLETED, {'jobName': '5N_3x2x10mesh', 
+    'time': 'Mon Dec 09 20:30:32 2019'})
+del mdb.models['Model-1'].loads['Load-1']
+mdb.models['Model-1'].rootAssembly.Set(name='Set-5', vertices=
+    mdb.models['Model-1'].rootAssembly.instances['stick-1'].vertices.getSequenceFromMask(
+    ('[#4 ]', ), ))
+mdb.models['Model-1'].ConcentratedForce(cf1=5.0, createStepName='Step-1', 
+    distributionType=UNIFORM, field='', localCsys=None, name='Load-1', region=
+    mdb.models['Model-1'].rootAssembly.sets['Set-5'])
+del mdb.models['Model-1'].loads['Load-1']
+mdb.models['Model-1'].rootAssembly.Set(name='Set-6', vertices=
+    mdb.models['Model-1'].rootAssembly.instances['stick-1'].vertices.getSequenceFromMask(
+    ('[#10 ]', ), ))
+mdb.models['Model-1'].ConcentratedForce(cf1=5.0, createStepName='Step-1', 
+    distributionType=UNIFORM, field='', localCsys=None, name='Load-1', region=
+    mdb.models['Model-1'].rootAssembly.sets['Set-6'])
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.models['Model-1'].rootAssembly.makeIndependent(instances=(
+    mdb.models['Model-1'].rootAssembly.instances['stick-1'], ))
+mdb.models['Model-1'].rootAssembly.Set(name='Set-7', vertices=
+    mdb.models['Model-1'].rootAssembly.instances['stick-1'].vertices.getSequenceFromMask(
+    ('[#2 ]', ), ))
+mdb.models['Model-1'].loads['Load-1'].setValues(distributionType=UNIFORM, 
+    field='', region=mdb.models['Model-1'].rootAssembly.sets['Set-7'])
+mdb.models['Model-1'].rootAssembly.setElementType(elemTypes=(ElemType(
+    elemCode=C3D8R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    kinematicSplit=AVERAGE_STRAIN, hourglassControl=DEFAULT, 
+    distortionControl=DEFAULT), ElemType(elemCode=C3D6, elemLibrary=STANDARD), 
+    ElemType(elemCode=C3D4, elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].rootAssembly.instances['stick-1'].cells.getSequenceFromMask(
+    ('[#1 ]', ), ), ))
+mdb.meshEditOptions.setValues(enableUndo=True, maxUndoCacheElements=0.5)
+mdb.models['Model-1'].rootAssembly.makeDependent(instances=(
+    mdb.models['Model-1'].rootAssembly.instances['stick-1'], ))
+mdb.models['Model-1'].parts['stick'].generateBottomUpExtrudedMesh(cell=
+    mdb.models['Model-1'].parts['stick'].cells[0], extrudeVector=(
+    mdb.models['Model-1'].parts['stick'].vertices[3], 
+    mdb.models['Model-1'].parts['stick'].vertices[2]), geometrySourceSide=
+    Region(
+    faces=mdb.models['Model-1'].parts['stick'].faces.getSequenceFromMask(mask=(
+    '[#8 ]', ), )), numberOfLayers=10)
+mdb.models['Model-1'].parts['stick'].Set(elements=
+    mdb.models['Model-1'].parts['stick'].elements.getSequenceFromMask(mask=(
+    '[#ffffffff #fffffff ]', ), ), name='BottomUpElements-1')
+mdb.models['Model-1'].parts['stick'].setMeshControls(regions=
+    mdb.models['Model-1'].parts['stick'].faces.getSequenceFromMask(('[#20 ]', 
+    ), ), technique=STRUCTURED)
+mdb.models['Model-1'].parts['stick'].setMeshControls(elemShape=TRI, regions=
+    mdb.models['Model-1'].parts['stick'].faces.getSequenceFromMask(('[#20 ]', 
+    ), ))
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.models['Model-1'].parts['stick'].deleteMesh()
+mdb.models['Model-1'].parts['stick'].setMeshControls(elemShape=QUAD, regions=
+    mdb.models['Model-1'].parts['stick'].faces.getSequenceFromMask(('[#3f ]', 
+    ), ), technique=STRUCTURED)
+mdb.models['Model-1'].parts['stick'].setMeshControls(regions=
+    mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ), technique=STRUCTURED)
+mdb.models['Model-1'].parts['stick'].generateMesh()
+mdb.models['Model-1'].parts['stick'].deleteMesh()
+mdb.models['Model-1'].parts['stick'].generateMesh()
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.jobs['5N_3x2x10mesh'].submit(consistencyChecking=OFF)
+mdb.jobs['5N_3x2x10mesh']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 0, 'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE REQUEST FOR MISES OUTPUT WILL BE REPLACED BY A REQUEST FOR S OUTPUT', 
+    'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'E:\\2-profession\\Abaqus\\SIMULIA\\Commands\\5N_3x2x10mesh.odb', 
+    'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 12820, 
+    'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': '5N_3x2x10mesh', 'memory': 53.0})
+mdb.jobs['5N_3x2x10mesh']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': '5N_3x2x10mesh', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['5N_3x2x10mesh']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(JOB_COMPLETED, {
+    'time': 'Mon Dec 09 21:09:17 2019', 'jobName': '5N_3x2x10mesh'})
+mdb.jobs.changeKey(fromName='5N_3x2x10mesh', toName='5N_15x12x30mesh')
+mdb.jobs['5N_15x12x30mesh'].submit(consistencyChecking=OFF)
+mdb.jobs['5N_15x12x30mesh']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 0, 
+    'jobName': '5N_15x12x30mesh'})
+mdb.jobs['5N_15x12x30mesh']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE REQUEST FOR MISES OUTPUT WILL BE REPLACED BY A REQUEST FOR S OUTPUT', 
+    'jobName': '5N_15x12x30mesh'})
+mdb.jobs['5N_15x12x30mesh']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'E:\\101-WorkShop\\simulation\\Abaqus\\result\\5N_15x12x30mesh.odb', 
+    'jobName': '5N_15x12x30mesh'})
+mdb.jobs['5N_15x12x30mesh']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': '5N_15x12x30mesh'})
+mdb.jobs['5N_15x12x30mesh']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 10904, 
+    'jobName': '5N_15x12x30mesh'})
+mdb.jobs['5N_15x12x30mesh']._Message(STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': '5N_15x12x30mesh'})
+mdb.jobs['5N_15x12x30mesh']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': '5N_15x12x30mesh'})
+mdb.jobs['5N_15x12x30mesh']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': '5N_15x12x30mesh', 'memory': 53.0})
+mdb.jobs['5N_15x12x30mesh']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': '5N_15x12x30mesh'})
+mdb.jobs['5N_15x12x30mesh']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': '5N_15x12x30mesh', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['5N_15x12x30mesh']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': '5N_15x12x30mesh'})
+mdb.jobs['5N_15x12x30mesh']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': '5N_15x12x30mesh'})
+mdb.jobs['5N_15x12x30mesh']._Message(JOB_COMPLETED, {
+    'time': 'Mon Dec 09 21:18:30 2019', 'jobName': '5N_15x12x30mesh'})
+mdb.models['Model-1'].parts['stick'].deleteMesh()
+mdb.models['Model-1'].parts['stick'].generateMesh()
+mdb.models['Model-1'].parts['stick'].deleteMesh()
+mdb.models['Model-1'].parts['stick'].setMeshControls(regions=
+    mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ), technique=BOTTOM_UP)
+# Save by XLH on 2019_12_09-22.06.56; build 2016 2015_09_25-04.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.meshEditOptions.setValues(enableUndo=True, maxUndoCacheElements=0.5)
+# Save by XLH on 2019_12_09-22.11.13; build 2016 2015_09_25-04.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.meshEditOptions.setValues(enableUndo=True, maxUndoCacheElements=0.5)
+mdb.models['Model-1'].parts['stick'].generateBottomUpExtrudedMesh(cell=
+    mdb.models['Model-1'].parts['stick'].cells[0], extrudeVector=(
+    mdb.models['Model-1'].parts['stick'].vertices[3], 
+    mdb.models['Model-1'].parts['stick'].vertices[2]), geometrySourceSide=
+    Region(
+    faces=mdb.models['Model-1'].parts['stick'].faces.getSequenceFromMask(mask=(
+    '[#8 ]', ), )), numberOfLayers=10)
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='5N_3x2x10mesh', nodalOutputPrecision=
+    SINGLE, numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', 
+    type=ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.models['Model-1'].parts['stick'].associateMeshWithGeometry(elemFaces=
+    mdb.models['Model-1'].parts['stick'].elementFaces.getSequenceFromMask(
+    mask=('[#0 #808 #8080000 #0 #808 #8080000 #0', 
+    ' #808 #8080000 #0 #808 #8080000 #0 #808', ' #8080000 ]', ), ), 
+    geometricEntity=mdb.models['Model-1'].parts['stick'].faces[5])
+mdb.models['Model-1'].parts['stick'].associateMeshWithGeometry(elemFaces=
+    mdb.models['Model-1'].parts['stick'].elementFaces.getSequenceFromMask(
+    mask=(
+    '[#11053125 #3024190d #180c1004 #10043024 #3024180c #180c1004 #10043024', 
+    ' #3024180c #180c1004 #10043024 #3024180c #180c1004 #10043024 #3226180c', 
+    ' #1a0e1206 ]', ), ), geometricEntity=
+    mdb.models['Model-1'].parts['stick'].faces[5])
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.models['Model-1'].parts['stick'].associateMeshWithGeometry(elemFaces=
+    mdb.models['Model-1'].parts['stick'].elementFaces.getSequenceFromMask(
+    mask=('[#2020 #20200000 #0 #2020 #20200000 #0 #2020', 
+    ' #20200000 #0 #2020 #20200000 #0 #2020 #20200000 ]', ), ), 
+    geometricEntity=mdb.models['Model-1'].parts['stick'].faces[4])
+mdb.models['Model-1'].parts['stick'].associateMeshWithGeometry(elemFaces=
+    mdb.models['Model-1'].parts['stick'].elementFaces.getSequenceFromMask(
+    mask=('[#10001000 #1000 ]', ), ), geometricEntity=
+    mdb.models['Model-1'].parts['stick'].faces[0])
+mdb.models['Model-1'].parts['stick'].associateMeshWithGeometry(elemFaces=
+    mdb.models['Model-1'].parts['stick'].elementFaces.getSequenceFromMask(
+    mask=('[#0 #808 ]', ), ), geometricEntity=
+    mdb.models['Model-1'].parts['stick'].faces[5])
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.jobs['5N_3x2x10mesh'].submit(consistencyChecking=OFF)
+mdb.jobs['5N_3x2x10mesh']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 0, 'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE REQUEST FOR MISES OUTPUT WILL BE REPLACED BY A REQUEST FOR S OUTPUT', 
+    'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'E:\\101-WorkShop\\simulation\\Abaqus\\result\\5N_3x2x10mesh.odb', 
+    'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 8392, 
+    'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': '5N_3x2x10mesh', 'memory': 24.0})
+mdb.jobs['5N_3x2x10mesh']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': '5N_3x2x10mesh', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['5N_3x2x10mesh']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': '5N_3x2x10mesh'})
+mdb.jobs['5N_3x2x10mesh']._Message(JOB_COMPLETED, {
+    'time': 'Mon Dec 09 22:16:45 2019', 'jobName': '5N_3x2x10mesh'})
+mdb.models['Model-1'].parts['stick'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#800 ]', 
+    ), ), number=1)
+mdb.models['Model-1'].parts['stick'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#400 ]', 
+    ), ), number=1)
+mdb.models['Model-1'].parts['stick'].generateBottomUpExtrudedMesh(cell=
+    mdb.models['Model-1'].parts['stick'].cells[0], extrudeVector=(
+    mdb.models['Model-1'].parts['stick'].vertices[3], 
+    mdb.models['Model-1'].parts['stick'].vertices[2]), geometrySourceSide=
+    Region(
+    faces=mdb.models['Model-1'].parts['stick'].faces.getSequenceFromMask(mask=(
+    '[#8 ]', ), )), numberOfLayers=10)
+mdb.models['Model-1'].parts['stick'].deleteMesh()
+mdb.models['Model-1'].parts['stick'].generateBottomUpExtrudedMesh(cell=
+    mdb.models['Model-1'].parts['stick'].cells[0], extrudeVector=(
+    mdb.models['Model-1'].parts['stick'].vertices[3], 
+    mdb.models['Model-1'].parts['stick'].vertices[2]), geometrySourceSide=
+    Region(
+    faces=mdb.models['Model-1'].parts['stick'].faces.getSequenceFromMask(mask=(
+    '[#8 ]', ), )), numberOfLayers=10)
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='5N_3x1x10mesh', nodalOutputPrecision=
+    SINGLE, numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', 
+    type=ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.models['Model-1'].parts['stick'].associateMeshWithGeometry(elemFaces=
+    mdb.models['Model-1'].parts['stick'].elementFaces.getSequenceFromMask(
+    mask=(
+    '[#341d1535 #14341c14 #1c14341c #341c1434 #14341c14 #1c14341c #361c1434', 
+    ' #1e16 ]', ), ), geometricEntity=
+    mdb.models['Model-1'].parts['stick'].faces[0])
+mdb.models['Model-1'].parts['stick'].associateMeshWithGeometry(elemFaces=
+    mdb.models['Model-1'].parts['stick'].elementFaces.getSequenceFromMask(
+    mask=('[#1d1535 ]', ), ), geometricEntity=
+    mdb.models['Model-1'].parts['stick'].faces[3])
+mdb.models['Model-1'].parts['stick'].associateMeshWithGeometry(elemFaces=
+    mdb.models['Model-1'].parts['stick'].elementFaces.getSequenceFromMask(
+    mask=(
+    '[#341d1535 #14341c14 #1c14341c #341c1434 #14341c14 #1c14341c #361c1434', 
+    ' #1e16 ]', ), ), geometricEntity=
+    mdb.models['Model-1'].parts['stick'].faces[5])
+mdb.models['Model-1'].parts['stick'].associateMeshWithGeometry(elemFaces=
+    mdb.models['Model-1'].parts['stick'].elementFaces.getSequenceFromMask(
+    mask=(
+    '[#341d1535 #14341c14 #1c14341c #341c1434 #14341c14 #1c14341c #361c1434', 
+    ' #1e16 ]', ), ), geometricEntity=
+    mdb.models['Model-1'].parts['stick'].faces[2])
+mdb.models['Model-1'].parts['stick'].associateMeshWithGeometry(elemFaces=
+    mdb.models['Model-1'].parts['stick'].elementFaces.getSequenceFromMask(
+    mask=(
+    '[#341d1535 #14341c14 #1c14341c #341c1434 #14341c14 #1c14341c #361c1434', 
+    ' #1e16 ]', ), ), geometricEntity=
+    mdb.models['Model-1'].parts['stick'].faces[4])
+# Save by XLH on 2019_12_09-22.44.11; build 2016 2015_09_25-04.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.meshEditOptions.setValues(enableUndo=True, maxUndoCacheElements=0.5)
+mdb.models['Model-1'].parts['stick'].deleteMesh()
+mdb.models['Model-1'].parts['stick'].setMeshControls(regions=
+    mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ), technique=STRUCTURED)
+mdb.models['Model-1'].parts['stick'].generateMesh()
+mdb.models['Model-1'].parts['stick'].deleteMesh()
+mdb.models['Model-1'].parts['stick'].setMeshControls(elemShape=TET, regions=
+    mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ), technique=FREE)
+mdb.models['Model-1'].parts['stick'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D20R, elemLibrary=STANDARD), ElemType(elemCode=C3D15, 
+    elemLibrary=STANDARD), ElemType(elemCode=C3D10, elemLibrary=STANDARD)), 
+    regions=(mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['Model-1'].parts['stick'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#108 ]', 
+    ), ), number=1)
+mdb.models['Model-1'].parts['stick'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['stick'].edges.getSequenceFromMask(('[#72 ]', 
+    ), ), number=1)
+mdb.models['Model-1'].parts['stick'].setMeshControls(elemShape=HEX, regions=
+    mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ), technique=STRUCTURED)
+mdb.models['Model-1'].parts['stick'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D8R, elemLibrary=STANDARD), ElemType(elemCode=C3D6, 
+    elemLibrary=STANDARD), ElemType(elemCode=C3D4, elemLibrary=STANDARD)), 
+    regions=(mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['Model-1'].parts['stick'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D8R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    kinematicSplit=AVERAGE_STRAIN, hourglassControl=DEFAULT, 
+    distortionControl=DEFAULT), ElemType(elemCode=C3D6, elemLibrary=STANDARD), 
+    ElemType(elemCode=C3D4, elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ), ))
+mdb.models['Model-1'].parts['stick'].setMeshControls(elemShape=TET, regions=
+    mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ), technique=FREE)
+mdb.models['Model-1'].parts['stick'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D20R, elemLibrary=STANDARD), ElemType(elemCode=C3D15, 
+    elemLibrary=STANDARD), ElemType(elemCode=C3D10, elemLibrary=STANDARD)), 
+    regions=(mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['Model-1'].parts['stick'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D20R, elemLibrary=STANDARD), ElemType(elemCode=C3D15, 
+    elemLibrary=STANDARD), ElemType(elemCode=C3D10, elemLibrary=STANDARD)), 
+    regions=(mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['Model-1'].parts['stick'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D8R, elemLibrary=STANDARD), ElemType(elemCode=C3D6, 
+    elemLibrary=STANDARD), ElemType(elemCode=C3D4, elemLibrary=STANDARD, 
+    secondOrderAccuracy=OFF, distortionControl=DEFAULT)), regions=(
+    mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ), ))
+mdb.models['Model-1'].parts['stick'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D8R, elemLibrary=STANDARD), ElemType(elemCode=C3D6, 
+    elemLibrary=STANDARD), ElemType(elemCode=C3D4, elemLibrary=STANDARD, 
+    secondOrderAccuracy=OFF, distortionControl=DEFAULT)), regions=(
+    mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ), ))
+mdb.models['Model-1'].parts['stick'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D20R, elemLibrary=STANDARD), ElemType(elemCode=C3D15, 
+    elemLibrary=STANDARD), ElemType(elemCode=C3D10, elemLibrary=STANDARD)), 
+    regions=(mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['Model-1'].parts['stick'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D8R, elemLibrary=STANDARD), ElemType(elemCode=C3D6, 
+    elemLibrary=STANDARD, secondOrderAccuracy=OFF, distortionControl=DEFAULT), 
+    ElemType(elemCode=C3D4H, elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ), ))
+mdb.models['Model-1'].parts['stick'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D8R, elemLibrary=STANDARD), ElemType(elemCode=C3D6, 
+    elemLibrary=STANDARD), ElemType(elemCode=C3D4, elemLibrary=STANDARD, 
+    secondOrderAccuracy=OFF, distortionControl=DEFAULT)), regions=(
+    mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ), ))
+mdb.models['Model-1'].parts['stick'].setMeshControls(elemShape=WEDGE, regions=
+    mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ), technique=SWEEP)
+mdb.models['Model-1'].parts['stick'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D8R, elemLibrary=STANDARD), ElemType(elemCode=C3D6, 
+    elemLibrary=STANDARD, secondOrderAccuracy=OFF, distortionControl=DEFAULT), 
+    ElemType(elemCode=C3D4, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    distortionControl=DEFAULT)), regions=(
+    mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ), ))
+mdb.models['Model-1'].parts['stick'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D8R, elemLibrary=STANDARD), ElemType(elemCode=C3D6, 
+    elemLibrary=STANDARD, secondOrderAccuracy=OFF, distortionControl=DEFAULT), 
+    ElemType(elemCode=C3D4, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    distortionControl=DEFAULT)), regions=(
+    mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ), ))
+mdb.models['Model-1'].parts['stick'].generateMesh()
+mdb.models['Model-1'].parts['stick'].deleteMesh()
+mdb.models['Model-1'].parts['stick'].setMeshControls(algorithm=ADVANCING_FRONT, 
+    elemShape=HEX, regions=
+    mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ))
+mdb.models['Model-1'].parts['stick'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D20R, elemLibrary=STANDARD), ElemType(elemCode=C3D15, 
+    elemLibrary=STANDARD), ElemType(elemCode=C3D10, elemLibrary=STANDARD)), 
+    regions=(mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['Model-1'].parts['stick'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D20R, elemLibrary=STANDARD), ElemType(elemCode=C3D15, 
+    elemLibrary=STANDARD), ElemType(elemCode=C3D10, elemLibrary=STANDARD)), 
+    regions=(mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['Model-1'].parts['stick'].generateMesh()
+mdb.models['Model-1'].parts['stick'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D20, elemLibrary=STANDARD), ElemType(elemCode=C3D15, 
+    elemLibrary=STANDARD), ElemType(elemCode=C3D10, elemLibrary=STANDARD)), 
+    regions=(mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-6', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', type=
+    ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.jobs['Job-6'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-6']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 0, 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE REQUEST FOR MISES OUTPUT WILL BE REPLACED BY A REQUEST FOR S OUTPUT', 
+    'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'E:\\101-WorkShop\\simulation\\Abaqus\\result\\Job-6.odb', 
+    'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 32, 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-6', 'memory': 24.0})
+mdb.jobs['Job-6']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-6', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-6']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(JOB_COMPLETED, {'time': 'Tue Dec 10 17:59:44 2019', 
+    'jobName': 'Job-6'})
+mdb.models['Model-1'].parts['stick'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D20R, elemLibrary=STANDARD), ElemType(elemCode=C3D15, 
+    elemLibrary=STANDARD), ElemType(elemCode=C3D10, elemLibrary=STANDARD)), 
+    regions=(mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.jobs['Job-6'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-6']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 0, 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE REQUEST FOR MISES OUTPUT WILL BE REPLACED BY A REQUEST FOR S OUTPUT', 
+    'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'E:\\101-WorkShop\\simulation\\Abaqus\\result\\Job-6.odb', 
+    'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 2992, 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-6', 'memory': 24.0})
+mdb.jobs['Job-6']._Message(STATUS, {'totalTime': 0.0, 'attempts': ' 1U', 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 0.0, 'step': 1, 
+    'jobName': 'Job-6', 'severe': 0, 'iterations': 5, 'phase': STANDARD_PHASE, 
+    'equilibrium': 5})
+mdb.jobs['Job-6']._Message(STATUS, {'totalTime': 0.0, 'attempts': ' 2U', 
+    'timeIncrement': 0.25, 'increment': 1, 'stepTime': 0.0, 'step': 1, 
+    'jobName': 'Job-6', 'severe': 0, 'iterations': 5, 'phase': STANDARD_PHASE, 
+    'equilibrium': 5})
+mdb.jobs['Job-6']._Message(STATUS, {'totalTime': 0.0, 'attempts': ' 3U', 
+    'timeIncrement': 0.0625, 'increment': 1, 'stepTime': 0.0, 'step': 1, 
+    'jobName': 'Job-6', 'severe': 0, 'iterations': 5, 'phase': STANDARD_PHASE, 
+    'equilibrium': 5})
+mdb.jobs['Job-6']._Message(STATUS, {'totalTime': 0.0, 'attempts': ' 4U', 
+    'timeIncrement': 0.015625, 'increment': 1, 'stepTime': 0.0, 'step': 1, 
+    'jobName': 'Job-6', 'severe': 0, 'iterations': 5, 'phase': STANDARD_PHASE, 
+    'equilibrium': 5})
+mdb.jobs['Job-6']._Message(STATUS, {'totalTime': 0.0, 'attempts': ' 5U', 
+    'timeIncrement': 0.00390625, 'increment': 1, 'stepTime': 0.0, 'step': 1, 
+    'jobName': 'Job-6', 'severe': 0, 'iterations': 5, 'phase': STANDARD_PHASE, 
+    'equilibrium': 5})
+mdb.jobs['Job-6']._Message(ERROR, {'phase': STANDARD_PHASE, 
+    'message': 'Too many attempts made for this increment', 
+    'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(ABORTED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(ERROR, {
+    'message': 'Abaqus/Standard Analysis exited with an error - Please see the  message file for possible error messages if the file exists.', 
+    'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(JOB_ABORTED, {
+    'message': 'Abaqus/Standard Analysis exited with an error - Please see the  message file for possible error messages if the file exists.', 
+    'jobName': 'Job-6'})
+mdb.models['Model-1'].parts['stick'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D20R, elemLibrary=STANDARD), ElemType(elemCode=C3D15, 
+    elemLibrary=STANDARD), ElemType(elemCode=C3D10, elemLibrary=STANDARD)), 
+    regions=(mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.jobs['Job-6'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-6']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 0, 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE REQUEST FOR MISES OUTPUT WILL BE REPLACED BY A REQUEST FOR S OUTPUT', 
+    'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'E:\\101-WorkShop\\simulation\\Abaqus\\result\\Job-6.odb', 
+    'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 8316, 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-6', 'memory': 24.0})
+mdb.jobs['Job-6']._Message(STATUS, {'totalTime': 0.0, 'attempts': ' 1U', 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 0.0, 'step': 1, 
+    'jobName': 'Job-6', 'severe': 0, 'iterations': 5, 'phase': STANDARD_PHASE, 
+    'equilibrium': 5})
+mdb.jobs['Job-6']._Message(STATUS, {'totalTime': 0.0, 'attempts': ' 2U', 
+    'timeIncrement': 0.25, 'increment': 1, 'stepTime': 0.0, 'step': 1, 
+    'jobName': 'Job-6', 'severe': 0, 'iterations': 5, 'phase': STANDARD_PHASE, 
+    'equilibrium': 5})
+mdb.jobs['Job-6']._Message(STATUS, {'totalTime': 0.0, 'attempts': ' 3U', 
+    'timeIncrement': 0.0625, 'increment': 1, 'stepTime': 0.0, 'step': 1, 
+    'jobName': 'Job-6', 'severe': 0, 'iterations': 5, 'phase': STANDARD_PHASE, 
+    'equilibrium': 5})
+mdb.jobs['Job-6']._Message(STATUS, {'totalTime': 0.0, 'attempts': ' 4U', 
+    'timeIncrement': 0.015625, 'increment': 1, 'stepTime': 0.0, 'step': 1, 
+    'jobName': 'Job-6', 'severe': 0, 'iterations': 5, 'phase': STANDARD_PHASE, 
+    'equilibrium': 5})
+mdb.jobs['Job-6']._Message(STATUS, {'totalTime': 0.0, 'attempts': ' 5U', 
+    'timeIncrement': 0.00390625, 'increment': 1, 'stepTime': 0.0, 'step': 1, 
+    'jobName': 'Job-6', 'severe': 0, 'iterations': 5, 'phase': STANDARD_PHASE, 
+    'equilibrium': 5})
+mdb.jobs['Job-6']._Message(ERROR, {'phase': STANDARD_PHASE, 
+    'message': 'Too many attempts made for this increment', 
+    'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(ABORTED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(ERROR, {
+    'message': 'Abaqus/Standard Analysis exited with an error - Please see the  message file for possible error messages if the file exists.', 
+    'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(JOB_ABORTED, {
+    'message': 'Abaqus/Standard Analysis exited with an error - Please see the  message file for possible error messages if the file exists.', 
+    'jobName': 'Job-6'})
+mdb.models['Model-1'].parts['stick'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D20, elemLibrary=STANDARD), ElemType(elemCode=C3D15, 
+    elemLibrary=STANDARD), ElemType(elemCode=C3D10, elemLibrary=STANDARD)), 
+    regions=(mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.jobs['Job-6'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-6']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 0, 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE REQUEST FOR MISES OUTPUT WILL BE REPLACED BY A REQUEST FOR S OUTPUT', 
+    'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'E:\\101-WorkShop\\simulation\\Abaqus\\result\\Job-6.odb', 
+    'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 6540, 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-6', 'memory': 24.0})
+mdb.jobs['Job-6']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-6', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-6']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(JOB_COMPLETED, {'time': 'Tue Dec 10 18:10:24 2019', 
+    'jobName': 'Job-6'})
+mdb.models['Model-1'].parts['stick'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D20R, elemLibrary=STANDARD), ElemType(elemCode=C3D15, 
+    elemLibrary=STANDARD), ElemType(elemCode=C3D10, elemLibrary=STANDARD)), 
+    regions=(mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.jobs['Job-6'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-6']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 0, 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE REQUEST FOR MISES OUTPUT WILL BE REPLACED BY A REQUEST FOR S OUTPUT', 
+    'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'E:\\101-WorkShop\\simulation\\Abaqus\\result\\Job-6.odb', 
+    'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 10368, 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-6', 'memory': 24.0})
+mdb.jobs['Job-6']._Message(STATUS, {'totalTime': 0.0, 'attempts': ' 1U', 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 0.0, 'step': 1, 
+    'jobName': 'Job-6', 'severe': 0, 'iterations': 5, 'phase': STANDARD_PHASE, 
+    'equilibrium': 5})
+mdb.jobs['Job-6']._Message(STATUS, {'totalTime': 0.0, 'attempts': ' 2U', 
+    'timeIncrement': 0.25, 'increment': 1, 'stepTime': 0.0, 'step': 1, 
+    'jobName': 'Job-6', 'severe': 0, 'iterations': 5, 'phase': STANDARD_PHASE, 
+    'equilibrium': 5})
+mdb.jobs['Job-6']._Message(STATUS, {'totalTime': 0.0, 'attempts': ' 3U', 
+    'timeIncrement': 0.0625, 'increment': 1, 'stepTime': 0.0, 'step': 1, 
+    'jobName': 'Job-6', 'severe': 0, 'iterations': 5, 'phase': STANDARD_PHASE, 
+    'equilibrium': 5})
+mdb.jobs['Job-6']._Message(STATUS, {'totalTime': 0.0, 'attempts': ' 4U', 
+    'timeIncrement': 0.015625, 'increment': 1, 'stepTime': 0.0, 'step': 1, 
+    'jobName': 'Job-6', 'severe': 0, 'iterations': 5, 'phase': STANDARD_PHASE, 
+    'equilibrium': 5})
+mdb.jobs['Job-6']._Message(STATUS, {'totalTime': 0.0, 'attempts': ' 5U', 
+    'timeIncrement': 0.00390625, 'increment': 1, 'stepTime': 0.0, 'step': 1, 
+    'jobName': 'Job-6', 'severe': 0, 'iterations': 5, 'phase': STANDARD_PHASE, 
+    'equilibrium': 5})
+mdb.jobs['Job-6']._Message(ERROR, {'phase': STANDARD_PHASE, 
+    'message': 'Too many attempts made for this increment', 
+    'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(ABORTED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(ERROR, {
+    'message': 'Abaqus/Standard Analysis exited with an error - Please see the  message file for possible error messages if the file exists.', 
+    'jobName': 'Job-6'})
+mdb.jobs['Job-6']._Message(JOB_ABORTED, {
+    'message': 'Abaqus/Standard Analysis exited with an error - Please see the  message file for possible error messages if the file exists.', 
+    'jobName': 'Job-6'})
+mdb.models['Model-1'].parts['stick'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D8R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    kinematicSplit=AVERAGE_STRAIN, hourglassControl=DEFAULT, 
+    distortionControl=DEFAULT), ElemType(elemCode=C3D6, elemLibrary=STANDARD, 
+    secondOrderAccuracy=OFF, distortionControl=DEFAULT), ElemType(
+    elemCode=C3D4, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    distortionControl=DEFAULT)), regions=(
+    mdb.models['Model-1'].parts['stick'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ), ))
+mdb.models['Model-1'].parts['stick'].generateMesh()
+# Save by XLH on 2019_12_10-18.15.58; build 2016 2015_09_25-04.31.09 126547

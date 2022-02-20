@@ -1,0 +1,496 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].sketchOptions.setValues(
+    viewStyle=AXISYM)
+mdb.models['Model-1'].sketches['__profile__'].ConstructionLine(point1=(0.0, 
+    -100.0), point2=(0.0, 100.0))
+mdb.models['Model-1'].sketches['__profile__'].FixedConstraint(entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.0, 10.0), point2=(
+    17.5, 10.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(17.5, 10.0), point2=
+    (17.5, 11.25))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[4])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(17.5, 11.25), 
+    point2=(22.5, 11.25))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(22.5, 11.25), 
+    point2=(22.5, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[6])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(22.5, 0.0), point2=(
+    0.0, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.0, 0.0), point2=(
+    0.0, 10.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[8])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[8])
+mdb.models['Model-1'].Part(dimensionality=AXISYMMETRIC, name='Part-dian', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['Part-dian'].BaseShell(sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].sketchOptions.setValues(
+    viewStyle=AXISYM)
+mdb.models['Model-1'].sketches['__profile__'].ConstructionLine(point1=(0.0, 
+    -100.0), point2=(0.0, 100.0))
+mdb.models['Model-1'].sketches['__profile__'].FixedConstraint(entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.0, 15.0), point2=(
+    17.5, 15.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(17.5, 15.0), point2=
+    (17.5, 20.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[4])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(17.5, 20.0), point2=
+    (0.0, 20.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5])
+mdb.models['Model-1'].Part(dimensionality=AXISYMMETRIC, name='Part-tou', type=
+    ANALYTIC_RIGID_SURFACE)
+mdb.models['Model-1'].parts['Part-tou'].AnalyticRigidSurf2DPlanar(sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].parts['Part-tou'].ReferencePoint(point=
+    mdb.models['Model-1'].parts['Part-tou'].InterestingPoint(
+    mdb.models['Model-1'].parts['Part-tou'].edges[2], MIDDLE))
+mdb.models['Model-1'].Material(name='Material-1')
+mdb.models['Model-1'].materials['Material-1'].Plastic(table=((418.0, 0.0), (
+    500.0, 0.01581), (605.0, 0.02983), (829.0, 0.15), (882.0, 0.25), (908.0, 
+    0.35), (921.0, 0.45), (932.0, 0.55), (955.0, 0.65), (988.0, 0.75), (1040.0, 
+    0.85)))
+mdb.models['Model-1'].materials['Material-1'].Elastic(table=((210000.0, 0.3), 
+    ))
+mdb.models['Model-1'].HomogeneousSolidSection(material='Material-1', name=
+    'Section-1', thickness=None)
+mdb.models['Model-1'].parts['Part-dian'].Set(faces=
+    mdb.models['Model-1'].parts['Part-dian'].faces.getSequenceFromMask((
+    '[#1 ]', ), ), name='Set-1')
+mdb.models['Model-1'].parts['Part-dian'].SectionAssignment(offset=0.0, 
+    offsetField='', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Model-1'].parts['Part-dian'].sets['Set-1'], sectionName=
+    'Section-1', thicknessAssignment=FROM_SECTION)
+mdb.models['Model-1'].rootAssembly.DatumCsysByThreePoints(coordSysType=
+    CYLINDRICAL, origin=(0.0, 0.0, 0.0), point1=(1.0, 0.0, 0.0), point2=(0.0, 
+    0.0, -1.0))
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='Part-dian-1', 
+    part=mdb.models['Model-1'].parts['Part-dian'])
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='Part-tou-1', 
+    part=mdb.models['Model-1'].parts['Part-tou'])
+mdb.models['Model-1'].StaticStep(name='Step-jiechu', nlgeom=ON, previous=
+    'Initial')
+mdb.models['Model-1'].StaticStep(initialInc=0.05, maxInc=0.05, name='Step-jiya'
+    , previous='Step-jiechu')
+# Save by mjs on 2016_11_29-18.39.05; build 2016 2015_09_25-04.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+del mdb.models['Model-1'].steps['Step-jiya']
+mdb.models['Model-1'].StaticStep(initialInc=0.05, maxInc=0.05, name='Step-jiya'
+    , previous='Step-jiechu')
+mdb.models['Model-1'].ConstrainedSketch(gridSpacing=1.25, name='__profile__', 
+    sheetSize=50.31, transform=
+    mdb.models['Model-1'].parts['Part-dian'].MakeSketchTransform(
+    sketchPlane=mdb.models['Model-1'].parts['Part-dian'].faces[0], 
+    sketchPlaneSide=SIDE1, sketchOrientation=RIGHT, origin=(11.486486, 
+    5.152027, 0.0)))
+mdb.models['Model-1'].parts['Part-dian'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['Model-1'].sketches['__profile__'])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(6.013514, 4.847973), 
+    point2=(11.0135139999956, 4.847973))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[9])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[9])
+mdb.models['Model-1'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[6], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4])
+mdb.models['Model-1'].parts['Part-dian'].PartitionFaceBySketch(faces=
+    mdb.models['Model-1'].parts['Part-dian'].faces.getSequenceFromMask((
+    '[#1 ]', ), ), sketch=mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].parts['Part-dian'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=1.0)
+mdb.models['Model-1'].parts['Part-dian'].setMeshControls(elemShape=QUAD, 
+    regions=mdb.models['Model-1'].parts['Part-dian'].faces.getSequenceFromMask(
+    ('[#3 ]', ), ), technique=STRUCTURED)
+mdb.models['Model-1'].parts['Part-dian'].setElementType(elemTypes=(ElemType(
+    elemCode=CAX4I, elemLibrary=STANDARD), ElemType(elemCode=CAX3, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].parts['Part-dian'].faces.getSequenceFromMask((
+    '[#3 ]', ), ), ))
+mdb.models['Model-1'].parts['Part-dian'].generateMesh()
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.models['Model-1'].rootAssembly.Surface(name='Surf-tou-B', side2Edges=
+    mdb.models['Model-1'].rootAssembly.instances['Part-tou-1'].edges.getSequenceFromMask(
+    ('[#7 ]', ), ))
+mdb.models['Model-1'].rootAssembly.Surface(name='Surf-tou-S', side2Edges=
+    mdb.models['Model-1'].rootAssembly.instances['Part-tou-1'].edges.getSequenceFromMask(
+    ('[#7 ]', ), ))
+mdb.models['Model-1'].rootAssembly.Surface(name='Surf-dian-T', side1Edges=
+    mdb.models['Model-1'].rootAssembly.instances['Part-dian-1'].edges.getSequenceFromMask(
+    ('[#2 ]', ), ))
+mdb.models['Model-1'].rootAssembly.Surface(name='Surf-dian-S', side1Edges=
+    mdb.models['Model-1'].rootAssembly.instances['Part-dian-1'].edges.getSequenceFromMask(
+    ('[#80 ]', ), ))
+mdb.models['Model-1'].ContactProperty('IntProp-1')
+mdb.models['Model-1'].SurfaceToSurfaceContactStd(adjustMethod=NONE, 
+    clearanceRegion=None, createStepName='Step-jiechu', datumAxis=None, 
+    initialClearance=OMIT, interactionProperty='IntProp-1', master=
+    mdb.models['Model-1'].rootAssembly.surfaces['Surf-tou-B'], name='Int-1', 
+    slave=mdb.models['Model-1'].rootAssembly.surfaces['Surf-dian-T'], sliding=
+    FINITE, thickness=ON)
+mdb.models['Model-1'].SurfaceToSurfaceContactStd(adjustMethod=NONE, 
+    clearanceRegion=None, createStepName='Step-jiechu', datumAxis=None, 
+    initialClearance=OMIT, interactionProperty='IntProp-1', master=
+    mdb.models['Model-1'].rootAssembly.surfaces['Surf-tou-S'], name='Int-2', 
+    slave=mdb.models['Model-1'].rootAssembly.surfaces['Surf-dian-S'], sliding=
+    FINITE, thickness=ON)
+mdb.models['Model-1'].rootAssembly.Set(edges=
+    mdb.models['Model-1'].rootAssembly.instances['Part-dian-1'].edges.getSequenceFromMask(
+    ('[#8 ]', ), ), name='Set-Fix')
+mdb.models['Model-1'].rootAssembly.Set(edges=
+    mdb.models['Model-1'].rootAssembly.instances['Part-dian-1'].edges.getSequenceFromMask(
+    ('[#4 ]', ), ), name='Set-Symm')
+mdb.models['Model-1'].rootAssembly.Set(name='Set-P', referencePoints=(
+    mdb.models['Model-1'].rootAssembly.instances['Part-tou-1'].referencePoints[2], 
+    ))
+mdb.models['Model-1'].DisplacementBC(amplitude=UNSET, createStepName='Initial', 
+    distributionType=UNIFORM, fieldName='', localCsys=None, name='BC-Fix', 
+    region=mdb.models['Model-1'].rootAssembly.sets['Set-Fix'], u1=UNSET, u2=SET
+    , ur3=UNSET)
+mdb.models['Model-1'].DisplacementBC(amplitude=UNSET, createStepName='Initial', 
+    distributionType=UNIFORM, fieldName='', localCsys=None, name='BC-Symm', 
+    region=mdb.models['Model-1'].rootAssembly.sets['Set-Symm'], u1=SET, u2=
+    UNSET, ur3=UNSET)
+mdb.models['Model-1'].DisplacementBC(amplitude=UNSET, createStepName=
+    'Step-jiechu', distributionType=UNIFORM, fieldName='', fixed=OFF, 
+    localCsys=None, name='BC-P', region=
+    mdb.models['Model-1'].rootAssembly.sets['Set-P'], u1=0.0, u2=-5.01, ur3=
+    0.0)
+mdb.models['Model-1'].boundaryConditions['BC-P'].setValuesInStep(stepName=
+    'Step-jiya', u2=-6.5)
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-cailiao-1', nodalOutputPrecision=
+    SINGLE, numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', 
+    type=ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+# Save by mjs on 2016_11_29-19.04.48; build 2016 2015_09_25-04.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.jobs['Job-cailiao-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-cailiao-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'fzs', 'handle': 0, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE SLAVE SURFACES ASSEMBLY_SURF-DIAN-T AND ASSEMBLY_SURF-DIAN-S PAIRED WITH MASTER SURFACE ASSEMBLY_PART-TOU-1_SURF-TOU-B INTERSECT EACH OTHER. IF BOTH PAIRS ARE *CONTACT PAIRs, THESE TWO PAIRS SHOULD NOT BE SIMULTANEOUSLY PRESENT IN A STEP BECAUSE OF POSSIBLE CONVERGENCE PROBLEMS; USE *MODEL CHANGE,TYPE=CONTACT PAIR TO REMOVE ONE OF THEM. IF BOTH ARE *TIE PAIRS, THE REDUNDANT TIES WILL BE REMOVED AUTOMATICALLY. IF ONE PAIR IS *TIE AND ANOTHER IS *CONTACT PAIR, REMOVE ONE OF THEM.', 
+    'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'PATH BASED TRACKING IS DEFINED IN CONTACT PAIR (ASSEMBLY_SURF-DIAN-T,ASSEMBLY_PART-TOU-1_SURF-TOU-B). PATH BASED TRACKING CANNOT BE USED WITH ANALYTICAL RIGID MASTER SURFACES, THE STATE BASED TRACKING ALGORITHM WILL BE USED INSTEAD.', 
+    'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'PATH BASED TRACKING IS DEFINED IN CONTACT PAIR (ASSEMBLY_SURF-DIAN-S,ASSEMBLY_PART-TOU-1_SURF-TOU-B). PATH BASED TRACKING CANNOT BE USED WITH ANALYTICAL RIGID MASTER SURFACES, THE STATE BASED TRACKING ALGORITHM WILL BE USED INSTEAD.', 
+    'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'e:\\temp\\Job-cailiao-1.odb', 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'fzs', 'handle': 13904, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THERE ARE 2 UNCONNECTED REGIONS IN THE MODEL.', 
+    'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-cailiao-1', 'memory': 24.0})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-cailiao-1', 'severe': 2, 'iterations': 4, 
+    'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-1']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 2, 
+    'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 0, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-cailiao-1', 'memory': 24.0})
+mdb.jobs['Job-cailiao-1']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 3 POINTS', 
+    'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 6 POINTS', 
+    'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 8 POINTS', 
+    'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 20 POINTS', 
+    'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'EXCESSIVE DISTORTION AT A TOTAL OF 2 INTEGRATION POINTS IN SOLID (CONTINUUM) ELEMENTS', 
+    'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.0, 
+    'attempts': ' 1U', 'timeIncrement': 0.05, 'increment': 1, 'stepTime': 0.0, 
+    'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 4, 'iterations': 7, 
+    'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 1, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.0125, 'attempts': 2, 
+    'timeIncrement': 0.0125, 'increment': 1, 'stepTime': 0.0125, 'step': 2, 
+    'jobName': 'Job-cailiao-1', 'severe': 0, 'iterations': 4, 
+    'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 2, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.025, 'attempts': 1, 
+    'timeIncrement': 0.0125, 'increment': 2, 'stepTime': 0.025, 'step': 2, 
+    'jobName': 'Job-cailiao-1', 'severe': 1, 'iterations': 3, 
+    'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 3, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.04375, 
+    'attempts': 1, 'timeIncrement': 0.01875, 'increment': 3, 
+    'stepTime': 0.04375, 'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 0, 
+    'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 4, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.071875, 
+    'attempts': 1, 'timeIncrement': 0.028125, 'increment': 4, 
+    'stepTime': 0.071875, 'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 0, 
+    'iterations': 2, 'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 5, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.1140625, 
+    'attempts': 1, 'timeIncrement': 0.0421875, 'increment': 5, 
+    'stepTime': 0.1140625, 'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 0, 
+    'iterations': 2, 'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 6, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.1640625, 
+    'attempts': 1, 'timeIncrement': 0.05, 'increment': 6, 
+    'stepTime': 0.1640625, 'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 0, 
+    'iterations': 2, 'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 7, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.2140625, 
+    'attempts': 1, 'timeIncrement': 0.05, 'increment': 7, 
+    'stepTime': 0.2140625, 'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 0, 
+    'iterations': 2, 'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 8, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.2640625, 
+    'attempts': 1, 'timeIncrement': 0.05, 'increment': 8, 
+    'stepTime': 0.2640625, 'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 0, 
+    'iterations': 2, 'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 9, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.3140625, 
+    'attempts': 1, 'timeIncrement': 0.05, 'increment': 9, 
+    'stepTime': 0.3140625, 'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 1, 
+    'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 10, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.3640625, 
+    'attempts': 1, 'timeIncrement': 0.05, 'increment': 10, 
+    'stepTime': 0.3640625, 'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 0, 
+    'iterations': 2, 'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 11, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.4140625, 
+    'attempts': 1, 'timeIncrement': 0.05, 'increment': 11, 
+    'stepTime': 0.4140625, 'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 0, 
+    'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 12, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.4640625, 
+    'attempts': 1, 'timeIncrement': 0.05, 'increment': 12, 
+    'stepTime': 0.4640625, 'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 0, 
+    'iterations': 2, 'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 13, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.5140625, 
+    'attempts': 1, 'timeIncrement': 0.05, 'increment': 13, 
+    'stepTime': 0.5140625, 'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 2, 
+    'iterations': 5, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-1']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 4 POINTS', 
+    'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 7 POINTS', 
+    'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 21 POINTS', 
+    'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT IS SO LARGE THAT THE PROGRAM WILL NOT ATTEMPT THE PLASTICITY CALCULATION AT 1 POINTS', 
+    'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'EXCESSIVE DISTORTION AT A TOTAL OF 2 INTEGRATION POINTS IN SOLID (CONTINUUM) ELEMENTS', 
+    'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.5140625, 
+    'attempts': ' 1U', 'timeIncrement': 0.05, 'increment': 14, 
+    'stepTime': 0.5140625, 'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 4, 
+    'iterations': 5, 'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 14, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.5265625, 
+    'attempts': 2, 'timeIncrement': 0.0125, 'increment': 14, 
+    'stepTime': 0.5265625, 'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 1, 
+    'iterations': 5, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 15, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.5453125, 
+    'attempts': 1, 'timeIncrement': 0.01875, 'increment': 15, 
+    'stepTime': 0.5453125, 'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 0, 
+    'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 16, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.5734375, 
+    'attempts': 1, 'timeIncrement': 0.028125, 'increment': 16, 
+    'stepTime': 0.5734375, 'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 0, 
+    'iterations': 2, 'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 17, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.615625, 
+    'attempts': 1, 'timeIncrement': 0.0421875, 'increment': 17, 
+    'stepTime': 0.615625, 'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 0, 
+    'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 18, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.665625, 
+    'attempts': 1, 'timeIncrement': 0.05, 'increment': 18, 
+    'stepTime': 0.665625, 'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 0, 
+    'iterations': 2, 'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 19, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.715625, 
+    'attempts': 1, 'timeIncrement': 0.05, 'increment': 19, 
+    'stepTime': 0.715625, 'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 0, 
+    'iterations': 2, 'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 20, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.765625, 
+    'attempts': 1, 'timeIncrement': 0.05, 'increment': 20, 
+    'stepTime': 0.765625, 'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 0, 
+    'iterations': 2, 'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 21, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.815625, 
+    'attempts': 1, 'timeIncrement': 0.05, 'increment': 21, 
+    'stepTime': 0.815625, 'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 0, 
+    'iterations': 2, 'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 22, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.865625, 
+    'attempts': 1, 'timeIncrement': 0.05, 'increment': 22, 
+    'stepTime': 0.865625, 'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 0, 
+    'iterations': 2, 'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 23, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.915625, 
+    'attempts': 1, 'timeIncrement': 0.05, 'increment': 23, 
+    'stepTime': 0.915625, 'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 0, 
+    'iterations': 2, 'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 24, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 1.965625, 
+    'attempts': 1, 'timeIncrement': 0.05, 'increment': 24, 
+    'stepTime': 0.965625, 'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 0, 
+    'iterations': 2, 'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 25, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(STATUS, {'totalTime': 2.0, 'attempts': 1, 
+    'timeIncrement': 0.0343749999999997, 'increment': 25, 'stepTime': 1.0, 
+    'step': 2, 'jobName': 'Job-cailiao-1', 'severe': 0, 'iterations': 2, 
+    'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-1']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 2, 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-cailiao-1'})
+mdb.jobs['Job-cailiao-1']._Message(JOB_COMPLETED, {
+    'time': 'Tue Nov 29 19:05:39 2016', 'jobName': 'Job-cailiao-1'})
+# Save by mjs on 2016_11_29-19.28.54; build 2016 2015_09_25-04.31.09 126547

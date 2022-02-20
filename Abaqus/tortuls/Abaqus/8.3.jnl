@@ -1,0 +1,246 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.0, 10.0), point2=(
+    10.0, 10.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(10.0, 10.0), point2=
+    (10.0, 20.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[3])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(10.0, 20.0), point2=
+    (15.0, 20.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(15.0, 20.0), point2=
+    (15.0, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[5])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(15.0, 0.0), point2=(
+    7.5, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(7.5, 0.0), point2=(
+    7.5, -25.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[7])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(7.5, -25.0), point2=
+    (0.0, -25.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[8])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[8])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.0, -25.0), point2=
+    (0.0, 10.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[9])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[8], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[9])
+mdb.models['Model-1'].sketches['__profile__'].FilletByRadius(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2], curve2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3], nearPoint1=(
+    5.64270782470703, 9.71428298950195), nearPoint2=(10.0711517333984, 
+    13.1428565979004), radius=3.75)
+mdb.models['Model-1'].sketches['__profile__'].FilletByRadius(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5], curve2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6], nearPoint1=(
+    14.9281692504883, 8.57143020629883), nearPoint2=(11.9282531738281, 
+    0.428573608398438), radius=3.75)
+mdb.models['Model-1'].sketches['__profile__'].FilletByRadius(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7], curve2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6], nearPoint1=(
+    7.07124328613281, -4.0), nearPoint2=(9.78544616699219, 0.428573608398438), 
+    radius=3.75)
+mdb.models['Model-1'].Part(dimensionality=THREE_D, name='Part-zhijia', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['Part-zhijia'].BaseSolidExtrude(depth=10.0, sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].Material(name='Material-1')
+mdb.models['Model-1'].materials['Material-1'].Elastic(table=((210000.0, 0.3), 
+    ))
+mdb.models['Model-1'].materials['Material-1'].Expansion(table=((1.18e-05, ), ))
+mdb.models['Model-1'].HomogeneousSolidSection(material='Material-1', name=
+    'Section-1', thickness=None)
+mdb.models['Model-1'].parts['Part-zhijia'].Set(cells=
+    mdb.models['Model-1'].parts['Part-zhijia'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), name='Set-1')
+mdb.models['Model-1'].parts['Part-zhijia'].SectionAssignment(offset=0.0, 
+    offsetField='', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Model-1'].parts['Part-zhijia'].sets['Set-1'], sectionName=
+    'Section-1', thicknessAssignment=FROM_SECTION)
+mdb.models['Model-1'].rootAssembly.DatumCsysByDefault(CARTESIAN)
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='Part-zhijia-1', 
+    part=mdb.models['Model-1'].parts['Part-zhijia'])
+mdb.models['Model-1'].StaticStep(name='Step-15-30', previous='Initial')
+mdb.models['Model-1'].StaticStep(name='Step-90-30', previous='Step-15-30')
+mdb.models['Model-1'].StaticStep(name='Step-90', previous='Step-90-30')
+mdb.models['Model-1'].parts['Part-zhijia'].PartitionCellByPlanePointNormal(
+    cells=mdb.models['Model-1'].parts['Part-zhijia'].cells.getSequenceFromMask(
+    ('[#1 ]', ), ), normal=mdb.models['Model-1'].parts['Part-zhijia'].edges[13]
+    , point=mdb.models['Model-1'].parts['Part-zhijia'].vertices[10])
+mdb.models['Model-1'].parts['Part-zhijia'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=1.0)
+mdb.models['Model-1'].parts['Part-zhijia'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D20R, elemLibrary=STANDARD), ElemType(elemCode=C3D15, 
+    elemLibrary=STANDARD), ElemType(elemCode=C3D10, elemLibrary=STANDARD)), 
+    regions=(
+    mdb.models['Model-1'].parts['Part-zhijia'].cells.getSequenceFromMask((
+    '[#3 ]', ), ), ))
+mdb.models['Model-1'].parts['Part-zhijia'].generateMesh()
+mdb.models['Model-1'].parts['Part-zhijia'].generateMesh()
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.models['Model-1'].rootAssembly.Set(faces=
+    mdb.models['Model-1'].rootAssembly.instances['Part-zhijia-1'].faces.getSequenceFromMask(
+    ('[#1000 ]', ), ), name='Set-Fix')
+mdb.models['Model-1'].rootAssembly.Set(faces=
+    mdb.models['Model-1'].rootAssembly.instances['Part-zhijia-1'].faces.getSequenceFromMask(
+    ('[#2008 ]', ), ), name='Set-Symm')
+mdb.models['Model-1'].rootAssembly.Set(cells=
+    mdb.models['Model-1'].rootAssembly.instances['Part-zhijia-1'].cells.getSequenceFromMask(
+    ('[#2 ]', ), ), name='Set-HT')
+mdb.models['Model-1'].rootAssembly.Set(cells=
+    mdb.models['Model-1'].rootAssembly.instances['Part-zhijia-1'].cells.getSequenceFromMask(
+    ('[#1 ]', ), ), name='Set-LT')
+mdb.models['Model-1'].rootAssembly.Surface(name='Surf-Load', side1Faces=
+    mdb.models['Model-1'].rootAssembly.instances['Part-zhijia-1'].faces.getSequenceFromMask(
+    ('[#80 ]', ), ))
+mdb.models['Model-1'].EncastreBC(createStepName='Initial', localCsys=None, 
+    name='BC-Fix', region=mdb.models['Model-1'].rootAssembly.sets['Set-Fix'])
+mdb.models['Model-1'].ZsymmBC(createStepName='Initial', localCsys=None, name=
+    'BC-Symm', region=mdb.models['Model-1'].rootAssembly.sets['Set-Symm'])
+mdb.models['Model-1'].SurfaceTraction(createStepName='Step-15-30', 
+    directionVector=((0.0, 0.0, 0.0), (10.0, 0.0, 0.0)), distributionType=
+    UNIFORM, field='', localCsys=None, magnitude=30.0, name='Load-Surf', 
+    region=mdb.models['Model-1'].rootAssembly.surfaces['Surf-Load'])
+mdb.models['Model-1'].loads['Load-Surf'].deactivate('Step-90')
+mdb.models['Model-1'].Temperature(createStepName='Initial', 
+    crossSectionDistribution=CONSTANT_THROUGH_THICKNESS, distributionType=
+    UNIFORM, magnitudes=(15.0, ), name='Predefined Field-1', region=
+    mdb.models['Model-1'].rootAssembly.sets['Set-HT'])
+mdb.models['Model-1'].Temperature(createStepName='Initial', 
+    crossSectionDistribution=CONSTANT_THROUGH_THICKNESS, distributionType=
+    UNIFORM, magnitudes=(15.0, ), name='Predefined Field-2', region=
+    mdb.models['Model-1'].rootAssembly.sets['Set-LT'])
+mdb.models['Model-1'].predefinedFields['Predefined Field-1'].setValuesInStep(
+    magnitudes=(90.0, ), stepName='Step-90-30')
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-zhijia', nodalOutputPrecision=SINGLE
+    , numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', type=
+    ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+# Save by mjs on 2016_12_01-11.02.27; build 2016 2015_09_25-04.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.jobs['Job-zhijia'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-zhijia']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'fzs', 'handle': 0, 'jobName': 'Job-zhijia'})
+mdb.jobs['Job-zhijia']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'The initial conditions defined on 501 nodes are not unique. The nodes have been identified in node set WarnNodeICDef.', 
+    'jobName': 'Job-zhijia'})
+mdb.jobs['Job-zhijia']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'e:\\temp\\Job-zhijia.odb', 'jobName': 'Job-zhijia'})
+mdb.jobs['Job-zhijia']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-zhijia'})
+mdb.jobs['Job-zhijia']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'fzs', 'handle': 6604, 'jobName': 'Job-zhijia'})
+mdb.jobs['Job-zhijia']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-zhijia'})
+mdb.jobs['Job-zhijia']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-zhijia'})
+mdb.jobs['Job-zhijia']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-zhijia', 'memory': 617.0})
+mdb.jobs['Job-zhijia']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-zhijia'})
+mdb.jobs['Job-zhijia']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-zhijia', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Job-zhijia']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'Job-zhijia'})
+mdb.jobs['Job-zhijia']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 2, 
+    'jobName': 'Job-zhijia'})
+mdb.jobs['Job-zhijia']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 0, 'jobName': 'Job-zhijia'})
+mdb.jobs['Job-zhijia']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-zhijia', 'memory': 617.0})
+mdb.jobs['Job-zhijia']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 1, 'jobName': 'Job-zhijia'})
+mdb.jobs['Job-zhijia']._Message(STATUS, {'totalTime': 2.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 2, 
+    'jobName': 'Job-zhijia', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Job-zhijia']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 2, 'jobName': 'Job-zhijia'})
+mdb.jobs['Job-zhijia']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 3, 
+    'jobName': 'Job-zhijia'})
+mdb.jobs['Job-zhijia']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 2, 
+    'frame': 0, 'jobName': 'Job-zhijia'})
+mdb.jobs['Job-zhijia']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-zhijia', 'memory': 617.0})
+mdb.jobs['Job-zhijia']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 2, 
+    'frame': 1, 'jobName': 'Job-zhijia'})
+mdb.jobs['Job-zhijia']._Message(STATUS, {'totalTime': 3.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 3, 
+    'jobName': 'Job-zhijia', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Job-zhijia']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 3, 'jobName': 'Job-zhijia'})
+mdb.jobs['Job-zhijia']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-zhijia'})
+mdb.jobs['Job-zhijia']._Message(JOB_COMPLETED, {
+    'time': 'Thu Dec 01 11:04:11 2016', 'jobName': 'Job-zhijia'})
+# Save by mjs on 2016_12_01-11.07.00; build 2016 2015_09_25-04.31.09 126547

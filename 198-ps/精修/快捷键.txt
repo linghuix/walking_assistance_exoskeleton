@@ -1,0 +1,5 @@
+变形工具：ctrl+T
+橡皮擦工具：E
+创建剪贴蒙版：ctrl+alt+G
+盖印图层：ctrl+alt+shift+E
+羽化：shift+F6

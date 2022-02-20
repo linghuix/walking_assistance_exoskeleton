@@ -1,0 +1,97 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].CircleByCenterPerimeter(center=(
+    0.0, 0.0), point1=(0.02, 0.0))
+mdb.models['Model-1'].Part(dimensionality=THREE_D, name='Taylor-bar', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['Taylor-bar'].BaseSolidExtrude(depth=0.1, sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].parts['Taylor-bar'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=0.005)
+mdb.models['Model-1'].parts['Taylor-bar'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D8R, elemLibrary=EXPLICIT, secondOrderAccuracy=OFF, 
+    kinematicSplit=AVERAGE_STRAIN, hourglassControl=DEFAULT, 
+    distortionControl=DEFAULT), ElemType(elemCode=C3D6, elemLibrary=EXPLICIT), 
+    ElemType(elemCode=C3D4, elemLibrary=EXPLICIT)), regions=(
+    mdb.models['Model-1'].parts['Taylor-bar'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['Model-1'].parts['Taylor-bar'].generateMesh()
+mdb.models['Model-1'].Material(name='Jc-bar')
+mdb.models['Model-1'].materials['Jc-bar'].Density(table=((8960.0, ), ))
+mdb.models['Model-1'].materials['Jc-bar'].Depvar(n=4)
+mdb.models['Model-1'].materials['Jc-bar'].UserMaterial(mechanicalConstants=(
+    124000000000.0, 0.34, 90000000.0, 292000000.0, 0.31, 0.025, 1083.0, 25.0, 
+    1.09, 0.9, 383.0))
+mdb.models['Model-1'].HomogeneousSolidSection(material='Jc-bar', name=
+    'Section-1', thickness=None)
+mdb.models['Model-1'].parts['Taylor-bar'].Set(cells=
+    mdb.models['Model-1'].parts['Taylor-bar'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), name='Set-2')
+mdb.models['Model-1'].parts['Taylor-bar'].SectionAssignment(offset=0.0, 
+    offsetField='', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Model-1'].parts['Taylor-bar'].sets['Set-2'], sectionName=
+    'Section-1', thicknessAssignment=FROM_SECTION)
+mdb.models['Model-1'].rootAssembly.DatumCsysByDefault(CARTESIAN)
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='Taylor-bar-1', 
+    part=mdb.models['Model-1'].parts['Taylor-bar'])
+mdb.models['Model-1'].ExplicitDynamicsStep(name='Step-1', previous='Initial', 
+    timePeriod=0.001)
+mdb.models['Model-1'].fieldOutputRequests['F-Output-1'].setValues(numIntervals=
+    50, variables=('SDV', ))
+mdb.models['Model-1'].rootAssembly.Set(faces=
+    mdb.models['Model-1'].rootAssembly.instances['Taylor-bar-1'].faces.getSequenceFromMask(
+    ('[#2 ]', ), ), name='Set-1')
+mdb.models['Model-1'].DisplacementBC(amplitude=UNSET, createStepName='Initial', 
+    distributionType=UNIFORM, fieldName='', localCsys=None, name='BC-1', 
+    region=mdb.models['Model-1'].rootAssembly.sets['Set-1'], u1=UNSET, u2=UNSET
+    , u3=SET, ur1=UNSET, ur2=UNSET, ur3=UNSET)
+del mdb.models['Model-1'].rootAssembly.sets['Set-1']
+mdb.models['Model-1'].rootAssembly.Set(faces=
+    mdb.models['Model-1'].rootAssembly.instances['Taylor-bar-1'].faces.getSequenceFromMask(
+    ('[#2 ]', ), ), name='Set-1')
+mdb.models['Model-1'].boundaryConditions['BC-1'].setValues(region=
+    mdb.models['Model-1'].rootAssembly.sets['Set-1'])
+del mdb.models['Model-1'].boundaryConditions['BC-1']
+del mdb.models['Model-1'].rootAssembly.sets['Set-1']
+mdb.models['Model-1'].DisplacementBC(amplitude=UNSET, createStepName='Initial', 
+    distributionType=UNIFORM, fieldName='', localCsys=None, name='BC-1', 
+    region=Region(
+    faces=mdb.models['Model-1'].rootAssembly.instances['Taylor-bar-1'].faces.getSequenceFromMask(
+    mask=('[#2 ]', ), )), u1=UNSET, u2=UNSET, u3=SET, ur1=UNSET, ur2=UNSET, 
+    ur3=UNSET)
+del mdb.models['Model-1'].boundaryConditions['BC-1']
+mdb.models['Model-1'].DisplacementBC(amplitude=UNSET, createStepName='Initial', 
+    distributionType=UNIFORM, fieldName='', localCsys=None, name='BC-1', 
+    region=Region(
+    faces=mdb.models['Model-1'].rootAssembly.instances['Taylor-bar-1'].faces.getSequenceFromMask(
+    mask=('[#2 ]', ), )), u1=UNSET, u2=UNSET, u3=SET, ur1=UNSET, ur2=UNSET, 
+    ur3=UNSET)
+mdb.models['Model-1'].rootAssembly.Set(name='Set-1', nodes=
+    mdb.models['Model-1'].rootAssembly.instances['Taylor-bar-1'].nodes.getSequenceFromMask(
+    mask=('[#ffffffff:55 ]', ), ))
+mdb.models['Model-1'].Velocity(distributionType=MAGNITUDE, field='', name=
+    'Predefined Field-1', omega=0.0, region=
+    mdb.models['Model-1'].rootAssembly.sets['Set-1'], velocity1=0.0, velocity2=
+    0.0, velocity3=-100.0)
+mdb.Job(activateLoadBalancing=False, atTime=None, contactPrint=OFF, 
+    description='', echoPrint=OFF, explicitPrecision=SINGLE, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Taylor-bar-vumat', nodalOutputPrecision=
+    SINGLE, numCpus=1, numDomains=1, parallelizationMethodExplicit=DOMAIN, 
+    queue=None, resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine=''
+    , waitHours=0, waitMinutes=0)
+# Save by mjs on 2016_12_06-11.30.11; build 2016 2015_09_25-04.31.09 126547

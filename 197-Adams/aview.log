@@ -1,0 +1,389 @@
+! Adams View Adams 2017.2 (built Jul 12 2017)
+! Graphics:  OpenGL
+! Enter a command, '?', or 'help'.
+interface dialog_box display dialog_box_name = .gui.open_existing_model_panel
+interface dialog_box undisplay dialog_box_name = .gui.new_start_session_panel
+variable set variable=.gui.open_existing_model_panel.button_3.dTmpFile str=""
+variable set variable=.gui.open_existing_model_panel.button_3.dTmpFile str="F:\adam\try\try.bin"
+interface field set field=.gui.open_existing_model_panel.field_1 str="F:\adam\try\try.bin"
+if cond=(str_find("F:/adam/try/try.bin", ".cmd"))
+interface container display container_name = .gui.open_existing_model_panel.cmd_import_cont
+interface container undisplay container_name = .gui.open_existing_model_panel.adm_import_cont
+elseif cond=(str_find("F:/adam/try/try.bin", ".adm"))
+interface container display container_name = .gui.open_existing_model_panel.adm_import_cont
+interface container undisplay container_name = .gui.open_existing_model_panel.cmd_import_cont
+elseif cond=(str_find("F:/adam/try/try.bin", ".bin"))
+interface container undisplay container_name = .gui.open_existing_model_panel.adm_import_cont
+interface container undisplay container_name = .gui.open_existing_model_panel.cmd_import_cont
+elseif cond=(str_find("F:/adam/try/try.bin", ".py"))
+interface container undisplay container_name = .gui.open_existing_model_panel.adm_import_cont
+interface container undisplay container_name = .gui.open_existing_model_panel.cmd_import_cont
+end
+var del var=.gui.open_existing_model_panel.button_3.dTmpFile
+if cond=1
+ interface field set field=.gui.open_existing_model_panel.field_2 str="F:/adam/try"
+ interface field execute field=.gui.open_existing_model_panel.field_2
+if cond=(!str_is_space("F:/adam/try"))
+   var set var=.gui.open_existing_model_panel.field_2.temp_dir str="F:/adam/try" 
+   var set var=.gui.open_existing_model_panel.field_2.success int=(CHDIR(temp_dir))
+   var del var=.gui.open_existing_model_panel.field_2.success
+   var del var=.gui.open_existing_model_panel.field_2.temp_dir
+end
+end
+if cond=(STR_LENGTH("F:/adam/try/try.bin") > 0)
+interface dialog execute dialog=.gui.open_existing_model_panel undisp=yes
+if cond=(str_find("F:/adam/try/try.bin", ".cmd"))
+interface container execute container=.gui.open_existing_model_panel.cmd_import_cont undisplay=no
+elseif cond=(str_find("F:/adam/try/try.bin", ".adm"))
+interface container execute container=.gui.open_existing_model_panel.adm_import_cont undisplay=no
+elseif cond=(str_find("F:/adam/try/try.bin", ".bin"))
+file bin read alert=no file="F:/adam/try/try.bin"
+elseif cond=(str_find(, ".py"))
+file python read file=(eval())
+end
+interface dialog undisplay dialog=.gui.open_existing_model_panel
+end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+variable set variable=.gui.ppt_main.ppt_tbar1.plotting_cont.tracking.plot object=(db_default(.system_defaults, "plot"))
+!  If default plot is scatter plot then give error and set mode to select
+if cond=(user_string(.gui.ppt_main.ppt_tbar1.plotting_cont.tracking.plot // ".type") == "Complex Scatter")
+  interface mode repeat=multiple mode=plot_select
+  mdi gui_utl_alert_box_1 type="Error" text="Plot statistics invalid for scatter plots.  Mode has been set to select mode."
+else
+  interface mode repeat=toggle mode=plot_cursor_track
+end
+variable delete var=.gui.ppt_main.ppt_tbar1.plotting_cont.tracking.*
+variable set variable=.gui.ppt_main.ppt_tbar1.plotting_cont.tracking.plot object=(db_default(.system_defaults, "plot"))
+!  If default plot is scatter plot then give error and set mode to select
+if cond=(user_string(.gui.ppt_main.ppt_tbar1.plotting_cont.tracking.plot // ".type") == "Complex Scatter")
+  interface mode repeat=multiple mode=plot_select
+  mdi gui_utl_alert_box_1 type="Error" text="Plot statistics invalid for scatter plots.  Mode has been set to select mode."
+else
+  interface mode repeat=toggle mode=plot_cursor_track
+end
+variable delete var=.gui.ppt_main.ppt_tbar1.plotting_cont.tracking.*
+interface mode repeat=single mode=plot_text
+if cond=(.gui.ppt_main.mbar.view.m_toolbars.t_tb_math.state)
+   mdi toolbar display toolbar=tb_math state=off top=same
+else
+   mdi toolbar display toolbar=tb_math state=on top=same
+var set variable_name = dlgs integer_value = 1
+end
+if cond=(!str_is_space(""))
+   var set var=.mdi.curvemath_filter_name obj=
+   var set var=.mdi.curvemath_operation str="FILTERING"
+   interface mode repeat=single mode="curve_math1"
+else
+  var set var=.mdi.curvemath_filter_name obj=(none)
+  interface mode repeat=single mode="select"
+end
+! display the filtering container
+int container undisplay container=.gui.ppt_main.plot_curvemath_tbar.*
+int container display container=.gui.ppt_main.plot_curvemath_tbar.filtering_c
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_1
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+if cond=("on" == "on")
+   var set var=.mdi.curvemath_have_two_pass int=1
+else
+   var set var=.mdi.curvemath_have_two_pass int=0
+end
+if cond=("off" == "on")
+   var set var=.mdi.curvemath_have_two_pass int=1
+else
+   var set var=.mdi.curvemath_have_two_pass int=0
+end
+if cond=("on" == "on")
+   var set var=.mdi.curvemath_have_two_pass int=1
+else
+   var set var=.mdi.curvemath_have_two_pass int=0
+end
+if cond=("off" == "on")
+   var set var=.mdi.curvemath_have_two_pass int=1
+else
+   var set var=.mdi.curvemath_have_two_pass int=0
+end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group modify group=SELECT_LIST object=.plot_1.curve_1
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+if cond=(!str_is_space(""))
+   var set var=.mdi.curvemath_filter_name obj=
+   var set var=.mdi.curvemath_operation str="FILTERING"
+   interface mode repeat=single mode="curve_math1"
+else
+  var set var=.mdi.curvemath_filter_name obj=(none)
+  interface mode repeat=single mode="select"
+end
+! display the filtering container
+int container undisplay container=.gui.ppt_main.plot_curvemath_tbar.*
+int container display container=.gui.ppt_main.plot_curvemath_tbar.filtering_c
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default plot plot=.plot_1
+group modify group=SELECT_LIST object=.plot_1.curve_1
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group modify group=SELECT_LIST object=.plot_1.curve_1
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+mdi create_macro entity_type=filter_function field_name=.gui.ppt_main.plot_curvemath_tbar.filtering_c.filter_name_f
+! >> mdi create_macro entity_type=filter_function field_name=.gui.ppt_main.plot_curvemath_tbar.filtering_c.filter_name_f
+! >> !
+! >> ! BEGIN_MACRO .MDI.create_macro
+! >> def com echo=off
+interface dialog execute dialog=.gui.filter_function_cremod_panel undisp=yes
+!Create the filter assembly
+if cond=(!db_exists(".mdi.filters.FLT_1"))
+  assembly create ins ins=.mdi.filters.FLT_1 def=.mdi.filters.filter_function &
+      relative_to=(none) comments=""
+else
+  if cond=(!DB_TYPE(.MDI.filters.FLT_1)=="filter_function")
+     assembly cre ins ins=.MDI.filters.FLT_1 def=.mdi.filters.filter_function
+      relative_to=(none) comments=(eval(.gui.filter_function_cremod_panel.entity_comments))
+  end
+end
+!Set the assembly values
+var set var=.gui.filter_function_cremod_panel.obj obj=.MDI.filters.FLT_1
+assembly mod ins ins=.MDI.filters.FLT_1 relative_to=(none) &
+    comments=""
+if cond=("butterworth" == "transfer")
+  var mod var=(.gui.filter_function_cremod_panel.obj.filter_defined_by) int=0
+  var mod var=(.gui.filter_function_cremod_panel.obj.numerator_coef) real=
+  var mod var=(.gui.filter_function_cremod_panel.obj.denominator_coef) real=
+else
+  if cond=( DB_EXISTS( ".gui.filter_function_cremod_panel.fq") )
+    variable delete variable=.gui.filter_function_cremod_panel.fq
+  end
+  var cre var=.gui.filter_function_cremod_panel.fq real=0.1
+  if cond=("low" == "low" || "low" == "high")
+    if cond=( cols(.gui.filter_function_cremod_panel.fq) != 1)
+      mdi gui_utl_alert_box_1 type=error text=("There must be one cutoff frequency for Low Pass or High Pass Butterworth filter")
+      variable set variable = .mdi.errno int=100
+    end
+  end
+  if cond=("low" == "pass" || "low" == "stop")
+    if cond=( cols(.gui.filter_function_cremod_panel.fq) != 2)
+      mdi gui_utl_alert_box_1 type=error text=("There must be two cutoff frequencies for Band Pass or Band Pass Butterworth filter")
+      variable set variable = .mdi.errno int=100
+    end
+  end
+  if cond=( DB_EXISTS( ".gui.filter_function_cremod_panel.fq") )
+    variable delete variable=.gui.filter_function_cremod_panel.fq
+  end
+  var mod var=(.gui.filter_function_cremod_panel.obj.filter_defined_by) int=1
+  var mod var=(.gui.filter_function_cremod_panel.obj.butterworth_type) str="low"
+  var mod var=(.gui.filter_function_cremod_panel.obj.butterworth_order) int=2
+  var mod var=(.gui.filter_function_cremod_panel.obj.butterworth_cutoff) real=0.1 
+end
+if cond=("discrete" == "discrete")
+  var mod var=(.gui.filter_function_cremod_panel.obj.continuous_flg) int=0
+  var mod var=(.gui.filter_function_cremod_panel.obj.sampling_rate) real=0
+!  var mod var=(.gui.filter_function_cremod_panel.obj.sampling_rate) real=()
+else
+  var mod var=(.gui.filter_function_cremod_panel.obj.continuous_flg) int=1
+  var mod var=(.gui.filter_function_cremod_panel.obj.sampling_rate) real=0
+end
+if cond=(!DB_TYPE(".gui.ppt_main.plot_curvemath_tbar.filtering_c.filter_name_f")=="")
+   int field set field=.gui.ppt_main.plot_curvemath_tbar.filtering_c.filter_name_f str="FLT_1"
+   int field exe field=.gui.ppt_main.plot_curvemath_tbar.filtering_c.filter_name_f
+if cond=(!str_is_space(".MDI.filters.FLT_1"))
+   var set var=.mdi.curvemath_filter_name obj=.MDI.filters.FLT_1
+   var set var=.mdi.curvemath_operation str="FILTERING"
+   interface mode repeat=single mode="curve_math1"
+else
+  var set var=.mdi.curvemath_filter_name obj=(none)
+  interface mode repeat=single mode="select"
+end
+! display the filtering container
+int container undisplay container=.gui.ppt_main.plot_curvemath_tbar.*
+int container display container=.gui.ppt_main.plot_curvemath_tbar.filtering_c
+end
+group modify group=SELECT_LIST object=.plot_1.curve_1
+! >> group modify group=SELECT_LIST object=.plot_1.curve_1
+undo begin
+xy_plot curve create plot=.plot_1 dexpression= "butter_filter((sim_time()), (MEASURE(.try.PART_2.MARKER_3, 0, 0, Total_Torque_At_Location,  X_component)), (FLT_1.butterworth_type), (FLT_1.butterworth_order), (FLT_1.butterworth_cutoff * (FLT_1.continuous_flg ? (.system_defaults.frequency != 0 ? 1.0 :TWO_PI) : 1.0)), (FLT_1.continuous_flg), 0)" iexpression="(sim_time())" legend="FILTERING(.plot_1.curve_1)" i_units="time" d_units="torque" run=.try.Last_Run auto_axis=UNITS
+.plot_1.curve_9.y_history = "butter_filter((sim_time()), (MEASURE(.try.PART_2.MARKER_3, 0, 0, Total_Torque_At_Location,  X_component)), (FLT_1.butterworth_type), (FLT_1.butterworth_order), (FLT_1.butterworth_cutoff * (FLT_1.continuous_flg ? (.system_defaults.frequency != 0 ? 1.0 :TWO_PI) : 1.0)), (FLT_1.continuous_flg), 0)"
+.plot_1.curve_9.x_history = "(sim_time())"
+undo end
+group object remove group=SELECT_LIST objects=.plot_1.curve_1
+! >> group object remove group=SELECT_LIST objects=.plot_1.curve_1
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  MOVE SELECTED OBJECTS
+undo begin
+default coordinate_system default_coordinate_system=.try
+move translation group_name=SELECT_LIST c1=1.2656806946E+04 c2=-9079.8873901367 c3=0.0
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group modify group=SELECT_LIST objects=.plot_1.curve_1, .plot_1.legend_object
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+mdi create_macro entity_type=filter_function field_name=.gui.ppt_main.plot_curvemath_tbar.filtering_c.filter_name_f
+! >> mdi create_macro entity_type=filter_function field_name=.gui.ppt_main.plot_curvemath_tbar.filtering_c.filter_name_f
+! >> !
+! >> ! BEGIN_MACRO .MDI.create_macro
+! >> def com echo=off
+interface dialog execute dialog=.gui.filter_function_cremod_panel undisp=yes
+!Create the filter assembly
+if cond=(!db_exists(".mdi.filters.FLT_2"))
+  assembly create ins ins=.mdi.filters.FLT_2 def=.mdi.filters.filter_function &
+      relative_to=(none) comments=""
+else
+  if cond=(!DB_TYPE(.MDI.filters.FLT_2)=="filter_function")
+     assembly cre ins ins=.MDI.filters.FLT_2 def=.mdi.filters.filter_function
+      relative_to=(none) comments=(eval(.gui.filter_function_cremod_panel.entity_comments))
+  end
+end
+!Set the assembly values
+var set var=.gui.filter_function_cremod_panel.obj obj=.MDI.filters.FLT_2
+assembly mod ins ins=.MDI.filters.FLT_2 relative_to=(none) &
+    comments=""
+if cond=("butterworth" == "transfer")
+  var mod var=(.gui.filter_function_cremod_panel.obj.filter_defined_by) int=0
+  var mod var=(.gui.filter_function_cremod_panel.obj.numerator_coef) real=
+  var mod var=(.gui.filter_function_cremod_panel.obj.denominator_coef) real=
+else
+  if cond=( DB_EXISTS( ".gui.filter_function_cremod_panel.fq") )
+    variable delete variable=.gui.filter_function_cremod_panel.fq
+  end
+  var cre var=.gui.filter_function_cremod_panel.fq real=0.5
+  if cond=("low" == "low" || "low" == "high")
+    if cond=( cols(.gui.filter_function_cremod_panel.fq) != 1)
+      mdi gui_utl_alert_box_1 type=error text=("There must be one cutoff frequency for Low Pass or High Pass Butterworth filter")
+      variable set variable = .mdi.errno int=100
+    end
+  end
+  if cond=("low" == "pass" || "low" == "stop")
+    if cond=( cols(.gui.filter_function_cremod_panel.fq) != 2)
+      mdi gui_utl_alert_box_1 type=error text=("There must be two cutoff frequencies for Band Pass or Band Pass Butterworth filter")
+      variable set variable = .mdi.errno int=100
+    end
+  end
+  if cond=( DB_EXISTS( ".gui.filter_function_cremod_panel.fq") )
+    variable delete variable=.gui.filter_function_cremod_panel.fq
+  end
+  var mod var=(.gui.filter_function_cremod_panel.obj.filter_defined_by) int=1
+  var mod var=(.gui.filter_function_cremod_panel.obj.butterworth_type) str="low"
+  var mod var=(.gui.filter_function_cremod_panel.obj.butterworth_order) int=2
+  var mod var=(.gui.filter_function_cremod_panel.obj.butterworth_cutoff) real=0.5 
+end
+if cond=("discrete" == "discrete")
+  var mod var=(.gui.filter_function_cremod_panel.obj.continuous_flg) int=0
+  var mod var=(.gui.filter_function_cremod_panel.obj.sampling_rate) real=0
+!  var mod var=(.gui.filter_function_cremod_panel.obj.sampling_rate) real=()
+else
+  var mod var=(.gui.filter_function_cremod_panel.obj.continuous_flg) int=1
+  var mod var=(.gui.filter_function_cremod_panel.obj.sampling_rate) real=0
+end
+if cond=(!DB_TYPE(".gui.ppt_main.plot_curvemath_tbar.filtering_c.filter_name_f")=="")
+   int field set field=.gui.ppt_main.plot_curvemath_tbar.filtering_c.filter_name_f str="FLT_2"
+   int field exe field=.gui.ppt_main.plot_curvemath_tbar.filtering_c.filter_name_f
+if cond=(!str_is_space(".MDI.filters.FLT_2"))
+   var set var=.mdi.curvemath_filter_name obj=.MDI.filters.FLT_2
+   var set var=.mdi.curvemath_operation str="FILTERING"
+   interface mode repeat=single mode="curve_math1"
+else
+  var set var=.mdi.curvemath_filter_name obj=(none)
+  interface mode repeat=single mode="select"
+end
+! display the filtering container
+int container undisplay container=.gui.ppt_main.plot_curvemath_tbar.*
+int container display container=.gui.ppt_main.plot_curvemath_tbar.filtering_c
+end
+group modify group=SELECT_LIST object=.plot_1.curve_1
+! >> group modify group=SELECT_LIST object=.plot_1.curve_1
+undo begin
+xy_plot curve create plot=.plot_1 dexpression= "butter_filter((sim_time()), (MEASURE(.try.PART_2.MARKER_3, 0, 0, Total_Torque_At_Location,  X_component)), (FLT_2.butterworth_type), (FLT_2.butterworth_order), (FLT_2.butterworth_cutoff * (FLT_2.continuous_flg ? (.system_defaults.frequency != 0 ? 1.0 :TWO_PI) : 1.0)), (FLT_2.continuous_flg), 0)" iexpression="(sim_time())" legend="FILTERING(.plot_1.curve_1)" i_units="time" d_units="torque" run=.try.Last_Run auto_axis=UNITS
+.plot_1.curve_10.y_history = "butter_filter((sim_time()), (MEASURE(.try.PART_2.MARKER_3, 0, 0, Total_Torque_At_Location,  X_component)), (FLT_2.butterworth_type), (FLT_2.butterworth_order), (FLT_2.butterworth_cutoff * (FLT_2.continuous_flg ? (.system_defaults.frequency != 0 ? 1.0 :TWO_PI) : 1.0)), (FLT_2.continuous_flg), 0)"
+.plot_1.curve_10.x_history = "(sim_time())"
+undo end
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+default coordinate_system default_coordinate_system=.try
+group modify group=SELECT_LIST object=.plot_1.legend_object
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  MOVE SELECTED OBJECTS
+undo begin
+move translation group_name=SELECT_LIST c1=7.2639060974E+04 c2=-5.1452663422E+04 c3=0.0
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  MOVE SELECTED OBJECTS
+undo begin
+move translation group_name=SELECT_LIST c1=-6878.7078857422 c2=-1.7609466553E+04 c3=0.0
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  MOVE SELECTED OBJECTS
+undo begin
+move translation group_name=SELECT_LIST c1=1.8434913635E+04 c2=5.1727813721E+04 c3=0.0
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  MOVE SELECTED OBJECTS
+undo begin
+move translation group_name=SELECT_LIST c1=-4.072190094E+04 c2=-4127.2201538086 c3=0.0
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+group empty group=SELECT_LIST
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  SELECT OBJECT
+undo begin
+undo end
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+quit conf=no

@@ -1,0 +1,136 @@
+Adams View model name: try
+!
+!-------------------------------- SYSTEM UNITS ---------------------------------
+!
+UNITS/
+, FORCE = NEWTON
+, MASS = KILOGRAM
+, LENGTH = MILLIMETER
+, TIME = SECOND
+!
+!----------------------------------- PARTS -------------------------------------
+!
+!----------------------------------- Ground ------------------------------------
+!
+!                            adams_view_name='ground'
+PART/1
+, GROUND
+!
+!                           adams_view_name='MARKER_4'
+MARKER/4
+, PART = 1
+!
+!------------------------------------ Part -------------------------------------
+!
+!                            adams_view_name='PART_2'
+PART/2
+, MASS = 45.66714976
+, CM = 2
+, IP = 2.283357488E+05, 2.283357488E+05, 2.283357488E+05
+!
+!                           adams_view_name='MARKER_1'
+MARKER/1
+, PART = 2
+!
+!                              adams_view_name='cm'
+MARKER/2
+, PART = 2
+!
+!                           adams_view_name='MARKER_3'
+MARKER/3
+, PART = 2
+!
+!                         adams_view_name='ELLIPSOID_1'
+GRAPHICS/1
+, ELLIPSOID
+, CM = 1
+, XSCALE = 223.6067978
+, YSCALE = 223.6067978
+, ZSCALE = 223.6067978
+!
+!------------------------------ DYNAMIC GRAPHICS -------------------------------
+!
+!                   adams_view_name='SFORCE_1_force_graphic_1'
+GRAPHICS/2
+, FORCE
+, ETYPE = SFORCE
+, EID = 1
+, EMARKER = 3
+!
+!----------------------------------- FORCES ------------------------------------
+!
+!                           adams_view_name='SFORCE_1'
+SFORCE/1
+, ROTATIONAL
+, I = 3
+, J = 4
+, ACTIONONLY
+, FUNCTION = VARVAL(1)
+!
+!------------------------------ DATA STRUCTURES --------------------------------
+!
+!                              adams_view_name='T'
+VARIABLE/1
+, IC = 0
+, FUNCTION = 0
+!
+!                            adams_view_name='pos_y'
+VARIABLE/2
+, IC = 0
+, FUNCTION = DY( 1)
+!
+!                            adams_view_name='pos_z'
+VARIABLE/3
+, IC = 0
+, FUNCTION = DZ( 1)
+!
+!                 adams_view_name='Controls_Plant_1.ctrl_pinput'
+PINPUT/1
+, VARIABLES = 1, 2
+!
+!                 adams_view_name='Controls_Plant_2.ctrl_pinput'
+PINPUT/2
+, VARIABLES = 1
+!
+!                           adams_view_name='PINPUT_T'
+PINPUT/3
+, VARIABLES = 1
+!
+!                 adams_view_name='Controls_Plant_3.ctrl_pinput'
+PINPUT/4
+, VARIABLES = 1
+!
+!                 adams_view_name='Controls_Plant_4.ctrl_pinput'
+PINPUT/5
+, VARIABLES = 1
+!
+!                adams_view_name='Controls_Plant_1.ctrl_poutput'
+POUTPUT/1
+, VARIABLES = 3
+!
+!                adams_view_name='Controls_Plant_2.ctrl_poutput'
+POUTPUT/2
+, VARIABLES = 2, 3
+!
+!                adams_view_name='Controls_Plant_3.ctrl_poutput'
+POUTPUT/3
+, VARIABLES = 2, 3
+!
+!                adams_view_name='Controls_Plant_4.ctrl_poutput'
+POUTPUT/4
+, VARIABLES = 2, 3
+!
+!------------------------- GRAVITATIONAL ACCELERATION --------------------------
+!
+ACCGRAV/
+!
+!----------------------------- ANALYSIS SETTINGS -------------------------------
+!
+OUTPUT/
+, REQSAVE
+, GRSAVE
+!
+RESULTS/
+, XRF
+!
+END

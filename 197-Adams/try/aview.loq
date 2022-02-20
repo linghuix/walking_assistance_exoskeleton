@@ -1,0 +1,16 @@
+! Adams View Adams 2017.2 (built Jul 12 2017)
+! Graphics:  OpenGL
+! Enter a command, '?', or 'help'.
+model display model=.try view=all
+! >> model display model=.try view=all
+! VERIFY MODEL: .try
+! 
+!    6 Gruebler Count (approximate degrees of freedom)
+!    1 Moving Parts (not including ground)
+! 
+!    6 Degrees of Freedom for .try
+! 
+! There are no redundant constraint equations.
+! 
+! 
+! Model verified successfully

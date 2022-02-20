@@ -1,0 +1,400 @@
+$ NASTRAN input file created by the MSC MSC.Nastran input file
+$ translator ( MSC.Patran 14.0.018 ) on October   15, 2007 at 20:31:07.
+$ Direct Text Input for Nastran System Cell Section
+$ Direct Text Input for File Management Section
+$ Frequency Response Analysis, Direct Formulation, Database
+SOL 108
+$ Direct Text Input for Executive Control
+CEND
+TITLE = MSC.Nastran job created on 15-Oct-07 at 20:29:52
+ECHO = NONE
+LOADSET = 1
+$ Direct Text Input for Global Case Control Data
+SUBCASE 1
+   TITLE=This is a default subcase.
+   FREQUENCY = 1
+   SPC = 2
+   DLOAD = 2
+   DISPLACEMENT(SORT1,REAL)=ALL
+   SPCFORCES(SORT1,REAL)=ALL
+$ Direct Text Input for this Subcase
+BEGIN BULK
+PARAM    POST    0
+PARAM   COUPMASS 1
+PARAM    G      .1
+PARAM   PRTMAXIM YES
+FREQ1    1      20.     20.      49
+$ Direct Text Input for Bulk Data
+$ Elements and Element Properties for region : solid
+PSOLID   1       1       0
+$ Pset: "solid" will be imported as: "psolid.1"
+CHEXA    1       1       1       2       5       4       64      65
+         68      67
+CHEXA    2       1       2       3       6       5       65      66
+         69      68
+CHEXA    3       1       4       5       8       7       67      68
+         71      70
+CHEXA    4       1       5       6       9       8       68      69
+         72      71
+CHEXA    5       1       7       8       11      10      70      71
+         74      73
+CHEXA    6       1       8       9       12      11      71      72
+         75      74
+CHEXA    7       1       10      11      14      13      73      74
+         77      76
+CHEXA    8       1       11      12      15      14      74      75
+         78      77
+CHEXA    9       1       13      14      17      16      76      77
+         80      79
+CHEXA    10      1       14      15      18      17      77      78
+         81      80
+CHEXA    11      1       16      17      20      19      79      80
+         83      82
+CHEXA    12      1       17      18      21      20      80      81
+         84      83
+CHEXA    13      1       19      20      23      22      82      83
+         86      85
+CHEXA    14      1       20      21      24      23      83      84
+         87      86
+CHEXA    15      1       22      23      26      25      85      86
+         89      88
+CHEXA    16      1       23      24      27      26      86      87
+         90      89
+CHEXA    17      1       25      26      29      28      88      89
+         92      91
+CHEXA    18      1       26      27      30      29      89      90
+         93      92
+CHEXA    19      1       28      29      32      31      91      92
+         95      94
+CHEXA    20      1       29      30      33      32      92      93
+         96      95
+CHEXA    21      1       31      32      35      34      94      95
+         98      97
+CHEXA    22      1       32      33      36      35      95      96
+         99      98
+CHEXA    23      1       34      35      38      37      97      98
+         101     100
+CHEXA    24      1       35      36      39      38      98      99
+         102     101
+CHEXA    25      1       37      38      41      40      100     101
+         104     103
+CHEXA    26      1       38      39      42      41      101     102
+         105     104
+CHEXA    27      1       40      41      44      43      103     104
+         107     106
+CHEXA    28      1       41      42      45      44      104     105
+         108     107
+CHEXA    29      1       43      44      47      46      106     107
+         110     109
+CHEXA    30      1       44      45      48      47      107     108
+         111     110
+CHEXA    31      1       46      47      50      49      109     110
+         113     112
+CHEXA    32      1       47      48      51      50      110     111
+         114     113
+CHEXA    33      1       49      50      53      52      112     113
+         116     115
+CHEXA    34      1       50      51      54      53      113     114
+         117     116
+CHEXA    35      1       52      53      56      55      115     116
+         119     118
+CHEXA    36      1       53      54      57      56      116     117
+         120     119
+CHEXA    37      1       55      56      59      58      118     119
+         122     121
+CHEXA    38      1       56      57      60      59      119     120
+         123     122
+CHEXA    39      1       58      59      62      61      121     122
+         125     124
+CHEXA    40      1       59      60      63      62      122     123
+         126     125
+CHEXA    41      1       64      65      68      67      127     128
+         131     130
+CHEXA    42      1       65      66      69      68      128     129
+         132     131
+CHEXA    43      1       67      68      71      70      130     131
+         134     133
+CHEXA    44      1       68      69      72      71      131     132
+         135     134
+CHEXA    45      1       70      71      74      73      133     134
+         137     136
+CHEXA    46      1       71      72      75      74      134     135
+         138     137
+CHEXA    47      1       73      74      77      76      136     137
+         140     139
+CHEXA    48      1       74      75      78      77      137     138
+         141     140
+CHEXA    49      1       76      77      80      79      139     140
+         143     142
+CHEXA    50      1       77      78      81      80      140     141
+         144     143
+CHEXA    51      1       79      80      83      82      142     143
+         146     145
+CHEXA    52      1       80      81      84      83      143     144
+         147     146
+CHEXA    53      1       82      83      86      85      145     146
+         149     148
+CHEXA    54      1       83      84      87      86      146     147
+         150     149
+CHEXA    55      1       85      86      89      88      148     149
+         152     151
+CHEXA    56      1       86      87      90      89      149     150
+         153     152
+CHEXA    57      1       88      89      92      91      151     152
+         155     154
+CHEXA    58      1       89      90      93      92      152     153
+         156     155
+CHEXA    59      1       91      92      95      94      154     155
+         158     157
+CHEXA    60      1       92      93      96      95      155     156
+         159     158
+CHEXA    61      1       94      95      98      97      157     158
+         161     160
+CHEXA    62      1       95      96      99      98      158     159
+         162     161
+CHEXA    63      1       97      98      101     100     160     161
+         164     163
+CHEXA    64      1       98      99      102     101     161     162
+         165     164
+CHEXA    65      1       100     101     104     103     163     164
+         167     166
+CHEXA    66      1       101     102     105     104     164     165
+         168     167
+CHEXA    67      1       103     104     107     106     166     167
+         170     169
+CHEXA    68      1       104     105     108     107     167     168
+         171     170
+CHEXA    69      1       106     107     110     109     169     170
+         173     172
+CHEXA    70      1       107     108     111     110     170     171
+         174     173
+CHEXA    71      1       109     110     113     112     172     173
+         176     175
+CHEXA    72      1       110     111     114     113     173     174
+         177     176
+CHEXA    73      1       112     113     116     115     175     176
+         179     178
+CHEXA    74      1       113     114     117     116     176     177
+         180     179
+CHEXA    75      1       115     116     119     118     178     179
+         182     181
+CHEXA    76      1       116     117     120     119     179     180
+         183     182
+CHEXA    77      1       118     119     122     121     181     182
+         185     184
+CHEXA    78      1       119     120     123     122     182     183
+         186     185
+CHEXA    79      1       121     122     125     124     184     185
+         188     187
+CHEXA    80      1       122     123     126     125     185     186
+         189     188
+$ Referenced Material Records
+$ Material Record : elastic
+$ Description of Material : Date: 15-Oct-07           Time: 20:28:51
+MAT1     1      7.+10           .3      2800.
+$ Nodes of the Entire Model
+GRID     1               0.      0.      0.
+GRID     2               0.      0.     .03
+GRID     3               0.      0.     .06
+GRID     4              .03      0.      0.
+GRID     5              .03      0.     .03
+GRID     6              .03      0.     .06
+GRID     7              .06      0.      0.
+GRID     8              .06      0.     .03
+GRID     9              .06      0.     .06
+GRID     10             .09      0.      0.
+GRID     11             .09      0.     .03
+GRID     12             .09      0.     .06
+GRID     13             .12      0.      0.
+GRID     14             .12      0.     .03
+GRID     15             .12      0.     .06
+GRID     16             .15      0.      0.
+GRID     17             .15      0.     .03
+GRID     18             .15      0.     .06
+GRID     19             .18      0.      0.
+GRID     20             .18      0.     .03
+GRID     21             .18      0.     .06
+GRID     22             .21      0.      0.
+GRID     23             .21      0.     .03
+GRID     24             .21      0.     .06
+GRID     25             .24      0.      0.
+GRID     26             .24      0.     .03
+GRID     27             .24      0.     .06
+GRID     28             .27      0.      0.
+GRID     29             .27      0.     .03
+GRID     30             .27      0.     .06
+GRID     31             .3       0.      0.
+GRID     32             .3       0.     .03
+GRID     33             .3       0.     .06
+GRID     34             .33      0.      0.
+GRID     35             .33      0.     .03
+GRID     36             .33      0.     .06
+GRID     37             .36      0.      0.
+GRID     38             .36      0.     .03
+GRID     39             .36      0.     .06
+GRID     40             .39      0.      0.
+GRID     41             .39      0.     .03
+GRID     42             .39      0.     .06
+GRID     43             .42      0.      0.
+GRID     44             .42      0.     .03
+GRID     45             .42      0.     .06
+GRID     46             .45      0.      0.
+GRID     47             .45      0.     .03
+GRID     48             .45      0.     .06
+GRID     49             .48      0.      0.
+GRID     50             .48      0.     .03
+GRID     51             .48      0.     .06
+GRID     52             .51      0.      0.
+GRID     53             .51      0.     .03
+GRID     54             .51      0.     .06
+GRID     55             .54      0.      0.
+GRID     56             .54      0.     .03
+GRID     57             .54      0.     .06
+GRID     58             .57      0.      0.
+GRID     59             .57      0.     .03
+GRID     60             .57      0.     .06
+GRID     61             .6       0.      0.
+GRID     62             .6       0.     .03
+GRID     63             .6       0.     .06
+GRID     64              0.     .015     0.
+GRID     65              0.     .015    .03
+GRID     66              0.     .015    .06
+GRID     67             .03     .015     0.
+GRID     68             .03     .015    .03
+GRID     69             .03     .015    .06
+GRID     70             .06     .015     0.
+GRID     71             .06     .015    .03
+GRID     72             .06     .015    .06
+GRID     73             .09     .015     0.
+GRID     74             .09     .015    .03
+GRID     75             .09     .015    .06
+GRID     76             .12     .015     0.
+GRID     77             .12     .015    .03
+GRID     78             .12     .015    .06
+GRID     79             .15     .015     0.
+GRID     80             .15     .015    .03
+GRID     81             .15     .015    .06
+GRID     82             .18     .015     0.
+GRID     83             .18     .015    .03
+GRID     84             .18     .015    .06
+GRID     85             .21     .015     0.
+GRID     86             .21     .015    .03
+GRID     87             .21     .015    .06
+GRID     88             .24     .015     0.
+GRID     89             .24     .015    .03
+GRID     90             .24     .015    .06
+GRID     91             .27     .015     0.
+GRID     92             .27     .015    .03
+GRID     93             .27     .015    .06
+GRID     94             .3      .015     0.
+GRID     95             .3      .015    .03
+GRID     96             .3      .015    .06
+GRID     97             .33     .015     0.
+GRID     98             .33     .015    .03
+GRID     99             .33     .015    .06
+GRID     100            .36     .015     0.
+GRID     101            .36     .015    .03
+GRID     102            .36     .015    .06
+GRID     103            .39     .015     0.
+GRID     104            .39     .015    .03
+GRID     105            .39     .015    .06
+GRID     106            .42     .015     0.
+GRID     107            .42     .015    .03
+GRID     108            .42     .015    .06
+GRID     109            .45     .015     0.
+GRID     110            .45     .015    .03
+GRID     111            .45     .015    .06
+GRID     112            .48     .015     0.
+GRID     113            .48     .015    .03
+GRID     114            .48     .015    .06
+GRID     115            .51     .015     0.
+GRID     116            .51     .015    .03
+GRID     117            .51     .015    .06
+GRID     118            .54     .015     0.
+GRID     119            .54     .015    .03
+GRID     120            .54     .015    .06
+GRID     121            .57     .015     0.
+GRID     122            .57     .015    .03
+GRID     123            .57     .015    .06
+GRID     124            .6      .015     0.
+GRID     125            .6      .015    .03
+GRID     126            .6      .015    .06
+GRID     127             0.     .03      0.
+GRID     128             0.     .03     .03
+GRID     129             0.     .03     .06
+GRID     130            .03     .03      0.
+GRID     131            .03     .03     .03
+GRID     132            .03     .03     .06
+GRID     133            .06     .03      0.
+GRID     134            .06     .03     .03
+GRID     135            .06     .03     .06
+GRID     136            .09     .03      0.
+GRID     137            .09     .03     .03
+GRID     138            .09     .03     .06
+GRID     139            .12     .03      0.
+GRID     140            .12     .03     .03
+GRID     141            .12     .03     .06
+GRID     142            .15     .03      0.
+GRID     143            .15     .03     .03
+GRID     144            .15     .03     .06
+GRID     145            .18     .03      0.
+GRID     146            .18     .03     .03
+GRID     147            .18     .03     .06
+GRID     148            .21     .03      0.
+GRID     149            .21     .03     .03
+GRID     150            .21     .03     .06
+GRID     151            .24     .03      0.
+GRID     152            .24     .03     .03
+GRID     153            .24     .03     .06
+GRID     154            .27     .03      0.
+GRID     155            .27     .03     .03
+GRID     156            .27     .03     .06
+GRID     157            .3      .03      0.
+GRID     158            .3      .03     .03
+GRID     159            .3      .03     .06
+GRID     160            .33     .03      0.
+GRID     161            .33     .03     .03
+GRID     162            .33     .03     .06
+GRID     163            .36     .03      0.
+GRID     164            .36     .03     .03
+GRID     165            .36     .03     .06
+GRID     166            .39     .03      0.
+GRID     167            .39     .03     .03
+GRID     168            .39     .03     .06
+GRID     169            .42     .03      0.
+GRID     170            .42     .03     .03
+GRID     171            .42     .03     .06
+GRID     172            .45     .03      0.
+GRID     173            .45     .03     .03
+GRID     174            .45     .03     .06
+GRID     175            .48     .03      0.
+GRID     176            .48     .03     .03
+GRID     177            .48     .03     .06
+GRID     178            .51     .03      0.
+GRID     179            .51     .03     .03
+GRID     180            .51     .03     .06
+GRID     181            .54     .03      0.
+GRID     182            .54     .03     .03
+GRID     183            .54     .03     .06
+GRID     184            .57     .03      0.
+GRID     185            .57     .03     .03
+GRID     186            .57     .03     .06
+GRID     187            .6      .03      0.
+GRID     188            .6      .03     .03
+GRID     189            .6      .03     .06
+$ Loads for Load Case : load1
+SPCADD   2       1
+RLOAD1   4       5                       1
+LSEQ     1       5       3
+DLOAD    2      1.      1.       4
+$ Displacement Constraints of Load Set : spc
+SPC1     1       123456  1       2       3       64      65      66
+         127     128     129
+$ Nodal Forces of Load Set : force
+FORCE    3       188     0      1.       0.     -1.      0.
+$ Referenced Dynamic Load Tables
+$ Constant Load Table
+TABLED1  1
+         0.     1.      1000.   1.       ENDT
+$ Referenced Coordinate Frames
+ENDDATA 39fd41dc

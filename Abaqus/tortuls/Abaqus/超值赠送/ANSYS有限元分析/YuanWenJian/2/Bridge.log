@@ -1,0 +1,93 @@
+/BATCH  
+/COM,ANSYS RELEASE 14.5    UP20120918       15:23:57    07/18/2013
+/input,menust,tmp,''
+/GRA,POWER
+/GST,ON
+/PLO,INFO,3
+/GRO,CURL,ON
+/CPLANE,1   
+/REPLOT,RESIZE  
+WPSTYLE,,,,,,,,0
+!*  
+/NOPR   
+KEYW,PR_SET,1   
+KEYW,PR_STRUC,1 
+KEYW,PR_THERM,0 
+KEYW,PR_FLUID,0 
+KEYW,PR_ELMAG,0 
+KEYW,MAGNOD,0   
+KEYW,MAGEDG,0   
+KEYW,MAGHFE,0   
+KEYW,MAGELC,0   
+KEYW,PR_MULTI,0 
+KEYW,PR_CFD,0   
+/GO 
+!*  
+/COM,   
+/COM,Preferences for GUI filtering have been set to display:
+/COM,  Structural   
+!*  
+/TITLE,Truss Bridge Static Analysis 
+/FILNAME,Structural,1   
+/BATCH  
+/COM,ANSYS RELEASE 14.5    UP20120918       16:01:31    07/18/2013
+/input,menust,tmp,''
+/GRA,POWER
+/GST,ON
+/PLO,INFO,3
+/GRO,CURL,ON
+/CPLANE,1   
+/REPLOT,RESIZE  
+WPSTYLE,,,,,,,,0
+RESUME  
+/COM,ANSYS RELEASE 14.5    UP20120918       16:08:12    07/18/2013
+RESUME,'Structural','db','D:\ansys\Bridge\',0,0 
+/COM,ANSYS RELEASE 14.5    UP20120918       16:08:17    07/18/2013
+/SOLU   
+!*  
+ANTYPE,2
+!*  
+!*  
+MODOPT,LANP,6   
+EQSLV,PCG   
+MXPAND,0, , ,0  
+LUMPM,0 
+PSTRES,0
+!*  
+MODOPT,LANP,6,0,100,
+PCGOPT,0, ,AUTO,     NO, ,AUTO  
+MSAVE,0 
+!*  
+/STATUS,SOLU
+SOLVE   
+FINISH  
+/POST1  
+SET,LIST
+SET,LIST
+SET,FIRST   
+!*  
+/EFACET,1   
+PLNSOL, U,SUM, 0,1.0
+SET,NEXT
+!*  
+/EFACET,1   
+PLNSOL, U,SUM, 0,1.0
+SET,NEXT
+!*  
+/EFACET,1   
+PLNSOL, U,SUM, 0,1.0
+SET,NEXT
+!*  
+/EFACET,1   
+PLNSOL, U,SUM, 0,1.0
+SET,NEXT
+!*  
+/EFACET,1   
+PLNSOL, U,SUM, 0,1.0
+SET,NEXT
+!*  
+/EFACET,1   
+PLNSOL, U,SUM, 0,1.0
+/OUTPUT,'1','txt','D:\ansys\Bridge\',   
+FINISH  
+! /EXIT,ALL 

@@ -1,0 +1,65 @@
+﻿/BATCH  
+/COM,ANSYS RELEASE 15.0    UP20111024       10:26:43    11/22/2014
+/input,menust,tmp,'',,,,,,,,,,,,,,,,1   
+/GRA,POWER
+/GST,ON
+/PLO,INFO,3
+/GRO,CURL,ON
+/CPLANE,1   
+/REPLOT,RESIZE  
+WPSTYLE,,,,,,,,0
+/PREP7  
+/TITLE, HARMONIC RESPONSE OF A SPRING-MASS SYSTEM   
+ANTYPE,MODAL
+! 定义分析类型
+MODOPT,REDUC,2,,,2  
+! 打印前两阶模态形状   
+ET,1,COMBIN40,,,2   
+! 定义单元  
+R,1,6,,2
+! 定义实常数   
+R,2,16,,2   
+! 定义实常数   
+N,1 
+N,2,0,1 
+N,3,0,2 
+REAL,1  
+E,1,2   
+REAL,2  
+E,2,3   
+M,1,UY,2
+! 定义主自由度
+OUTPR,,ALL  
+D,3,ALL 
+FINISH  
+/SOLU   
+SOLVE   
+FINISH  
+/SOLU   
+ANTYPE,HARMIC   
+! 谐响应分析   
+HROPT,MSUP,2
+! 模态叠加法   
+HARFRQ,0.1,1.0  
+! 频率变化范围为0.1～1.0
+F,1,FY,50   
+KBC,1   
+! 阶跃边界和载荷 
+NSUBST,50   
+OUTPR,,NONE 
+OUTRES,,1   
+SOLVE   
+FINISH  
+/POST26 
+FILE,,rfrq  
+! 读入数据文件
+NSOL,2,1,U,Y,UY1
+NSOL,3,2,U,Y,UY2
+/GRID,1 
+/AXLAB,Y,DISP   
+PLVAR,2,3   
+! 显示变量  
+PRVAR,2,3   
+FINISH  
+FINISH  
+! /EXIT,ALL 

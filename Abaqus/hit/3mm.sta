@@ -1,0 +1,145 @@
+Abaqus/Explicit 3DEXPERIENCE R2016x              DATE 11-Jan-2020  TIME 00:53:09
+-------------------------------------------------------------------------------
+ PREPROCESSOR WARNING MESSAGES
+-------------------------------------------------------------------------------
+
+
+***WARNING: There are 6 warning messages in the data (.dat) file.  Please
+            check the data file for possible errors in the input file.
+
+
+-------------------------------------------------------------------------------
+ MODEL INFORMATION (IN GLOBAL X-Y COORDINATES)
+-------------------------------------------------------------------------------
+
+   Total mass in model = 1.43301E+08
+   Center of mass of model = ( 2.801058E+01, 3.455325E+00, 5.000000E+01)
+
+    Moments of Inertia :
+                 About Center of Mass              About Origin
+      I(XX)          1.136126E+11                  4.735767E+11
+      I(YY)          1.321816E+11                  6.028679E+11
+      I(ZZ)          4.425303E+10                  1.583971E+11
+      I(XY)         -8.000553E+09                 -2.187006E+10
+      I(YZ)          3.066689E+02                 -2.475762E+10
+      I(ZX)         -3.777711E+03                 -2.006976E+11
+
+-------------------------------------------------------------------------------
+ STABLE TIME INCREMENT INFORMATION
+-------------------------------------------------------------------------------
+
+
+  The stable time increment estimate for each element is based on
+  linearization about the initial state.
+
+
+   Initial time increment = 4.50555E-05
+
+   Statistics for all elements:
+      Mean = 1.62621E-04
+      Standard deviation = 3.17614E-05
+
+   Most critical elements:
+    Element number   Rank    Time increment   Increment ratio
+    (Instance name)
+   ----------------------------------------------------------
+       76021          1       4.505555E-05      1.000000E+00
+    PART-QIU-1
+       36853          2       4.573180E-05      9.852127E-01
+    PART-QIU-1
+       70261          3       4.636521E-05      9.717533E-01
+    PART-QIU-1
+       23385          4       4.698729E-05      9.588881E-01
+    PART-QIU-1
+       54517          5       5.177742E-05      8.701776E-01
+    PART-QIU-1
+       31093          6       5.198508E-05      8.667015E-01
+    PART-QIU-1
+       91381          7       5.321556E-05      8.466612E-01
+    PART-QIU-1
+       44529          8       5.327748E-05      8.456773E-01
+    PART-QIU-1
+       83697          9       5.349121E-05      8.422982E-01
+    PART-QIU-1
+        9945         10       5.388714E-05      8.361095E-01
+    PART-QIU-1
+
+
+  Instance name for the most critical element will be printed if the critical
+  element changes or at the beginning of a new page.
+
+
+
+
+  -----------------------------------------------------------------------------
+  ---
+
+
+  INFORMATION REGARDING INITIAL CONTACT PAIR OVERCLOSURES THAT Abaqus/Explicit
+
+
+  WILL ATTEMPT TO RESOLVE WITH STRAIN-FREE ADJUSTMENTS TO POSITIONS OF
+  DEFORMABLE
+
+
+  SLAVE NODES Step   1
+
+
+  -----------------------------------------------------------------------------
+  ---
+
+
+
+  Maximum overclosure between surface ASSEMBLY_BAN-1_SURF-1 and surface
+  ASSEMBLY_SURF-QIU is 2.22045E-16.
+
+
+Maximum adjustment for initial overclosure is: 3.33067E-16 at node 81 of instance BAN-1.
+
+
+***NOTE: You can view the deformed configuration due to the resolution of
+         initial overclosures.  In increment 0, draw the deformed shape or
+         draw a symbol plot of vector displacements.
+
+
+More detailed overclosure adjustment information can be found in the message file.
+
+Abaqus/Explicit 3DEXPERIENCE R2016x              DATE 11-Jan-2020  TIME 00:53:17
+
+The single precision Abaqus/Explicit executable will be used in this analysis.
+
+
+-------------------------------------------------------------------------------
+ SOLUTION PROGRESS
+-------------------------------------------------------------------------------
+
+ STEP 1  ORIGIN 0.0000
+
+  Total memory used for step 1 is approximately 134.3 megabytes.
+  Global time estimation algorithm will be used.
+  Scaling factor:  1.00000E-02
+  Variable mass scaling factor at zero increment: 1.0000
+              STEP     TOTAL       CPU      STABLE    CRITICAL    KINETIC      TOTAL
+INCREMENT     TIME      TIME      TIME   INCREMENT     ELEMENT     ENERGY     ENERGY
+        0  0.000E+00 0.000E+00  00:00:00 4.506E-07       76021  1.134E+10  1.134E+10
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+ODB Field Frame Number      0 of     20 requested intervals at increment zero.
+
+***WARNING: THE ANALYSIS MAY NEED A LARGE NUMBER OF INCREMENTS (MORE THAN
+            300000), AND IT MAY BE AFFECTED BY ROUND-OFF ERRORS. RUNNING THE
+            DOUBLE PRECISION EXECUTABLE IS RECOMMENDED.
+
+     5288  5.369E-03 5.369E-03  00:02:00 1.017E-06       76021  1.134E+10  1.134E+10
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+    10604  1.077E-02 1.077E-02  00:04:00 1.017E-06       76021  1.148E+10  1.134E+10
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+    15927  1.619E-02 1.619E-02  00:06:00 1.017E-06       76021  1.194E+10  1.134E+10
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+    21252  2.160E-02 2.160E-02  00:08:00 1.017E-06       76021  1.269E+10  1.134E+10
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+    26568  2.701E-02 2.701E-02  00:10:00 1.017E-06       76021  1.360E+10  1.134E+10
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+    31891  3.242E-02 3.242E-02  00:12:00 1.017E-06       76021  1.457E+10  1.134E+10
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+    37210  3.783E-02 3.783E-02  00:14:00 1.017E-06       76021  1.556E+10  1.134E+10
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1

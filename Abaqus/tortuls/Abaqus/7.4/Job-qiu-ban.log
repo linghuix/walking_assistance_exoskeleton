@@ -1,0 +1,27 @@
+Analysis initiated from SIMULIA established products
+Abaqus JOB Job-qiu-ban
+Abaqus 3DEXPERIENCE R2016x
+Abaqus License Manager checked out the following licenses:
+Abaqus/Explicit checked out 5 tokens from Flexnet server DESKTOP-GDPPV8K.
+<1019 out of 1024 licenses remain available>.
+Begin Analysis Input File Processor
+01/10/20 23:47:58
+Run pre.exe
+01/10/20 23:48:06
+End Analysis Input File Processor
+Begin Abaqus/Explicit Packager
+01/10/20 23:48:06
+Run package.exe
+01/10/20 23:48:13
+End Abaqus/Explicit Packager
+Begin Abaqus/Explicit Analysis
+01/10/20 23:48:13
+Run explicit.exe
+01/10/20 23:50:55
+End Abaqus/Explicit Analysis
+Begin Selected Results Translator
+01/10/20 23:50:55
+Run select.exe
+01/10/20 23:50:55
+End Selected Results Translator
+Abaqus JOB Job-qiu-ban COMPLETED

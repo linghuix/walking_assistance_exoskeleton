@@ -1,0 +1,230 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].rectangle(point1=(-20.0, 10.0), 
+    point2=(20.0, 0.0))
+mdb.models['Model-1'].Part(dimensionality=TWO_D_PLANAR, name='Part-ban', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['Part-ban'].BaseShell(sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].ArcByCenterEnds(center=(0.0, 
+    15.0), direction=CLOCKWISE, point1=(0.0, 10.0), point2=(-5.0, 15.0))
+mdb.models['Model-1'].sketches['__profile__'].ArcByCenterEnds(center=(0.0, 
+    15.0), direction=CLOCKWISE, point1=(-5.0, 15.0), point2=(0.0, 20.0))
+mdb.models['Model-1'].sketches['__profile__'].ArcByCenterEnds(center=(0.0, 
+    15.0), direction=CLOCKWISE, point1=(0.0, 20.0), point2=(5.0, 15.0))
+mdb.models['Model-1'].sketches['__profile__'].ArcByCenterEnds(center=(0.0, 
+    15.0), direction=CLOCKWISE, point1=(5.0, 15.0), point2=(0.0, 10.0))
+mdb.models['Model-1'].Part(dimensionality=TWO_D_PLANAR, name='Part-pan', type=
+    ANALYTIC_RIGID_SURFACE)
+mdb.models['Model-1'].parts['Part-pan'].AnalyticRigidSurf2DPlanar(sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].parts['Part-pan'].ReferencePoint(point=
+    mdb.models['Model-1'].parts['Part-pan'].vertices[2])
+mdb.models['Model-1'].Material(name='Material-1')
+mdb.models['Model-1'].materials['Material-1'].Elastic(table=((210000.0, 0.3), 
+    ))
+mdb.models['Model-1'].HomogeneousSolidSection(material='Material-1', name=
+    'Section-1', thickness=None)
+mdb.models['Model-1'].parts['Part-ban'].Set(faces=
+    mdb.models['Model-1'].parts['Part-ban'].faces.getSequenceFromMask(('[#1 ]', 
+    ), ), name='Set-1')
+mdb.models['Model-1'].parts['Part-ban'].SectionAssignment(offset=0.0, 
+    offsetField='', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Model-1'].parts['Part-ban'].sets['Set-1'], sectionName=
+    'Section-1', thicknessAssignment=FROM_SECTION)
+mdb.models['Model-1'].rootAssembly.DatumCsysByDefault(CARTESIAN)
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='Part-ban-1', 
+    part=mdb.models['Model-1'].parts['Part-ban'])
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='Part-pan-1', 
+    part=mdb.models['Model-1'].parts['Part-pan'])
+mdb.models['Model-1'].StaticStep(name='Step-10kN', nlgeom=ON, previous=
+    'Initial')
+mdb.models['Model-1'].StaticStep(name='Step-100kN', previous='Step-10kN')
+mdb.models['Model-1'].parts['Part-ban'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=1.0)
+mdb.models['Model-1'].parts['Part-ban'].setMeshControls(elemShape=QUAD, 
+    regions=mdb.models['Model-1'].parts['Part-ban'].faces.getSequenceFromMask((
+    '[#1 ]', ), ), technique=STRUCTURED)
+mdb.models['Model-1'].parts['Part-ban'].setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    hourglassControl=DEFAULT, distortionControl=DEFAULT), ElemType(
+    elemCode=CPS3, elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].parts['Part-ban'].faces.getSequenceFromMask(('[#1 ]', 
+    ), ), ))
+mdb.models['Model-1'].parts['Part-ban'].generateMesh()
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.models['Model-1'].rootAssembly.Surface(name='Surf-ban', side1Edges=
+    mdb.models['Model-1'].rootAssembly.instances['Part-ban-1'].edges.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.Surface(name='Surf-pan', side2Edges=
+    mdb.models['Model-1'].rootAssembly.instances['Part-pan-1'].edges.getSequenceFromMask(
+    ('[#f ]', ), ))
+mdb.models['Model-1'].ContactProperty('IntProp-1')
+mdb.models['Model-1'].interactionProperties['IntProp-1'].TangentialBehavior(
+    formulation=FRICTIONLESS)
+mdb.models['Model-1'].SurfaceToSurfaceContactStd(adjustMethod=NONE, 
+    clearanceRegion=None, createStepName='Initial', datumAxis=None, 
+    initialClearance=OMIT, interactionProperty='IntProp-1', master=
+    mdb.models['Model-1'].rootAssembly.surfaces['Surf-pan'], name='Int-1', 
+    slave=mdb.models['Model-1'].rootAssembly.surfaces['Surf-ban'], sliding=
+    FINITE, thickness=ON)
+mdb.models['Model-1'].rootAssembly.Set(edges=
+    mdb.models['Model-1'].rootAssembly.instances['Part-ban-1'].edges.getSequenceFromMask(
+    ('[#4 ]', ), ), name='Set-Fix')
+mdb.models['Model-1'].rootAssembly.Set(name='Set-Point', referencePoints=(
+    mdb.models['Model-1'].rootAssembly.instances['Part-pan-1'].referencePoints[2], 
+    ))
+mdb.models['Model-1'].EncastreBC(createStepName='Initial', localCsys=None, 
+    name='BC-Fix', region=mdb.models['Model-1'].rootAssembly.sets['Set-Fix'])
+mdb.models['Model-1'].DisplacementBC(amplitude=UNSET, createStepName='Initial', 
+    distributionType=UNIFORM, fieldName='', localCsys=None, name='BC-Point', 
+    region=mdb.models['Model-1'].rootAssembly.sets['Set-Point'], u1=SET, u2=
+    UNSET, ur3=SET)
+mdb.models['Model-1'].ConcentratedForce(cf2=-10.0, createStepName='Step-10kN', 
+    distributionType=UNIFORM, field='', localCsys=None, name='Load-Point', 
+    region=mdb.models['Model-1'].rootAssembly.sets['Set-Point'])
+mdb.models['Model-1'].loads['Load-Point'].setValuesInStep(cf2=-100.0, stepName=
+    'Step-100kN')
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-jiechu1', nodalOutputPrecision=
+    SINGLE, numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', 
+    type=ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+# Save by mjs on 2016_11_21-19.40.56; build 2016 2015_09_25-04.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.jobs['Job-jiechu1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-jiechu1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'fzs', 'handle': 0, 'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'PATH BASED TRACKING IS DEFINED IN CONTACT PAIR (ASSEMBLY_SURF-BAN,ASSEMBLY_PART-PAN-1_SURF-PAN). PATH BASED TRACKING CANNOT BE USED WITH ANALYTICAL RIGID MASTER SURFACES, THE STATE BASED TRACKING ALGORITHM WILL BE USED INSTEAD.', 
+    'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'e:\\temp\\Job-jiechu1.odb', 'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'fzs', 'handle': 780, 'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THERE ARE 2 UNCONNECTED REGIONS IN THE MODEL.', 
+    'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-jiechu1', 'memory': 25.0})
+mdb.jobs['Job-jiechu1']._Message(STATUS, {'totalTime': 0.0, 'attempts': ' 1U', 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 0.0, 'step': 1, 
+    'jobName': 'Job-jiechu1', 'severe': 0, 'iterations': 4, 
+    'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-jiechu1']._Message(STATUS, {'totalTime': 0.0, 'attempts': ' 2U', 
+    'timeIncrement': 0.25, 'increment': 1, 'stepTime': 0.0, 'step': 1, 
+    'jobName': 'Job-jiechu1', 'severe': 5, 'iterations': 5, 
+    'phase': STANDARD_PHASE, 'equilibrium': 0})
+mdb.jobs['Job-jiechu1']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'There is zero MOMENT everywhere in the model based on the default criterion. please check the value of the average MOMENT during the current iteration to verify that the MOMENT is small enough to be treated as zero. if not, please use the solution controls to reset the criterion for zero MOMENT.', 
+    'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'There is zero MOMENT everywhere in the model based on the default criterion. please check the value of the average MOMENT during the current iteration to verify that the MOMENT is small enough to be treated as zero. if not, please use the solution controls to reset the criterion for zero MOMENT.', 
+    'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'There is zero MOMENT everywhere in the model based on the default criterion. please check the value of the average MOMENT during the current iteration to verify that the MOMENT is small enough to be treated as zero. if not, please use the solution controls to reset the criterion for zero MOMENT.', 
+    'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(STATUS, {'totalTime': 0.0625, 'attempts': 3, 
+    'timeIncrement': 0.0625, 'increment': 1, 'stepTime': 0.0625, 'step': 1, 
+    'jobName': 'Job-jiechu1', 'severe': 1, 'iterations': 3, 
+    'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-jiechu1']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'There is zero MOMENT everywhere in the model based on the default criterion. please check the value of the average MOMENT during the current iteration to verify that the MOMENT is small enough to be treated as zero. if not, please use the solution controls to reset the criterion for zero MOMENT.', 
+    'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'There is zero MOMENT everywhere in the model based on the default criterion. please check the value of the average MOMENT during the current iteration to verify that the MOMENT is small enough to be treated as zero. if not, please use the solution controls to reset the criterion for zero MOMENT.', 
+    'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 2, 'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(STATUS, {'totalTime': 0.125, 'attempts': 1, 
+    'timeIncrement': 0.0625, 'increment': 2, 'stepTime': 0.125, 'step': 1, 
+    'jobName': 'Job-jiechu1', 'severe': 0, 'iterations': 2, 
+    'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-jiechu1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 3, 'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(STATUS, {'totalTime': 0.21875, 'attempts': 1, 
+    'timeIncrement': 0.09375, 'increment': 3, 'stepTime': 0.21875, 'step': 1, 
+    'jobName': 'Job-jiechu1', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Job-jiechu1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 4, 'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(STATUS, {'totalTime': 0.359375, 'attempts': 1, 
+    'timeIncrement': 0.140625, 'increment': 4, 'stepTime': 0.359375, 'step': 1, 
+    'jobName': 'Job-jiechu1', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Job-jiechu1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 5, 'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(STATUS, {'totalTime': 0.5703125, 
+    'attempts': 1, 'timeIncrement': 0.2109375, 'increment': 5, 
+    'stepTime': 0.5703125, 'step': 1, 'jobName': 'Job-jiechu1', 'severe': 0, 
+    'iterations': 1, 'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Job-jiechu1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 6, 'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(STATUS, {'totalTime': 0.88671875, 
+    'attempts': 1, 'timeIncrement': 0.31640625, 'increment': 6, 
+    'stepTime': 0.88671875, 'step': 1, 'jobName': 'Job-jiechu1', 'severe': 0, 
+    'iterations': 1, 'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Job-jiechu1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 7, 'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 0.11328125, 'increment': 7, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-jiechu1', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Job-jiechu1']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 2, 
+    'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 0, 'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-jiechu1', 'memory': 25.0})
+mdb.jobs['Job-jiechu1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 1, 'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(STATUS, {'totalTime': 2.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 2, 
+    'jobName': 'Job-jiechu1', 'severe': 0, 'iterations': 2, 
+    'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-jiechu1']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 2, 'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-jiechu1'})
+mdb.jobs['Job-jiechu1']._Message(JOB_COMPLETED, {
+    'time': 'Mon Nov 21 19:41:56 2016', 'jobName': 'Job-jiechu1'})
+# Save by mjs on 2016_11_21-19.50.09; build 2016 2015_09_25-04.31.09 126547

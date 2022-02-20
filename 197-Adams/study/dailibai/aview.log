@@ -1,0 +1,20 @@
+! Adams View Adams 2017.2 (built Jul 12 2017)
+! Graphics:  OpenGL
+! Enter a command, '?', or 'help'.
+model display model=.MODEL_1 view=all
+! >> model display model=.MODEL_1 view=all
+! VERIFY MODEL: .MODEL_1
+! 
+!    2 Gruebler Count (approximate degrees of freedom)
+!    3 Moving Parts (not including ground)
+!    2 Revolute Joints
+!    1 Translational Joints
+!    1 Motions
+! 
+!    2 Degrees of Freedom for .MODEL_1
+! 
+! There are no redundant constraint equations.
+! 
+! 
+! Model verified successfully
+view manage orient view=right up_axis=(.MDI.up_axis) forward_axis=(.MDI.forward_axis)

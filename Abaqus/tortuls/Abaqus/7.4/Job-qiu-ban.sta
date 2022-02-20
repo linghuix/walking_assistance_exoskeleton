@@ -1,0 +1,347 @@
+Abaqus/Explicit 3DEXPERIENCE R2016x              DATE 10-Jan-2020  TIME 23:48:13
+-------------------------------------------------------------------------------
+ PREPROCESSOR WARNING MESSAGES
+-------------------------------------------------------------------------------
+
+
+***WARNING: There are 12 warning messages in the data (.dat) file.  Please
+            check the data file for possible errors in the input file.
+
+
+
+***WARNING: Each of the nodes listed below (and included in node set
+            "WarnNodeBcIntersectKinCon") participates in a boundary condition
+            definition (*BOUNDARY) as well as being part of a kinematic
+            contact definition (*CONTACT PAIR, MECHANICAL CONSTRAINT =
+            KINEMATIC). If a degree-of-freedom participates in both types of
+            constraints, the boundary condition will override the kinematic
+            contact constraint. In case of a conflict, it is suggested that
+            the penalty contact algorithm be used instead.
+
+
+Intersecting Nodes:
+node: 4     instance: PART-BAN-1
+node: 5     instance: PART-BAN-1
+node: 6     instance: PART-BAN-1
+node: 8     instance: PART-BAN-1
+node: 119     instance: PART-BAN-1
+node: 120     instance: PART-BAN-1
+node: 121     instance: PART-BAN-1
+node: 122     instance: PART-BAN-1
+node: 123     instance: PART-BAN-1
+node: 124     instance: PART-BAN-1
+node: 125     instance: PART-BAN-1
+node: 126     instance: PART-BAN-1
+node: 127     instance: PART-BAN-1
+node: 128     instance: PART-BAN-1
+node: 129     instance: PART-BAN-1
+node: 130     instance: PART-BAN-1
+node: 131     instance: PART-BAN-1
+node: 132     instance: PART-BAN-1
+node: 133     instance: PART-BAN-1
+node: 134     instance: PART-BAN-1
+node: 135     instance: PART-BAN-1
+node: 136     instance: PART-BAN-1
+node: 137     instance: PART-BAN-1
+node: 138     instance: PART-BAN-1
+node: 139     instance: PART-BAN-1
+node: 140     instance: PART-BAN-1
+node: 141     instance: PART-BAN-1
+node: 142     instance: PART-BAN-1
+node: 143     instance: PART-BAN-1
+node: 144     instance: PART-BAN-1
+node: 145     instance: PART-BAN-1
+node: 146     instance: PART-BAN-1
+node: 147     instance: PART-BAN-1
+node: 148     instance: PART-BAN-1
+node: 149     instance: PART-BAN-1
+node: 150     instance: PART-BAN-1
+node: 151     instance: PART-BAN-1
+node: 152     instance: PART-BAN-1
+node: 153     instance: PART-BAN-1
+node: 154     instance: PART-BAN-1
+node: 155     instance: PART-BAN-1
+node: 156     instance: PART-BAN-1
+node: 157     instance: PART-BAN-1
+node: 158     instance: PART-BAN-1
+node: 159     instance: PART-BAN-1
+node: 160     instance: PART-BAN-1
+node: 161     instance: PART-BAN-1
+node: 162     instance: PART-BAN-1
+node: 163     instance: PART-BAN-1
+node: 164     instance: PART-BAN-1
+node: 165     instance: PART-BAN-1
+node: 166     instance: PART-BAN-1
+node: 167     instance: PART-BAN-1
+node: 224     instance: PART-BAN-1
+node: 225     instance: PART-BAN-1
+node: 226     instance: PART-BAN-1
+node: 227     instance: PART-BAN-1
+node: 228     instance: PART-BAN-1
+node: 229     instance: PART-BAN-1
+node: 230     instance: PART-BAN-1
+node: 231     instance: PART-BAN-1
+node: 232     instance: PART-BAN-1
+node: 233     instance: PART-BAN-1
+node: 234     instance: PART-BAN-1
+node: 235     instance: PART-BAN-1
+node: 236     instance: PART-BAN-1
+node: 237     instance: PART-BAN-1
+node: 238     instance: PART-BAN-1
+node: 239     instance: PART-BAN-1
+node: 240     instance: PART-BAN-1
+node: 241     instance: PART-BAN-1
+node: 242     instance: PART-BAN-1
+node: 243     instance: PART-BAN-1
+node: 244     instance: PART-BAN-1
+node: 245     instance: PART-BAN-1
+node: 246     instance: PART-BAN-1
+node: 247     instance: PART-BAN-1
+node: 248     instance: PART-BAN-1
+node: 249     instance: PART-BAN-1
+node: 250     instance: PART-BAN-1
+node: 251     instance: PART-BAN-1
+node: 252     instance: PART-BAN-1
+node: 253     instance: PART-BAN-1
+node: 254     instance: PART-BAN-1
+node: 255     instance: PART-BAN-1
+node: 256     instance: PART-BAN-1
+node: 257     instance: PART-BAN-1
+node: 258     instance: PART-BAN-1
+node: 259     instance: PART-BAN-1
+node: 260     instance: PART-BAN-1
+node: 261     instance: PART-BAN-1
+node: 262     instance: PART-BAN-1
+node: 263     instance: PART-BAN-1
+node: 264     instance: PART-BAN-1
+node: 265     instance: PART-BAN-1
+node: 266     instance: PART-BAN-1
+node: 267     instance: PART-BAN-1
+node: 268     instance: PART-BAN-1
+node: 269     instance: PART-BAN-1
+node: 270     instance: PART-BAN-1
+node: 271     instance: PART-BAN-1
+node: 272     instance: PART-BAN-1
+node: 2     instance: PART-QIU-1
+node: 3     instance: PART-QIU-1
+node: 5     instance: PART-QIU-1
+node: 6     instance: PART-QIU-1
+node: 46     instance: PART-QIU-1
+node: 47     instance: PART-QIU-1
+node: 48     instance: PART-QIU-1
+node: 49     instance: PART-QIU-1
+node: 50     instance: PART-QIU-1
+node: 51     instance: PART-QIU-1
+node: 52     instance: PART-QIU-1
+node: 53     instance: PART-QIU-1
+node: 54     instance: PART-QIU-1
+node: 55     instance: PART-QIU-1
+node: 56     instance: PART-QIU-1
+node: 57     instance: PART-QIU-1
+node: 58     instance: PART-QIU-1
+node: 59     instance: PART-QIU-1
+node: 60     instance: PART-QIU-1
+node: 79     instance: PART-QIU-1
+node: 80     instance: PART-QIU-1
+node: 81     instance: PART-QIU-1
+node: 82     instance: PART-QIU-1
+node: 83     instance: PART-QIU-1
+node: 84     instance: PART-QIU-1
+node: 85     instance: PART-QIU-1
+node: 86     instance: PART-QIU-1
+node: 87     instance: PART-QIU-1
+node: 88     instance: PART-QIU-1
+node: 89     instance: PART-QIU-1
+node: 90     instance: PART-QIU-1
+node: 91     instance: PART-QIU-1
+node: 92     instance: PART-QIU-1
+node: 93     instance: PART-QIU-1
+node: 118     instance: PART-QIU-1
+node: 119     instance: PART-QIU-1
+node: 120     instance: PART-QIU-1
+node: 121     instance: PART-QIU-1
+node: 122     instance: PART-QIU-1
+node: 123     instance: PART-QIU-1
+node: 124     instance: PART-QIU-1
+node: 125     instance: PART-QIU-1
+node: 126     instance: PART-QIU-1
+node: 127     instance: PART-QIU-1
+node: 128     instance: PART-QIU-1
+node: 129     instance: PART-QIU-1
+node: 130     instance: PART-QIU-1
+node: 131     instance: PART-QIU-1
+node: 132     instance: PART-QIU-1
+node: 157     instance: PART-QIU-1
+node: 158     instance: PART-QIU-1
+node: 159     instance: PART-QIU-1
+node: 160     instance: PART-QIU-1
+node: 161     instance: PART-QIU-1
+node: 162     instance: PART-QIU-1
+node: 163     instance: PART-QIU-1
+node: 164     instance: PART-QIU-1
+node: 165     instance: PART-QIU-1
+node: 166     instance: PART-QIU-1
+node: 167     instance: PART-QIU-1
+node: 168     instance: PART-QIU-1
+node: 169     instance: PART-QIU-1
+node: 170     instance: PART-QIU-1
+node: 171     instance: PART-QIU-1
+
+-------------------------------------------------------------------------------
+ MODEL INFORMATION (IN GLOBAL X-Y COORDINATES)
+-------------------------------------------------------------------------------
+
+   Total mass in model = 2.95961E-04
+   Center of mass of model = (-6.689326E-07,-7.414119E+00, 1.686915E+01)
+
+    Moments of Inertia :
+                 About Center of Mass              About Origin
+      I(XX)          3.947762E-02                  1.399673E-01
+      I(YY)          1.511693E-01                  2.353902E-01
+      I(ZZ)          1.237098E-01                  1.399785E-01
+      I(XY)          1.086214E-07                  1.071536E-07
+      I(YZ)          3.812954E-04                  3.739705E-02
+      I(ZX)         -2.422536E-09                  9.171794E-10
+
+-------------------------------------------------------------------------------
+ STABLE TIME INCREMENT INFORMATION
+-------------------------------------------------------------------------------
+
+
+  The stable time increment estimate for each element is based on
+  linearization about the initial state.
+
+
+   Initial time increment = 1.49603E-08
+
+   Statistics for all elements:
+      Mean = 1.38361E-07
+      Standard deviation = 7.33721E-08
+
+   Most critical elements:
+    Element number   Rank    Time increment   Increment ratio
+    (Instance name)
+   ----------------------------------------------------------
+        3193          1       1.496031E-08      1.000000E+00
+    PART-QIU-1
+         889          2       1.516918E-08      9.862310E-01
+    PART-QIU-1
+        1529          3       1.521654E-08      9.831609E-01
+    PART-QIU-1
+        2681          4       1.538832E-08      9.721864E-01
+    PART-QIU-1
+        3194          5       1.962201E-08      7.624252E-01
+    PART-QIU-1
+         890          6       1.997178E-08      7.490724E-01
+    PART-QIU-1
+        1530          7       2.007630E-08      7.451728E-01
+    PART-QIU-1
+        1521          8       2.008273E-08      7.449341E-01
+    PART-QIU-1
+        2617          9       2.015613E-08      7.422215E-01
+    PART-QIU-1
+        2682         10       2.024845E-08      7.388372E-01
+    PART-QIU-1
+
+
+  Instance name for the most critical element will be printed if the critical
+  element changes or at the beginning of a new page.
+
+
+
+***WARNING: In contact pair 1, node 2493 of instance PART-BAN-1 on the slave
+            surface ASSEMBLY_SURF-BAN has 444.19 times more mass than the mass
+            of node 713 of instance PART-QIU-1 on the master surface
+            ASSEMBLY_SURF-QIU. Significant contact noise may result with the
+            kinematic contact algorithm when the slave nodes have
+            significantly greater mass than the master nodes. Suggested
+            workarounds include setting the WEIGHT parameter so that surface
+            ASSEMBLY_SURF-QIU is a pure slave surface in the contact pair,
+            using mass-scaling to adjust the ratio of nodal masses, or using
+            the penalty contact algorithm.
+
+
+Abaqus/Explicit 3DEXPERIENCE R2016x              DATE 10-Jan-2020  TIME 23:48:20
+
+The single precision Abaqus/Explicit executable will be used in this analysis.
+
+
+-------------------------------------------------------------------------------
+ SOLUTION PROGRESS
+-------------------------------------------------------------------------------
+
+ STEP 1  ORIGIN 0.0000
+
+  Total memory used for step 1 is approximately 15.3 megabytes.
+  Global time estimation algorithm will be used.
+  Scaling factor:  1.0000
+  Variable mass scaling factor at zero increment: 1.0000
+              STEP     TOTAL       CPU      STABLE    CRITICAL    KINETIC      TOTAL
+INCREMENT     TIME      TIME      TIME   INCREMENT     ELEMENT     ENERGY     ENERGY
+        0  0.000E+00 0.000E+00  00:00:00 1.496E-08        3193  6.720E+00  6.720E+00
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+ODB Field Frame Number      0 of     20 requested intervals at increment zero.
+     3524  1.250E-04 1.250E-04  00:00:07 3.554E-08        3193  4.800E+00  6.720E+00
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+ODB Field Frame Number      1 of     20 requested intervals at  1.250262E-04
+     7041  2.500E-04 2.500E-04  00:00:15 3.554E-08        3193  4.475E+00  6.720E+00
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+ODB Field Frame Number      2 of     20 requested intervals at  2.500055E-04
+    10559  3.750E-04 3.750E-04  00:00:23 3.554E-08        3193  4.767E+00  6.720E+00
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+ODB Field Frame Number      3 of     20 requested intervals at  3.750204E-04
+    14076  5.000E-04 5.000E-04  00:00:30 3.554E-08        3193  4.528E+00  6.720E+00
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+ODB Field Frame Number      4 of     20 requested intervals at  5.000093E-04
+    17591  6.250E-04 6.250E-04  00:00:38 3.554E-08        3193  4.672E+00  6.720E+00
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+ODB Field Frame Number      5 of     20 requested intervals at  6.250198E-04
+    21106  7.500E-04 7.500E-04  00:00:46 3.554E-08        3193  4.618E+00  6.720E+00
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+ODB Field Frame Number      6 of     20 requested intervals at  7.500304E-04
+    24620  8.750E-04 8.750E-04  00:00:53 3.554E-08        3193  4.566E+00  6.720E+00
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+ODB Field Frame Number      7 of     20 requested intervals at  8.750054E-04
+    28136  1.000E-03 1.000E-03  00:01:01 3.554E-08        3193  4.700E+00  6.720E+00
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+ODB Field Frame Number      8 of     20 requested intervals at  1.000013E-03
+    31657  1.125E-03 1.125E-03  00:01:09 3.554E-08        3193  4.486E+00  6.720E+00
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+ODB Field Frame Number      9 of     20 requested intervals at  1.125032E-03
+    35177  1.250E-03 1.250E-03  00:01:16 3.554E-08        3193  4.735E+00  6.720E+00
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+ODB Field Frame Number     10 of     20 requested intervals at  1.250016E-03
+    38698  1.375E-03 1.375E-03  00:01:24 3.554E-08        3193  4.477E+00  6.720E+00
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+ODB Field Frame Number     11 of     20 requested intervals at  1.375035E-03
+    42218  1.500E-03 1.500E-03  00:01:32 3.554E-08        3193  4.692E+00  6.720E+00
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+ODB Field Frame Number     12 of     20 requested intervals at  1.500018E-03
+    45738  1.625E-03 1.625E-03  00:01:40 3.554E-08        3193  4.536E+00  6.720E+00
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+ODB Field Frame Number     13 of     20 requested intervals at  1.625002E-03
+    49259  1.750E-03 1.750E-03  00:01:47 3.554E-08        3193  4.600E+00  6.720E+00
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+ODB Field Frame Number     14 of     20 requested intervals at  1.750021E-03
+    52779  1.875E-03 1.875E-03  00:01:55 3.554E-08        3193  4.622E+00  6.720E+00
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+ODB Field Frame Number     15 of     20 requested intervals at  1.875004E-03
+    56296  2.000E-03 2.000E-03  00:02:03 3.554E-08        3193  4.513E+00  6.720E+00
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+ODB Field Frame Number     16 of     20 requested intervals at  2.000034E-03
+    59804  2.125E-03 2.125E-03  00:02:10 3.554E-08        3193  4.672E+00  6.720E+00
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+ODB Field Frame Number     17 of     20 requested intervals at  2.125000E-03
+    63313  2.250E-03 2.250E-03  00:02:18 3.554E-08        3193  4.475E+00  6.720E+00
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+ODB Field Frame Number     18 of     20 requested intervals at  2.250002E-03
+    66822  2.375E-03 2.375E-03  00:02:26 3.554E-08        3193  4.681E+00  6.720E+00
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+ODB Field Frame Number     19 of     20 requested intervals at  2.375003E-03
+    70331  2.500E-03 2.500E-03  00:02:33 3.554E-08        3193  4.474E+00  6.720E+00
+INSTANCE WITH CRITICAL ELEMENT: PART-QIU-1
+Restart Number  1 at 2.50000E-03
+ODB Field Frame Number     20 of     20 requested intervals at  2.500000E-03
+
+  THE ANALYSIS HAS COMPLETED SUCCESSFULLY
+

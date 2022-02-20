@@ -1,0 +1,11 @@
+
+
+
+ SOLUTION HISTORY INFORMATION FOR JOB: Structural.mntr                                                                                                                                                                                                                                                     
+ ANSYS RELEASE 14.5                     15:41:47    07/18/2013
+
+ LOAD  SUB-  NO.   NO.  TOTL   INCREMENT    TOTAL       VARIAB 1    VARIAB 2    VARIAB 3
+ STEP  STEP  ATTMP ITER ITER   TIME/LFACT   TIME/LFACT  MONITOR     MONITOR     MONITOR
+                                                        CPU         MxDs        MxPl
+
+   1      1    1     1     1    1.0000      1.0000     0.40560     -.50577E-01 0.78886E-30

@@ -1,0 +1,110 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].rectangle(point1=(-20.0, 10.0), 
+    point2=(20.0, 0.0))
+mdb.models['Model-1'].Part(dimensionality=TWO_D_PLANAR, name='Part-ban', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['Part-ban'].BaseShell(sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].ArcByCenterEnds(center=(0.0, 
+    15.0), direction=CLOCKWISE, point1=(0.0, 10.0), point2=(-5.0, 15.0))
+mdb.models['Model-1'].sketches['__profile__'].ArcByCenterEnds(center=(0.0, 
+    15.0), direction=CLOCKWISE, point1=(-5.0, 15.0), point2=(0.0, 20.0))
+mdb.models['Model-1'].sketches['__profile__'].ArcByCenterEnds(center=(0.0, 
+    15.0), direction=CLOCKWISE, point1=(0.0, 20.0), point2=(5.0, 15.0))
+mdb.models['Model-1'].sketches['__profile__'].ArcByCenterEnds(center=(0.0, 
+    15.0), direction=CLOCKWISE, point1=(5.0, 15.0), point2=(0.0, 10.0))
+mdb.models['Model-1'].Part(dimensionality=TWO_D_PLANAR, name='Part-pan', type=
+    ANALYTIC_RIGID_SURFACE)
+mdb.models['Model-1'].parts['Part-pan'].AnalyticRigidSurf2DPlanar(sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].parts['Part-pan'].ReferencePoint(point=
+    mdb.models['Model-1'].parts['Part-pan'].vertices[2])
+mdb.models['Model-1'].Material(name='Material-1')
+mdb.models['Model-1'].materials['Material-1'].Elastic(table=((210000.0, 0.3), 
+    ))
+mdb.models['Model-1'].HomogeneousSolidSection(material='Material-1', name=
+    'Section-1', thickness=None)
+mdb.models['Model-1'].parts['Part-ban'].Set(faces=
+    mdb.models['Model-1'].parts['Part-ban'].faces.getSequenceFromMask(('[#1 ]', 
+    ), ), name='Set-1')
+mdb.models['Model-1'].parts['Part-ban'].SectionAssignment(offset=0.0, 
+    offsetField='', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Model-1'].parts['Part-ban'].sets['Set-1'], sectionName=
+    'Section-1', thicknessAssignment=FROM_SECTION)
+mdb.models['Model-1'].rootAssembly.DatumCsysByDefault(CARTESIAN)
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='Part-ban-1', 
+    part=mdb.models['Model-1'].parts['Part-ban'])
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='Part-pan-1', 
+    part=mdb.models['Model-1'].parts['Part-pan'])
+mdb.models['Model-1'].StaticStep(name='Step-10kN', nlgeom=ON, previous=
+    'Initial')
+mdb.models['Model-1'].StaticStep(name='Step-1000kN', previous='Step-10kN')
+mdb.models['Model-1'].parts['Part-ban'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=1.0)
+mdb.models['Model-1'].parts['Part-ban'].setMeshControls(elemShape=QUAD, 
+    regions=mdb.models['Model-1'].parts['Part-ban'].faces.getSequenceFromMask((
+    '[#1 ]', ), ), technique=STRUCTURED)
+mdb.models['Model-1'].parts['Part-ban'].setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    hourglassControl=DEFAULT, distortionControl=DEFAULT), ElemType(
+    elemCode=CPS3, elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].parts['Part-ban'].faces.getSequenceFromMask(('[#1 ]', 
+    ), ), ))
+mdb.models['Model-1'].parts['Part-ban'].generateMesh()
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.models['Model-1'].rootAssembly.Surface(name='Surf-ban', side1Edges=
+    mdb.models['Model-1'].rootAssembly.instances['Part-ban-1'].edges.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.Surface(name='Surf-pan', side2Edges=
+    mdb.models['Model-1'].rootAssembly.instances['Part-pan-1'].edges.getSequenceFromMask(
+    ('[#f ]', ), ))
+mdb.models['Model-1'].ContactProperty('IntProp-1')
+mdb.models['Model-1'].interactionProperties['IntProp-1'].TangentialBehavior(
+    formulation=FRICTIONLESS)
+mdb.models['Model-1'].SurfaceToSurfaceContactStd(adjustMethod=NONE, 
+    clearanceRegion=None, createStepName='Initial', datumAxis=None, 
+    initialClearance=OMIT, interactionProperty='IntProp-1', master=
+    mdb.models['Model-1'].rootAssembly.surfaces['Surf-pan'], name='Int-1', 
+    slave=mdb.models['Model-1'].rootAssembly.surfaces['Surf-ban'], sliding=
+    FINITE, thickness=ON)
+mdb.models['Model-1'].rootAssembly.Set(edges=
+    mdb.models['Model-1'].rootAssembly.instances['Part-ban-1'].edges.getSequenceFromMask(
+    ('[#4 ]', ), ), name='Set-Fix')
+mdb.models['Model-1'].rootAssembly.Set(name='Set-Point', referencePoints=(
+    mdb.models['Model-1'].rootAssembly.instances['Part-pan-1'].referencePoints[2], 
+    ))
+mdb.models['Model-1'].EncastreBC(createStepName='Initial', localCsys=None, 
+    name='BC-Fix', region=mdb.models['Model-1'].rootAssembly.sets['Set-Fix'])
+mdb.models['Model-1'].DisplacementBC(amplitude=UNSET, createStepName='Initial', 
+    distributionType=UNIFORM, fieldName='', localCsys=None, name='BC-Point', 
+    region=mdb.models['Model-1'].rootAssembly.sets['Set-Point'], u1=SET, u2=
+    UNSET, ur3=SET)
+mdb.models['Model-1'].ConcentratedForce(cf2=-10.0, createStepName='Step-10kN', 
+    distributionType=UNIFORM, field='', localCsys=None, name='Load-point', 
+    region=mdb.models['Model-1'].rootAssembly.sets['Set-Point'])
+mdb.models['Model-1'].loads['Load-point'].setValuesInStep(cf2=-100.0, stepName=
+    'Step-1000kN')
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-jiechu1', nodalOutputPrecision=
+    SINGLE, numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', 
+    type=ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+# Save by mjs on 2016_11_10-20.45.36; build 2016 2015_09_25-04.31.09 126547

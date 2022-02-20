@@ -1,0 +1,321 @@
+/BATCH  
+/COM,ANSYS RELEASE 14.5    UP20120918       15:25:08    07/18/2013
+/PREP7  
+!*  
+ET,1,BEAM188
+!*  
+ET,2,SHELL181   
+!*  
+KEYOPT,1,1,0
+KEYOPT,1,2,0
+KEYOPT,1,3,3
+KEYOPT,1,4,0
+KEYOPT,1,6,0
+KEYOPT,1,7,0
+KEYOPT,1,9,0
+KEYOPT,1,11,0   
+KEYOPT,1,12,0   
+KEYOPT,1,15,0   
+!*  
+KEYOPT,2,1,0
+KEYOPT,2,3,2
+KEYOPT,2,8,0
+KEYOPT,2,9,0
+!*  
+!*  
+MPTEMP,,,,,,,,  
+MPTEMP,1,0  
+MPDATA,EX,1,,2.1e11 
+MPDATA,PRXY,1,,0.3  
+MPTEMP,,,,,,,,  
+MPTEMP,1,0  
+MPDATA,DENS,1,,7850 
+MPTEMP,,,,,,,,  
+MPTEMP,1,0  
+MPDATA,EX,2,,3.5e10 
+MPDATA,PRXY,2,,0.1667   
+MPTEMP,,,,,,,,  
+MPTEMP,1,0  
+MPDATA,DENS,2,,2500 
+SECTYPE,   1, BEAM, I, , 0  
+SECOFFSET, CENT 
+SECDATA,0.4,0.4,0.4,0.016,0.016,0.016,0,0,0,0,0,0   
+SECTYPE,   2, BEAM, I, , 0  
+SECOFFSET, CENT 
+SECDATA,0.4,0.4,0.4,0.012,0.012,0.012,0,0,0,0,0,0   
+SECTYPE,   3, BEAM, I, , 0  
+SECOFFSET, CENT 
+SECDATA,0.3,0.3,0.3,0.012,0.012,0.012,0,0,0,0,0,0   
+sect,4,shell,,  
+secdata, 0.3,2,0.0,1
+secoffset,MID   
+seccontrol,,,, , , ,
+N,1,0,0,-5,,,,  
+FLST,4,1,1,ORDE,1   
+FITEM,4,1   
+NGEN,4,4,P51X, , ,12, , ,1, 
+FLST,4,4,1,ORDE,4   
+FITEM,4,1   
+FITEM,4,5   
+FITEM,4,9   
+FITEM,4,13  
+NGEN,2,1,P51X, , , , ,10,1, 
+/VIEW,1,1,1,1   
+/ANG,1  
+/REP,FAST   
+FLST,4,3,1,ORDE,3   
+FITEM,4,2   
+FITEM,4,6   
+FITEM,4,10  
+NGEN,2,1,P51X, , , ,16, ,1, 
+FLST,4,3,1,ORDE,3   
+FITEM,4,3   
+FITEM,4,7   
+FITEM,4,11  
+NGEN,2,1,P51X, , , , ,-10,1,
+TYPE,   1   
+MAT,       1
+REAL,   
+ESYS,       0   
+SECNUM,   1 
+TSHAP,LINE  
+!*  
+FLST,2,2,1  
+FITEM,2,11  
+FITEM,2,14  
+E,P51X  
+FLST,2,2,1  
+FITEM,2,12  
+FITEM,2,13  
+E,P51X  
+TYPE,   1   
+MAT,       1
+REAL,   
+ESYS,       0   
+SECNUM,   2 
+TSHAP,LINE  
+!*  
+FLST,2,2,1  
+FITEM,2,2   
+FITEM,2,6   
+E,P51X  
+FLST,2,2,1  
+FITEM,2,6   
+FITEM,2,10  
+E,P51X  
+FLST,2,2,1  
+FITEM,2,10  
+FITEM,2,14  
+E,P51X  
+FLST,2,2,1  
+FITEM,2,1   
+FITEM,2,5   
+E,P51X  
+FLST,2,2,1  
+FITEM,2,5   
+FITEM,2,9   
+E,P51X  
+FLST,2,2,1  
+FITEM,2,9   
+FITEM,2,13  
+E,P51X  
+FLST,2,2,1  
+FITEM,2,3   
+FITEM,2,7   
+E,P51X  
+FLST,2,2,1  
+FITEM,2,7   
+FITEM,2,11  
+E,P51X  
+FLST,2,2,1  
+FITEM,2,4   
+FITEM,2,8   
+E,P51X  
+FLST,2,2,1  
+FITEM,2,8   
+FITEM,2,12  
+E,P51X  
+FLST,2,2,1  
+FITEM,2,1   
+FITEM,2,2   
+E,P51X  
+FLST,2,2,1  
+FITEM,2,3   
+FITEM,2,4   
+E,P51X  
+FLST,2,2,1  
+FITEM,2,5   
+FITEM,2,6   
+E,P51X  
+FLST,2,2,1  
+FITEM,2,7   
+FITEM,2,8   
+E,P51X  
+FLST,2,2,1  
+FITEM,2,9   
+FITEM,2,10  
+E,P51X  
+FLST,2,2,1  
+FITEM,2,11  
+FITEM,2,12  
+E,P51X  
+FLST,2,2,1  
+FITEM,2,13  
+FITEM,2,14  
+E,P51X  
+TYPE,   1   
+MAT,       1
+REAL,   
+ESYS,       0   
+SECNUM,   3 
+TSHAP,LINE  
+!*  
+FLST,2,2,1  
+FITEM,2,3   
+FITEM,2,6   
+E,P51X  
+FLST,2,2,1  
+FITEM,2,6   
+FITEM,2,11  
+E,P51X  
+FLST,2,2,1  
+FITEM,2,4   
+FITEM,2,5   
+E,P51X  
+FLST,2,2,1  
+FITEM,2,5   
+FITEM,2,12  
+E,P51X  
+FLST,2,2,1  
+FITEM,2,2   
+FITEM,2,3   
+E,P51X  
+FLST,2,2,1  
+FITEM,2,1   
+FITEM,2,4   
+E,P51X  
+FLST,2,2,1  
+FITEM,2,6   
+FITEM,2,7   
+E,P51X  
+FLST,2,2,1  
+FITEM,2,5   
+FITEM,2,8   
+E,P51X  
+FLST,2,2,1  
+FITEM,2,10  
+FITEM,2,11  
+E,P51X  
+FLST,2,2,1  
+FITEM,2,9   
+FITEM,2,12  
+E,P51X  
+TYPE,   2   
+MAT,       2
+REAL,   
+ESYS,       0   
+SECNUM,   4 
+TSHAP,LINE  
+!*  
+FLST,2,4,1  
+FITEM,2,1   
+FITEM,2,2   
+FITEM,2,6   
+FITEM,2,5   
+E,P51X  
+FLST,2,4,1  
+FITEM,2,5   
+FITEM,2,6   
+FITEM,2,10  
+FITEM,2,9   
+E,P51X  
+FLST,2,4,1  
+FITEM,2,9   
+FITEM,2,10  
+FITEM,2,14  
+FITEM,2,13  
+E,P51X  
+FLST,4,14,1,ORDE,2  
+FITEM,4,1   
+FITEM,4,-14 
+NSYM,X,14,P51X  
+FLST,4,32,2,ORDE,2  
+FITEM,4,1   
+FITEM,4,-32 
+ESYM, ,14,P51X  
+EPLOT   
+NUMMRG,ALL, , , ,LOW
+NUMCMP,ALL  
+SAVE,'Structural_model','db','D:\ansys\Bridge\' 
+FINISH  
+/SOL
+FLST,2,2,1,ORDE,2   
+FITEM,2,23  
+FITEM,2,-24 
+!*  
+/GO 
+D,P51X, ,0, , , ,UX,UY,UZ, , ,  
+FLST,2,2,1,ORDE,2   
+FITEM,2,13  
+FITEM,2,-14 
+!*  
+/GO 
+D,P51X, ,0, , , ,UY,UZ, , , ,   
+FLST,2,2,1,ORDE,2   
+FITEM,2,1   
+FITEM,2,-2  
+!*  
+/GO 
+F,P51X,FY,-100000   
+ACEL,0,10,0,
+!*  
+ANTYPE,0
+/STATUS,SOLU
+SOLVE   
+FINISH  
+/POST1  
+PLDISP,1
+!*  
+/EFACET,1   
+PLNSOL, U,SUM, 0,1.0
+!*  
+/EFACET,1   
+PLNSOL, U,X, 0,1.0  
+!*  
+/EFACET,1   
+PLNSOL, U,Y, 0,1.0  
+!*  
+/EFACET,1   
+PLNSOL, U,Z, 0,1.0  
+!*  
+/VSCALE,1,1,0   
+!   
+!*  
+PLVECT,U, , , ,VECT,ELEM,ON,0   
+AVPRIN,0, , 
+ETABLE,zhou_i,SMISC, 1  
+!*  
+AVPRIN,0, , 
+ETABLE,zhou_j,SMISC, 7  
+!*  
+AVPRIN,0, , 
+ETABLE,jian_i,SMISC, 2  
+!*  
+AVPRIN,0, , 
+ETABLE,jian_j,SMISC, 8  
+!*  
+AVPRIN,0, , 
+ETABLE,wan_i,SMISC, 6   
+!*  
+AVPRIN,0, , 
+ETABLE,wan_j,SMISC, 12  
+!*  
+PRETAB,ZHOU_I,ZHOU_J,JIAN_I,JIAN_J,WAN_I,WAN_J  
+!*  
+PLLS,ZHOU_I,ZHOU_J,1,0  
+PLLS,JIAN_I,JIAN_J,1,0  
+PLLS,WAN_I,WAN_J,1,0
+!*  
+PRNSOL,U,COMP   
+FINISH  
+! /EXIT,ALL 

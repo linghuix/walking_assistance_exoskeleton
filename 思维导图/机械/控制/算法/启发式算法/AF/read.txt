@@ -1,0 +1,7 @@
+更改
+AF_foodconsistence_2，
+AF_unary_function.m
+注意主函数中的
+disp(['最优解 X:',num2str(bestx,'%1.5f')]);
+plot(X(index),Ymax,'.', 'color',[gen/MAXGEN ,0,0],'markerSize',20);
+plot(bestx(1) ,besty, 'ro', 'MarkerSize', 80);

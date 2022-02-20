@@ -1,0 +1,236 @@
+Adams View model name: MODEL_1
+!
+!-------------------------------- SYSTEM UNITS ---------------------------------
+!
+UNITS/
+, FORCE = NEWTON
+, MASS = KILOGRAM
+, LENGTH = MILLIMETER
+, TIME = SECOND
+!
+!----------------------------------- PARTS -------------------------------------
+!
+!----------------------------------- Ground ------------------------------------
+!
+!                            adams_view_name='ground'
+PART/1
+, GROUND
+!
+!                           adams_view_name='MARKER_1'
+MARKER/1
+, PART = 1
+, QP = 49.74604358, 7.499999508, 34.29515836
+, REULER = 0D, 180D, 0D
+!
+!                          adams_view_name='MARKER_17'
+MARKER/17
+, PART = 1
+, QP = 57.9894997, 7.5, 34.29515846
+, REULER = 0D, 90D, 0D
+!
+!------------------------------------ Part -------------------------------------
+!
+!                   adams_view_name='dizuo_1_daolibai_1_body1'
+PART/4
+, MASS = 0.0723177263
+, CM = 8
+, IP = 9.736352806, 9.321930442, 3.100010615
+!
+!                           adams_view_name='MARKER_2'
+MARKER/2
+, PART = 4
+, QP = 49.74604358, 7.499999508, 34.29515836
+, REULER = 0D, 180D, 0D
+!
+!                            adams_view_name='PSMAR'
+MARKER/7
+, PART = 4
+!
+!                              adams_view_name='cm'
+MARKER/8
+, PART = 4
+, QP = 49.74607826, 7.5, 34.29515846
+, REULER = 90D, 180D, 0D
+!
+!                          adams_view_name='MARKER_13'
+MARKER/13
+, PART = 4
+, QP = 49.74604358, 7.499999508, 34.29515836
+, REULER = 270D, 90D, 90D
+!
+!------------------------------------ Part -------------------------------------
+!
+!                 adams_view_name='link_xia_1_daolibai_2_body1'
+PART/5
+, MASS = 0.006853397
+, CM = 10
+, IP = 1.246575221, 1.190150219, 0.0609939459
+!
+!                            adams_view_name='PSMAR'
+MARKER/9
+, PART = 5
+!
+!                              adams_view_name='cm'
+MARKER/10
+, PART = 5
+, QP = 58.98949314, 26.97867795, 29.75963591
+, REULER = 0D, 76.89211955D, 359.9999852D
+!
+!                          adams_view_name='MARKER_14'
+MARKER/14
+, PART = 5
+, QP = 49.74604358, 7.499999508, 34.29515836
+, REULER = 270D, 90D, 90D
+!
+!                          adams_view_name='MARKER_15'
+MARKER/15
+, PART = 5
+, QP = 59.9894997, 46.45785193, 25.22400788
+, REULER = 270D, 90D, 90D
+!
+!------------------------------------ Part -------------------------------------
+!
+!                 adams_view_name='link_xia_2_daolibai_2_body1'
+PART/6
+, MASS = 0.0068530411
+, CM = 12
+, IP = 1.246400441, 1.189974415, 0.0609947677
+, EXACT = X:Y:Z:THETA
+!
+!                            adams_view_name='PSMAR'
+MARKER/11
+, PART = 6
+!
+!                              adams_view_name='cm'
+MARKER/12
+, PART = 6
+, QP = 60.98950001, 65.84907622, 30.12155386
+, REULER = 359.9999996D, 104.1742153D, 359.9999997D
+!
+!                          adams_view_name='MARKER_16'
+MARKER/16
+, PART = 6
+, QP = 59.9894997, 46.45785193, 25.22400788
+, REULER = 270D, 90D, 90D
+!
+!------------------------------ DYNAMIC GRAPHICS -------------------------------
+!
+!                   adams_view_name='JOINT_2_force_graphic_1'
+GRAPHICS/8
+, FORCE
+, ETYPE = JOINT
+, EID = 2
+, EMARKER = 13
+!
+!-------------------------------- CONSTRAINTS ----------------------------------
+!
+!                             adams_view_name='move'
+JOINT/1
+, TRANSLATIONAL
+, I = 1
+, J = 2
+!
+!                           adams_view_name='rotate1'
+JOINT/2
+, REVOLUTE
+, I = 13
+, J = 14
+!
+!                           adams_view_name='rotate2'
+JOINT/3
+, REVOLUTE
+, I = 15
+, J = 16
+!
+!                           adams_view_name='MOTION_1'
+MOTION/1
+, TRANSLATIONAL
+, ACCELERATION
+, JOINT = 1
+, FUNCTION = VARVAL( 7)
+!
+!------------------------------ DATA STRUCTURES --------------------------------
+!
+!                           adams_view_name='theta_up'
+VARIABLE/1
+, IC = 0
+, FUNCTION = AX(12,17)
+!
+!                          adams_view_name='theta_down'
+VARIABLE/2
+, IC = 0
+, FUNCTION = AX( 17,10)
+!
+!                              adams_view_name='x'
+VARIABLE/3
+, IC = 0
+, FUNCTION = DZ( 2,1,1)
+!
+!                       adams_view_name='speedtheta_down'
+VARIABLE/4
+, IC = 0
+, FUNCTION = WX( 17,10)
+!
+!                        adams_view_name='speedtheta_up'
+VARIABLE/5
+, IC = 0
+, FUNCTION = WX(12,17)
+!
+!                            adams_view_name='speed'
+VARIABLE/6
+, IC = 0
+, FUNCTION = VZ( 8)
+!
+!                              adams_view_name='a'
+VARIABLE/7
+, IC = 0
+, FUNCTION = 0
+!
+!                           adams_view_name='PINPUT_F'
+PINPUT/1
+, VARIABLES = 7
+!
+!                 adams_view_name='Controls_Plant_1.ctrl_pinput'
+PINPUT/2
+, VARIABLES = 7
+!
+!                      adams_view_name='trial.ctrl_pinput'
+PINPUT/3
+, VARIABLES = 7
+!
+!                          adams_view_name='POUTPUT_1'
+POUTPUT/1
+, VARIABLES = 1, 2, 3, 4, 5, 6
+!
+!                adams_view_name='Controls_Plant_1.ctrl_poutput'
+POUTPUT/2
+, VARIABLES = 6, 4, 5, 2, 1, 3
+!
+!                      adams_view_name='trial.ctrl_poutput'
+POUTPUT/3
+, VARIABLES = 6, 4, 5, 2, 1, 3
+!
+!----------------------------- EXECUTION CONTROL -------------------------------
+!
+!                           adams_view_name='SENSOR_1'
+SENSOR/1
+, VALUE = 2
+, EQ
+, HALT
+, FUNCTION = DZ( 2,1,1)
+!
+!------------------------- GRAVITATIONAL ACCELERATION --------------------------
+!
+ACCGRAV/
+, JGRAV = -9.8
+!
+!----------------------------- ANALYSIS SETTINGS -------------------------------
+!
+OUTPUT/
+, REQSAVE
+, GRSAVE
+!
+RESULTS/
+, XRF
+!
+END

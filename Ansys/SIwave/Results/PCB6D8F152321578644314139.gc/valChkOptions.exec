@@ -1,0 +1,7 @@
+FixSelfIntersections
+FixDisjointNets
+CheckForShortedNets
+FixOverlappingVias
+FixMisalignments
+SetNumCpus 2
+EdbCellName "PCB"

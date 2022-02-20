@@ -1,0 +1,9 @@
+[DEFAULT]
+BASEURL=http://item.taobao.com/item.htm?spm=a1z10.1.w4004-2793089344.4.MUvxbV&id=37289930486
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,2
+[InternetShortcut]
+URL=http://item.taobao.com/item.htm?spm=a1z10.1.w4004-2793089344.4.MUvxbV&id=37289930486
+IDList=
+IconFile=http://www.taobao.com/favicon.ico
+IconIndex=1

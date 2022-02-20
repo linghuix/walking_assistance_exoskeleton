@@ -1,0 +1,192 @@
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.jobs['3mm-ban'].submit(consistencyChecking=OFF)
+mdb.jobs['3mm-ban']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 0, 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OPTION *BOUNDARY,TYPE=DISPLACEMENT HAS BEEN USED; CHECK STATUS FILE BETWEEN STEPS FOR WARNINGS ON ANY JUMPS PRESCRIBED ACROSS THE STEPS IN DISPLACEMENT VALUES OF TRANSLATIONAL DOF. FOR ROTATIONAL DOF MAKE SURE THAT THERE ARE NO SUCH JUMPS. ALL JUMPS IN DISPLACEMENTS ACROSS STEPS ARE IGNORED', 
+    'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'BOUNDARY CONDITIONS ON DEGREES OF FREEDOM CONSTRAINED BY A TYPE BOUNDARY CONDITION ARE BEING REDEFINED ON AN INDIVIDUAL DEGREE OF FREEDOM BASIS', 
+    'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(STARTED, {'phase': PACKAGER_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 8204, 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(WARNING, {'phase': PACKAGER_PHASE, 
+    'message': 'There are 2 warning messages in the data (.dat) file.  Please check the data file for possible errors in the input file.', 
+    'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(WARNING, {'phase': PACKAGER_PHASE, 
+    'message': 'Boundary conditions are defined at the nodes contained in node set WarnNodeBcIntersectKinCon. In addition the nodes are also part of a surface involved in kinematic contact. The kinematic contact constraint will be overridden by the boundary conditions in case of a conflict. Penalty contact may be used instead.', 
+    'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(COMPLETED, {'phase': PACKAGER_PHASE, 
+    'message': 'Phase complete', 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(STARTED, {'phase': EXPLICIT_PHASE, 
+    'clientHost': 'DESKTOP-GDPPV8K', 'handle': 3304, 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(STATUS, {'totalTime': 0.0, 
+    'stableTimeIncrement': 4.39740470028482e-05, 'stepTime': 0.0, 
+    'totalEnergy': 11341298688.0, 'cpuTime': 1.20000004768372, 
+    'jobName': '3mm-ban', 'step': 1, 'increment': 0, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 11341298688.0})
+mdb.jobs['3mm-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(WARNING, {'phase': EXPLICIT_PHASE, 
+    'message': 'The slave surface nodes in node set WarnNodeMassRatio3fix-Step1 have much larger masses than the nodes on the master surface. Significant contact noise may result. Suggested workarounds include setting the WEIGHT parameter so that what was the master surface becomes a pure slave surface in the contact pair, using mass-scaling to adjust the ratio of nodal masses, or using the penalty contact algorithm. See the status file for further details.', 
+    'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(STATUS, {'totalTime': 0.0400035381317139, 
+    'stableTimeIncrement': 9.76480077952147e-05, 
+    'stepTime': 0.0400035381317139, 'totalEnergy': 10328514560.0, 
+    'cpuTime': 18.3999996185303, 'jobName': '3mm-ban', 'step': 1, 
+    'increment': 419, 'phase': EXPLICIT_PHASE, 'kineticEnergy': 11826522112.0})
+mdb.jobs['3mm-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(STATUS, {'totalTime': 0.0800386592745781, 
+    'stableTimeIncrement': 9.76453375187702e-05, 
+    'stepTime': 0.0800386592745781, 'totalEnergy': 9160591360.0, 
+    'cpuTime': 35.2999992370605, 'jobName': '3mm-ban', 'step': 1, 
+    'increment': 829, 'phase': EXPLICIT_PHASE, 'kineticEnergy': 12307205120.0})
+mdb.jobs['3mm-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 2, 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(STATUS, {'totalTime': 0.120074056088924, 
+    'stableTimeIncrement': 9.7645926871337e-05, 'stepTime': 0.120074056088924, 
+    'totalEnergy': 7477300736.0, 'cpuTime': 52.0999984741211, 
+    'jobName': '3mm-ban', 'step': 1, 'increment': 1239, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 13001412608.0})
+mdb.jobs['3mm-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 3, 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(STATUS, {'totalTime': 0.160011753439903, 
+    'stableTimeIncrement': 9.76457886281423e-05, 'stepTime': 0.160011753439903, 
+    'totalEnergy': 5146771968.0, 'cpuTime': 68.9000015258789, 
+    'jobName': '3mm-ban', 'step': 1, 'increment': 1648, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 14001635328.0})
+mdb.jobs['3mm-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 4, 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(STATUS, {'totalTime': 0.20004715025425, 
+    'stableTimeIncrement': 9.76419614744373e-05, 'stepTime': 0.20004715025425, 
+    'totalEnergy': 2152508160.0, 'cpuTime': 85.8000030517578, 
+    'jobName': '3mm-ban', 'step': 1, 'increment': 2058, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 15307656192.0})
+mdb.jobs['3mm-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 5, 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(STATUS, {'totalTime': 0.240082547068596, 
+    'stableTimeIncrement': 9.7647680377122e-05, 'stepTime': 0.240082547068596, 
+    'totalEnergy': -1531252736.0, 'cpuTime': 102.599998474121, 
+    'jobName': '3mm-ban', 'step': 1, 'increment': 2468, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 16949540864.0})
+mdb.jobs['3mm-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 6, 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(STATUS, {'totalTime': 0.280015707015991, 
+    'stableTimeIncrement': 9.76419833023101e-05, 'stepTime': 0.280015707015991, 
+    'totalEnergy': -5901219840.0, 'cpuTime': 119.300003051758, 
+    'jobName': '3mm-ban', 'step': 1, 'increment': 2877, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 18898765824.0})
+mdb.jobs['3mm-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 7, 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(STATUS, {'totalTime': 0.320044994354248, 
+    'stableTimeIncrement': 9.76432711468078e-05, 'stepTime': 0.320044994354248, 
+    'totalEnergy': -10978182144.0, 'cpuTime': 136.100006103516, 
+    'jobName': '3mm-ban', 'step': 1, 'increment': 3287, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 21181718528.0})
+mdb.jobs['3mm-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 8, 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(STATUS, {'totalTime': 0.360074281692505, 
+    'stableTimeIncrement': 9.76432202151045e-05, 'stepTime': 0.360074281692505, 
+    'totalEnergy': -16786420736.0, 'cpuTime': 152.899993896484, 
+    'jobName': '3mm-ban', 'step': 1, 'increment': 3697, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 23774146560.0})
+mdb.jobs['3mm-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 9, 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(STATUS, {'totalTime': 0.40000593662262, 
+    'stableTimeIncrement': 9.76417286437936e-05, 'stepTime': 0.40000593662262, 
+    'totalEnergy': -23281770496.0, 'cpuTime': 169.699996948242, 
+    'jobName': '3mm-ban', 'step': 1, 'increment': 4106, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 26569312256.0})
+mdb.jobs['3mm-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 10, 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(STATUS, {'totalTime': 0.440035223960876, 
+    'stableTimeIncrement': 9.76429291768e-05, 'stepTime': 0.440035223960876, 
+    'totalEnergy': -30581596160.0, 'cpuTime': 186.600006103516, 
+    'jobName': '3mm-ban', 'step': 1, 'increment': 4516, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 30003027968.0})
+mdb.jobs['3mm-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 11, 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(STATUS, {'totalTime': 0.480064511299133, 
+    'stableTimeIncrement': 9.76422525127418e-05, 'stepTime': 0.480064511299133, 
+    'totalEnergy': -38645444608.0, 'cpuTime': 203.5, 'jobName': '3mm-ban', 
+    'step': 1, 'increment': 4926, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 33203761152.0})
+mdb.jobs['3mm-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 12, 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(STATUS, {'totalTime': 0.52009379863739, 
+    'stableTimeIncrement': 9.76414594333619e-05, 'stepTime': 0.52009379863739, 
+    'totalEnergy': -47558901760.0, 'cpuTime': 220.300003051758, 
+    'jobName': '3mm-ban', 'step': 1, 'increment': 5336, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 36519190528.0})
+mdb.jobs['3mm-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 13, 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(STATUS, {'totalTime': 0.560025453567505, 
+    'stableTimeIncrement': 9.76421433733776e-05, 'stepTime': 0.560025453567505, 
+    'totalEnergy': -57332920320.0, 'cpuTime': 237.199996948242, 
+    'jobName': '3mm-ban', 'step': 1, 'increment': 5745, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 41952325632.0})
+mdb.jobs['3mm-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 14, 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(STATUS, {'totalTime': 0.600054740905762, 
+    'stableTimeIncrement': 9.76440715021454e-05, 'stepTime': 0.600054740905762, 
+    'totalEnergy': -67948736512.0, 'cpuTime': 254.0, 'jobName': '3mm-ban', 
+    'step': 1, 'increment': 6155, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 47889432576.0})
+mdb.jobs['3mm-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 15, 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(STATUS, {'totalTime': 0.640084028244019, 
+    'stableTimeIncrement': 9.76421288214624e-05, 'stepTime': 0.640084028244019, 
+    'totalEnergy': -79417294848.0, 'cpuTime': 271.100006103516, 
+    'jobName': '3mm-ban', 'step': 1, 'increment': 6565, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 48142430208.0})
+mdb.jobs['3mm-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 16, 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(STATUS, {'totalTime': 0.680015683174133, 
+    'stableTimeIncrement': 9.76435112534091e-05, 'stepTime': 0.680015683174133, 
+    'totalEnergy': -91768225792.0, 'cpuTime': 288.200012207031, 
+    'jobName': '3mm-ban', 'step': 1, 'increment': 6974, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 41857327104.0})
+mdb.jobs['3mm-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 17, 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(STATUS, {'totalTime': 0.72004497051239, 
+    'stableTimeIncrement': 9.76418305072002e-05, 'stepTime': 0.72004497051239, 
+    'totalEnergy': -105876570112.0, 'cpuTime': 305.100006103516, 
+    'jobName': '3mm-ban', 'step': 1, 'increment': 7384, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 34135767040.0})
+mdb.jobs['3mm-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 18, 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(STATUS, {'totalTime': 0.760074257850647, 
+    'stableTimeIncrement': 9.76419614744373e-05, 'stepTime': 0.760074257850647, 
+    'totalEnergy': -122658529280.0, 'cpuTime': 322.0, 'jobName': '3mm-ban', 
+    'step': 1, 'increment': 7794, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 27845500928.0})
+mdb.jobs['3mm-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 19, 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(STATUS, {'totalTime': 0.800000011920929, 
+    'stableTimeIncrement': 9.76430237642489e-05, 'stepTime': 0.800000011920929, 
+    'totalEnergy': -142329102336.0, 'cpuTime': 338.799987792969, 
+    'jobName': '3mm-ban', 'step': 1, 'increment': 8203, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 24574617600.0})
+mdb.jobs['3mm-ban']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 20, 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(COMPLETED, {'phase': EXPLICIT_PHASE, 
+    'message': 'Phase complete', 'jobName': '3mm-ban'})
+mdb.jobs['3mm-ban']._Message(JOB_COMPLETED, {
+    'time': 'Sun Jul 05 12:18:39 2020', 'jobName': '3mm-ban'})
+# Save by XLH on 2020_07_05-12.24.38; build 2016 2015_09_25-04.31.09 126547

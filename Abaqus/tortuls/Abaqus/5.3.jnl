@@ -1,0 +1,1090 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].rectangle(point1=(0.0, 0.0), 
+    point2=(50.0, 5.0))
+mdb.models['Model-1'].Part(dimensionality=THREE_D, name='Part-liang', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['Part-liang'].BaseSolidExtrude(depth=5.0, sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].Material(name='Material-1')
+mdb.models['Model-1'].materials['Material-1'].Elastic(table=((210000.0, 0.3), 
+    ))
+mdb.models['Model-1'].materials['Material-1'].Plastic(table=((380.0, 0.0), ))
+mdb.models['Model-1'].HomogeneousSolidSection(material='Material-1', name=
+    'Section-1', thickness=None)
+mdb.models['Model-1'].parts['Part-liang'].Set(cells=
+    mdb.models['Model-1'].parts['Part-liang'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), name='Set-1')
+mdb.models['Model-1'].parts['Part-liang'].SectionAssignment(offset=0.0, 
+    offsetField='', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Model-1'].parts['Part-liang'].sets['Set-1'], sectionName=
+    'Section-1', thicknessAssignment=FROM_SECTION)
+mdb.models['Model-1'].rootAssembly.DatumCsysByDefault(CARTESIAN)
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='Part-liang-1', 
+    part=mdb.models['Model-1'].parts['Part-liang'])
+mdb.models['Model-1'].StaticStep(name='Step-L', previous='Initial')
+mdb.models['Model-1'].StaticStep(name='Step-SL', previous='Step-L')
+mdb.models['Model-1'].StaticStep(name='Step-S', previous='Step-SL')
+mdb.models['Model-1'].parts['Part-liang'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=1.0)
+mdb.models['Model-1'].parts['Part-liang'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D8R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    kinematicSplit=AVERAGE_STRAIN, hourglassControl=DEFAULT, 
+    distortionControl=DEFAULT), ElemType(elemCode=C3D6, elemLibrary=STANDARD), 
+    ElemType(elemCode=C3D4, elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].parts['Part-liang'].cells.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['Model-1'].parts['Part-liang'].generateMesh()
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.models['Model-1'].rootAssembly.Set(faces=
+    mdb.models['Model-1'].rootAssembly.instances['Part-liang-1'].faces.getSequenceFromMask(
+    ('[#1 ]', ), ), name='Set-Fix')
+mdb.models['Model-1'].rootAssembly.Surface(name='Surf-L', side1Faces=
+    mdb.models['Model-1'].rootAssembly.instances['Part-liang-1'].faces.getSequenceFromMask(
+    ('[#2 ]', ), ))
+mdb.models['Model-1'].rootAssembly.Surface(name='Surf-S', side1Faces=
+    mdb.models['Model-1'].rootAssembly.instances['Part-liang-1'].faces.getSequenceFromMask(
+    ('[#4 ]', ), ))
+mdb.models['Model-1'].DisplacementBC(amplitude=UNSET, createStepName='Initial', 
+    distributionType=UNIFORM, fieldName='', localCsys=None, name='BC-Fix', 
+    region=mdb.models['Model-1'].rootAssembly.sets['Set-Fix'], u1=SET, u2=SET, 
+    u3=SET, ur1=UNSET, ur2=UNSET, ur3=UNSET)
+mdb.models['Model-1'].Pressure(amplitude=UNSET, createStepName='Step-L', 
+    distributionType=UNIFORM, field='', magnitude=10.0, name='Load-L', region=
+    mdb.models['Model-1'].rootAssembly.surfaces['Surf-L'])
+mdb.models['Model-1'].SurfaceTraction(createStepName='Step-SL', 
+    directionVector=((0.0, 0.0, 0.0), (0.0, -1.0, 0.0)), distributionType=
+    UNIFORM, field='', localCsys=None, magnitude=10.0, name='Load-S', region=
+    mdb.models['Model-1'].rootAssembly.surfaces['Surf-S'])
+mdb.models['Model-1'].loads['Load-S'].deactivate('Step-S')
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-cailiao-2', nodalOutputPrecision=
+    SINGLE, numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', 
+    type=ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+# Save by mjs on 2016_11_29-20.00.48; build 2016 2015_09_25-04.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.jobs['Job-cailiao-2'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-cailiao-2']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'fzs', 'handle': 0, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'e:\\temp\\Job-cailiao-2.odb', 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'fzs', 'handle': 15852, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-cailiao-2', 'memory': 38.0})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 480 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT IS SO LARGE THAT THE PROGRAM WILL NOT ATTEMPT THE PLASTICITY CALCULATION AT 328 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.0, 
+    'attempts': ' 1U', 'timeIncrement': 1.0, 'increment': 1, 'stepTime': 0.0, 
+    'step': 1, 'jobName': 'Job-cailiao-2', 'severe': 0, 'iterations': 2, 
+    'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 130 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 124 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 171 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.0, 
+    'attempts': ' 2U', 'timeIncrement': 0.25, 'increment': 1, 'stepTime': 0.0, 
+    'step': 1, 'jobName': 'Job-cailiao-2', 'severe': 0, 'iterations': 6, 
+    'phase': STANDARD_PHASE, 'equilibrium': 6})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.0625, 'attempts': 3, 
+    'timeIncrement': 0.0625, 'increment': 1, 'stepTime': 0.0625, 'step': 1, 
+    'jobName': 'Job-cailiao-2', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 2, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.125, 'attempts': 1, 
+    'timeIncrement': 0.0625, 'increment': 2, 'stepTime': 0.125, 'step': 1, 
+    'jobName': 'Job-cailiao-2', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.125, 
+    'attempts': ' 1U', 'timeIncrement': 0.09375, 'increment': 3, 
+    'stepTime': 0.125, 'step': 1, 'jobName': 'Job-cailiao-2', 'severe': 0, 
+    'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 3, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.1484375, 
+    'attempts': 2, 'timeIncrement': 0.0234375, 'increment': 3, 
+    'stepTime': 0.1484375, 'step': 1, 'jobName': 'Job-cailiao-2', 'severe': 0, 
+    'iterations': 1, 'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 4, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.18359375, 
+    'attempts': 1, 'timeIncrement': 0.03515625, 'increment': 4, 
+    'stepTime': 0.18359375, 'step': 1, 'jobName': 'Job-cailiao-2', 'severe': 0, 
+    'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 24 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 80 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 95 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.18359375, 
+    'attempts': ' 1U', 'timeIncrement': 0.052734375, 'increment': 5, 
+    'stepTime': 0.18359375, 'step': 1, 'jobName': 'Job-cailiao-2', 'severe': 0, 
+    'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 5, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.19677734375, 
+    'attempts': 2, 'timeIncrement': 0.01318359375, 'increment': 5, 
+    'stepTime': 0.19677734375, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 2, 'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 6, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.216552734375, 
+    'attempts': 1, 'timeIncrement': 0.019775390625, 'increment': 6, 
+    'stepTime': 0.216552734375, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 5, 'phase': STANDARD_PHASE, 'equilibrium': 5})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 80 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 84 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 90 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 74 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.216552734375, 
+    'attempts': ' 1U', 'timeIncrement': 0.019775390625, 'increment': 7, 
+    'stepTime': 0.216552734375, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 7, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.22149658203125, 
+    'attempts': 2, 'timeIncrement': 0.00494384765625, 'increment': 7, 
+    'stepTime': 0.22149658203125, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 8, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.2264404296875, 
+    'attempts': 1, 'timeIncrement': 0.00494384765625, 'increment': 8, 
+    'stepTime': 0.2264404296875, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 30 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 30 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 36 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 36 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 9, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.233856201171875, 
+    'attempts': 1, 'timeIncrement': 0.007415771484375, 'increment': 9, 
+    'stepTime': 0.233856201171875, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 60 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 70 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 70 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 70 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 70 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 10, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.244979858398438, 
+    'attempts': 1, 'timeIncrement': 0.0111236572265625, 'increment': 10, 
+    'stepTime': 0.244979858398438, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 120 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 130 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 140 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 140 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 140 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 140 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 11, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.261665344238281, 
+    'attempts': 1, 'timeIncrement': 0.0166854858398438, 'increment': 11, 
+    'stepTime': 0.261665344238281, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 5, 'phase': STANDARD_PHASE, 'equilibrium': 5})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 140 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 150 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 160 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 160 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 160 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 12, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.278350830078125, 
+    'attempts': 1, 'timeIncrement': 0.0166854858398438, 'increment': 12, 
+    'stepTime': 0.278350830078125, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 160 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 180 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 180 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 180 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 180 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 180 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 13, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.295036315917969, 
+    'attempts': 1, 'timeIncrement': 0.0166854858398438, 'increment': 13, 
+    'stepTime': 0.295036315917969, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 5, 'phase': STANDARD_PHASE, 'equilibrium': 5})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 180 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 200 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 200 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 200 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 200 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 14, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.311721801757813, 
+    'attempts': 1, 'timeIncrement': 0.0166854858398438, 'increment': 14, 
+    'stepTime': 0.311721801757813, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 200 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 210 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 220 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 220 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 220 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 15, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.328407287597656, 
+    'attempts': 1, 'timeIncrement': 0.0166854858398438, 'increment': 15, 
+    'stepTime': 0.328407287597656, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 240 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 256 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 260 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 260 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 260 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 16, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.353435516357422, 
+    'attempts': 1, 'timeIncrement': 0.0250282287597656, 'increment': 16, 
+    'stepTime': 0.353435516357422, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 290 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 310 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 310 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 310 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 310 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 310 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 17, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.39097785949707, 
+    'attempts': 1, 'timeIncrement': 0.0375423431396484, 'increment': 17, 
+    'stepTime': 0.39097785949707, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 5, 'phase': STANDARD_PHASE, 'equilibrium': 5})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 310 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 330 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 334 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 350 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 338 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.39097785949707, 
+    'attempts': ' 1U', 'timeIncrement': 0.0375423431396484, 'increment': 18, 
+    'stepTime': 0.39097785949707, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 160 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 170 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 170 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 170 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 18, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.400363445281982, 
+    'attempts': 2, 'timeIncrement': 0.00938558578491211, 'increment': 18, 
+    'stepTime': 0.400363445281982, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 170 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 170 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 176 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 176 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 19, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.409749031066895, 
+    'attempts': 1, 'timeIncrement': 0.00938558578491211, 'increment': 19, 
+    'stepTime': 0.409749031066895, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 270 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 270 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 270 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 270 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 20, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.423827409744263, 
+    'attempts': 1, 'timeIncrement': 0.0140783786773682, 'increment': 20, 
+    'stepTime': 0.423827409744263, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 310 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 330 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 330 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 330 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 21, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.444944977760315, 
+    'attempts': 1, 'timeIncrement': 0.0211175680160522, 'increment': 21, 
+    'stepTime': 0.444944977760315, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 350 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 370 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 370 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 370 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 366 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.444944977760315, 
+    'attempts': ' 1U', 'timeIncrement': 0.0316763520240784, 'increment': 22, 
+    'stepTime': 0.444944977760315, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 130 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 130 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 140 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 140 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 22, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.452864065766335, 
+    'attempts': 2, 'timeIncrement': 0.00791908800601959, 'increment': 22, 
+    'stepTime': 0.452864065766335, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 260 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 260 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 260 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 260 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 23, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.464742697775364, 
+    'attempts': 1, 'timeIncrement': 0.0118786320090294, 'increment': 23, 
+    'stepTime': 0.464742697775364, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 330 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 336 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 340 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 340 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 24, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.482560645788908, 
+    'attempts': 1, 'timeIncrement': 0.0178179480135441, 'increment': 24, 
+    'stepTime': 0.482560645788908, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 370 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 380 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 386 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 386 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 386 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 25, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.509287567809224, 
+    'attempts': 1, 'timeIncrement': 0.0267269220203161, 'increment': 25, 
+    'stepTime': 0.509287567809224, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 400 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 410 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 414 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 414 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 414 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 26, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.549377950839698, 
+    'attempts': 1, 'timeIncrement': 0.0400903830304742, 'increment': 26, 
+    'stepTime': 0.549377950839698, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 430 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 450 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 450 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 450 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 450 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.549377950839698, 
+    'attempts': ' 1U', 'timeIncrement': 0.0601355745457113, 'increment': 27, 
+    'stepTime': 0.549377950839698, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 330 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 330 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 330 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 330 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 27, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.564411844476126, 
+    'attempts': 2, 'timeIncrement': 0.0150338936364278, 'increment': 27, 
+    'stepTime': 0.564411844476126, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 390 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 396 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 400 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 400 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 28, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.586962684930768, 
+    'attempts': 1, 'timeIncrement': 0.0225508404546417, 'increment': 28, 
+    'stepTime': 0.586962684930768, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 430 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 440 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 446 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 446 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 446 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 29, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.62078894561273, 
+    'attempts': 1, 'timeIncrement': 0.0338262606819626, 'increment': 29, 
+    'stepTime': 0.62078894561273, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 454 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 470 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 470 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 470 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 470 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 30, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.671528336635674, 
+    'attempts': 1, 'timeIncrement': 0.0507393910229439, 'increment': 30, 
+    'stepTime': 0.671528336635674, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 490 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 496 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 521 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 502 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 555 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.671528336635674, 
+    'attempts': ' 1U', 'timeIncrement': 0.0761090865344158, 'increment': 31, 
+    'stepTime': 0.671528336635674, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 400 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 400 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 400 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 400 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 31, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.690555608269278, 
+    'attempts': 2, 'timeIncrement': 0.019027271633604, 'increment': 31, 
+    'stepTime': 0.690555608269278, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 460 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 460 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 460 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 460 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 32, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.719096515719684, 
+    'attempts': 1, 'timeIncrement': 0.0285409074504059, 'increment': 32, 
+    'stepTime': 0.719096515719684, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 490 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 500 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 500 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 500 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 500 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 33, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.761907876895293, 
+    'attempts': 1, 'timeIncrement': 0.0428113611756089, 'increment': 33, 
+    'stepTime': 0.761907876895293, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 510 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 534 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 534 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 534 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 534 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 34, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.826124918658707, 
+    'attempts': 1, 'timeIncrement': 0.0642170417634134, 'increment': 34, 
+    'stepTime': 0.826124918658707, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 545 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT IS SO LARGE THAT THE PROGRAM WILL NOT ATTEMPT THE PLASTICITY CALCULATION AT 70 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.826124918658707, 
+    'attempts': ' 1U', 'timeIncrement': 0.09632556264512, 'increment': 35, 
+    'stepTime': 0.826124918658707, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 464 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 478 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 478 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 478 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 35, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.850206309319987, 
+    'attempts': 2, 'timeIncrement': 0.02408139066128, 'increment': 35, 
+    'stepTime': 0.850206309319987, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 520 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 520 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 520 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 520 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 36, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.886328395311907, 
+    'attempts': 1, 'timeIncrement': 0.03612208599192, 'increment': 36, 
+    'stepTime': 0.886328395311907, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 546 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 557 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 557 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 557 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 557 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 37, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.940511524299787, 
+    'attempts': 1, 'timeIncrement': 0.05418312898788, 'increment': 37, 
+    'stepTime': 0.940511524299787, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 559 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 580 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 591 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 585 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 585 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.940511524299787, 
+    'attempts': ' 1U', 'timeIncrement': 0.0594884757002134, 'increment': 38, 
+    'stepTime': 0.940511524299787, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 400 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 400 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 400 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 38, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.95538364322484, 
+    'attempts': 2, 'timeIncrement': 0.0148721189250534, 'increment': 38, 
+    'stepTime': 0.95538364322484, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 2, 'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 474 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 474 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 474 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 474 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 39, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 0.97769182161242, 
+    'attempts': 1, 'timeIncrement': 0.02230817838758, 'increment': 39, 
+    'stepTime': 0.97769182161242, 'step': 1, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 474 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 474 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 474 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 474 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 40, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 0.02230817838758, 'increment': 40, 'stepTime': 1.0, 
+    'step': 1, 'jobName': 'Job-cailiao-2', 'severe': 0, 'iterations': 3, 
+    'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-2']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 2, 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 0, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-cailiao-2', 'memory': 38.0})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 623 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT IS SO LARGE THAT THE PROGRAM WILL NOT ATTEMPT THE PLASTICITY CALCULATION AT 210 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 1.0, 
+    'attempts': ' 1U', 'timeIncrement': 1.0, 'increment': 1, 'stepTime': 0.0, 
+    'step': 2, 'jobName': 'Job-cailiao-2', 'severe': 0, 'iterations': 2, 
+    'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 590 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 679 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 699 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 707 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT IS SO LARGE THAT THE PROGRAM WILL NOT ATTEMPT THE PLASTICITY CALCULATION AT 12 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 1.0, 
+    'attempts': ' 2U', 'timeIncrement': 0.25, 'increment': 1, 'stepTime': 0.0, 
+    'step': 2, 'jobName': 'Job-cailiao-2', 'severe': 0, 'iterations': 5, 
+    'phase': STANDARD_PHASE, 'equilibrium': 5})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 460 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 470 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 470 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 470 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 470 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 1, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 1.0625, 'attempts': 3, 
+    'timeIncrement': 0.0625, 'increment': 1, 'stepTime': 0.0625, 'step': 2, 
+    'jobName': 'Job-cailiao-2', 'severe': 0, 'iterations': 6, 
+    'phase': STANDARD_PHASE, 'equilibrium': 6})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 470 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 470 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 470 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 2, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 1.125, 'attempts': 1, 
+    'timeIncrement': 0.0625, 'increment': 2, 'stepTime': 0.125, 'step': 2, 
+    'jobName': 'Job-cailiao-2', 'severe': 0, 'iterations': 2, 
+    'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THE STRAIN INCREMENT HAS EXCEEDED FIFTY TIMES THE STRAIN TO CAUSE FIRST YIELD AT 470 POINTS', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'Warning message limit reached. No further warning messages will be reported.\nPlease see the dat file for more warnings.', 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 3, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 1.1875, 'attempts': 1, 
+    'timeIncrement': 0.0625, 'increment': 3, 'stepTime': 0.1875, 'step': 2, 
+    'jobName': 'Job-cailiao-2', 'severe': 0, 'iterations': 2, 
+    'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 4, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 1.28125, 
+    'attempts': 1, 'timeIncrement': 0.09375, 'increment': 4, 
+    'stepTime': 0.28125, 'step': 2, 'jobName': 'Job-cailiao-2', 'severe': 0, 
+    'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 5, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 1.421875, 
+    'attempts': 1, 'timeIncrement': 0.140625, 'increment': 5, 
+    'stepTime': 0.421875, 'step': 2, 'jobName': 'Job-cailiao-2', 'severe': 0, 
+    'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 6, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 1.6328125, 
+    'attempts': 1, 'timeIncrement': 0.2109375, 'increment': 6, 
+    'stepTime': 0.6328125, 'step': 2, 'jobName': 'Job-cailiao-2', 'severe': 0, 
+    'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 1.6328125, 
+    'attempts': ' 1U', 'timeIncrement': 0.31640625, 'increment': 7, 
+    'stepTime': 0.6328125, 'step': 2, 'jobName': 'Job-cailiao-2', 'severe': 0, 
+    'iterations': 4, 'phase': STANDARD_PHASE, 'equilibrium': 4})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 7, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 1.7119140625, 
+    'attempts': 2, 'timeIncrement': 0.0791015625, 'increment': 7, 
+    'stepTime': 0.7119140625, 'step': 2, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 8, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 1.83056640625, 
+    'attempts': 1, 'timeIncrement': 0.11865234375, 'increment': 8, 
+    'stepTime': 0.83056640625, 'step': 2, 'jobName': 'Job-cailiao-2', 
+    'severe': 0, 'iterations': 3, 'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 1, 'frame': 9, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 2.0, 'attempts': 1, 
+    'timeIncrement': 0.16943359375, 'increment': 9, 'stepTime': 1.0, 'step': 2, 
+    'jobName': 'Job-cailiao-2', 'severe': 0, 'iterations': 3, 
+    'phase': STANDARD_PHASE, 'equilibrium': 3})
+mdb.jobs['Job-cailiao-2']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 2, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 3, 
+    'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 2, 'frame': 0, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-cailiao-2', 'memory': 38.0})
+mdb.jobs['Job-cailiao-2']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 2, 'frame': 1, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(STATUS, {'totalTime': 3.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 3, 
+    'jobName': 'Job-cailiao-2', 'severe': 0, 'iterations': 2, 
+    'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Job-cailiao-2']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 3, 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-cailiao-2'})
+mdb.jobs['Job-cailiao-2']._Message(JOB_COMPLETED, {
+    'time': 'Tue Nov 29 20:02:46 2016', 'jobName': 'Job-cailiao-2'})
+# Save by mjs on 2016_11_29-20.16.24; build 2016 2015_09_25-04.31.09 126547

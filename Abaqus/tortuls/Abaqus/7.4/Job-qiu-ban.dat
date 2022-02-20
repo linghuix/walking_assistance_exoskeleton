@@ -1,0 +1,185 @@
+1
+
+   Abaqus 3DEXPERIENCE R2016x                                  Date 10-Jan-2020   Time 23:48:04
+   For use by Supplied by Team-SolidSQUAD under license from Dassault Systemes or its subsidiary.
+
+
+
+                         The Abaqus Software is a product of:
+
+                           Dassault Systemes SIMULIA Corp.
+                           1301 Atwood Avenue, Suite 101W
+                              Johnston, RI 02919, USA
+ 
+
+
+                   The Abaqus Software is available only under license
+                   from Dassault Systemes or its subsidiary and may be
+                   used or reproduced only in accordance with the terms
+                   of such license.
+ 
+                          On machine DESKTOP-GDPPV8K 
+                          you are authorized to run
+                          Abaqus/Explicit until 31-Dec-2055
+
+                          Your site id is:  
+
+
+ 
+                    For assistance or any other information you may
+                    obtain contact information for your local office
+                    from the world wide web at:
+
+                      http://www.3ds.com/products/simulia/locations/
+
+ 
+                * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+                *                                                         * 
+                *                   *****************                     * 
+                *                   *  N O T I C E  *                     * 
+                *                   *****************                     * 
+                *                                                         * 
+                *                                                         * 
+                *                    Abaqus 3DEXPERIENCE R2016x                                   * 
+                *                                                         * 
+                *          BUILD ID: 2015_09_25-04.31.09 126547           * 
+                *                                                         * 
+                *                                                         * 
+                *  Please make sure you are using release 3DEXPERIENCE R2016x manuals    * 
+                *  plus the notes accompanying this release.              * 
+                *                                                         * 
+                *                                                         * 
+                *                                                         * 
+                *                                                         * 
+                * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+
+
+ 
+
+
+
+     PROCESSING PART, INSTANCE, AND ASSEMBLY INFORMATION
+   *******************************************************
+
+
+     END PROCESSING PART, INSTANCE, AND ASSEMBLY INFORMATION
+   ***********************************************************
+
+
+
+
+     OPTIONS BEING PROCESSED
+   ***************************
+
+
+  *Heading
+  *Node
+  *Element, type=C3D8R
+  *Nset, nset=ASSEMBLY_PART-BAN-1_SET-1
+  *Elset, elset=ASSEMBLY_PART-BAN-1_SET-1
+  *Node
+  *Element, type=C3D8R
+  *Nset, nset=ASSEMBLY_PART-QIU-1_SET-1
+  *Elset, elset=ASSEMBLY_PART-QIU-1_SET-1
+  *Nset, nset=ASSEMBLY_SET-FIX
+  *Nset, nset=ASSEMBLY_SET-QIU
+  *Nset, nset=ASSEMBLY_SET-SYMM
+  *Elset, elset=ASSEMBLY_SET-FIX
+  *Elset, elset=ASSEMBLY_SET-QIU
+  *Elset, elset=ASSEMBLY_SET-SYMM
+  *Elset, elset=ASSEMBLY__SURF-BAN_S2
+  *Elset, elset=ASSEMBLY__SURF-BAN_S3
+  *Elset, elset=ASSEMBLY__SURF-BAN_S4
+  *Elset, elset=ASSEMBLY__SURF-QIU_S2
+  *Elset, elset=ASSEMBLY__SURF-QIU_S3
+  *Elset, elset=ASSEMBLY__SURF-QIU_S4
+  *material, name=MATERIAL-1
+  *density
+  *elastic
+  *solidsection, elset=ASSEMBLY_PART-BAN-1_SET-1, material=MATERIAL-1
+  *solidsection, elset=ASSEMBLY_PART-QIU-1_SET-1, material=MATERIAL-1
+  *solidsection, elset=ASSEMBLY_PART-BAN-1_SET-1, material=MATERIAL-1
+  *solidsection, elset=ASSEMBLY_PART-QIU-1_SET-1, material=MATERIAL-1
+  *surface, type=ELEMENT, name=ASSEMBLY_SURF-BAN
+  *surface, type=ELEMENT, name=ASSEMBLY_SURF-QIU
+  *surface, type=ELEMENT, name=ASSEMBLY_SURF-BAN
+  *surface, type=ELEMENT, name=ASSEMBLY_SURF-QIU
+  *surfaceinteraction, name=INTPROP-1
+  *friction
+  *boundary
+  *boundary
+  *solidsection, elset=ASSEMBLY_PART-BAN-1_SET-1, material=MATERIAL-1
+  *solidsection, elset=ASSEMBLY_PART-QIU-1_SET-1, material=MATERIAL-1
+  *initialconditions, type=VELOCITY
+  *friction
+  *initialconditions, type=VELOCITY
+  *elementoutput, directions=YES
+  *output, field
+  *output, history, variable=PRESELECT
+  *Step, name=Step-1, nlgeom=YES
+  *Step, name=Step-1, nlgeom=YES
+  *dynamic, explicit
+  *output, field
+  *nodeoutput
+  *elementoutput, directions=YES
+  *contactoutput
+  *output, history, variable=PRESELECT
+  *endstep
+
+ ***WARNING: OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R
+
+ ***WARNING: OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R
+
+ ***WARNING: OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R
+
+ ***WARNING: OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R
+
+ ***WARNING: OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R
+
+ ***WARNING: OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R
+
+ ***WARNING: OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R
+
+ ***WARNING: OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R
+
+ ***WARNING: OUTPUT REQUEST NFORCSO IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS
+
+ ***WARNING: OUTPUT REQUEST NFORCSO IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS
+
+ ***WARNING: OUTPUT REQUEST SF IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R
+
+ ***WARNING: OUTPUT REQUEST SF IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R
+  *surface, type=ELEMENT, name=ASSEMBLY_SURF-BAN
+  *surface, type=ELEMENT, name=ASSEMBLY_SURF-QIU
+  *surfaceinteraction, name=INTPROP-1
+  *friction
+  *boundary
+  *boundary
+  *Step, name=Step-1, nlgeom=YES
+  *dynamic, explicit
+  *contactpair, interaction=INTPROP-1, mechanicalconstraint=KINEMATIC, cpset=INT-1
+  *endstep
+
+
+
+                            P R O B L E M   S I Z E
+
+
+          NUMBER OF ELEMENTS IS                                  9904
+          NUMBER OF NODES IS                                    11781
+          NUMBER OF NODES DEFINED BY THE USER                   11781
+          TOTAL NUMBER OF VARIABLES IN THE MODEL                35343
+          (DEGREES OF FREEDOM PLUS MAX NO. OF ANY LAGRANGE MULTIPLIER
+           VARIABLES. INCLUDE *PRINT,SOLVE=YES TO GET THE ACTUAL NUMBER.)
+
+
+
+                              END OF USER INPUT PROCESSING
+
+
+
+     JOB TIME SUMMARY
+       USER TIME (SEC)      =  0.40000    
+       SYSTEM TIME (SEC)    =  0.10000    
+       TOTAL CPU TIME (SEC) =  0.50000    
+       WALLCLOCK TIME (SEC) =          1

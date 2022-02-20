@@ -1,0 +1,30 @@
+1.imresize（）
+功能：改变图像的大小，通过插值扩大像素。
+
+用法：B = imresize(A,m)
+B = imresize(A,m,method)
+B = imresize(A,[mrows ncols],method)
+
+B = imresize(...,method,n)
+B = imresize(...,method,h)
+
+imrersize函数使用由参数method指定的插值运算来改变图像的大小。method的几种可选值：
+'nearest'（默认值）最近邻插值
+'bilinear'双线性插值
+'bicubic'双三次插值
+B = imresize(A,m)表示把图像A放大m倍
+B = imresize(...,method,h)中的h可以是任意一个FIR滤波器（h通常由函数ftrans2、fwind1、fwind2、或fsamp2等生成的二维FIR滤波器）。
+
+
+2.cat（）
+功能：用来联结数组，可用于形成rgb矩阵，来显示彩色图像
+
+用法：C = cat(dim, A1, A2, A3, ...)    按dim联结所有输入的数组。
+
+a=cat(3,A,B) 左括号后的3表示构造出的矩阵维数；在新的矩阵中第1、2维就是A和B这两个矩阵的行数和列数，第3维是A和B这两个矩阵的矩阵个数，即为2
+
+cat(2, A, B)相当于[A, B];
+
+cat(1, A, B)相当于[A; B].
+
+使用“,”分割列表的语法，cat(dim, C{:})或cat(dim, C.field)，这是将包含数据矩阵的cell或结构数组联合为一个数组的方便方式。
