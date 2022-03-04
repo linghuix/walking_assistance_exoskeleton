@@ -3,7 +3,7 @@
 
 * whole structure
 
-<img src="readme.assets/image-20211203142128309.png" style="zoom: 50%;" />
+<img src="readme.assets/image-20211203142128309.png" style="zoom: 50%;" /> 
 
 
 
