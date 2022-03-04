@@ -4,7 +4,7 @@
 
 #define ECON
 #define ECON_L
-#define ECON_R
+#define ECON_R 
 
 
 /* safe */
