@@ -9,7 +9,7 @@
 
 void Jlink_Init(void)
 {
-	  /** ENABLE: Full SWJ (JTAG-DP + SW-DP): Reset State
-	  */
-	  __HAL_AFIO_REMAP_SWJ_ENABLE();
+  /** ENABLE: Full SWJ (JTAG-DP + SW-DP): Reset State
+   */
+  __HAL_AFIO_REMAP_SWJ_ENABLE();
 }

@@ -8,9 +8,9 @@
  */
 void BSP_Init(void)
 {
-	Core_Config();		/* 配置系统时钟为72M */
-	SysTick_init();		/* 初始化并使能SysTick定时器 */
-	Jlink_Init();
+  Core_Config();  /* 配置系统时钟为72M */
+  SysTick_init(); /* 初始化并使能SysTick定时器 */
+  Jlink_Init();
 }
 
 /*
@@ -19,7 +19,4 @@ void BSP_Init(void)
  * 输入  ：无
  * 输出  ：无
  */
-void SysTick_init(void)
-{
-	tick_init(1000);
-}
+void SysTick_init(void) { tick_init(1000); }
