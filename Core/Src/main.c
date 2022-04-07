@@ -97,7 +97,13 @@ int debug_tmp;
 
 extern int   idleflag;
 extern float floatabs(float x);
-int          main(void)
+
+/**
+ * @date   2020/4/6
+ * @author lhx
+ * @brief  助行器控制主函数
+ */
+int main(void)
 {
   /* Basic initalization */
   Core_Config();
@@ -105,10 +111,10 @@ int          main(void)
   debug_init();
 
   /******* test code *******/
-  //  test_USART1_communication();
-  //	test_win_buff();
-  //	test_HC05_communication();
-  //	test_AOs();
+  // test_USART1_communication();
+  // test_win_buff();
+  // test_HC05_communication();
+  // test_AOs();
 
 
   /* Advanced PO */
@@ -158,8 +164,8 @@ int          main(void)
 #endif
 
   /* AO */
-  AO_Init(period[0] * dt, 1);
-  AO_Init(period[1] * dt, 2);
+  AO_Init(&hip1, period[0] * dt);
+  AO_Init(&hip2, period[1] * dt);
 
   /*启动外设*/
   Acc1_Start();
@@ -170,7 +176,7 @@ int          main(void)
       "\r\nthe acc1 of left hip - d w | the acc2 of right hip - d w | I1 "
       ",I2\r\n");
 
-  //	FSR_Init();
+  // FSR_Init();
   HC05_RcvCmd();
 
   float tmp1 = (fai_Er * fai_Er);
@@ -185,13 +191,13 @@ int          main(void)
 
 
   while (1) {
-    /* idle 串口数据解析 */
+    // idle 串口数据解析
     if (idleflag == 1) {
       commandPrase();
       idleflag = 0;
     }
 
-    /* 左髋关节 加速度信号采集  采样周期 100Hz */
+    // 左髋关节 加速度信号采集  采样周期 100Hz
     if (flag_1 == 1 && flag_2 == 1 && flag_3 == 1) {
       //			printf("L\r\n");
       flag_1 = 0;
@@ -220,8 +226,7 @@ int          main(void)
         found_peak[0] = 1;
       }
 
-      /* detect the stop state */
-
+      // Detect the stop state
       if (floatabs(hip1_w) < TH_W && floatabs(hip1_d) < TH_D) {
         stopCounter[0]++;
 
@@ -244,7 +249,7 @@ int          main(void)
       }
     }
 
-    /* 右髋关节 加速度信号采集  采样周期 100Hz */
+    // 右髋关节 加速度信号采集  采样周期 100Hz
     if (flag_11 == 1 && flag_22 == 1 && flag_33 == 1) {
       //			printf("R\r\n");
       flag_11 = 0;
@@ -273,7 +278,7 @@ int          main(void)
         found_peak[1] = 1;
       }
 
-      /* detect the stop state */
+      // detect the stop state
       if (floatabs(hip2_w) < TH_W && floatabs(hip2_d) < TH_D) {
         stopCounter[1]++;
         if (stopCounter[1] >= 50) {
@@ -295,7 +300,7 @@ int          main(void)
       }
     }
 
-    /* 控制周期 2ms x CONTROL_PERIOD */
+    //控制周期 2ms x CONTROL_PERIOD
     if (inc % CONTROL_PERIOD == 0) {
       // promote the code is running
       //			if(inc % (CONTROL_PERIOD * 50) == 0){
@@ -318,13 +323,13 @@ int          main(void)
       // TEST
 
       /**
-              @name 左
-      */
+       * @name 左
+       */
       {
-        /* AO iteration */
-        AO(hip1_d, 1);
+        // AO iteration
+        AO_Iteration(&hip1, hip1_d, Aoindex,0,0);
 
-        /* Peak detection and period estimation*/
+        // Peak detection and period estimation
         if (found_peak[0] == 1) {  // 检测峰值，估计人体步态周期并记录需要补偿的相位值
           period[0]        = Aoindex - peaktimestamp[0];  // gait period estimation
           peaktimestamp[0] = Aoindex;  // peaktimestamp 记录上一个峰值对应的 Aoindex
@@ -332,11 +337,11 @@ int          main(void)
           found_peak[0]    = 0;
         }
 
-        /* Mode selection */
+        // Mode selection
         assive_mode[0] = switch_task(&hip1, hip1_d, hip1_w, 1);  // 模式切换
         assive_mode[0] = POMODE;
 
-        /* Get phase*/
+        // Get phase
         if (assive_mode[0] == POMODE) {
           phase[0] = APOPhase(&apohip1, hip1_d, hip1_w);
           phase[0] = -phase[0] + PI - phaseOffset;
@@ -413,10 +418,10 @@ int          main(void)
       // -------------------------------------------------------------------//
 
       /**
-              @name 右
-      */
+       * @name 右
+       */
       {
-        AO(hip2_d, 2);
+        AO_Iteration(&hip2, hip2_d, Aoindex, 0, 0);
 
         /* Summit Detect */
 
@@ -537,6 +542,15 @@ int          main(void)
   }
 }
 
+/**
+ * @date   2020/4/6
+ * @author lhx
+ * @brief  定时器中断回调函数, 每2ms记一次时间, inc+1
+ * @param  htim 定时器结构体
+ * @note   2ms的设置位于 main.c 中的
+ MX_TIM_PWMOUT(TIM4, 50000, 100);
+ HAL_TIM_Base_Start	_IT(&htim4);
+ */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   if (htim->Instance == TIM4) {

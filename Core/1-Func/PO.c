@@ -1,4 +1,3 @@
-
 /*
  * PO.c
  *
@@ -11,38 +10,24 @@
 #define poTest(...)
 #include "PO.h"
 
-
-/**
- * author lhx
- * Jun 3, 2020
- *
- * @brief : 助力系数非线性调节，以降低抖动和提高安全
- * @param ang - 人体关节角度
- * @param w - 人体关节角速度
- * @param @k - 助力系数 pointer
- * @return   助力力矩大小和方向
- * Window > Preferences > C/C++ > Editor > Templates.
- */
 extern float floatabs(float x);
 #define AssisTor 0.1
 #define RightTorRatio 3  // assist gain
-#define D_area 0.0  // 2.0			// for eliminate chattering
+#define D_area 0.0  // 2.0	 for eliminate chattering
 #define W_area 0.0  // 1.0
 #define MAX_D_area 50.0  // for safety
 
-
-/**
- * @brief  模仿math.atan2(y,x)的-pi-+pi的坐标角度算法
- *
- * @param  y xy坐标轴上的y坐标
- *
- * @param  x xy坐标轴上的x坐标
- *
- * @retval v -
- * xy坐标轴上,坐标（x,y)到原点的直线与x轴正向的夹角弧度值，范围为-pi-+pi
- */
 uint8_t error_atana = 0;
-float   myatan2(float y, float x)
+/**
+ * @date   2022/4/7
+ * @author lhx
+ * @brief  模仿math.atan2(y,x)的-pi-+pi的坐标角度算法
+ * @param
+  y - xy坐标轴上的y坐标
+  x - xy坐标轴上的x坐标
+ * @retval v - 坐标（x,y)到原点的直线与x轴正向的夹角弧度值，-pi~+pi
+ */
+float myatan2(float y, float x)
 {
   float v = 0;
   if (y == 0 && x == 0 && error_atana == 0) {
@@ -70,17 +55,30 @@ float   myatan2(float y, float x)
 
 
 /**
- * author lhx
- * Jan 5, 2021
- *
- * @brief : PO 相位计算
- * @param d - 人体关节角度
- * @param w - 人体关节角速度
- * @return   相位
+ * @date   2022/4/7
+ * @author lhx
+ * @brief  PO 相位计算
+ * @param
+   d - 人体关节角度
+   w - 人体关节角速度
+ * @return 步态相位
  */
+float PO_phase(float d, float w)
+{
+  phase = myatan2(w, d);
+  // th_algori(d, w, &phase);
+  return phase;
+}
 
-float PO_phase(float d, float w) { return myatan2(w, d); }
-
+/**
+ * @date   2022/4/6
+ * @author lhx
+ * @brief  Advanced PO 相位估计算法
+ * @param
+ *  d - 人体关节角度
+ *  w - 人体关节角速度
+ * @note   usually the special usage need to be noticed
+ */
 int   gaitSegment_size = 5;
 float APOPhase(struct APO* apo, float d, float w)
 {
@@ -164,53 +162,29 @@ float APOPhase(struct APO* apo, float d, float w)
   //		stopflag = 0;
   //	}
 
-
   return apo->APO_phase;
 }
 
 
-/**
- * author lhx
- * Jun 3, 2020
- *
- * @brief : 助力系数非线性调节，以降低抖动和提高安全
- * @param ang - 人体关节角度
- * @param w - 人体关节角速度
- * @param @k - 助力系数 pointer
- * @return   助力力矩大小和方向
- * Window > Preferences > C/C++ > Editor > Templates.
- */
 extern float floatabs(float x);
 #define D_area 0.0  // 2.0			// for eliminate chattering
 #define W_area 0.0  // 1.0
 #define MAX_D_area 50.0  // for safety
 
 #include "math.h"
-//阈值防抖动算法
-void th_algori(float ang, float w, float* k) {}
-
 /**
- * author lhx
- * Jun 3, 2020
- *
- * @brief : 相位振荡器算法
- * @param d - 人体关节角度
- * @param w - 人体关节角速度
- * @param sin_fai -角度与角速度的相位差。 如果角度与角速度同相位，则该值不变
- * @param @k - 助力系数
- * @return   助力力矩大小和方向
- * Window > Preferences > C/C++ > Editor > Templates.
+ * @date   2022/4/6
+ * @author lhx
+ * @brief  阈值防抖动算法
+ * @param
+  ang - 角度
+  w - 角速度
+  phase - 步态相位
+ * @note
  */
-//#define RightTorRatio 3	// assist gain
-// float PO(float d, float w,uint8_t node)
-//{
-//	float sin_fai = w/sqrt(d*d+w*w);
-//	float k;
-
-//	th_algori(d,w,&k);
-//	if(node == 2){						// Right Torque
-// assive 		k = k*RightTorRatio;
-//	}
-//	float assistive_torque = sin_fai*k;
-//	return assistive_torque;
-//}
+void th_algori(float ang, float w, float* phase)
+{
+  if (floatabs(w) < TH_W && floatabs(ang) < TH_D) {
+    phase = 0;
+  }
+}
