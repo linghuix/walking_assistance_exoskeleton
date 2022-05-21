@@ -26,10 +26,16 @@ int16_t stopFlag[2]    = {0};  // 站立判断指示 1-站立
 uint16_t Interaction_force = 0;
 
 /* 外部IMU采集 */
-float hip1_w, hip1_d, I1;
-float hip2_w, hip2_d, I2;
-float hip1_raww, hip1_rawd;
-float hip2_raww, hip2_rawd;
+float                        hip1_w, hip1_d;
+float                        hip2_w, hip2_d;
+float                        hip1_raww, hip1_rawd;
+float                        hip2_raww, hip2_rawd;
+float                        hipd, hipw;
+struct Adaptive_Oscillators* hip_AOpointer;
+struct APO*                  hip_APOpointer;
+
+// 助力值
+float I[2] = {0};
 
 /* 滤波 */
 #define Buffsize 2  // 原始数据滤波窗口
@@ -70,7 +76,7 @@ int            state[2]       = {0};  // 0-stop 1-walking
 #define D_area 2.0  // 2.0	for eliminate chattering
 #define W_area 2.0  // 1.0
 #define MAX_D_area 50.0  // for safety
-float left_k = 0, right_k = 0;
+float k[2] = {0};  //[0]左髋关节 [1]右髋关节
 float kkkk = 0;
 
 /* 助力值优化参数 */
@@ -115,7 +121,6 @@ int main(void)
   // test_win_buff();
   // test_HC05_communication();
   // test_AOs();
-
 
   /* Advanced PO */
   apohip1.APO_updateinterval = 20;
@@ -173,8 +178,8 @@ int main(void)
 
   printf("\r\nABOUT ANGLE AND SPEED couterclock is postive from outside.\r\n");
   printf(
-      "\r\nthe acc1 of left hip - d w | the acc2 of right hip - d w | I1 "
-      ",I2\r\n");
+      "\r\nthe acc1 of left hip - d w | the acc2 of right hip - d w | I[0] "
+      ",I[1]\r\n");
 
   // FSR_Init();
   HC05_RcvCmd();
@@ -308,48 +313,60 @@ int main(void)
       //			}
 
       // print IMU information
-
       IMUMonitor("acc1rawd\t%.2f\tw\t%.2f\t", hip1_rawd, hip1_raww);
       IMUMonitor("acc2rawd\t%.2f\tw\t%.2f\t", hip2_rawd, hip2_raww);
       IMUMonitor("%.2f\t%.2f\t", hip1_d, hip1_w);
       IMUMonitor("%.2f\t%.2f\t", hip2_d, hip2_w);
 
-      // human exo Interaction force
-      //			Interaction_force = GetFSRForce();
-      //			INTERFORCE_Monitor("F %d\t", Interaction_force);
+      // Human-EXO Interaction force
+      // Interaction_force = GetFSRForce();
+      // INTERFORCE_Monitor("F %d\t", Interaction_force);
 
       Aoindex++;  // 控制周期的序号
-      // debug_AOIndex++; if( debug_AOIndex > 100 ){ debug_AOIndex = 0;}//FOR
-      // TEST
 
-      /**
-       * @name 左
-       */
-      {
-        // AO iteration
-        AO_Iteration(&hip1, hip1_d, Aoindex,0,0);
-
-        // Peak detection and period estimation
-        if (found_peak[0] == 1) {  // 检测峰值，估计人体步态周期并记录需要补偿的相位值
-          period[0]        = Aoindex - peaktimestamp[0];  // gait period estimation
-          peaktimestamp[0] = Aoindex;  // peaktimestamp 记录上一个峰值对应的 Aoindex
-          AOoffset[0]      = hip1.phase[1];
-          found_peak[0]    = 0;
+			// ii=0 左髋关节; ii=1 右髋关节
+      for (uint8_t ii = 0; ii < 2; ii++) {
+        if (ii == 0) {
+          hipd           = hip1_d;
+          hipw           = hip1_w;
+          hip_AOpointer  = &hip1;
+          hip_APOpointer = &apohip1;
+        }
+        else if (ii == 1) {
+          hipd           = hip2_d;
+          hipw           = hip2_w;
+          hip_AOpointer  = &hip2;
+          hip_APOpointer = &apohip2;
         }
 
-        // Mode selection
-        assive_mode[0] = switch_task(&hip1, hip1_d, hip1_w, 1);  // 模式切换
-        assive_mode[0] = POMODE;
+        AO_Iteration(hip_AOpointer, hipd, Aoindex, 0, 0);
+
+        // 检测峰值，估计人体步态周期并记录需要补偿的相位值
+        if (found_peak[ii] == 1) {
+          period[ii]        = Aoindex - peaktimestamp[ii];  // gait period estimation
+          peaktimestamp[ii] = Aoindex;  // peaktimestamp 记录上一个峰值对应的 Aoindex
+          if (ii == 0) {
+            AOoffset[ii] = hip1.phase[1];
+          }
+          else if (ii == 1) {
+            AOoffset[ii] = hip2.phase[1];
+          }
+          found_peak[ii] = 0;
+        }
+
+        // Assistive Mode selection
+        assive_mode[ii] = switch_task(hip_AOpointer, hipd, hipw, ii + 1);  // 模式切换
+        assive_mode[ii] = POMODE;
 
         // Get phase
-        if (assive_mode[0] == POMODE) {
-          phase[0] = APOPhase(&apohip1, hip1_d, hip1_w);
-          phase[0] = -phase[0] + PI - phaseOffset;
-          phase[0] = fitIn(phase[0], 2 * PI, 0);
+        if (assive_mode[ii] == POMODE) {
+          phase[ii] = APOPhase(hip_APOpointer, hipd, hipw);
+          phase[ii] = -phase[ii] + PI - phaseOffset;
+          phase[ii] = fitIn(phase[ii], 2 * PI, 0);
         }
-        else if (assive_mode[0] == AOMODE) {
-          phase[0] = hip1.predictedBasicPhase - AOoffset[0];
-          phase[0] = fitIn(phase[0], 2 * PI, 0);
+        else if (assive_mode[ii] == AOMODE) {
+          phase[ii] = hip_AOpointer->predictedBasicPhase - AOoffset[ii];
+          phase[ii] = fitIn(phase[ii], 2 * PI, 0);
         }
         else {
           while (1) {
@@ -357,160 +374,77 @@ int main(void)
           }
         }
 
-        /* No assistance conditions */
-        left_k = 1.0;
+        // No assistance conditions
+        k[ii] = 1.0;
+
         // 防高频率抖动
-        //			if(period[0] < TH_PERIOD){
-        //				left_k = 0.0;
-        //			}
+        // if(period[ii] < TH_PERIOD){
+        //		k[ii] = 0.0;
+        // }
 
         // 站立时不助力
-        // if stop state is detected
-        if (stopFlag[0] == 1) {
-          left_k = 0.0;
+        if (stopFlag[ii] == 1) {
+          k[ii] = 0.0;
         }
 
-        // 角度过大时的安全防护
-        //			if(floatabs(hip1_rawd) > TH_BOUND){
-        //				left_k = 0.0;
-        //			}
+        // 摆动关节角度过大时的安全防护
+        // 助力外骨骼助力值较小，所以其实不需要安全防护
+        //	if(floatabs(hip1_rawd) > TH_BOUND){
+        //		k[ii] = 0.0;
+        //	}
 
-        /* Assistive Torque */
-        // c1-2-4-1-3-5-1
-
-        // I1  = sin(phase[0]);
-
-        phase[0] = phase[0] / 2.0 / PI;
-        if (phase[0] < fai_Ep - fai_Er ||
-            ((phase[0] > fai_Ep + fai_Ef) && (phase[0] < fai_Fp - fai_Fr)) ||
-            phase[0] > (fai_Fp + fai_Ff)) {
+        // Assistive Torque  c1-2-4-1-3-5-1
+        phase[ii] = phase[ii] / 2.0 / PI;
+        if (phase[ii] < fai_Ep - fai_Er ||
+            ((phase[ii] > fai_Ep + fai_Ef) && (phase[ii] < fai_Fp - fai_Fr)) ||
+            phase[ii] > (fai_Fp + fai_Ff)) {
           // printf("c1");
-          I1 = 0;
+          I[ii] = 0;
         }
-        else if ((phase[0] >= fai_Ep - fai_Er) && (phase[0] <= fai_Ep)) {
+        else if ((phase[ii] >= fai_Ep - fai_Er) && (phase[ii] <= fai_Ep)) {
           // printf("c2");
-          I1 = (a[0] * phase[0] + a[1]) * phase[0] + a[2];
+          I[ii] = (a[ii] * phase[ii] + a[1]) * phase[ii] + a[2];
         }
-        else if ((phase[0] >= fai_Ep - fai_Er + 0.5) && phase[0] <= (fai_Ep + 0.5)) {
+        else if ((phase[ii] >= fai_Ep - fai_Er + 0.5) && phase[ii] <= (fai_Ep + 0.5)) {
           // printf("c3");
-          float phi = phase[0] - 0.5;
-          I1        = -((a[0] * phi + a[1]) * phi + a[2]);
+          float phi = phase[ii] - 0.5;
+          I[ii]     = -((a[ii] * phi + a[1]) * phi + a[2]);
         }
-        else if (phase[0] >= fai_Ep && (phase[0] <= fai_Ep + fai_Ef)) {
+        else if (phase[ii] >= fai_Ep && (phase[ii] <= fai_Ep + fai_Ef)) {
           // printf("c4");
-          I1 = (b[0] * phase[0] + b[1]) * phase[0] + b[2];
+          I[ii] = (b[ii] * phase[ii] + b[1]) * phase[ii] + b[2];
         }
-        else if ((phase[0] >= fai_Ep + 0.5) && (phase[0] <= fai_Ep + fai_Ef + 0.5)) {
+        else if ((phase[ii] >= fai_Ep + 0.5) && (phase[ii] <= fai_Ep + fai_Ef + 0.5)) {
           // printf("c5");
-          float phi = phase[0] - 0.5;
-          I1        = -((b[0] * phi + b[1]) * phi + b[2]);
+          float phi = phase[ii] - 0.5;
+          I[ii]     = -((b[ii] * phi + b[1]) * phi + b[2]);
         }
 
-        I1 = I1 * left_k;
+        I[ii] = I[ii] * k[ii];
 
+        if (ii == 0) {
 #ifdef ECON_L
-        set_I_direction(1, -I1);  // 正表明是往前
+          set_I_direction(1, -I[ii]);  // 正表明是往前
 #endif
-
-        AssisMonitor("I1 %.2f\t", I1);
-      }
-
-      // -------------------------------------------------------------------//
-
-      /**
-       * @name 右
-       */
-      {
-        AO_Iteration(&hip2, hip2_d, Aoindex, 0, 0);
-
-        /* Summit Detect */
-
-        if (found_peak[1] == 1) {  // 检测峰值，估计人体步态周期并记录需要补偿的相位值
-          period[1]        = Aoindex - peaktimestamp[1];  // gait period get
-          peaktimestamp[1] = Aoindex;
-          AOoffset[1]      = hip2.phase[1];
-          found_peak[1]    = 0;
         }
-
-        assive_mode[1] = switch_task(&hip2, hip2_d, hip2_w, 2);
-        assive_mode[1] = POMODE;
-
-        /* get phase */
-        //			right_k = AssisTor*RightTorRatio;
-        if (assive_mode[1] == POMODE) {
-          phase[1] = APOPhase(&apohip2, hip2_d, hip2_w);
-          phase[1] = -phase[1] + PI - phaseOffset;
-          phase[1] = fitIn(phase[1], 2 * PI, 0);
-        }
-        else if (assive_mode[1] == AOMODE) {
-          phase[1] = hip2.predictedBasicPhase - AOoffset[1];
-          phase[1] = fitIn(phase[1], 2 * PI, 0);
-        }
-        else {
-          while (1) {
-            MSG_ERR(123, "assive_mode error\r\n", 123);
-          }
-        }
-
-        right_k = 1.0;
-        //			if(period[1] < TH_PERIOD){
-        //				right_k = 0.0;
-        //			}
-        //
-        if (stopFlag[1] == 1) {
-          right_k = 0.0;
-        }
-
-        //			if(floatabs(hip2_rawd) > TH_BOUND){
-        //				right_k = 0.0;
-        //			}
-
-        // I2 = sin(phase[1]);
-
-        phase[1] = phase[1] / 2.0 / PI;
-        if (phase[1] < fai_Ep - fai_Er ||
-            ((phase[1] > fai_Ep + fai_Ef) && (phase[1] < fai_Fp - fai_Fr)) ||
-            phase[1] > (fai_Fp + fai_Ff)) {
-          // printf("c1");
-          I2 = 0;
-        }
-        else if ((phase[1] >= fai_Ep - fai_Er) && (phase[1] <= fai_Ep)) {
-          // printf("c2");
-          I2 = (a[0] * phase[1] + a[1]) * phase[1] + a[2];
-        }
-        else if ((phase[1] >= fai_Ep - fai_Er + 0.5) && phase[1] <= (fai_Ep + 0.5)) {
-          // printf("c3");
-          float phi = phase[1] - 0.5;
-          I2        = -((a[0] * phi + a[1]) * phi + a[2]);
-        }
-        else if (phase[1] >= fai_Ep && (phase[1] <= fai_Ep + fai_Ef)) {
-          // printf("c4");
-          I2 = (b[0] * phase[1] + b[1]) * phase[1] + b[2];
-        }
-        else if ((phase[1] >= fai_Ep + 0.5) && (phase[1] <= fai_Ep + fai_Ef + 0.5)) {
-          // printf("c5");
-          float phi = phase[1] - 0.5;
-          I2        = -((b[0] * phi + b[1]) * phi + b[2]);
-        }
-
-        I2 = I2 * right_k;
-
+        else if (ii == 1) {
 #ifdef ECON_R
-        if (I2 > 0) {
-          set_I_direction(2, -(I2 + 0.3));  //负是往前， 补偿右侧驱动器的减速器的摩擦力
-        }
-        else {
-          set_I_direction(2, -(I2 - 0.3));  //负是往前，
-        }
+          if (I[1] > 0) {
+            set_I_direction(2, -(I[1] + 0.3));  //负是往前， 补偿右侧驱动器的减速器的摩擦力
+          }
+          else {
+            set_I_direction(2, -(I[1] - 0.3));  //负是往前，
+          }
 #endif
+        }
 
-        AssisMonitor("I2 %.2f\t", I2);
+        AssisMonitor("%d - I[ii] %.2f\t", ii, I[ii]);
       }
       //			INF("\r\n");
     }
 
-    debug_assisTorque1 = 1000.0 * I1;
-    debug_assisTorque2 = 1000.0 * I2;
+    debug_assisTorque1 = 1000.0 * I[0];
+    debug_assisTorque2 = 1000.0 * I[1];
 
     debug_hip1_d    = (int)hip1_d;
     debug_hip1_rawd = (int)hip1_rawd;
@@ -551,7 +485,7 @@ int main(void)
  MX_TIM_PWMOUT(TIM4, 50000, 100);
  HAL_TIM_Base_Start	_IT(&htim4);
  */
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 {
   if (htim->Instance == TIM4) {
     inc++;

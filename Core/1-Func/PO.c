@@ -13,9 +13,7 @@
 extern float floatabs(float x);
 #define AssisTor 0.1
 #define RightTorRatio 3  // assist gain
-#define D_area 0.0  // 2.0	 for eliminate chattering
-#define W_area 0.0  // 1.0
-#define MAX_D_area 50.0  // for safety
+
 
 uint8_t error_atana = 0;
 /**
@@ -65,7 +63,7 @@ float myatan2(float y, float x)
  */
 float PO_phase(float d, float w)
 {
-  phase = myatan2(w, d);
+  float phase = myatan2(w, d);
   // th_algori(d, w, &phase);
   return phase;
 }
@@ -166,25 +164,23 @@ float APOPhase(struct APO* apo, float d, float w)
 }
 
 
+#include "math.h"
 extern float floatabs(float x);
 #define D_area 0.0  // 2.0			// for eliminate chattering
 #define W_area 0.0  // 1.0
-#define MAX_D_area 50.0  // for safety
-
-#include "math.h"
 /**
  * @date   2022/4/6
  * @author lhx
- * @brief  阈值防抖动算法
+ * @brief  PO 阈值防抖动算法
  * @param
   ang - 角度
   w - 角速度
   phase - 步态相位
  * @note
- */
+ */ 
 void th_algori(float ang, float w, float* phase)
 {
-  if (floatabs(w) < TH_W && floatabs(ang) < TH_D) {
-    phase = 0;
+  if (floatabs(w) < W_area && floatabs(ang) < D_area) {
+    *phase = 0;
   }
 }

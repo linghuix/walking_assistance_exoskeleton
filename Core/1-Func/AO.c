@@ -197,6 +197,7 @@ float fitIn(float data, float up, float down)
  *      sync            Adaptive Oscillators
  *      vw_sync
  * @note   it is called in AO_Iteration() function
+  ref to Zheng E, Manca S, Yan T, et al. Gait Phase Estimation Based on Noncontact Capacitive Sensing and Adaptive Oscillators[J]. IEEE Transactions on Biomedical Engineering, 2017, 64(10): 2419–2430.
  */
 void Oscillators(struct Adaptive_Oscillators* AO, float e, int sync, float vw_sync)
 {

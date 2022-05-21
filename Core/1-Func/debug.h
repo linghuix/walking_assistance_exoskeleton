@@ -6,7 +6,7 @@
 
 //#define DEBUG_WAR_CONSOLE_ON
 
-#define BufferSize 10000
+#define BufferSize 1000
 #define PORT huart1
 
 
