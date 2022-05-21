@@ -9,3 +9,5 @@ maxon EC90 电机
 碳纤维机械结构
 
 STM32控制器
+
+![IMG_20201112_214145](readme.assets/IMG_20201112_214145.jpg)
