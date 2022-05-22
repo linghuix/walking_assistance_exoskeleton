@@ -14,12 +14,12 @@ uint8_t                   ch_scanf;
 struct Buffer             debugBuffer = {"inital", 0, 0};
 
 
-/*
- * author lhx
- * May 13, 2020
+/**
+ * @author lhx
+ * @date May 13, 2020
  *
  * @brief : put data to buffer, buffer is FULL return 0.
- * Window > Preferences > C/C++ > Editor > Templates.
+ * @param c - 需要存入的数据, string to be inputting to buffer
  */
 uint8_t addDebugBuffer(char c)
 {
@@ -32,12 +32,14 @@ uint8_t addDebugBuffer(char c)
     return 1;
   }
 }
-/*
- * author lhx
- * May 13, 2020
+
+/**
+ * @author lhx
+ * @Date May 13, 2020
  *
  * @brief : 获取buff中的数据，buffer为空则返回0
- * Window > Preferences > C/C++ > Editor > Templates.
+ * @return c - 取出的字符 get string
+ *
  */
 char getDebugBuffer(void)
 {
@@ -52,12 +54,12 @@ char getDebugBuffer(void)
   }
 }
 
-/*
- * author lhx
- * May 14, 2020
+/**
+ * @author lhx
+ * @date May 14, 2020
  *
  * @brief : STM32CubeIDE printf 重定位到 PORT
- * Window > Preferences > C/C++ > Editor > Templates.
+ *
  */
 #ifdef Cube
 #ifdef BUFF_Printf
@@ -76,21 +78,21 @@ int _write(int file, char *ptr, int len)
 
 
 /**
- * author lhx
- * May 29, 2020
+ * @author lhx
+ * @date May 29, 2020
  *
- * @brief : 在 keil 中重定向 printf 与 scanf
- * 	注意使用前需要开启microLib
- * Window > Preferences > C/C++ > Editor > Templates.
+ * @brief : 在 keil 中重定向 printf 与 scanf.
+            定义了BUFF_Printf表明串口输出有配置缓冲区
+ * @Note 注意使用前需要开启 microLib
+ *
  */
 #ifdef KEIL
 #ifdef BUFF_Printf
 int fputc(int ch, FILE *f)  // Keil
 {
   if (addDebugBuffer(ch) != 0) {
-    if (huart1.Instance ==
-        USART1) {  // waiting for usart1 initalization. so that printf can be
-                   // used before usart really work.
+    if (huart1.Instance == USART1) {  // waiting for usart1 initalization. so that printf can be
+                                      // used before usart really work.
       __HAL_UART_ENABLE_IT(&PORT, UART_IT_TXE);
     }
     return ch;
@@ -123,15 +125,15 @@ int fgetc(FILE *F)  // Keil
 #endif
 
 #endif
-/**
- * author lhx
- * May 13, 2020
- *
- * @brief : Enable serial NVIC
- *			Set serial property
- * Window > Preferences > C/C++ > Editor > Templates.
- */
 
+/**
+ * @author  lhx
+ * @date    May 13, 2020
+ *
+ * @brief : USART initalization. Enable serial IT
+ *			Set serial property
+ *
+ */
 void debug_init(void)
 {
   MX_USART1_UART_Init();
@@ -139,13 +141,13 @@ void debug_init(void)
   MSG("debug initing ... \r\n");
 }
 
-/**
- * author lhx
- * May 13, 2020
- *
- * @brief : interrupt service function
- */
 
+/**
+ * @author lhx
+ * @date May 13, 2020
+ *
+ * @brief : usart1 interrupt service function
+ */
 void debug_IRQ(void)
 {
   uint32_t isrflags = READ_REG(huart1.Instance->SR);
@@ -154,14 +156,15 @@ void debug_IRQ(void)
 
   /* UART in mode Transmitter -----------TXE
    * ------------------------------------*/
-  if (((isrflags & USART_SR_TXE) != RESET) &&
-      ((cr1its & USART_CR1_TXEIE) != RESET)) {
+  if (((isrflags & USART_SR_TXE) != RESET) && ((cr1its & USART_CR1_TXEIE) != RESET)) {
     c = getDebugBuffer();
+
+    /* If buffer is not empty, then get a string and send it to TX_USART_buffer */
     if (c != 0) {
       huart1.Instance->DR = (uint16_t)(c & (uint16_t)0x01FF);
     }
+    /* If buffer is empty, Disable the UART Transmit Complete Interrupt*/
     else {
-      /* Disable the UART Transmit Complete Interrupt */
       __HAL_UART_DISABLE_IT(&huart1, UART_IT_TXE);
       //__HAL_UART_DISABLE_IT(huart, UART_IT_TC);
     }

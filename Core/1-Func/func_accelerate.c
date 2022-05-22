@@ -6,31 +6,46 @@
  */
 #include "func_accelerate.h"
 
-uint8_t imu_2_flag = 0;
-uint8_t flag_1, flag_2, flag_3;
-uint8_t flag_11, flag_22, flag_33;
-uint8_t acc2[11];
-int16_t a2[3], w2[3], angle2[3];
-int16_t a1[3], w1[3], angle1[3];
-float   T;
-
-uint8_t acc1[11];
+uint8_t flag_1, flag_2, flag_3;  //左侧IMU角加速度/角速度/角度获取到最新数据的标志
+uint8_t flag_11, flag_22, flag_33;  //右侧IMU角加速度，角速度，角度获取到最新数据的标志
+uint8_t acc1[11];                   //存储左侧IMU通讯原始数据
+uint8_t acc2[11];                   //存储右侧IMU通讯原始数据
+int16_t a2[3], w2[3], angle2[3];  //右侧IMU检测到的角加速度/角速度/角度
+int16_t a1[3], w1[3], angle1[3];  //左侧IMU检测到的角加速度/角速度/角度
+float   T;                        // IMU检测到的温度
 
 
+/**
+ * @date   2022/5/22
+ * @author lhx
+ * @brief  初始化左侧加速度计
+ */
 void Acc1_Init(void) { MX_UART4_UART_Init(); }
 
-
+/**
+ * @date   2022/5/22
+ * @author lhx
+ * @brief  初始化右侧加速度计
+ */
 void Acc2_Init(void) { MX_USART2_UART_Init(); }
 
-// uint8_t test_data[5] = {0x55,0x00,0x00,0x00,0x00};
 
+/**
+ * @date   2022/5/22
+ * @author lhx
+ * @brief  启动右侧加速度计,启动串口接收中断
+ */
 void Acc2_Start(void)
 {
   // HAL_UART_Transmit_IT(&acc2_huart, test_data, 5);
   HAL_UART_Receive_IT(&acc2_huart, acc2, 1);
 }
 
-
+/**
+ * @date   2022/5/22
+ * @author lhx
+ * @brief  启动左侧加速度计,启动串口接收中断
+ */
 void Acc1_Start(void)
 {
   // HAL_UART_Transmit_IT(&acc1_huart, test_data, 5);
@@ -38,6 +53,12 @@ void Acc1_Start(void)
 }
 
 
+/**
+ * @date   2022/5/22
+ * @author lhx
+ * @brief  加速度计接收中断回调函数，解析通讯协议，提取角度，角速度，角加速度和温度
+ * @param  huart  存储串口信息的结构指针
+ */
 uint8_t        state1 = 0, state2 = 0;
 extern uint8_t CommandReceive[20], receivebyte, length;
 extern uint8_t hardtest_CommandReceive[200], hardtest_receivebyte, hardtest_length;
@@ -63,21 +84,21 @@ void           HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
         break;
       case 1:
         switch (acc1[1]) {
-          case 0x51:
+          case 0x51:  //角加速度，温度
             a1[0]  = ((int16_t)(acc1[3] << 8 | acc1[2]));
             a1[1]  = ((int16_t)(acc1[5] << 8 | acc1[4]));
             a1[2]  = ((int16_t)(acc1[7] << 8 | acc1[6]));
             T      = ((int16_t)(acc1[9] << 8 | acc1[8]));
             flag_1 = 1;
             break;
-          case 0x52:
+          case 0x52:  //角速度，温度
             w1[0]  = ((int16_t)(acc1[3] << 8 | acc1[2]));
             w1[1]  = ((int16_t)(acc1[5] << 8 | acc1[4]));  // hip flex z
             w1[2]  = ((int16_t)(acc1[7] << 8 | acc1[6]));
             T      = ((int16_t)(acc1[9] << 8 | acc1[8]));
             flag_2 = 1;
             break;
-          case 0x53:
+          case 0x53:  //角度，温度
             angle1[0] = ((int16_t)(acc1[3] << 8 | acc1[2]));
             angle1[1] = ((int16_t)(acc1[5] << 8 | acc1[4]));  // hip felx
             angle1[2] = ((int16_t)(acc1[7] << 8 | acc1[6]));
@@ -133,6 +154,13 @@ void           HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 }
 
 
+// -------------------*---------------------------*---------- TEST
+// ---------*----------------------*-----------------//
+// -------------------*---------------------------*---------- TEST
+// ---------*----------------------*-----------------//
+
+#ifdef ACC_TEST
+
 /* TEST
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
@@ -155,17 +183,15 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 }
 */
 
-/*
- * author lhx
- * May 25, 2020
+/**
+ * @author lhx
+ * @date May 25, 2020
  *
  * @brief : 通讯测试
  * 			对于stm32f103rbt6,未开启AFIO，映射。
  * 			串口２　-　PA2-RX  PA3-TX
  * 			串口３　-  PB10-TX  PB11-RX
- * Window > Preferences > C/C++ > Editor > Templates.
  */
-
 TEST test_acc_communication(void)
 {
   Acc1_Init();
@@ -175,3 +201,4 @@ TEST test_acc_communication(void)
   HAL_UART_Transmit_IT(&acc1_huart, test_data, 1);
   HAL_UART_Transmit_IT(&acc2_huart, test_data, 5);
 }
+#endif

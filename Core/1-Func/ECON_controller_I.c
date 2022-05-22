@@ -11,10 +11,10 @@
 #define ECON_1_CH TIM_CHANNEL_3
 
 /**
- * author lhx
- * May 24, 2020
+ * @author lhx
+ * @date May 24, 2020
  *
- * @brief : 启动控制 ECON 的 PWM 引脚
+ * @brief : 启动电机控制器(ESCON)的PWM引脚
  */
 void ECON_action(void)
 {
@@ -27,8 +27,8 @@ void ECON_action(void)
 
 
 /**
- * author lhx
- * May 24, 2020
+ * @author lhx
+ * @date May 24, 2020
  *
  * @brief : 设置 ECON 的 PWM 频率，500HZ；和对应的引脚
  */
@@ -43,31 +43,33 @@ void ECON_I_init(void)
 
 
 /**
- * author lhx
- * May 24, 2020
+ * @author lhx
+ * @date May 24, 2020
  *
- * @brief : 设置PWM的占空比
- * Window > Preferences > C/C++ > Editor > Templates.
+ * @brief : 设置左侧电机控制器PWM的占空比
  */
-
 void setPWM_1(float dutyfactor)
 {
   uint32_t pwm = dutyfactor * 100;
   SetTIMCCR(ECON_1_TIM, ECON_1_CH, pwm);
 }
-
+/**
+ * @author lhx
+ * @date May 24, 2020
+ *
+ * @brief : 设置右侧电机控制器PWM的占空比
+ */
 void setPWM_2(float dutyfactor)
 {
   uint32_t pwm = dutyfactor * 100;
   SetTIMCCR(ECON_2_TIM, ECON_2_CH, pwm);
 }
 
-
 /**
- * author lhx
- * May 24, 2020
+ * @author lhx
+ * @date May 24, 2020
  *
- * @brief : 设置 ECON 驱动器的电流值大小。占空比 0.9 对应 3A，0.1 对应 0 A
+ * @brief : 设置 ESCON 驱动器的电流值大小。占空比 0.9 对应 3A，0.1 对应 0 A
  */
 extern uint8_t CANID_righthip_odriver, CANID_lefthip_odriver;
 void           set_I_direction(uint8_t node, float I)
@@ -114,6 +116,11 @@ void           set_I_direction(uint8_t node, float I)
 }
 
 
+// -------------------*---------------------------*---------- TEST ---------*----------------------*-----------------//
+// -------------------*---------------------------*---------- TEST ---------*----------------------*-----------------//
+
+#ifdef ECON_TEST
+
 TEST test_ECON_I_controller(void)
 {
   ECON_I_init();
@@ -139,3 +146,5 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
         }
 }
 */
+
+#endif
