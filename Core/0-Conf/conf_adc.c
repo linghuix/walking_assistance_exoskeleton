@@ -13,9 +13,9 @@ ADC_HandleTypeDef hadc1;
 ADC_HandleTypeDef hadc2;
 ADC_HandleTypeDef hadc3;
 
-#define ADC3 ADC2
-#define __HAL_RCC_ADC3_CLK_DISABLE 	__HAL_RCC_ADC2_CLK_DISABLE
-#define __HAL_RCC_ADC3_CLK_ENABLE 	__HAL_RCC_ADC2_CLK_ENABLE
+//#define ADC3 ADC2
+//#define __HAL_RCC_ADC3_CLK_DISABLE 	__HAL_RCC_ADC2_CLK_DISABLE
+//#define __HAL_RCC_ADC3_CLK_ENABLE 	__HAL_RCC_ADC2_CLK_ENABLE
 
 /**
   * @brief ADC1 Initialization Function

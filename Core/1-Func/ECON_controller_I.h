@@ -11,14 +11,18 @@
 
 #include "conf_tim.h"
 #include "conf_gpio.h"
+#include "Odrive.h"
 
 
-#define GPIO1_1 GPIOC,GPIO_PIN_10
-#define GPIO1_2 GPIOC,GPIO_PIN_11
-#define GPIO2_1 GPIOC,GPIO_PIN_14
-#define GPIO2_2 GPIOC,GPIO_PIN_15
+//#define GPIO1_1 GPIOC,GPIO_PIN_10
+//#define GPIO1_2 GPIOC,GPIO_PIN_11
+//#define GPIO2_1 GPIOC,GPIO_PIN_14
+//#define GPIO2_2 GPIOC,GPIO_PIN_15
 
-
+#define GPIO1_1 GPIOB,GPIO_PIN_7
+#define GPIO1_2 GPIOB,GPIO_PIN_8
+#define GPIO2_1 GPIOB,GPIO_PIN_14
+#define GPIO2_2 GPIOB,GPIO_PIN_13
 
 #define CLK1	HAL_GPIO_WritePin(GPIO1_1, GPIO_PIN_RESET); HAL_GPIO_WritePin(GPIO1_2, GPIO_PIN_SET);
 #define UNCLK1	HAL_GPIO_WritePin(GPIO1_1, GPIO_PIN_SET); HAL_GPIO_WritePin(GPIO1_2, GPIO_PIN_RESET);

@@ -6,14 +6,15 @@
 .\objects\conf_usart.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc.h
 .\objects\conf_usart.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_def.h
 .\objects\conf_usart.o: ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h
-.\objects\conf_usart.o: ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\stm32f103xb.h
+.\objects\conf_usart.o: ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\stm32f103xe.h
 .\objects\conf_usart.o: ..\Drivers\CMSIS\Include\core_cm3.h
-.\objects\conf_usart.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\conf_usart.o: C:\Program Files (x86)\keil5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\conf_usart.o: ..\Drivers\CMSIS\Include\cmsis_version.h
 .\objects\conf_usart.o: ..\Drivers\CMSIS\Include\cmsis_compiler.h
 .\objects\conf_usart.o: ..\Drivers\CMSIS\Include\cmsis_armcc.h
 .\objects\conf_usart.o: ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h
-.\objects\conf_usart.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\conf_usart.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h
+.\objects\conf_usart.o: C:\Program Files (x86)\keil5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\conf_usart.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc_ex.h
 .\objects\conf_usart.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio.h
 .\objects\conf_usart.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_gpio_ex.h
@@ -33,4 +34,6 @@
 .\objects\conf_usart.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h
 .\objects\conf_usart.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h
 .\objects\conf_usart.o: ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h
-.\objects\conf_usart.o: G:\0-Embeded\KEIL\Keil_v5.1\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\conf_usart.o: C:\Program Files (x86)\keil5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\conf_usart.o: ..\Core\1-Func\debug.h
+.\objects\conf_usart.o: ..\Core\0-Conf\conf_usart.h

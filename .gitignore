@@ -24,3 +24,7 @@
 *.uvopt
 *.flyleaf
 Keil/*
+*.ini
+*.d
+*.o
+*.dep

@@ -1,6 +1,10 @@
 #include "AO.h"
 
+int PREDICT_TIME = 4;	// 4*50ms ahead
+#define GAIN 5
+
 extern uint16_t period[2];
+
 
 /**
  * @parameter
@@ -12,6 +16,7 @@ extern uint16_t period[2];
   vph - 相位学习参数
   gain - 最优学习参数增益，0.2~5
 */
+
 uint64_t Aoindex = 0;
 struct Adaptive_Oscillators hip1,hip2;
 extern int CONTROL_PERIOD;
@@ -19,21 +24,22 @@ void set(struct Adaptive_Oscillators* AO, float vw,float va,float vph, int order
 void AO_Init(float T, uint8_t node)
 {
     float va,vw,vph,dt;
-    float aa[3] = {10.0, 50.0, 20.0}, pphh[3] = {0, PI/3, PI/6};
+    float aa[3] = {5.0, 10.0, 20.0}, pphh[3] = {0, PI/3, PI/6};
     int step;
 
 	dt = (float)CONTROL_PERIOD*2.0/1000.0;
     // 1/100 = 0   1.0/100 = 0.01 先按 int 类型计算，然后强制转化为 float
-	float gain = 5.0;
-    va = 2.0/(gain* T);
+//	float gain = 5.0;
+//    va = 2.0/(gain* T);
+	va = 2.0/(GAIN * T);
     vw = va;
 	vph = sqrt(24.2*vw);
     step = 5;
     if(node == 1){
-		set(&hip1,vw,va,vph,2,dt,2*PI/T,aa,pphh,step);
+		set(&hip1,vw,va,vph,2,dt,3*PI/T,aa,pphh,step);
 	}
 	if(node == 2){
-		set(&hip2,vw,va,vph,2,dt,2*PI/T,aa,pphh,step);
+		set(&hip2,vw,va,vph,2,dt,3*PI/T,aa,pphh,step);
 	}
 }
 
@@ -69,10 +75,10 @@ void set(struct Adaptive_Oscillators* AO, float vw,float va,float vph, int order
             AO->init_aa[i] = aa[i];
             AO->pphh[i] = pphh[i];	// phase
             AO->init_pphh[i] = pphh[i];
-            //printf("amplify[%d] = %.3f\r\n", i,aa[i]);
-            //printf("phase[%d] = %.3f\r\n", i,pphh[i]);
+            //TESTOUT("amplify[%d] = %.3f\r\n", i,aa[i]);
+            //TESTOUT("phase[%d] = %.3f\r\n", i,pphh[i]);
         }
-        //printf("inital w = %.3f\r\n",ww);
+        //TESTOUT("inital w = %.3f\r\n",ww);
         
         for(uint8_t i=0;i < AO->order+1;i++){
             /* w_real[0]=0; w_real[1]=w_now; w_real[2]=2*w_now ... */
@@ -95,12 +101,12 @@ void AO(float d,uint8_t node)
 	if(node == 1){
 		input(&hip1,d,Aoindex,0,0);
 		//show(&hip);
-		//printf("%.2f\t%.2f\t%.2f\t",d, hip1.output,hip1.predict);
+		//TESTOUT("%.2f\t%.2f\t%.2f\t",d, hip1.output,hip1.predict);
 	}
 	else if(node == 2){
 		input(&hip2,d,Aoindex,0,0);
 		//show(&hip);
-		//printf("%.1f\t%.1f\t%.1f\t",d, hip2.output,hip2.predict);
+		//TESTOUT("%.1f\t%.1f\t%.1f\t",d, hip2.output,hip2.predict);
 	}
 }
 
@@ -120,6 +126,7 @@ void AO(float d,uint8_t node)
     sync -      是否同步
     vw_sync -   同步的学习参数
 */
+
 void Oscillators(struct Adaptive_Oscillators* AO, float e, int sync, float vw_sync);
 float curvePredict(struct Adaptive_Oscillators* AO, float delta_t);
 void phasePredict(struct Adaptive_Oscillators* AO, float delta_t);
@@ -135,7 +142,7 @@ void input(struct Adaptive_Oscillators* AO, float y_now, float t_now, int sync, 
 		AO->phase[i] = fitIn(AO->phase[i], 2*PI, 0);
 	}
 	AO->predict = curvePredict(AO, AO->step*AO->dt);    // step*2*CONTROL_PERIOD ms
-	phasePredict(AO, 4*AO->dt);							// predict 200 ms 
+	phasePredict(AO, PREDICT_TIME*AO->dt);							// predict 200 ms 
 	AO->outputSave[AO->index] = AO->output;
 	AO->predictedSaveData[AO->index] = AO->predict;
 	if(++(AO->index) == MaxSize){
@@ -205,7 +212,7 @@ void Oscillators(struct Adaptive_Oscillators* AO, float e, int sync, float vw_sy
         if(i == 1 && sync == 0){
             Dw = vw*e*cos(AO->pphh[i])/sum_a;
             AO->ww = dt*Dw + AO->ww;
-            //printf("dw = %f",Dw);
+            //TESTOUT("dw = %f",Dw);
         }
         else if(sync == 1)            // multi oscillators freq sync
             AO->ww = dt*vw_sync + AO->ww;
@@ -261,27 +268,27 @@ void phasePredict(struct Adaptive_Oscillators* AO, float delta_t)
  */
 void show(struct Adaptive_Oscillators* AO)
 {
-    printf("\r\nva - %.2f\r\n",AO->va);
-    printf("vw - %.2f\r\n",AO->vw);
-    printf("vph - %.2f\r\n",AO->vph);
-    printf("order - %d\r\n",AO->order);
-    printf("dt - %.4f\r\n",AO->dt);
-    printf("phase - %.2f\r\n",AO->phase[1]);
-    printf("step - %d\r\n",AO->step);
-    printf("ww = %.5f\r\n",AO->ww);
-    printf("output - %.5f\r\n",AO->output);
-    printf("predict = %.5f\r\n",AO->predict);
+    TESTOUT("\r\nva - %.2f\r\n",AO->va);
+    TESTOUT("vw - %.2f\r\n",AO->vw);
+    TESTOUT("vph - %.2f\r\n",AO->vph);
+    TESTOUT("order - %d\r\n",AO->order);
+    TESTOUT("dt - %.4f\r\n",AO->dt);
+    TESTOUT("phase - %.2f\r\n",AO->phase[1]);
+    TESTOUT("step - %d\r\n",AO->step);
+    TESTOUT("ww = %.5f\r\n",AO->ww);
+    TESTOUT("output - %.5f\r\n",AO->output);
+    TESTOUT("predict = %.5f\r\n",AO->predict);
     
     for(int i=0;i<AO->order+1;i++){
-        printf("phi[%d] = %.5f\r\n", i,AO->pphh[i]);
+        TESTOUT("phi[%d] = %.5f\r\n", i,AO->pphh[i]);
     }
 
     for(int i=0;i<AO->order+1;i++){
-        printf("amplify[%d] = %.5f\r\n", i,AO->aa[i]);
+        TESTOUT("amplify[%d] = %.5f\r\n", i,AO->aa[i]);
     }
 
     for(int i=0;i<AO->order+1;i++){
-        printf("real w[%d] = %.5f\r\n", i,AO->w_real[i]);
+        TESTOUT("real w[%d] = %.5f\r\n", i,AO->w_real[i]);
     }
 }
 
@@ -312,7 +319,7 @@ void test_Osc(void)
 
 void test_Pre(void)
 {
-    float pre; /*Ԥ��ֵ*/
+    volatile float pre; 
     struct Adaptive_Oscillators hip;
     float va,vw,vph,dt,aa[2] = {1.25, 3.523},pphh[2] = {0,0};
     int step;
@@ -327,7 +334,7 @@ void test_Pre(void)
     set(&hip,vw,va,vph,1,dt,4,aa,pphh,step);
     show(&hip);
     pre = curvePredict(&hip, 10);
-    printf("pre = %.5f, truth value = 4.466306118313432",pre);
+    TESTOUT("pre = %.5f, truth value = 4.466306118313432",pre);
 }
 
 int test_phase, test_w, test_output, test_input, test_predict, test_phasePredict, test_j;	//jscope
@@ -337,7 +344,7 @@ void test_AO(void)
     float va, vw, dt, T, aa[2] = {0.0, 15.0}, pphh[2] = {PI/5.0, PI/3.0};
     int step;
 	
-	printf("AO test for sine wave\r\n");
+	TESTOUT("AO test for sine wave\r\n");
 	dt = 0.005;
 	T = 2*PI/(23.0);
     va = 2.0/(T * 1.0);
@@ -352,7 +359,7 @@ void test_AO(void)
     while(j++ < 5000000000){
         y = 30*sin(23 * (j*dt) + 56) + 20;
         input(&hip,y,j,0,0);
-        printf("y\t%.2f\tpredict\t%.2f\t%.2f\r\n",y, hip.predict, hip.phase[1]);
+        TESTOUT("y\t%.2f\tpredict\t%.2f\t%.2f\r\n",y, hip.predict, hip.phase[1]);
         //show(&hip);
 		HAL_Delay(5);
 		test_phase = 1000.0*hip.phase[1];
@@ -372,7 +379,7 @@ void test_AOs(void)
     float va, vw, dt, T, aa[3] = {0.0, 15.0,1.0}, pphh[3] = {PI*0.2, PI/3.0, PI/3.0};
     int step;
 	
-	printf("AO test for sine wave\r\n");
+	TESTOUT("AO test for sine wave\r\n");
 	dt = 0.005;
 	T = 2.0*PI/23.0;
     va = 2.0/(T * 1.0);
@@ -387,7 +394,7 @@ void test_AOs(void)
     while(j++ < 5000000000){
         y = 30*sin(23*j*dt+56)+20+10*sin(35*j*dt+56);
         input(&hip,y,j,0,0);
-        printf("y\t%.2f\tpredict\t%.2f\t%.2f\r\n",y, hip.predict, hip.phase[1]);
+        TESTOUT("y\t%.2f\tpredict\t%.2f\t%.2f\r\n",y, hip.predict, hip.phase[1]);
         //show(&hip);
 		HAL_Delay(5);
 		test_phase = 1000.0*hip.phase[1];
@@ -421,7 +428,7 @@ uint8_t findpeak(WINp win)
 	ElementType end2 = GetValue(win,3);
 	ElementType mid = GetValue(win,2);
 	
-	if(mid < 0 && mid < end1 && mid < end2){
+	if(mid < end1 && mid < end2 && mid<5){
 		return 1;
 	}
 	return 0;
@@ -436,10 +443,23 @@ float floatabs(float x);
 uint8_t Isequal(float i, float j)
 {
 	if(i==0) i = i+0.001;
-	if(floatabs(i-j) < 5){	//尝试绝对值，相对误差，最小二乘
+	if(floatabs(i-j) < 8){	//尝试绝对值，相对误差，最小二乘
 		return 1;
 	}
 	return 0;
+}
+
+/**
+* @brief 判断数组中的数据是否波动不大
+ * @para  float angle[] 装载AO输出的数组
+ */
+uint8_t Isstable(float angle[]){
+	for(uint8_t i = 0; i < MaxSize-1; i++){
+		if(angle[i]-angle[i+1] > 5){
+			return 0;
+		}
+	}
+	return 1;
 }
 
 /**
@@ -463,23 +483,36 @@ float floatabs(float x)
  * @factor  delaySwitch 斯密特触发器计数器，当值大于DELAY_TIME时为AO助力模式，小于0时为PO助力模式
  */
 #define DELAY_TIME 15
+#define RESET_TIME 400
 int32_t PO_time[2]={0}, debug_preOffset[2]={0};	//PO 运行时间长度度量，决定AO初始化
 int16_t delaySwitch[2] = {0, 0};				//切换延迟
 int8_t assive[2] = {POMODE, POMODE};
 extern float dt;
+extern int16_t stopFlag[2];
+extern int state[2];
 int8_t switch_task(struct Adaptive_Oscillators * AO, float d, float w, uint8_t node)
 {
 	int8_t i = AO->index;
 	int8_t j;
+
+	if(stopFlag[node-1] == 1){
+		assive[node-1] = POMODE;
+		stopFlag[node-1] = 0;
+		delaySwitch[node-1] = 0;
+		state[node-1] = 0;
+		PO_time[node-1] = RESET_TIME-140;			// convert stop state to walking state.
+		return assive[node-1];
+	}
+	state[node-1] = 1;
 	
 	j = i-1-AO->step < 0 ? i-1-AO->step+MaxSize : i-1-AO->step;
 	
 	/* for debug */
 	debug_preOffset[node-1] = AO->predictedSaveData[j];
 
-	
 	/* Smith trigger  --  delaySwitch between 0 to DELAY_TIME */
-	if(Isequal(d ,AO->predictedSaveData[j]) ){//&& floatabs(w)>1){
+//	if(Isequal(d ,AO->predictedSaveData[j])&& (Isstable(AO->outputSave)==0)){//&& floatabs(w)>1){
+	if(Isequal(d ,AO->predictedSaveData[j])){
 		delaySwitch[node-1] = delaySwitch[node-1]+1; 
 	}
 	else{
@@ -499,10 +532,10 @@ int8_t switch_task(struct Adaptive_Oscillators * AO, float d, float w, uint8_t n
 		PO_time[node-1] = PO_time[node-1]+1;
 	}
 	else if(assive[node-1] == AOMODE){
-		PO_time[node-1] = PO_time[node-1]-5;
+		PO_time[node-1] = PO_time[node-1]-0;
 	}
 	
-	if(PO_time[node-1] > 400){
+	if(PO_time[node-1] > RESET_TIME){
 		AO_Init( period[node-1] * dt, node);			//AO reset 	float w0 = 21*dt;							 // 21*dt
 		PO_time[node-1] = 0;							//AO reset time
 	}
