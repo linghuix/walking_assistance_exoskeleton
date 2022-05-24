@@ -6,61 +6,84 @@
  */
 #include "func_BLE_HC05.h"
 
-void HC05_Init(void)
-{
-  MX_USART1_UART_Init();
-  MSG("beginning...\r\n");
-}
+/**
+ * @date   2022/5/24
+ * @author lhx
+ * @brief  串口初始化
+ * @note
+ */
+// void HC05_Init(void)
+// {
+// MX_USART1_UART_Init();
+// MSG("beginning...\r\n");
+// }
 
-void HC05_config(void)
-{
-  uint8_t test_data[] = "AT+UART\r\n";
-  HAL_UART_Transmit(&HC05_huart, test_data, sizeof(test_data), 500);
-}
 
-void HC05_send(uint8_t data[], uint8_t size) { HAL_UART_Transmit_IT(&HC05_huart, data, size); }
+// void HC05_config(void)
+// {
+// uint8_t test_data[] = "AT+UART\r\n";
+// HAL_UART_Transmit(&HC05_huart, test_data, sizeof(test_data), 500);
+// }
+
+
+/**
+ * @date   2022/5/24
+ * @author lhx
+ * @brief  蓝牙串口打印
+ * @param  parameters definition
+ * @note   usually the special usage need to be noticed
+ */
+// void HC05_send(uint8_t data[], uint8_t size) { HAL_UART_Transmit_IT(&HC05_huart, data, size); }
+
 
 uint8_t hardtest_CommandReceive[200], hardtest_receivebyte, hardtest_length;
 uint8_t receivebyte, CommandReceive[20], length = 0;
 
+/**
+ * @date   2022/5/24
+ * @author lhx
+ * @brief  串口接收命令的初始化启动函数
+ * @note   需要解析串口接收的命令时，需要先调用该函数
+ */
 void HC05_RcvCmd(void)
 {
   MX_USART1_UART_Init();
 
-  HAL_UART_Receive_IT(&huart1, &hardtest_receivebyte, 1);
-  __HAL_UART_ENABLE_IT(&huart1, UART_IT_IDLE);  // 空闲中断
+  HAL_UART_Receive_IT(&huart1, &hardtest_receivebyte, 1);  // 接收中断
+  __HAL_UART_ENABLE_IT(&huart1, UART_IT_IDLE);             // 空闲中断
   //	HAL_UART_Receive_IT(&huart1, &receivebyte, 1);
+  MSG("RcvCmd start\r\n");
 }
+
 
 /***********************************************************************************************************************/
 
+int idleflag = 0;  //串口接收进入空闲 标志
 /**
+ * @date   2022/5/24
+ * @author lhx
  * @brief  串口空闲中断回调函数
  * @retval None
  */
-struct parasturct
-{
-  int     para[50];  // 解读出的整型数字上限
-  uint8_t paranum;   // 解读出的整型数字数量
-};
-
-extern int        PREDICT_TIME;
-extern float      tao_Ep, fai_Ep, fai_Er, fai_Ef, a[3], b[3], tao_Fp, fai_Fp, fai_Fr, fai_Ff;
-struct parasturct para     = {0};
-int               idleflag = 0;
-void              inputPara(struct parasturct *parasturct, uint8_t *paradata, uint8_t length);
-TEST              USAR_UART1_IDLECallback(UART_HandleTypeDef *huart)
+TEST USAR_UART1_IDLECallback(UART_HandleTypeDef *huart)
 {
   if (huart->Instance == USART1) {
-    //		HAL_UART_Transmit(&huart1, hardtest_CommandReceive,
+    // HAL_UART_Transmit(&huart1, hardtest_CommandReceive,
     // hardtest_length, 500);
     idleflag = 1;
   }
 }
 
+
+extern int        PREDICT_TIME;
+extern float      tao_Ep, fai_Ep, fai_Er, fai_Ef, a[3], b[3], tao_Fp, fai_Fp, fai_Fr, fai_Ff;
+struct parasturct para = {0};  //串口接收命令存储 结构体
+void              inputPara(struct parasturct *parasturct, uint8_t *paradata, uint8_t length);
 /**
+ * @date   2022/5/24
+ * @author lhx
  * @brief  hardtest_CommandReceive 中的串口数据解析
- * @retval None
+ * @note 第一个数字必为170
  */
 void commandPrase(void)
 {
@@ -69,8 +92,8 @@ void commandPrase(void)
 
   inputPara(&para, hardtest_CommandReceive, hardtest_length);
 
-  int flag = 1;               // 判断第一个数是否为170
-  if (para.para[0] == 170) {  // 第一个数字必为170 二进制位 0x10101010
+  int flag = 1;
+  if (para.para[0] == 170) {  // 第一个数字必为170 二进制位 0x10101010，便于判断错误
     flag = 0;
   }
   if (flag == 0) {
@@ -123,33 +146,36 @@ void commandPrase(void)
   }
 }
 
+
 /**
- * @brief:
+ * @date   2022/5/24
+ * @author lhx
+ * @brief
  * 串口输入字符串"5/6/7/8"，解读出所有整数数字。支持正负数字，串口输入需要换行
  * @note
- * ：对于输入不全的，不会更新对应参数；但是输入过多的，会更新对应参数；输入过少但是全的，会更新。
- * “/70” - 不更新  “90/80” 更新 “89/”不更新
- * @parameter parasturct:	存储输入数据结构体
- * @parameter paradata:		串口输入的命令字符串
- * @parameter length:		串口输入的命令字符串字节数
+ * 	 对于输入不全的，不会更新对应参数； “/70” - 不更新  “89/”不更新
+         但是输入过多的，会更新对应参数；“90/80” 更新
+         输入过少但是全的，会更新。
+ * @param parasturct:	存储输入数据结构体
+ * @param paradata:		串口输入的命令字符串
+ * @param length:		串口输入的命令字符串字节数
  */
-
 #include <stdlib.h>
-
-TEST inputPara(struct parasturct *parasturct, uint8_t *paradata, uint8_t length)
+void inputPara(struct parasturct *parasturct, uint8_t *paradata, uint8_t length)
 {
   uint8_t para[50];  // paradata 读取串口输入字符，para 读取数字
 
   int index           = 0;  // index 光标
   parasturct->paranum = 0;  // paranum 参数数量
 
+  // 遍历所有字符串
   for (int i = 0; i < length; i++) {
     if (paradata[i] == '/') {
-      para[index]                             = '\0';                // para[]字符串为一个数字
-      parasturct->para[parasturct->paranum++] = atoi((char *)para);  // 字符串转整型
+      para[index]                             = '\0';                // 补全字符串结尾标志
+      parasturct->para[parasturct->paranum++] = atoi((char *)para);  // 字符串转整型并存储
       index                                   = 0;
     }
-    else if (paradata[i] == '\n') {
+    else if (paradata[i] == '\n') {  // 命令字符串结尾
       para[index]                             = '\0';
       parasturct->para[parasturct->paranum++] = atoi((char *)para);
       break;
@@ -168,12 +194,13 @@ TEST inputPara(struct parasturct *parasturct, uint8_t *paradata, uint8_t length)
 }
 
 /**
- * @brief
- * @note 	1. need to put into stm32f10x_it.c
- *
- * @retval None
+ * @date   2022/5/24
+ * @author lhx
+ * @brief	串口空闲中断的服务函数
+ * @note 	1. need to be put into stm32f10x_it.c
+                        2. 调用 USAR_UART1_IDLECallback
  */
-TEST IDLE_UART_IRQHandler(UART_HandleTypeDef *huart)
+void IDLE_UART_IRQHandler(UART_HandleTypeDef *huart)
 {
   if (huart->Instance == USART1) {
     if (RESET != __HAL_UART_GET_FLAG(huart, UART_FLAG_IDLE))  // IDLE
@@ -182,15 +209,4 @@ TEST IDLE_UART_IRQHandler(UART_HandleTypeDef *huart)
       USAR_UART1_IDLECallback(huart);
     }
   }
-}
-
-uint8_t HardwareTestData[7] = {0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77};
-TEST    test_USART1_communication(void)
-{
-  MX_USART1_UART_Init();
-
-  HAL_UART_Transmit_IT(&huart1, HardwareTestData, 6);
-  //
-  //	HAL_UART_Receive_IT(&huart1, HardwareTestData, 1);
-  //	__HAL_UART_ENABLE_IT(&huart1, UART_IT_IDLE);	// 空闲中断
 }

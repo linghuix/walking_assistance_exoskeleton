@@ -1,15 +1,16 @@
 
 #include "main.h"
 
-#define ECON
+#define ECON											//驱动器使能
 #define ECON_L
 #define ECON_R
 
 /* safe */
-#define TH_BOUND 40.0
-#define PERIOD 50
+#define TH_BOUND 40.0							// 运动极限阈值
+//#define MAX_D_area 50.0
 
 /* 控制周期 */
+#define PERIOD 50
 uint32_t inc            = 0;              // 2ms 周期计时器
 int      CONTROL_PERIOD = PERIOD / 2;     // ms 实际控制周期 CONTROL_PERIOD*2 ms
 float    dt             = PERIOD / 1000;  // 控制周期 50 ms
@@ -20,32 +21,32 @@ float    dt             = PERIOD / 1000;  // 控制周期 50 ms
 int16_t stopCounter[2] = {0};  // 停止判断计数器;
 int16_t stopFlag[2]    = {0};  // 站立判断指示 1-站立
 #define TH_W 8.0               // 角速度阈值
-#define TH_D 15.0  // 角度阈值
+#define TH_D 15.0  						 // 角度阈值
 
 /*  交互力模块 */
 uint16_t Interaction_force = 0;
 
 /* 外部IMU采集 */
-float                        hip1_w, hip1_d;
-float                        hip2_w, hip2_d;
-float                        hip1_raww, hip1_rawd;
-float                        hip2_raww, hip2_rawd;
-float                        hipd, hipw;
+float                        hip1_w, hip1_d;				// 左侧 滤波后角速度/角度
+float                        hip2_w, hip2_d;				// 右侧 滤波后角速度/角度
+float                        hip1_raww, hip1_rawd;	// 左侧 滤波前角速度/角度
+float                        hip2_raww, hip2_rawd;	// 右侧 滤波前角速度/角度
+float                        hipd, hipw;						// 代表双侧角度，角速度
 struct Adaptive_Oscillators* hip_AOpointer;
-struct APO*                  hip_APOpointer;
+struct APO*                  hip_APOpointer;				// 自适应PO结构体指针
 
 // 助力值
-float I[2] = {0};
+float I[2] = {0};		// 驱动器助力驱动电流值
 
 /* 滤波 */
-#define Buffsize 2  // 原始数据滤波窗口
-WIN         acc1win_w, acc2win_w, acc1win_d, acc2win_d;
-ElementType acc1WinArray_d[Buffsize] = {0};
+#define Buffsize 2
+WIN         acc1win_w, acc2win_w, acc1win_d, acc2win_d;  // 原始数据滤波窗口
+ElementType acc1WinArray_d[Buffsize] = {0};				// 左侧角度窗口
 ElementType acc2WinArray_d[Buffsize] = {0};
-ElementType acc1WinArray_w[Buffsize] = {0};
+ElementType acc1WinArray_w[Buffsize] = {0};				// 左侧角速度窗口
 ElementType acc2WinArray_w[Buffsize] = {0};
 float       weights[Buffsize] = {0.15, 0.85};    // data_now = 0.95 x data_pre + 0.05 x data_now
-float       phaseOffset       = -0.10 * PI * 2;  // phase = phase-phaseOffset
+float       phaseOffset       = -0.10 * PI * 2;  // 滤波延迟的相位补偿 phase = phase-phaseOffset
 
 /*  峰值检测模块 */
 #define TH_PERIOD 20
@@ -66,27 +67,24 @@ struct APO apohip1;  // po.h
 struct APO apohip2;
 
 /* 助力模式 */
-extern int16_t delaySwitch[2];
+extern int16_t delaySwitch[2];				// smith 触发器延迟数值
 int8_t         assive_mode[2] = {0};  // 当前助力模式
 int            state[2]       = {0};  // 0-stop 1-walking
 
 /* 助力值计算 */
-// float AssisTor = 0.5;
-//#define RightTorRatio 1	   右侧的 assist gain 更大一些
-#define D_area 2.0  // 2.0	for eliminate chattering
-#define W_area 2.0  // 1.0
-#define MAX_D_area 50.0  // for safety
-float k[2] = {0};  //[0]左髋关节 [1]右髋关节
-float kkkk = 0;
+
+#define RightTorRatio 2	   //右侧的 assist gain 更大一些
+float torqueflag[2] = {0}; //[0]左髋关节 [1]右髋关节助力标志。 0 - 无助力; 1 - 有助力
+
 
 /* 助力值优化参数 */
-float tao_Ep = 2.23;   // 5-10 Nm  // 0.1-0.8
-float fai_Ep = 0.202;  // 0.2-0.3
-float fai_Er = 0.112;  // 0.1-0.2
-float fai_Ef = 0.176;  // 0.1-0.2
-float tao_Fp, fai_Fp, fai_Fr, fai_Ff;
-float a[3];
-float b[3];
+float tao_Ep = 2.23;   	// 5-10 Nm  // 0.1-0.8   最大伸展助力值  参考lhx硕士毕业论文
+float fai_Ep = 0.202;  	// 0.2-0.3		最大伸展助力值相位
+float fai_Er = 0.112;  	// 0.1-0.2		最大伸展助力上升沿相位
+float fai_Ef = 0.176;  	// 0.1-0.2		最大伸展助力下降沿相位
+float tao_Fp, fai_Fp, fai_Fr, fai_Ff;// 最大屈曲助力值
+float a[3];							// 光滑助力曲线参数
+float b[3];							// 光滑助力曲线参数
 
 // Jscope 调试
 int     debug_hip1_d, debug_hip1_rawd, debug_hip2_d, debug_hip2_rawd;
@@ -98,8 +96,8 @@ int     debug_AOphase1 = 0, debug_AOoutput1 = 0, debug_AOpre1 = 0, debug_phase1 
 int debug_AOphase2 = 0, debug_AOoutput2 = 0, debug_AOpre2 = 0, debug_phase2 = 0, debug_AOw2,
     debug_AOphasePre2;
 int debug_AOIndex      = 0;
-int debug_assisTorque1 = 0, debug_assisTorque2 = 0;  // 临时查看变量
-int debug_tmp;
+int debug_assisTorque1 = 0, debug_assisTorque2 = 0; 
+int debug_tmp; // 临时查看变量
 
 extern int   idleflag;
 extern float floatabs(float x);
@@ -375,16 +373,16 @@ int main(void)
         }
 
         // No assistance conditions
-        k[ii] = 1.0;
+        torqueflag[ii] = 1.0;
 
         // 防高频率抖动
         // if(period[ii] < TH_PERIOD){
-        //		k[ii] = 0.0;
+        //		torqueflag[ii] = 0.0;
         // }
 
         // 站立时不助力
         if (stopFlag[ii] == 1) {
-          k[ii] = 0.0;
+          torqueflag[ii] = 0.0;
         }
 
         // 摆动关节角度过大时的安全防护
@@ -420,7 +418,7 @@ int main(void)
           I[ii]     = -((b[ii] * phi + b[1]) * phi + b[2]);
         }
 
-        I[ii] = I[ii] * k[ii];
+        I[ii] = I[ii] * torqueflag[ii];
 
         if (ii == 0) {
 #ifdef ECON_L
@@ -429,11 +427,11 @@ int main(void)
         }
         else if (ii == 1) {
 #ifdef ECON_R
-          if (I[1] > 0) {
-            set_I_direction(2, -(I[1] + 0.3));  //负是往前， 补偿右侧驱动器的减速器的摩擦力
+          if (I[ii] > 0) {
+            set_I_direction(2, -(I[ii]*RightTorRatio + 0.3));  //负是往前， 补偿右侧驱动器的减速器的摩擦力
           }
           else {
-            set_I_direction(2, -(I[1] - 0.3));  //负是往前，
+            set_I_direction(2, -(I[ii]*RightTorRatio - 0.3));  //负是往前，
           }
 #endif
         }

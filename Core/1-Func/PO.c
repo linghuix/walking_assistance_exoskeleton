@@ -11,8 +11,6 @@
 #include "PO.h"
 
 extern float floatabs(float x);
-#define AssisTor 0.1
-#define RightTorRatio 3  // assist gain
 
 
 uint8_t error_atana = 0;
