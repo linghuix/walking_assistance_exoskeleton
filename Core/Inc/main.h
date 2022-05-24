@@ -8,15 +8,12 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "FUNC.h"
-	
-#include "PO.h"
 #include "AO.h"
 #include "FSR.h"
-	
-#include "win.h"
-
+#include "FUNC.h"
+#include "PO.h"
 #include "math.h"
+#include "win.h"
 
 
 #ifdef __cplusplus

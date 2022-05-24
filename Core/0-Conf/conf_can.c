@@ -1,11 +1,11 @@
 /**
-  ******************************************************************************
-  * @文件名     ： bsp_can.c
-  * @作者       ： strongerHuang
-  * @版本       ： V1.0.0
-  * @日期       ： 2018年11月14日
-  * @摘要       ： CAN底层源文件
-  ******************************************************************************/
+ ******************************************************************************
+ * @文件名     ： bsp_can.c
+ * @作者       ： strongerHuang
+ * @版本       ： V1.0.0
+ * @日期       ： 2018年11月14日
+ * @摘要       ： CAN底层源文件
+ ******************************************************************************/
 /*----------------------------------------------------------------------------
   更新日志:
   2018-11-14 V1.0.0:初始版本
@@ -17,52 +17,47 @@ CAN_HandleTypeDef hcan1;
 
 
 /**
-  * @brief CAN Function Initialization. bps set and mode set
-  * @param mode: CAN_MODE_NORMAL/CAN_MODE_LOOPBACK
-  * @retval None
-  * @note  bps: 36M/(SyncJumpWidth+TimeSeg1+TimeSeg2)/Prescaler		36M/(3+8+1)/12 = 250 KHz
-  */
+ * @brief CAN Function Initialization. bps set and mode set
+ * @param mode: CAN_MODE_NORMAL/CAN_MODE_LOOPBACK
+ * @retval None
+ * @note  bps: 36M/(SyncJumpWidth+TimeSeg1+TimeSeg2)/Prescaler
+ * 36M/(3+8+1)/12 = 250 KHz
+ */
 void CANHandle_Init(uint32_t mode)
 {
-	hcan1.Instance = CAN1;
-	hcan1.Init.Prescaler = 12;
-	hcan1.Init.Mode = mode;
-	hcan1.Init.SyncJumpWidth = CAN_SJW_1TQ;
-	hcan1.Init.TimeSeg1 = CAN_BS1_8TQ;
-	hcan1.Init.TimeSeg2 = CAN_BS2_3TQ;
-	hcan1.Init.TTCM = DISABLE; //时间触发模式 - 时间戳
-	hcan1.Init.ABOM = DISABLE; //自动总线关闭管理模式
-	hcan1.Init.AWUM = DISABLE; //自动唤醒模式
-	hcan1.Init.NART = DISABLE; //禁止自动重发模式
-	hcan1.Init.RFLM = DISABLE; //接收FIFO锁定模式
-	hcan1.Init.TXFP = ENABLE; //发送FIFO顺序优先级
-	if (HAL_CAN_Init(&hcan1) != HAL_OK)
-	{
-		Error_Handler()
-		;
-	}
+  hcan1.Instance           = CAN1;
+  hcan1.Init.Prescaler     = 12;
+  hcan1.Init.Mode          = mode;
+  hcan1.Init.SyncJumpWidth = CAN_SJW_1TQ;
+  hcan1.Init.TimeSeg1      = CAN_BS1_8TQ;
+  hcan1.Init.TimeSeg2      = CAN_BS2_3TQ;
+  hcan1.Init.TTCM          = DISABLE;  //时间触发模式 - 时间戳
+  hcan1.Init.ABOM          = DISABLE;  //自动总线关闭管理模式
+  hcan1.Init.AWUM          = DISABLE;  //自动唤醒模式
+  hcan1.Init.NART          = DISABLE;  //禁止自动重发模式
+  hcan1.Init.RFLM          = DISABLE;  //接收FIFO锁定模式
+  hcan1.Init.TXFP          = ENABLE;   //发送FIFO顺序优先级
+  if (HAL_CAN_Init(&hcan1) != HAL_OK) {
+    Error_Handler();
+  }
 }
 
 void CAN_ITEnable()
 {
-	if (HAL_CAN_ActivateNotification(&hcan1,
-			CAN_IT_RX_FIFO0_MSG_PENDING | CAN_IT_RX_FIFO1_MSG_PENDING)
-			!= HAL_OK)
-	{
-		Error_Handler()
-		;
-	}
+  if (HAL_CAN_ActivateNotification(
+          &hcan1, CAN_IT_RX_FIFO0_MSG_PENDING | CAN_IT_RX_FIFO1_MSG_PENDING) !=
+      HAL_OK) {
+    Error_Handler();
+  }
 }
 
 void CAN_ITDISEnable()
 {
-	if (HAL_CAN_DeactivateNotification(&hcan1,
-			CAN_IT_RX_FIFO0_MSG_PENDING | CAN_IT_RX_FIFO1_MSG_PENDING)
-			!= HAL_OK)
-	{
-		Error_Handler()
-		;
-	}
+  if (HAL_CAN_DeactivateNotification(
+          &hcan1, CAN_IT_RX_FIFO0_MSG_PENDING | CAN_IT_RX_FIFO1_MSG_PENDING) !=
+      HAL_OK) {
+    Error_Handler();
+  }
 }
 /************************************************
 函数名称 ： CAN_GPIO_Configuration
@@ -81,16 +76,16 @@ void CAN_ITDISEnable()
 
 void MX_CAN1_Init(uint32_t mode)
 {
-	CANHandle_Init(mode);
-	CanFilter_Init(&hcan1, CAN_FILTER_FIFO0);
-//	CAN_ITEnable();
+  CANHandle_Init(mode);
+  CanFilter_Init(&hcan1, CAN_FILTER_FIFO0);
+  //	CAN_ITEnable();
 }
 
 void MX_CAN1_Test_Init(uint32_t mode)
 {
-	CANHandle_Init(mode);
-	CanFilter_Init(&hcan1, CAN_FILTER_FIFO0);
-	CAN_ITEnable();
+  CANHandle_Init(mode);
+  CanFilter_Init(&hcan1, CAN_FILTER_FIFO0);
+  CAN_ITEnable();
 }
 /*
  * author lhx
@@ -104,10 +99,8 @@ void MX_CAN1_Test_Init(uint32_t mode)
 
 void HAL_CAN_MspInit(CAN_HandleTypeDef* canHandle)
 {
-
   GPIO_InitTypeDef GPIO_InitStruct;
-  if(canHandle->Instance==CAN1)
-  {
+  if (canHandle->Instance == CAN1) {
     __HAL_RCC_CAN1_CLK_ENABLE();
 
     __HAL_RCC_GPIOA_CLK_ENABLE();
@@ -115,13 +108,13 @@ void HAL_CAN_MspInit(CAN_HandleTypeDef* canHandle)
     PA11     ------> CAN_RX
     PA12     ------> CAN_TX
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_11;
+    GPIO_InitStruct.Pin  = GPIO_PIN_11;
     GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
     GPIO_InitStruct.Pull = GPIO_PULLUP;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = GPIO_PIN_12;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pin   = GPIO_PIN_12;
+    GPIO_InitStruct.Mode  = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
@@ -135,9 +128,7 @@ void HAL_CAN_MspInit(CAN_HandleTypeDef* canHandle)
 
 void HAL_CAN_MspDeInit(CAN_HandleTypeDef* canHandle)
 {
-
-  if(canHandle->Instance==CAN1)
-  {
+  if (canHandle->Instance == CAN1) {
     /* Peripheral clock disable */
     __HAL_RCC_CAN1_CLK_DISABLE();
 
@@ -145,10 +136,10 @@ void HAL_CAN_MspDeInit(CAN_HandleTypeDef* canHandle)
     PD0     ------> CAN1_RX
     PD1     ------> CAN1_TX
     */
-    HAL_GPIO_DeInit(GPIOD, CAN_RX_PIN|CAN_TX_PIN);
+    HAL_GPIO_DeInit(GPIOD, CAN_RX_PIN | CAN_TX_PIN);
     HAL_NVIC_DisableIRQ(CAN1_TX_IRQn);
     HAL_NVIC_DisableIRQ(CAN1_RX0_IRQn);
-	}
+  }
 }
 
 
@@ -163,21 +154,20 @@ void CanFilter_Init(CAN_HandleTypeDef* hcan, uint32_t FILTER_FIFO)
 {
   CAN_FilterTypeDef canfilter;
 
-  //use different filter for can1&can2
-  if(hcan->Instance == CAN1)
-  {
-	canfilter.FilterMode = CAN_FILTERMODE_IDMASK;
-	canfilter.FilterScale = CAN_FILTERSCALE_32BIT;
+  // use different filter for can1&can2
+  if (hcan->Instance == CAN1) {
+    canfilter.FilterMode  = CAN_FILTERMODE_IDMASK;
+    canfilter.FilterScale = CAN_FILTERSCALE_32BIT;
 
-	//Filtered any ID you want here
-	canfilter.FilterIdHigh = 0x0000;
-	canfilter.FilterIdLow = 0x0000;
-	canfilter.FilterMaskIdHigh = 0x0000;
-	canfilter.FilterMaskIdLow = 0x0000;
+    // Filtered any ID you want here
+    canfilter.FilterIdHigh     = 0x0000;
+    canfilter.FilterIdLow      = 0x0000;
+    canfilter.FilterMaskIdHigh = 0x0000;
+    canfilter.FilterMaskIdLow  = 0x0000;
 
-	canfilter.FilterFIFOAssignment = FILTER_FIFO;
-	canfilter.FilterActivation = ENABLE;
-	canfilter.FilterBank = 0;
+    canfilter.FilterFIFOAssignment = FILTER_FIFO;
+    canfilter.FilterActivation     = ENABLE;
+    canfilter.FilterBank           = 0;
   }
 
 
@@ -185,4 +175,5 @@ void CanFilter_Init(CAN_HandleTypeDef* hcan, uint32_t FILTER_FIFO)
 }
 
 
-/**** Copyright (C)2018 strongerHuang. All Rights Reserved **** END OF FILE ****/
+/**** Copyright (C)2018 strongerHuang. All Rights Reserved **** END OF FILE
+ * ****/

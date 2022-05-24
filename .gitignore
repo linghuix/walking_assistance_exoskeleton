@@ -21,7 +21,7 @@
 
 *.pc
 *.uvoptx
-*.uvprojx
+//*.uvprojx
 *.uvopt
 *.flyleaf
 *.jscope
